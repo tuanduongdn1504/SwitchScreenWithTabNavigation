@@ -24,6 +24,13 @@ This README would normally document whatever steps are necessary to get your app
 - $plop
 - select "generate redux"
 - enter reducer name.
+-
+
+#### How do I ignore unuse actions?
+
+- go redux/SomethingRedux/actions.js
+- add unuse actions to array "IGNORE_ACTIONS = []";
+- The Actions you can ignore: ['GET_ALL', 'GET_ONE', 'DELETE', 'EDIT', 'CREATE']
 
 ### Contribution guidelines
 
