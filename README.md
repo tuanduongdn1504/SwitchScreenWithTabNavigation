@@ -10,20 +10,21 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up?
 
-- Summary of set up
-- Configuration
-- Dependencies
-- Database configuration
-- How to run tests
-- Deployment instructions
+- $npm install -g plop
+- $npm install
+- $npm run createIconFont
+- $cd ios
+- $pod install
+
+### How do I create new reducer?
+
+- $plop
+- select "generate redux"
+- enter reducer name.
 
 ### Contribution guidelines
 
-- Writing tests
-- Code review
-- Other guidelines
-
 ### Who do I talk to?
 
-- Repo owner or admin
-- Other community or team contact
+- Repo created by Anh Doan
+- Other community or team contact: doananh234@gmail.com
