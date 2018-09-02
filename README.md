@@ -10,10 +10,13 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up?
 
+- $npm install -g react-native-rename
 - $npm install -g plop
+- react-native-rename "projectName"
 - $npm install
 - $npm run createIconFont
 - $cd ios
+- remove Pods and podfile.lock
 - $pod install
 
 ### How do I create new reducer?
