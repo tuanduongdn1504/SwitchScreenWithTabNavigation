@@ -34,6 +34,7 @@ export const startWithTabs = () => {
       options: {
         topBar: {
           visible: false,
+          drawBehind: true,
         },
       },
     },
