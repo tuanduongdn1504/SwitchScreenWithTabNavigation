@@ -156,7 +156,7 @@ export default class CustomMap extends Component {
           identifier={data.objectId}
           map={this.map}
           title={data.name}
-          address={data.location.address}
+          address={data.address}
           image={data.thumbnail}
           key={data.objectId}
           selectedMarker={markers.length > 1 ? selectedMarker : data.objectId}

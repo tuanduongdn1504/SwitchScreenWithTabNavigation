@@ -46,12 +46,32 @@ export const startWithTabs = () => {
           component: {
             id: data.screen,
             name: data.screen,
-            options: data.options || navigatorStyle,
+            options: {
+              ...data.options,
+              bottomTabs: {
+                backgroundColor: Colors.tabBackground,
+                visible: true,
+                animate: true,
+                // currentTabIndex: 0,
+                // currentTabId: 'currentTabId',
+                // testID: 'bottomTabsTestID',
+                drawBehind: false,
+              },
+            },
           },
         },
       ],
       options: {
         bottomTab: configTab(data),
+        bottomTabs: {
+          backgroundColor: Colors.tabBackground,
+          visible: true,
+          animate: true,
+          // currentTabIndex: 0,
+          // currentTabId: 'currentTabId',
+          // testID: 'bottomTabsTestID',
+          drawBehind: false,
+        },
       },
     },
   }));
