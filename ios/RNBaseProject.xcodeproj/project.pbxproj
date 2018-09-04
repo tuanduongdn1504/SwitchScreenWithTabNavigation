@@ -1718,7 +1718,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.tutor;
 				PRODUCT_NAME = RNBaseProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1757,7 +1757,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.tutor;
 				PRODUCT_NAME = RNBaseProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
