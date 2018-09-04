@@ -13,6 +13,8 @@ const icons = {
   'md-close': [25, '#fff'],
   'md-menu': [25, '#fff'],
   'md-add': [25, '#fff'],
+  'ios-chatbubbles': [25, '#fff'],
+  'ios-notifications': [25, '#fff'],
   qrcode: [25, '#fff', 'fontAwesome'],
 };
 

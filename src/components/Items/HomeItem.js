@@ -27,22 +27,14 @@ const HomeItem = ({ data, onPress, showQR }) => {
               <Text type="normalBold" color={Colors.primaryText}>
                 {data.name}
               </Text>
-              <Text type="subText" color={Colors.secondaryText} style={styles.subTitle}>
-                {`${moment().diff(moment(data.dob), 'years')} ${I18n.t('olds')}`}
-              </Text>
+              <View style={styles.vContent}>
+                <InfoRow icon="ios-call" text={data.phoneNumber} />
+                <InfoRow icon="ios-pin" text={data.address} />
+              </View>
             </View>
-            <Button
-              fontAwesome="qrcode"
-              iconColor={Colors.default}
-              iconSize={18}
-              style={styles.btnQR}
-              iconStyle={{ marginRight: 0 }}
-              onPress={() => showQR(data)}
-            />
-          </View>
-          <View style={styles.vContent}>
-            <InfoRow icon="ios-call" text={data.phoneNumber} />
-            <InfoRow icon="ios-pin" text={data.address} />
+            <Text type="subText" color={Colors.secondaryText} style={styles.subTitle}>
+              {`${moment().diff(moment(data.dob), 'years')} ${I18n.t('olds')}`}
+            </Text>
           </View>
         </View>
       </Touchable>
@@ -54,7 +46,7 @@ const InfoRow = ({ icon, text }) => {
   return (
     <View style={styles.row}>
       <Icon name={icon} color={Colors.primaryTextBlur} style={styles.icon} />
-      <Text type="subText" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
+      <Text type="lightNote" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
         {text}
       </Text>
     </View>
@@ -71,17 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   container: {
-    marginBottom: 20,
-    borderRadius: 14,
     backgroundColor: Colors.default,
-    shadowColor: 'rgba(0, 0, 0, 0.14)',
-    shadowOffset: {
-      width: 0,
-      height: 16,
-    },
-    shadowRadius: 16,
-    shadowOpacity: 1,
-    elevation: 16,
     padding: 15,
   },
   vHeader: {
@@ -105,13 +87,12 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    paddingTop: 3,
     flex: 1,
     alignItems: 'center',
   },
   icon: {
     marginRight: 10,
-    fontSize: 25,
+    fontSize: 17,
   },
   description: {
     paddingLeft: 30,

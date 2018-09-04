@@ -9,6 +9,26 @@ export const SEX = [
     title: 'Nữ',
   },
 ];
+export const APPOINTMENTS_TYPE = [
+  {
+    value: 0,
+    text: 'Đăng ký khám ngay',
+  },
+  {
+    value: 1,
+    text: 'Đăng ký trước',
+  },
+];
+
+export const STATUS = ['Đang đợi', 'Đang khám', 'Đã Khám'];
+
+export const SEARCH_TYPE_DATA = [
+  { id: 'tc-ho-so', name: 'Tra cứu hồ sơ', icon: 'ios-clipboard' },
+  { id: 'tc-xe-buyt', name: 'Tra cứu xe buýt', icon: 'ios-bus' },
+  { id: 'tc-diem-thi', name: 'Tra cứu điểm thi', icon: 'ios-school' },
+  { id: 'tc-an-toan-thuc-pham', name: 'An toàn vệ sinh thực phẩm', icon: 'ios-restaurant' },
+  { id: 'tc-tt-hanh-chinh', name: 'Tra cứu thủ tục hành chính', icon: 'ios-briefcase' },
+];
 
 export const DUMMY_USER_DATA = [
   {

@@ -6,12 +6,20 @@ import Actions, { LoginTypes } from './actions';
 import {
   login, register, getInfor, updatePassword, editUser, logout,
 } from '../../api/auth';
-import { startWithTabs, showInAppNoti, showProgress } from '../../navigation/navigationActions';
+import {
+  startWithTabs,
+  startStackScreen,
+  showInAppNoti,
+  showProgress,
+} from '../../navigation/navigationActions';
 import { apiWrapper } from '../../utils/reduxUtils';
 
 export function* signOut() {
   global.token = null;
-  yield call(logout);
+  try {
+    startStackScreen();
+    yield call(logout);
+  } catch (error) {}
 }
 
 export function* signUp({ data }) {

@@ -11,6 +11,7 @@ import TutorActions from '../../redux/TutorRedux/actions';
 import CheckUpdate from './CheckUpdate';
 import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
+import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 
 class Home extends Component {
@@ -27,9 +28,9 @@ class Home extends Component {
   }
 
   onPressItem(item) {
+    this.props.getOneTutor(item);
     push(this.props.componentId, 'detail', {
-      title: I18n.t('detail'),
-      rightButtons: [qrcode()],
+      title: I18n.t('tutorDetail'),
     });
   }
 
@@ -70,14 +71,13 @@ class Home extends Component {
         <CheckUpdate />
         <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
         <FlatList
-          horizontal
           style={styles.list}
           extraData={isUpdate}
           data={tutors}
           renderItem={this.renderItem}
           keyExtractor={data => data.objectId}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
+          ItemSeparatorComponent={() => <Divider />}
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />
@@ -97,9 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    paddingTop: 20,
-    position: 'absolute',
-    bottom: 20,
+    flex: 1,
   },
 });
 
@@ -113,6 +111,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTutors: () => dispatch(TutorActions.getAllTutor()),
+    getOneTutor: data => dispatch(TutorActions.getOneTutor(data)),
   };
 };
 
