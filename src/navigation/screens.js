@@ -10,10 +10,10 @@ import Home from '../screens/Home';
 import SideMenu from '../screens/SideMenu';
 import About from '../screens/SideMenu/About';
 import Detail from '../screens/Detail';
-import NotificationList from '../screens/NotificationList';
+// import NotificationList from '../screens/NotificationList';
 import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
-import SOS from '../screens/SOS/index_demo';
+import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
 
 export function registerScreens(store, persistor) {
@@ -36,13 +36,13 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);
   Navigation.registerComponentWithRedux('detail', () => Detail, PersistProvider, store);
   Navigation.registerComponentWithRedux('chatBox', () => ChatBox, PersistProvider, store);
-  Navigation.registerComponentWithRedux('SOS', () => SOS, PersistProvider, store);
+  Navigation.registerComponentWithRedux('Safety', () => Safety, PersistProvider, store);
   Navigation.registerComponentWithRedux('notification', () => Notification, PersistProvider, store);
-  Navigation.registerComponentWithRedux(
-    'notificationList',
-    () => NotificationList,
-    PersistProvider,
-    store,
-  );
+  // Navigation.registerComponentWithRedux(
+  //   'notificationList',
+  //   () => NotificationList,
+  //   PersistProvider,
+  //   store,
+  // );
   Navigation.registerComponentWithRedux('chatList', () => ChatList, PersistProvider, store);
 }

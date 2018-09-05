@@ -13,19 +13,25 @@ export const startWithTabs = () => {
       icon: iconsMap['ios-home'],
       screen: 'home',
       options: {
-        ...navigatorStyle,
         topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('appName'),
-            color: Colors.default,
-          },
-        },
-        backButton: {
-          icon: iconsMap['md-arrow-back'],
-          visible: true,
+          visible: false,
+          drawBehind: true,
         },
       },
+      // options: {
+      //   ...navigatorStyle,
+      //   topBar: {
+      //     ...navigatorStyle.topBar,
+      //     title: {
+      //       text: I18n.t('appName'),
+      //       color: Colors.default,
+      //     },
+      //   },
+      //   backButton: {
+      //     icon: iconsMap['md-arrow-back'],
+      //     visible: true,
+      //   },
+      // },
     },
     {
       label: 'chat',
@@ -48,10 +54,10 @@ export const startWithTabs = () => {
       },
     },
     {
-      label: 'sos',
-      title: 'SOS',
+      label: 'safety',
+      title: 'Safety',
       icon: iconsMap['ios-help-buoy'],
-      screen: 'SOS',
+      screen: 'Safety',
       options: {
         topBar: {
           visible: false,

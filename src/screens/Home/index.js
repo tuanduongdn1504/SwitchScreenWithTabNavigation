@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
 import { push, showModal } from '../../navigation/navigationActions';
-import { qrcode, close } from '../../navigation/navigationButtons';
+import { close } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorActions from '../../redux/TutorRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -14,6 +14,7 @@ import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import SearchInput from '../../components/SearchInput';
+import NavBar from '../../components/NavigationBar';
 
 class Home extends Component {
   constructor(props) {
@@ -70,8 +71,13 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <CheckUpdate />
+        <NavBar title={I18n.t('home.title')} />
         <SearchInput onChange={this.onChangeSearch} style={{ marginTop: 10 }} />
-        <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
+        <Maps
+          markers={tutors}
+          selectedMarker={selectedMarker}
+          onPressMarker={this.onPressMarker}
+        />
         <FlatList
           style={styles.list}
           extraData={isUpdate}

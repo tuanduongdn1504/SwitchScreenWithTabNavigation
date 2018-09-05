@@ -58,5 +58,13 @@
   "chatHistory": "Chat History",
   "notification": "Notification",
   "tutorDetail": "Tutor Detail",
-  "shareYourCurrentLocation": "Share current location for your relatives in an emergency"
+  "share": "Share",
+  "home": {
+    "title": "Home"
+  },
+  "safety": {
+    "title": "Safety",
+    "shareYourCurrentLocation": "Share current location for your relatives in an emergency",
+    "copiedToClipboard": "Copied to clipboard"
+  }
 }
