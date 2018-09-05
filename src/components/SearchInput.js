@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../themes';
 import Button from './Button';
 
-const SearchInput = (props) => {
+const SearchInput = props => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style]}>
       <Icon name="md-search" size={24} style={styles.icon} />
       <TextInput
         style={styles.input}
@@ -15,7 +15,7 @@ const SearchInput = (props) => {
         placeholder="Type some thing..."
         placeholderTextColor={Colors.grey}
         returnKeyType="search"
-        onChange={(event) => {
+        onChange={event => {
           props.onChange(event.nativeEvent.text);
         }}
         onSubmitEditing={props.onSearch}

@@ -9,10 +9,15 @@ const icons = {
   'ios-search': [25, '#000'],
   'ios-create': [25, '#000'],
   'ios-settings': [25, '#000'],
+  'ios-chatbubbles': [25, '#000'],
+  'ios-notifications': [25, '#000'],
+  'ios-help-buoy': [25, '#000'],
   'md-arrow-back': [25, '#fff'],
   'md-close': [25, '#fff'],
   'md-menu': [25, '#fff'],
   'md-add': [25, '#fff'],
+  'ios-chatbubbles': [25, '#fff'],
+  'ios-notifications': [25, '#fff'],
   qrcode: [25, '#fff', 'fontAwesome'],
 };
 

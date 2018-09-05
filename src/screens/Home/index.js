@@ -5,13 +5,16 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
 import { push, showModal } from '../../navigation/navigationActions';
-import { qrcode, close } from '../../navigation/navigationButtons';
+import { close } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorActions from '../../redux/TutorRedux/actions';
 import CheckUpdate from './CheckUpdate';
 import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
+import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
+import SearchInput from '../../components/SearchInput';
+import NavBar from '../../components/NavigationBar';
 
 class Home extends Component {
   constructor(props) {
@@ -27,13 +30,13 @@ class Home extends Component {
   }
 
   onPressItem(item) {
+    this.props.getOneTutor(item);
     push(this.props.componentId, 'detail', {
-      title: I18n.t('detail'),
-      rightButtons: [qrcode()],
+      title: I18n.t('tutorDetail'),
     });
   }
 
-  onPressMarker = (item) => {
+  onPressMarker = item => {
     this.setState({ selectedMarker: item });
   };
 
@@ -68,16 +71,21 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
+        <NavBar title={I18n.t('home.title')} />
+        <SearchInput onChange={this.onChangeSearch} style={{ marginTop: 10 }} />
+        <Maps
+          markers={tutors}
+          selectedMarker={selectedMarker}
+          onPressMarker={this.onPressMarker}
+        />
         <FlatList
-          horizontal
           style={styles.list}
           extraData={isUpdate}
           data={tutors}
           renderItem={this.renderItem}
           keyExtractor={data => data.objectId}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
+          ItemSeparatorComponent={() => <Divider />}
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />
@@ -97,9 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    paddingTop: 20,
-    position: 'absolute',
-    bottom: 20,
+    flex: 1,
   },
 });
 
@@ -110,9 +116,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorActions.getAllTutor()),
+    getOneTutor: data => dispatch(TutorActions.getOneTutor(data)),
   };
 };
 

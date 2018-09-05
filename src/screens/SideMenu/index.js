@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ScrollView, StyleSheet, View, Dimensions,
-} from 'react-native';
+import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -42,12 +40,29 @@ class Setting extends Component {
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
         <ScrollView>
-          <SettingItem onPress={this.share} title={I18n.t('moreText.shareToFriend')} />
-          <SettingItem onPress={this.rate} title={I18n.t('moreText.rateForUs')} />
-          <SettingItem onPress={this.goTerms} title={I18n.t('moreText.termsAndService')} />
-          <SettingItem noBottomBorder onPress={this.goAbout} title={I18n.t('moreText.aboutUs')} />
+          <SettingItem
+            onPress={this.goAbout}
+            title={I18n.t('moreText.tutorFAQ')}
+          />
+          <SettingItem
+            onPress={this.goAbout}
+            title={I18n.t('moreText.studentFAQ')}
+          />
+          <SettingItem
+            onPress={() => {}}
+            title={I18n.t('moreText.updateCurrentLocation')}
+          />
+          <SettingItem
+            onPress={this.rate}
+            title={I18n.t('moreText.becomeATutor')}
+          />
+          <SettingItem
+            noBottomBorder
+            onPress={this.goAbout}
+            title={I18n.t('moreText.logout')}
+          />
         </ScrollView>
-        <Button
+        {/* <Button
           center={false}
           onPress={this.logout}
           transparent
@@ -56,7 +71,7 @@ class Setting extends Component {
           buttonTitle={I18n.t('moreText.logout')}
           style={styles.btnLogout}
           textStyle={styles.txtLogout}
-        />
+        /> */}
       </View>
     );
   }
@@ -84,7 +99,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     logout: data => dispatch(LoginActions.signOut()),
   };

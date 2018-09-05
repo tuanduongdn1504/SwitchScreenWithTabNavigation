@@ -69,7 +69,7 @@ export default class CustomMap extends Component {
     }
   }
 
-  handleAppStateChange = (e) => {
+  handleAppStateChange = e => {
     const { isGotoSetting } = this;
     if (!e === 'active') return;
 
@@ -82,7 +82,7 @@ export default class CustomMap extends Component {
         },
       });
       navigator.geolocation.getCurrentPosition(
-        (e) => {
+        e => {
           this.map.animateToCoordinate(
             {
               longitude: e.coords.longitude,
@@ -91,12 +91,12 @@ export default class CustomMap extends Component {
             200,
           );
         },
-        (err) => {},
+        err => {},
       );
     }
   };
 
-  onPressMarker = (data) => {
+  onPressMarker = data => {
     const { onPressMarker } = this.props;
     this.map.animateToCoordinate(
       {
@@ -108,14 +108,14 @@ export default class CustomMap extends Component {
     onPressMarker && onPressMarker(data);
   };
 
-  onPressPin = (data) => {
+  onPressPin = data => {
     const { onPressPin } = this.props;
     onPressPin && onPressPin(data);
   };
 
   onPressMyLocation = () => {
     navigator.geolocation.getCurrentPosition(
-      (e) => {
+      e => {
         this.setState({
           region: {
             longitude: e.coords.longitude,
@@ -131,26 +131,26 @@ export default class CustomMap extends Component {
         );
         // this.props.onPressMylocation && this.props.onPressMylocation();
       },
-      (err) => {
-        // Navigation.showLightBox({
-        //   screen: 'app.LocationPermissionPopup', // unique ID registered with Navigation.registerScreen
-        //   passProps: {
-        //     type: 'popup',
-        //     onClose: () => { Navigation.dismissLightBox(); },
-        //   }, // simple serializable object that will pass as props to the lightbox (optional)
-        //   style: {
-        //     backgroundBlur: 'light', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
-        //     backgroundColor: `${Colors.tabBackground}30`, // tint color for the background, you can specify alpha here (optional)
-        //     tapBackgroundToDismiss: true, // dismisses LightBox on background taps (optional)
-        //   },
-        // });
-      },
+      // (err) => {
+      // Navigation.showLightBox({
+      //   screen: 'app.LocationPermissionPopup', // unique ID registered with Navigation.registerScreen
+      //   passProps: {
+      //     type: 'popup',
+      //     onClose: () => { Navigation.dismissLightBox(); },
+      //   }, // simple serializable object that will pass as props to the lightbox (optional)
+      //   style: {
+      //     backgroundBlur: 'light', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
+      //     backgroundColor: `${Colors.tabBackground}30`, // tint color for the background, you can specify alpha here (optional)
+      //     tapBackgroundToDismiss: true, // dismisses LightBox on background taps (optional)
+      //   },
+      // });
+      // },
     );
   };
 
   renderMapMarkers = () => {
     const { markers, currentLocation, selectedMarker } = this.props;
-    const components = markers.map((data) => {
+    const components = markers.map(data => {
       return (
         <CustomCallout
           identifier={data.objectId}
@@ -191,7 +191,7 @@ export default class CustomMap extends Component {
     return (
       <View style={[styles.container, style]}>
         <MapView
-          ref={(ref) => {
+          ref={ref => {
             this.map = ref;
           }}
           showsUserLocation

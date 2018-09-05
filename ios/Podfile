@@ -10,6 +10,15 @@ target 'RNBaseProject' do
   # pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
   # pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
 
+  # Add these to fix react-native duplicate error.
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  
+  #
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
   target 'RNBaseProjectTests' do
     inherit! :search_paths
     # Pods for testing

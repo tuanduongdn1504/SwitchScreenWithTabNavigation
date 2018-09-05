@@ -897,6 +897,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				BDD7FECB12988B2841CD0AD9 /* [CP] Embed Pods Frameworks */,
+				4DFA573A6753B1DFAC09AD16 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -917,6 +919,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				AA4A98B6BA4546BF9BADE839 /* [CP] Embed Pods Frameworks */,
+				98B2D5222FBC1B9C365CF232 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1506,6 +1510,21 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		4DFA573A6753B1DFAC09AD16 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNBaseProjectTests/Pods-RNBaseProjectTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		51F518342CB5CC5DFF3A88C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1522,6 +1541,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98B2D5222FBC1B9C365CF232 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNBaseProject/Pods-RNBaseProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA4A98B6BA4546BF9BADE839 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNBaseProject/Pods-RNBaseProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDD7FECB12988B2841CD0AD9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNBaseProjectTests/Pods-RNBaseProjectTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E93895FD38940EB5EE959EC1 /* [CP] Check Pods Manifest.lock */ = {
@@ -1718,7 +1782,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.tutor;
 				PRODUCT_NAME = RNBaseProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1757,7 +1821,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lateam.tutor;
 				PRODUCT_NAME = RNBaseProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

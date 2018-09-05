@@ -1,6 +1,12 @@
 import React from 'react';
 import I18n from 'react-native-i18n';
-import { View, Image, Dimensions, TouchableHighlight, Platform } from 'react-native';
+import {
+  View,
+  Image,
+  Dimensions,
+  TouchableHighlight,
+  Platform,
+} from 'react-native';
 import { Colors, Images } from '../../themes';
 import Text from '../../components/Text';
 
@@ -29,10 +35,13 @@ const styles = {
   },
 };
 
-const UserInfo = (props) => {
+const UserInfo = props => {
   const { full_name, avatar, sex } = props.user;
   return (
-    <TouchableHighlight underlayColor="transparent" onPress={() => props.onPress()}>
+    <TouchableHighlight
+      underlayColor="transparent"
+      onPress={() => props.onPress()}
+    >
       <View style={styles.content}>
         <Image
           source={{ uri: avatar || global.defaultImage[sex] }}
@@ -44,7 +53,7 @@ const UserInfo = (props) => {
             {full_name}
           </Text>
           <Text type="lightNote" color={Colors.default}>
-            {I18n.t('editProfile')}
+            {I18n.t('menu.editProfile')}
           </Text>
         </View>
       </View>

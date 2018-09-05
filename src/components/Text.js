@@ -193,11 +193,11 @@ const styles = StyleSheet.create({
     fontSize: Fonts.size.semi,
     color: Colors.primaryTextDarker,
   },
-  note: {
-    fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.small,
-    color: Colors.secondaryText,
-  },
+  // note: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.small,
+  //   color: Colors.secondaryText,
+  // },
   lightNote: {
     fontFamily: Fonts.type.regular,
     fontWeight: Fonts.fontWeight.light,

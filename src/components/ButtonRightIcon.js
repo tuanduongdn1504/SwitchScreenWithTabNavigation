@@ -13,7 +13,7 @@ const ButtonRightIcon = ({ title, onPress, textColor }) => {
         <Text type="normal" color={textColor} style={{ flex: 1 }}>
           {title}
         </Text>
-        <Icon name="ios-arrow-down-outline" size={20} color={Colors.divider} />
+        <Icon name="ios-arrow-down" size={20} color={Colors.divider} />
       </View>
     </Touchable>
   );

@@ -22,7 +22,7 @@ Container.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: 5,
+    // borderTopWidth: 5,
     borderTopColor: Colors.primary,
   },
 });

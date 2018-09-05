@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
-import Text from '../../components/Text';
+// import { View, StyleSheet } from 'react-native';
+// import Text from '../../components/Text';
+// import Profile from './Profile';
+import { Colors } from '../../themes';
+import TutorInfo from './TutorInfo';
 
 class Detail extends Component {
   constructor(props) {
@@ -11,22 +14,32 @@ class Detail extends Component {
   }
 
   render() {
+    const { tutor } = this.props;
     return (
-      <View>
-        <Text>test screen</Text>
-      </View>
+//       <View>
+//         <Profile />
+//       </View>
+      <ScrollView style={styles.container}>
+        <TutorInfo data={tutor} />
+      </ScrollView>
     );
   }
 }
-Detail.propTypes = {};
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.default,
+  },
+});
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    tutor: state.tutor.current,
+  };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {};
 };
 

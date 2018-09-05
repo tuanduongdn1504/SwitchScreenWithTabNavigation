@@ -1,8 +1,8 @@
 import { Navigation } from 'react-native-navigation';
+import I18n from 'react-native-i18n';
 import _ from 'lodash';
 import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
-import { menu, add } from '../navigationButtons';
 import { iconsMap } from '../../utils/appIcons';
 
 export const startWithTabs = () => {
@@ -12,11 +12,38 @@ export const startWithTabs = () => {
       title: 'Tutor',
       icon: iconsMap['ios-home'],
       screen: 'home',
-      options: _.merge(navigatorStyle, {
+      options: {
         topBar: {
-          rightButtons: [add()],
+          visible: false,
+          drawBehind: true,
+        },
+      },
+      // options: {
+      //   ...navigatorStyle,
+      //   topBar: {
+      //     ...navigatorStyle.topBar,
+      //     title: {
+      //       text: I18n.t('appName'),
+      //       color: Colors.default,
+      //     },
+      //   },
+      //   backButton: {
+      //     icon: iconsMap['md-arrow-back'],
+      //     visible: true,
+      //   },
+      // },
+    },
+    {
+      label: 'chat',
+      title: 'Chat',
+      icon: iconsMap['ios-chatbubbles'],
+      screen: 'chatBox',
+      options: {
+        ...navigatorStyle,
+        topBar: {
+          ...navigatorStyle.topBar,
           title: {
-            text: 'Bệnh Viện ABC',
+            text: I18n.t('chatHistory'),
             color: Colors.default,
           },
         },
@@ -24,11 +51,68 @@ export const startWithTabs = () => {
           icon: iconsMap['md-arrow-back'],
           visible: true,
         },
-      }),
+      },
+    },
+    {
+      label: 'safety',
+      title: 'Safety',
+      icon: iconsMap['ios-help-buoy'],
+      screen: 'Safety',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
+        },
+      },
+    },
+    // {
+    //   label: 'notificationList',
+    //   title: 'Notification',
+    //   icon: iconsMap['ios-notifications'],
+    //   screen: 'notificationList',
+    //   options: {
+    //     ...navigatorStyle,
+    //     topBar: {
+    //       ...navigatorStyle.topBar,
+    //       title: {
+    //         text: I18n.t('notification'),
+    //         color: Colors.default,
+    //       },
+    //     },
+    //     backButton: {
+    //       icon: iconsMap['md-arrow-back'],
+    //       visible: true,
+    //     },
+    //   },
+    // },
+    // {
+    //   label: 'more',
+    //   title: 'Chat',
+    //   icon: iconsMap['ios-chatbubbles'],
+    //   screen: 'detail',
+    //   options: {
+    //     topBar: {
+    //       visible: false,
+    //       drawBehind: true,
+    //     },
+    //   },
+    // },
+
+    {
+      label: 'notifications',
+      title: 'Notifications',
+      icon: iconsMap['ios-notifications'],
+      screen: 'notification',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
+        },
+      },
     },
     {
       label: 'more',
-      title: 'Setting',
+      title: 'Menu',
       icon: iconsMap['md-menu'],
       screen: 'sideMenu',
       options: {
@@ -82,6 +166,15 @@ export const startWithTabs = () => {
       options: {
         topBar: {
           visible: true,
+        },
+        bottomTabs: {
+          backgroundColor: Colors.tabBackground,
+          visible: true,
+          animate: true,
+          // currentTabIndex: 0,
+          // currentTabId: 'currentTabId',
+          // testID: 'bottomTabsTestID',
+          drawBehind: false,
         },
       },
       bottomTabs: {
