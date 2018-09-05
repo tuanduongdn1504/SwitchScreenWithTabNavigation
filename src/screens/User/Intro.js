@@ -20,7 +20,7 @@ class Intro extends Component {
     this.data = {};
   }
 
-  onChange = name => (text) => {
+  onChange = name => text => {
     this.data[name] = text;
   };
 
@@ -47,7 +47,7 @@ class Intro extends Component {
           buttonTitle={I18n.t('signIn').toLocaleUpperCase()}
         />
         <Text type="mediumBold" style={styles.txtSignup} color={Colors.default}>
-          {I18n.t('dontHavePassword')}
+          {`${I18n.t('dontHavePassword')} `}
           <Text type="mediumBold" underLine onPress={this.signUp} color={Colors.default}>
             {I18n.t('signUp')}
           </Text>
@@ -134,7 +134,7 @@ function mapStateToProps(state) {
   return {};
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     signIn: data => dispatch(LoginActions.signIn(data)),
   };

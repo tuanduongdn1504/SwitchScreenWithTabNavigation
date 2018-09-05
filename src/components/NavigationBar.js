@@ -1,24 +1,17 @@
 import React from 'react';
-import I18n from 'react-native-i18n';
-import {
-  View,
-  Image,
-  Dimensions,
-  TouchableHighlight,
-  Platform,
-} from 'react-native';
-import { Colors, Images } from '../themes';
+import { View, Dimensions, Platform } from 'react-native';
+import { Colors } from '../themes';
 import Text from './Text';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-const Notifications = props => {
+const Notifications = ({ title }) => {
   // const { full_name, avatar, sex } = props.user;
   return (
     <View style={styles.content}>
       <View style={styles.vRight}>
         <Text type="title26PX" color={Colors.primary}>
-          Notifications
+          {title}
         </Text>
         {/* <Text type="lightNote" color={Colors.default}>
             {I18n.t('menu.editProfile')}

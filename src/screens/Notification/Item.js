@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes/index';
 import Text from '../../components/Text';
 
-const SettingView = ({
+const Item = ({
   // action
   onPress,
   // state
@@ -33,9 +34,7 @@ const SettingView = ({
           >
             {title}
           </Text>
-          {!unShowArrow && (
-            <Icon name="ios-arrow-forward" style={styles.icon} />
-          )}
+          {!unShowArrow && <Icon name="ios-arrow-forward" style={styles.icon} />}
         </View>
         <Text
           type={bold ? 'normalBlack' : 'normalMedium'}
@@ -46,6 +45,18 @@ const SettingView = ({
       </View>
     </TouchableOpacity>
   );
+};
+
+Item.propTypes = {
+  // action
+  onPress: PropTypes.func,
+  // state
+  title: PropTypes.string,
+  timer: PropTypes.string,
+  bold: PropTypes.bool,
+  color: PropTypes.string,
+  unShowArrow: PropTypes.bool,
+  noBottomBorder: PropTypes.bool,
 };
 
 const styles = {
@@ -71,4 +82,4 @@ const styles = {
   },
 };
 
-export default SettingView;
+export default Item;

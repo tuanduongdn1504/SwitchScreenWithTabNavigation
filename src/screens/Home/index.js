@@ -13,6 +13,7 @@ import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
+import SearchInput from '../../components/SearchInput';
 
 class Home extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Home extends Component {
     });
   }
 
-  onPressMarker = (item) => {
+  onPressMarker = item => {
     this.setState({ selectedMarker: item });
   };
 
@@ -69,6 +70,7 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <CheckUpdate />
+        <SearchInput onChange={this.onChangeSearch} style={{ marginTop: 10 }} />
         <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
         <FlatList
           style={styles.list}
@@ -108,7 +110,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorActions.getAllTutor()),
     getOneTutor: data => dispatch(TutorActions.getOneTutor(data)),
