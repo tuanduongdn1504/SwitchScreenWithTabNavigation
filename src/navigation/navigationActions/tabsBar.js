@@ -16,7 +16,7 @@ export const startWithTabs = () => {
         topBar: {
           rightButtons: [add()],
           title: {
-            text: 'Bệnh Viện ABC',
+            text: 'Home',
             color: Colors.default,
           },
         },
@@ -28,7 +28,43 @@ export const startWithTabs = () => {
     },
     {
       label: 'more',
-      title: 'Setting',
+      title: 'Chat',
+      icon: iconsMap['ios-chatbubbles'],
+      screen: 'detail',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
+        },
+      },
+    },
+    {
+      label: 'sos',
+      title: 'SOS',
+      icon: iconsMap['ios-help-buoy'],
+      screen: 'SOS',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
+        },
+      },
+    },
+    {
+      label: 'notifications',
+      title: 'Notifications',
+      icon: iconsMap['ios-notifications'],
+      screen: 'notification',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
+        },
+      },
+    },
+    {
+      label: 'more',
+      title: 'Menu',
       icon: iconsMap['md-menu'],
       screen: 'sideMenu',
       options: {

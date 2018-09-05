@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import Text from '../../components/Text';
+import Profile from './Profile';
 
 class Detail extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Detail extends Component {
   render() {
     return (
       <View>
-        <Text>test screen</Text>
+        <Profile />
       </View>
     );
   }
@@ -26,7 +27,7 @@ function mapStateToProps(state) {
   return {};
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {};
 };
 
