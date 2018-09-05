@@ -13,7 +13,7 @@ import Detail from '../screens/Detail';
 import NotificationList from '../screens/NotificationList';
 import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
-import SOS from '../screens/SOS';
+import SOS from '../screens/SOS/index_demo';
 import Notification from '../screens/Notification';
 
 export function registerScreens(store, persistor) {
