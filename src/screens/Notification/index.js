@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import {
-  ScrollView, StyleSheet, View, Dimensions,
-} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Colors } from '../../themes';
-import Item from './Item';
+import Item from '../../components/Items/NotificationItem';
 import NavBar from '../../components/NavigationBar';
 
 class Notification extends Component {
@@ -49,7 +47,7 @@ class Notification extends Component {
             {
               id: 5,
               title:
-                'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+                'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
               timer: '10 min ago',
             },
           ].map(item => (

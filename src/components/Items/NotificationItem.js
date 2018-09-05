@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes/index';
-import Text from '../../components/Text';
+import Text from '../Text';
 
 const Item = ({
   // action
@@ -31,15 +31,13 @@ const Item = ({
           <Text
             type={bold ? 'normalBlack' : 'normalMedium'}
             style={[styles.txtTitle, color && { color }]}
+            numberOfLines={3}
           >
             {title}
           </Text>
           {!unShowArrow && <Icon name="ios-arrow-forward" style={styles.icon} />}
         </View>
-        <Text
-          type={bold ? 'normalBlack' : 'normalMedium'}
-          style={[styles.txtTitle, color && { color }]}
-        >
+        <Text type="normalMedium" style={[styles.txtTitle, color && { color }]}>
           {timer}
         </Text>
       </View>

@@ -12,6 +12,10 @@ export default class SOS extends Component {
     this.state = {};
   }
 
+  componentWillUnmount() {
+    Share.dismissedAction();
+  }
+
   handleShare = () => {
     Share.share(
       {
