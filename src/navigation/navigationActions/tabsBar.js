@@ -28,10 +28,10 @@ export const startWithTabs = () => {
       },
     },
     {
-      label: 'chatList',
+      label: 'chat',
       title: 'Chat',
       icon: iconsMap['ios-chatbubbles'],
-      screen: 'chatList',
+      screen: 'chatBox',
       options: {
         ...navigatorStyle,
         topBar: {
@@ -48,28 +48,65 @@ export const startWithTabs = () => {
       },
     },
     {
-      label: 'notificationList',
-      title: 'Notification',
-      icon: iconsMap['ios-notifications'],
-      screen: 'notificationList',
+      label: 'sos',
+      title: 'SOS',
+      icon: iconsMap['ios-help-buoy'],
+      screen: 'SOS',
       options: {
-        ...navigatorStyle,
         topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('notification'),
-            color: Colors.default,
-          },
+          visible: false,
+          drawBehind: true,
         },
-        backButton: {
-          icon: iconsMap['md-arrow-back'],
-          visible: true,
+      },
+    },
+    // {
+    //   label: 'notificationList',
+    //   title: 'Notification',
+    //   icon: iconsMap['ios-notifications'],
+    //   screen: 'notificationList',
+    //   options: {
+    //     ...navigatorStyle,
+    //     topBar: {
+    //       ...navigatorStyle.topBar,
+    //       title: {
+    //         text: I18n.t('notification'),
+    //         color: Colors.default,
+    //       },
+    //     },
+    //     backButton: {
+    //       icon: iconsMap['md-arrow-back'],
+    //       visible: true,
+    //     },
+    //   },
+    // },
+    // {
+    //   label: 'more',
+    //   title: 'Chat',
+    //   icon: iconsMap['ios-chatbubbles'],
+    //   screen: 'detail',
+    //   options: {
+    //     topBar: {
+    //       visible: false,
+    //       drawBehind: true,
+    //     },
+    //   },
+    // },
+
+    {
+      label: 'notifications',
+      title: 'Notifications',
+      icon: iconsMap['ios-notifications'],
+      screen: 'notification',
+      options: {
+        topBar: {
+          visible: false,
+          drawBehind: true,
         },
       },
     },
     {
       label: 'more',
-      title: 'Setting',
+      title: 'Menu',
       icon: iconsMap['md-menu'],
       screen: 'sideMenu',
       options: {

@@ -57,3 +57,6 @@ buck-out/
 #Pod file
 ios/Pods
 ios/Podfile.lock
+
+# npm
+package-lock.json

@@ -3,7 +3,6 @@ import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import ProgressScreen from '../components/ProgressScreen';
-import Notification from '../screens/Popup/Notification';
 
 import Intro from '../screens/User/Intro';
 import Signup from '../screens/User/Signup';
@@ -14,9 +13,11 @@ import Detail from '../screens/Detail';
 import NotificationList from '../screens/NotificationList';
 import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
+import SOS from '../screens/SOS';
+import Notification from '../screens/Notification';
 
 export function registerScreens(store, persistor) {
-  const PersistProvider = (props) => {
+  const PersistProvider = props => {
     const { children } = props;
     return (
       <Provider {...props}>
@@ -35,11 +36,13 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);
   Navigation.registerComponentWithRedux('detail', () => Detail, PersistProvider, store);
   Navigation.registerComponentWithRedux('chatBox', () => ChatBox, PersistProvider, store);
-  Navigation.registerComponentWithRedux('chatList', () => ChatList, PersistProvider, store);
+  Navigation.registerComponentWithRedux('SOS', () => SOS, PersistProvider, store);
+  Navigation.registerComponentWithRedux('notification', () => Notification, PersistProvider, store);
   Navigation.registerComponentWithRedux(
     'notificationList',
     () => NotificationList,
     PersistProvider,
     store,
   );
+  Navigation.registerComponentWithRedux('chatList', () => ChatList, PersistProvider, store);
 }

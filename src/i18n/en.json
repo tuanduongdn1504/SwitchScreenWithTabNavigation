@@ -46,12 +46,13 @@
   "profile": "Profile",
   "save": "SAVE",
   "moreText": {
-    "shareToFriend": "Share to Friend",
-    "rateForUs": "Rate for us",
-    "termsAndService": "Terms of Services",
-    "aboutUs": "About us",
+    "tutorFAQ": "Tutor FAQ",
+    "studentFAQ": "Student FAQ",
+    "updateCurrentLocation": "Update current location",
+    "becomeATutor": "Become a tutor",
     "logout": "Logout"
   },
+  "menu": { "editProfile": "Edit profile" },
   "chatBox": "Chat Box",
   "detail": "Detail",
   "chatHistory": "Chat History",

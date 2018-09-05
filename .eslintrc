@@ -33,6 +33,7 @@
     "no-unused-expressions": [
       "error",
       { "allowShortCircuit": true, "allowTernary": true }
-    ]
+    ],
+    "arrow-parens": 0
   }
 }
