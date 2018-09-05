@@ -221,6 +221,7 @@ configurations.all {
     }
 }
 dependencies {
+    compile project(':react-native-image-picker')
     implementation project(':react-native-maps')
     implementation project(':react-native-navigation')
     implementation project(':react-native-i18n')

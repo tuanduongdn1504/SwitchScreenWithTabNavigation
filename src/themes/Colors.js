@@ -1,6 +1,6 @@
 const colors = {
   default: '#ffffff',
-  background: '#f0f0f0',
+  background: '#ffffff',
   // tabsStyle
   tabSelected: '#FF9800',
   tabBackground: '#252C33',
