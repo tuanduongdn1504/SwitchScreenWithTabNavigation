@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import { Navigation } from 'react-native-navigation';
 import moment from 'moment';
 import { Colors } from '../../themes';
 import Container from '../../components/Container';
@@ -21,12 +20,10 @@ import Divider from '../../components/Divider';
 import Avatar from '../../components/Avatar';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
-import {
-  showModal, toggleSideMenu, pop, dismissModal,
-} from '../../navigation/navigationActions';
-import { back, close } from '../../navigation/navigationButtons';
+import { showModal } from '../../navigation/navigationActions';
+import { close } from '../../navigation/navigationButtons';
 
-class Signup extends Component {
+class SignupTutor extends Component {
   constructor(props) {
     super(props);
     this.data = {
@@ -44,7 +41,6 @@ class Signup extends Component {
       townSearchText: '',
       ...this.data,
     };
-    Navigation.events().bindComponent(this);
   }
 
   onChangeValue = (name, isSaveToState = false) => value => {
@@ -135,25 +131,21 @@ class Signup extends Component {
     });
   };
 
-  handleStudentRegister = () => {
-    showModal('signUpStudent', {
-      title: I18n.t('userInfo.registerAsStudent'),
-      leftButtons: [back()],
-      rightButtons: [close()],
-    });
-  };
-
-  handleTutorRegister = () => {
-    showModal('signUpTutor', {
-      title: I18n.t('userInfo.registerAsTutor'),
-      leftButtons: [back()],
-      rightButtons: [close()],
-    });
-  };
-
   _focusNextField(nextField) {
     this.refs[nextField].focus();
   }
+
+  // handleStudentRegister = () => {
+  //   showModal('chatBox', {
+  //     title: I18n.t('chatBox'),
+  //   });
+  // };
+
+  // handleTutorRegister = () => {
+  //   showModal('chatBox', {
+  //     title: I18n.t('chatBox'),
+  //   });
+  // };
 
   renderInput = () => {
     const {
@@ -204,7 +196,7 @@ class Signup extends Component {
 
     return (
       <View style={styles.vInput}>
-        {DATA.map(data => (
+        {/* {DATA.map(data => (
           <Input
             {...data}
             defaultValue={this.state[data.key]}
@@ -222,7 +214,7 @@ class Signup extends Component {
           onPress={this.showPopup('sex')}
           textColor={SEX[sex] ? Colors.primaryText : Colors.divider}
           title={SEX[sex].title || I18n.t('userInfo.sexPlaceholder')}
-        />
+        /> */}
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.homeTown')}
         </Text>
@@ -231,22 +223,17 @@ class Signup extends Component {
           textColor={home_town ? Colors.primaryText : Colors.divider}
           title={home_town || I18n.t('userInfo.homeTownPlaceholder')}
         />
-        {!isEdit && (
+        {/* {!isEdit && (
           <Checkbox
             onPress={this.onTogglePrivacy}
             isChecked={isConfirmPrivacy}
             title={I18n.t('userInfo.signupPrivacy')}
           />
-        )}
+        )} */}
         <Button
           style={styles.button}
           onPress={this.handleStudentRegister}
-          buttonTitle={I18n.t('userInfo.registerToFindTutor')}
-        />
-        <Button
-          style={styles.button}
-          onPress={this.handleTutorRegister}
-          buttonTitle={I18n.t('userInfo.becomeATutor')}
+          buttonTitle={I18n.t('userInfo.register')}
         />
       </View>
     );
@@ -389,4 +376,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Signup);
+)(SignupTutor);

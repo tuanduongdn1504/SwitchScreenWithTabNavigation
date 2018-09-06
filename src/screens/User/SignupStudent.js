@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import { Navigation } from 'react-native-navigation';
 import moment from 'moment';
 import { Colors } from '../../themes';
 import Container from '../../components/Container';
@@ -21,12 +20,10 @@ import Divider from '../../components/Divider';
 import Avatar from '../../components/Avatar';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
-import {
-  showModal, toggleSideMenu, pop, dismissModal,
-} from '../../navigation/navigationActions';
-import { back, close } from '../../navigation/navigationButtons';
+import { showModal } from '../../navigation/navigationActions';
+import { close } from '../../navigation/navigationButtons';
 
-class Signup extends Component {
+class SignupStudent extends Component {
   constructor(props) {
     super(props);
     this.data = {
@@ -44,7 +41,6 @@ class Signup extends Component {
       townSearchText: '',
       ...this.data,
     };
-    Navigation.events().bindComponent(this);
   }
 
   onChangeValue = (name, isSaveToState = false) => value => {
@@ -135,25 +131,21 @@ class Signup extends Component {
     });
   };
 
-  handleStudentRegister = () => {
-    showModal('signUpStudent', {
-      title: I18n.t('userInfo.registerAsStudent'),
-      leftButtons: [back()],
-      rightButtons: [close()],
-    });
-  };
-
-  handleTutorRegister = () => {
-    showModal('signUpTutor', {
-      title: I18n.t('userInfo.registerAsTutor'),
-      leftButtons: [back()],
-      rightButtons: [close()],
-    });
-  };
-
   _focusNextField(nextField) {
     this.refs[nextField].focus();
   }
+
+  // handleStudentRegister = () => {
+  //   showModal('chatBox', {
+  //     title: I18n.t('chatBox'),
+  //   });
+  // };
+
+  // handleTutorRegister = () => {
+  //   showModal('chatBox', {
+  //     title: I18n.t('chatBox'),
+  //   });
+  // };
 
   renderInput = () => {
     const {
@@ -223,9 +215,9 @@ class Signup extends Component {
           textColor={SEX[sex] ? Colors.primaryText : Colors.divider}
           title={SEX[sex].title || I18n.t('userInfo.sexPlaceholder')}
         />
-        <Text type="subTextBlack" style={styles.txtTitle}>
+        {/* <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.homeTown')}
-        </Text>
+        </Text> */}
         <ButtonRightIcon
           onPress={this.showPopup('home_town')}
           textColor={home_town ? Colors.primaryText : Colors.divider}
@@ -389,4 +381,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Signup);
+)(SignupStudent);
