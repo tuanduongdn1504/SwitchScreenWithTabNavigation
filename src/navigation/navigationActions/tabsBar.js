@@ -34,25 +34,51 @@ export const startWithTabs = () => {
       // },
     },
     {
-      label: 'chat',
+      label: 'chatList',
       title: 'Chat',
       icon: iconsMap['ios-chatbubbles'],
-      screen: 'chatBox',
+      screen: 'chatList',
+      // options: {
+      //   ...navigatorStyle,
+      //   topBar: {
+      //     ...navigatorStyle.topBar,
+      //     title: {
+      //       text: I18n.t('chatHistory'),
+      //       color: Colors.default,
+      //     },
+      //   },
+      //   backButton: {
+      //     icon: iconsMap['md-arrow-back'],
+      //     visible: true,
+      //   },
+      // },
       options: {
-        ...navigatorStyle,
         topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('chatHistory'),
-            color: Colors.default,
-          },
-        },
-        backButton: {
-          icon: iconsMap['md-arrow-back'],
-          visible: true,
+          visible: false,
+          drawBehind: true,
         },
       },
     },
+    // {
+    //   label: 'chat',
+    //   title: 'Chat',
+    //   icon: iconsMap['ios-chatbubbles'],
+    //   screen: 'chatBox',
+    //   options: {
+    //     ...navigatorStyle,
+    //     topBar: {
+    //       ...navigatorStyle.topBar,
+    //       title: {
+    //         text: I18n.t('chatHistory'),
+    //         color: Colors.default,
+    //       },
+    //     },
+    //     backButton: {
+    //       icon: iconsMap['md-arrow-back'],
+    //       visible: true,
+    //     },
+    //   },
+    // },
     {
       label: 'safety',
       title: 'Safety',

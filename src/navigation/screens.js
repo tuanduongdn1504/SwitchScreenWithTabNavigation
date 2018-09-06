@@ -15,6 +15,8 @@ import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
 import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
+import SignupStudent from '../screens/User/SignupStudent';
+import SignupTutor from '../screens/User/SignupTutor';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -31,6 +33,13 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponent('inAppNotification', () => Notification);
   Navigation.registerComponentWithRedux('intro', () => Intro, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUp', () => Signup, PersistProvider, store);
+  Navigation.registerComponentWithRedux(
+    'signUpStudent',
+    () => SignupStudent,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);
   Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);

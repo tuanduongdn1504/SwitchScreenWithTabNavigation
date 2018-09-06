@@ -1,47 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View, TouchableOpacity, StyleSheet, Image,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Colors } from '../../themes/index';
+import { Colors, Images } from '../../themes/index';
 import Text from '../Text';
 
 const Item = ({
-  // action
-  onPress,
   // state
-  title,
-  timer,
-  bold,
+  data,
   color,
-  unShowArrow,
-  noBottomBorder,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
-        <View
-          style={[
-            styles.row,
-            noBottomBorder && {
-              borderBottomWidth: 0,
-              borderBottomColor: Colors.primaryText,
-            },
-          ]}
-        >
-          <Text
-            type={bold ? 'normalBlack' : 'normalMedium'}
-            style={[styles.txtTitle, color && { color }]}
-            numberOfLines={3}
-          >
-            {title}
+    <View style={styles.container}>
+      <Image style={styles.image} defaultSource={Images.defaultUser} />
+      <View style={{ flex: 1 }}>
+        <View style={[styles.row]}>
+          <Text type="normal" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
+            {data.title}
           </Text>
-          {!unShowArrow && <Icon name="ios-arrow-forward" style={styles.icon} />}
         </View>
-        <Text type="normalMedium" style={[styles.txtTitle, color && { color }]}>
-          {timer}
+        <Text type="lightNote" style={[styles.txtTitle, color && { color }]}>
+          {data.timer}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -49,9 +33,10 @@ Item.propTypes = {
   // action
   onPress: PropTypes.func,
   // state
-  title: PropTypes.string,
-  timer: PropTypes.string,
-  bold: PropTypes.bool,
+  data: PropTypes.object,
+  // title: PropTypes.string,
+  // timer: PropTypes.string,
+  // bold: PropTypes.bool,
   color: PropTypes.string,
   unShowArrow: PropTypes.bool,
   noBottomBorder: PropTypes.bool,
@@ -62,8 +47,9 @@ const styles = {
     paddingVertical: 20,
     marginHorizontal: 20,
     backgroundColor: 'transparent',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.divider,
+    // borderBottomWidth: StyleSheet.hairlineWidth,
+    // borderBottomColor: Colors.divider,
+    flexDirection: 'row',
   },
   row: {
     flexDirection: 'row',
@@ -77,6 +63,12 @@ const styles = {
   icon: {
     color: Colors.primaryText,
     fontSize: 25,
+  },
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
   },
 };
 

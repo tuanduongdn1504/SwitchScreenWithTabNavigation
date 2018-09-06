@@ -73,11 +73,7 @@ class Home extends Component {
         <CheckUpdate />
         <NavBar title={I18n.t('home.title')} />
         <SearchInput onChange={this.onChangeSearch} style={{ marginTop: 10 }} />
-        <Maps
-          markers={tutors}
-          selectedMarker={selectedMarker}
-          onPressMarker={this.onPressMarker}
-        />
+        <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
         <FlatList
           style={styles.list}
           extraData={isUpdate}
