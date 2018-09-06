@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
@@ -71,9 +71,13 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <NavBar title={I18n.t('home.title')} />
-        <SearchInput onChange={this.onChangeSearch} style={{ marginTop: 10 }} />
-        <Maps markers={tutors} selectedMarker={selectedMarker} onPressMarker={this.onPressMarker} />
+        {/* <NavBar title={I18n.t('home.title')} /> */}
+        <SearchInput onChange={this.onChangeSearch} style={styles.search} />
+        <Maps
+          markers={tutors}
+          selectedMarker={selectedMarker}
+          onPressMarker={this.onPressMarker}
+        />
         <FlatList
           style={styles.list}
           extraData={isUpdate}
@@ -102,6 +106,9 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+  },
+  search: {
+    marginTop: Platform.OS === 'ios' ? 48 : 23,
   },
 });
 
