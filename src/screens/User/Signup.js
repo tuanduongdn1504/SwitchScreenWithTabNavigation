@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View, StyleSheet, Dimensions, FlatList,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
@@ -21,17 +19,16 @@ import Divider from '../../components/Divider';
 import Avatar from '../../components/Avatar';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
-import {
-  showModal, toggleSideMenu, pop, dismissModal,
-} from '../../navigation/navigationActions';
-import { back, close } from '../../navigation/navigationButtons';
+import { push } from '../../navigation/navigationActions';
+import { back } from '../../navigation/navigationButtons';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.data = {
       sex: 0,
-      isConfirmPrivacy: props.isEdit || props.isAddPatient || props.isEditPatient,
+      isConfirmPrivacy:
+        props.isEdit || props.isAddPatient || props.isEditPatient,
     };
 
     if (props.isEdit) {
@@ -57,13 +54,13 @@ class Signup extends Component {
       this.setState({ [name]: value });
     }
     if (
-      this.data.full_name
-      && this.data.phone_number
-      && this.data.dob
-      && this.data.isConfirmPrivacy
-      && this.data.address
-      && (this.data.password || isEdit || isAddPatient || isEditPatient)
-      && this.data.home_town
+      this.data.full_name &&
+      this.data.phone_number &&
+      this.data.dob &&
+      this.data.isConfirmPrivacy &&
+      this.data.address &&
+      (this.data.password || isEdit || isAddPatient || isEditPatient) &&
+      this.data.home_town
     ) {
       // this.props.navigator.setButtons({
       //   rightButtons: [isEdit || isEditPatient ? save(false) : send(false)],
@@ -136,18 +133,16 @@ class Signup extends Component {
   };
 
   handleStudentRegister = () => {
-    showModal('signUpStudent', {
+    push(this.props.componentId, 'signUpStudent', {
       title: I18n.t('userInfo.registerAsStudent'),
       leftButtons: [back()],
-      rightButtons: [close()],
     });
   };
 
   handleTutorRegister = () => {
-    showModal('signUpTutor', {
+    push(this.props.componentId, 'signUpTutor', {
       title: I18n.t('userInfo.registerAsTutor'),
       leftButtons: [back()],
-      rightButtons: [close()],
     });
   };
 
@@ -214,7 +209,10 @@ class Signup extends Component {
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.birthday')}
         </Text>
-        <DatePickerUI onDateChange={this.onChangeValue('dob', true)} date={dob} />
+        <DatePickerUI
+          onDateChange={this.onChangeValue('dob', true)}
+          date={dob}
+        />
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.sex')}
         </Text>
@@ -329,7 +327,9 @@ class Signup extends Component {
           )}
         >
           <View style={styles[currentPopupProps]}>
-            {currentPopupProps === 'home_town' && <SearchInput onChange={this.onChangeSearch} />}
+            {currentPopupProps === 'home_town' && (
+              <SearchInput onChange={this.onChangeSearch} />
+            )}
             {currentPopupProps === 'home_town' && this.renderCities()}
             {currentPopupProps === 'sex' && this.renderSex()}
           </View>

@@ -1,4 +1,11 @@
-export const CITY = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh', 'Huế', 'Quang Ninh', 'Thanh Hoá'];
+export const CITY = [
+  'Hà Nội',
+  'Đà Nẵng',
+  'Hồ Chí Minh',
+  'Huế',
+  'Quang Ninh',
+  'Thanh Hoá',
+];
 export const SEX = [
   {
     value: 0,
@@ -9,6 +16,7 @@ export const SEX = [
     title: 'Nữ',
   },
 ];
+
 export const APPOINTMENTS_TYPE = [
   {
     value: 0,
@@ -26,8 +34,16 @@ export const SEARCH_TYPE_DATA = [
   { id: 'tc-ho-so', name: 'Tra cứu hồ sơ', icon: 'ios-clipboard' },
   { id: 'tc-xe-buyt', name: 'Tra cứu xe buýt', icon: 'ios-bus' },
   { id: 'tc-diem-thi', name: 'Tra cứu điểm thi', icon: 'ios-school' },
-  { id: 'tc-an-toan-thuc-pham', name: 'An toàn vệ sinh thực phẩm', icon: 'ios-restaurant' },
-  { id: 'tc-tt-hanh-chinh', name: 'Tra cứu thủ tục hành chính', icon: 'ios-briefcase' },
+  {
+    id: 'tc-an-toan-thuc-pham',
+    name: 'An toàn vệ sinh thực phẩm',
+    icon: 'ios-restaurant',
+  },
+  {
+    id: 'tc-tt-hanh-chinh',
+    name: 'Tra cứu thủ tục hành chính',
+    icon: 'ios-briefcase',
+  },
 ];
 
 export const DUMMY_USER_DATA = [
@@ -245,5 +261,38 @@ export const DUMMY_USER_HISTORY = [
         using: '1 viên sau khi ăn sáng và chiều',
       },
     ],
+  },
+];
+
+export const TYPES = [
+  {
+    id: 0,
+    value: 'Online',
+  },
+  {
+    id: 1,
+    value: 'Offline',
+  },
+];
+export const LEVELS = [
+  {
+    id: 0,
+    value: 'Associate degree',
+  },
+  {
+    id: 1,
+    value: "Bachelor's degree",
+  },
+  {
+    id: 2,
+    value: 'Specialist degree',
+  },
+  {
+    id: 3,
+    value: "Master's degree",
+  },
+  {
+    id: 4,
+    value: 'Postgraduate study',
   },
 ];

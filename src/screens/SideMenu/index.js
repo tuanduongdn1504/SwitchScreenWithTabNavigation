@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import UserInfo from './UserInfo';
 import SettingItem from './SettingItem';
-import { shareApp, openURL } from '../../utils/tools';
-import Button from '../../components/Button';
 import { size, fontWeight } from '../../themes/Fonts';
 import LoginActions from '../../redux/LoginRedux/actions';
-import { startWelcome } from '../../navigation/navigationActions';
+import { startStackScreen, push } from '../../navigation/navigationActions';
+import { back } from '../../navigation/navigationButtons';
 
 class Setting extends Component {
   static navigatorStyle = {};
@@ -28,10 +26,15 @@ class Setting extends Component {
 
   goTerms = () => {};
 
-  goAbout = () => {};
+  beComeTutor = () => {
+    push(this.props.componentId, 'signUpTutor', {
+      title: I18n.t('userInfo.registerAsTutor'),
+      leftButtons: [back()],
+    });
+  };
 
   logout = () => {
-    this.props.logout();
+    startStackScreen();
   };
 
   render() {
@@ -53,12 +56,12 @@ class Setting extends Component {
             title={I18n.t('moreText.updateCurrentLocation')}
           />
           <SettingItem
-            onPress={this.rate}
+            onPress={this.beComeTutor}
             title={I18n.t('moreText.becomeATutor')}
           />
           <SettingItem
             noBottomBorder
-            onPress={this.goAbout}
+            onPress={this.logout}
             title={I18n.t('moreText.logout')}
           />
         </ScrollView>

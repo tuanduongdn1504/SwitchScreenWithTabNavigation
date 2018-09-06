@@ -34,7 +34,20 @@
     "registerToFindTutor": "Register to find a tutor",
     "becomeATutor": "Become a tutor",
     "registerAsStudent": "Register as student",
-    "registerAsTutor": "Become as tutor"
+    "registerAsTutor": "Become as tutor",
+    "register": "Register",
+    "tutor": {
+      "levels": "Your level",
+      "levelsPlaceholder": "Select your level",
+      "types": "Types of teaching",
+      "typesPlaceholder": "Select types of teaching"
+    },
+    "student": {
+      "levels": "Level of tutor you're finding",
+      "levelsPlaceholder": "Select level of tutor",
+      "types": "Types of tutor",
+      "typesPlaceholder": "Select types of tutor"
+    }
   },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
