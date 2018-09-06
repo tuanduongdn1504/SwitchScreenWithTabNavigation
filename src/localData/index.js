@@ -9,11 +9,11 @@ export const CITY = [
 export const SEX = [
   {
     value: 0,
-    title: 'Nam',
+    title: 'Male',
   },
   {
     value: 1,
-    title: 'Nữ',
+    title: 'Female',
   },
 ];
 
