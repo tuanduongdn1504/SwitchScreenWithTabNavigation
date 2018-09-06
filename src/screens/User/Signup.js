@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {
-  View, StyleSheet, Dimensions, FlatList,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import { Navigation } from 'react-native-navigation';
 import moment from 'moment';
 import { Colors } from '../../themes';
 import Container from '../../components/Container';
@@ -20,13 +19,16 @@ import Divider from '../../components/Divider';
 import Avatar from '../../components/Avatar';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
+import { push } from '../../navigation/navigationActions';
+import { back } from '../../navigation/navigationButtons';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.data = {
       sex: 0,
-      isConfirmPrivacy: props.isEdit || props.isAddPatient || props.isEditPatient,
+      isConfirmPrivacy:
+        props.isEdit || props.isAddPatient || props.isEditPatient,
     };
 
     if (props.isEdit) {
@@ -39,9 +41,10 @@ class Signup extends Component {
       townSearchText: '',
       ...this.data,
     };
+    Navigation.events().bindComponent(this);
   }
 
-  onChangeValue = (name, isSaveToState = false) => (value) => {
+  onChangeValue = (name, isSaveToState = false) => value => {
     const { isEdit, isAddPatient, isEditPatient } = this.props;
     this.data = {
       ...this.data,
@@ -51,13 +54,13 @@ class Signup extends Component {
       this.setState({ [name]: value });
     }
     if (
-      this.data.full_name
-      && this.data.phone_number
-      && this.data.dob
-      && this.data.isConfirmPrivacy
-      && this.data.address
-      && (this.data.password || isEdit || isAddPatient || isEditPatient)
-      && this.data.home_town
+      this.data.full_name &&
+      this.data.phone_number &&
+      this.data.dob &&
+      this.data.isConfirmPrivacy &&
+      this.data.address &&
+      (this.data.password || isEdit || isAddPatient || isEditPatient) &&
+      this.data.home_town
     ) {
       // this.props.navigator.setButtons({
       //   rightButtons: [isEdit || isEditPatient ? save(false) : send(false)],
@@ -69,16 +72,16 @@ class Signup extends Component {
     }
   };
 
-  onChangeSearch = (text) => {
+  onChangeSearch = text => {
     this.setState({ townSearchText: text });
   };
 
-  onChangeHomeTown = (value) => {
+  onChangeHomeTown = value => {
     this.onChangeValue('home_town', true)(value);
     this.ActionSheet.hide();
   };
 
-  onChangeSex = (value) => {
+  onChangeSex = value => {
     this.onChangeValue('sex', true)(value);
     this.ActionSheet.hide();
   };
@@ -126,6 +129,20 @@ class Signup extends Component {
   showPopup = name => () => {
     this.setState({ currentPopupProps: name }, () => {
       this.ActionSheet.show();
+    });
+  };
+
+  handleStudentRegister = () => {
+    push(this.props.componentId, 'signUpStudent', {
+      title: I18n.t('userInfo.registerAsStudent'),
+      leftButtons: [back()],
+    });
+  };
+
+  handleTutorRegister = () => {
+    push(this.props.componentId, 'signUpTutor', {
+      title: I18n.t('userInfo.registerAsTutor'),
+      leftButtons: [back()],
     });
   };
 
@@ -192,7 +209,10 @@ class Signup extends Component {
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.birthday')}
         </Text>
-        <DatePickerUI onDateChange={this.onChangeValue('dob', true)} date={dob} />
+        <DatePickerUI
+          onDateChange={this.onChangeValue('dob', true)}
+          date={dob}
+        />
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.sex')}
         </Text>
@@ -216,6 +236,16 @@ class Signup extends Component {
             title={I18n.t('userInfo.signupPrivacy')}
           />
         )}
+        <Button
+          style={styles.button}
+          onPress={this.handleStudentRegister}
+          buttonTitle={I18n.t('userInfo.registerToFindTutor')}
+        />
+        <Button
+          style={styles.button}
+          onPress={this.handleTutorRegister}
+          buttonTitle={I18n.t('userInfo.becomeATutor')}
+        />
       </View>
     );
   };
@@ -287,7 +317,7 @@ class Signup extends Component {
           </View>
         </KeyboardAwareScrollView>
         <ActionSheet
-          ref={(o) => {
+          ref={o => {
             this.ActionSheet = o;
           }}
           title={I18n.t(
@@ -309,7 +339,7 @@ class Signup extends Component {
   }
 }
 
-const { height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -317,7 +347,7 @@ const styles = StyleSheet.create({
   },
   vInput: {
     marginTop: 35,
-    paddingHorizontal: 32,
+    paddingHorizontal: 20,
   },
   txtTitle: {
     paddingBottom: 5,
@@ -334,6 +364,13 @@ const styles = StyleSheet.create({
   sex: {
     height: 100,
   },
+  button: {
+    height: 40,
+    width: width - 40,
+    borderRadius: 20,
+    backgroundColor: Colors.primary,
+    marginTop: 20,
+  },
 });
 
 function mapStateToProps(state) {
@@ -342,7 +379,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     signUp: data => dispatch(LoginActions.signUp(data)),
     editUser: data => dispatch(LoginActions.editUser(data)),

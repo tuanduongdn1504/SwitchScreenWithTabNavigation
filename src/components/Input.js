@@ -24,7 +24,7 @@ class Input extends Component {
       <View>
         {this.props.title ? (
           <Text type="subTextBlack" style={styles.txtTitle}>
-            {this.props.title.toUpperCase()}
+            {this.props.title}
           </Text>
         ) : null}
         <TextInput

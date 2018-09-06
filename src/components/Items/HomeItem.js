@@ -7,10 +7,9 @@ import { View, StyleSheet, Image } from 'react-native';
 import Text from '../Text';
 import Colors from '../../themes/Colors';
 import Touchable from '../Touchable';
-import Button from '../Button';
 import { Images } from '../../themes';
 
-const HomeItem = ({ data, onPress, showQR }) => {
+const HomeItem = ({ data, onPress }) => {
   return (
     <View style={styles.root}>
       <Touchable onPress={onPress}>
