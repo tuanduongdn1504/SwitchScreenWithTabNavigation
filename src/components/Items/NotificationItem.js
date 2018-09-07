@@ -15,15 +15,11 @@ const Item = ({
   return (
     <View style={styles.container}>
       <Image style={styles.image} defaultSource={Images.defaultUser} />
-      <View style={{ flex: 1 }}>
-        <View style={[styles.row]}>
-          <Text type="normal" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
-            {data.title}
-          </Text>
-        </View>
-        <Text type="lightNote" style={[styles.txtTitle, color && { color }]}>
-          {data.timer}
+      <View style={styles.row}>
+        <Text type="normal" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
+          {data.title}
         </Text>
+        <Text type="lightNote">{data.timer}</Text>
       </View>
     </View>
   );
@@ -44,21 +40,23 @@ Item.propTypes = {
 
 const styles = {
   container: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     marginHorizontal: 20,
     backgroundColor: 'transparent',
     // borderBottomWidth: StyleSheet.hairlineWidth,
     // borderBottomColor: Colors.divider,
     flexDirection: 'row',
-  },
-  row: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
   },
   txtTitle: {
     color: Colors.primaryText,
     flex: 1,
+    paddingRight: 15,
   },
   icon: {
     color: Colors.primaryText,

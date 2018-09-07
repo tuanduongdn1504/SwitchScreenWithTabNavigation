@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
+import {
+  ScrollView, StyleSheet, View, Dimensions,
+} from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import UserInfo from './UserInfo';
-import SettingItem from './SettingItem';
-import { size, fontWeight } from '../../themes/Fonts';
+import SettingItem from '../../components/Items/SettingItem';
 import LoginActions from '../../redux/LoginRedux/actions';
 import { startStackScreen, push } from '../../navigation/navigationActions';
 import { back } from '../../navigation/navigationButtons';
+import Button from '../../components/Button';
 
 class Setting extends Component {
   static navigatorStyle = {};
@@ -43,24 +45,13 @@ class Setting extends Component {
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
         <ScrollView>
+          <SettingItem onPress={this.goAbout} title={I18n.t('moreText.tutorFAQ')} />
+          <SettingItem onPress={this.goAbout} title={I18n.t('moreText.studentFAQ')} />
+          <SettingItem onPress={() => {}} title={I18n.t('moreText.updateCurrentLocation')} />
           <SettingItem
-            onPress={this.goAbout}
-            title={I18n.t('moreText.tutorFAQ')}
-          />
-          <SettingItem
-            onPress={this.goAbout}
-            title={I18n.t('moreText.studentFAQ')}
-          />
-          <SettingItem
-            onPress={() => {}}
-            title={I18n.t('moreText.updateCurrentLocation')}
-          />
-          <SettingItem
-            onPress={this.beComeTutor}
-            title={I18n.t('moreText.becomeATutor')}
-          />
-          <SettingItem
+            unShowArrow
             noBottomBorder
+            color={Colors.primary}
             onPress={this.logout}
             title={I18n.t('moreText.logout')}
           />
@@ -75,6 +66,12 @@ class Setting extends Component {
           style={styles.btnLogout}
           textStyle={styles.txtLogout}
         /> */}
+        <Button
+          style={styles.btnBecomeATutor}
+          primary
+          onPress={this.beComeTutor}
+          buttonTitle={I18n.t('moreText.becomeATutor')}
+        />
       </View>
     );
   }
@@ -86,19 +83,20 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.default,
     flex: 1,
   },
-  btnLogout: {
-    marginLeft: 20,
-  },
-  txtLogout: {
-    color: Colors.primary,
-    fontSize: size.h5,
-    fontWeight: fontWeight.bold,
+  btnBecomeATutor: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
   },
 });
 
 function mapStateToProps(state) {
   return {
-    user: state.login.data,
+    // user: state.login.data,
+    user: {
+      full_name: 'Anh Doan',
+    },
   };
 }
 

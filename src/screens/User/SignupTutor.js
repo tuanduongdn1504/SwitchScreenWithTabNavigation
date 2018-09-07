@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import {
+  View, StyleSheet, FlatList, Dimensions,
+} from 'react-native';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
@@ -8,7 +11,7 @@ import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import Text from '../../components/Text';
 import ButtonRightIcon from '../../components/ButtonRightIcon';
 import ActionSheet from '../../components/ActionSheet';
-import { TYPES, LEVELS } from '../../localData';
+import { TUTOR_INFO } from '../../localData';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
 import LoginActions from '../../redux/LoginRedux/actions';
@@ -17,7 +20,9 @@ import { startWithTabs } from '../../navigation/navigationActions';
 class SignupTutor extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentPopupProps: '',
+    };
     this.data = {};
   }
 
@@ -41,10 +46,16 @@ class SignupTutor extends Component {
 
   handleRegister = () => {
     startWithTabs();
-  }
+  };
+
+  onChangeItem = (currentPopupProps, item) => {
+    const { subjects } = this.state;
+    const data = currentPopupProps === 'subjects' ? _.xor(subjects, [item]) : item;
+    this.setState({ [currentPopupProps]: data });
+  };
 
   renderInput = () => {
-    const { types, levels } = this.state;
+    const { types, levels, subjects } = this.state;
 
     return (
       <View style={styles.vInput}>
@@ -54,7 +65,7 @@ class SignupTutor extends Component {
         <ButtonRightIcon
           onPress={this.showPopup('levels')}
           textColor={levels ? Colors.primaryText : Colors.divider}
-          title={levels || I18n.t('userInfo.tutor.levelsPlaceholder')}
+          title={levels ? levels.value : I18n.t('userInfo.tutor.levelsPlaceholder')}
         />
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.tutor.types')}
@@ -62,7 +73,19 @@ class SignupTutor extends Component {
         <ButtonRightIcon
           onPress={this.showPopup('types')}
           textColor={types ? Colors.primaryText : Colors.divider}
-          title={types || I18n.t('userInfo.tutor.typesPlaceholder')}
+          title={types ? types.value : I18n.t('userInfo.tutor.typesPlaceholder')}
+        />
+        <Text type="subTextBlack" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.subjects')}
+        </Text>
+        <ButtonRightIcon
+          onPress={this.showPopup('subjects')}
+          textColor={subjects ? Colors.primaryText : Colors.divider}
+          title={
+            Array.isArray(subjects) && subjects.length > 0
+              ? subjects.map(data => data.value).join(', ')
+              : I18n.t('userInfo.tutor.subjectsPlaceholder')
+          }
         />
         <Button
           style={styles.button}
@@ -73,10 +96,11 @@ class SignupTutor extends Component {
     );
   };
 
-  renderItem = key => ({ item }) => {
+  renderItem = ({ item }) => {
+    const { currentPopupProps } = this.state;
     return (
       <Button
-        onPress={() => this.onChangeItem(key, item)}
+        onPress={() => this.onChangeItem(currentPopupProps, item)}
         textStyle={styles.textButton}
         style={styles.item}
         buttonTitle={item.value}
@@ -84,12 +108,16 @@ class SignupTutor extends Component {
     );
   };
 
-  renderSelect = (key, data) => {
+  renderSelect = () => {
+    const { currentPopupProps } = this.state;
+    if (currentPopupProps === '') {
+      return <View />;
+    }
     return (
       <FlatList
         ItemSeparatorComponent={() => <Divider />}
-        data={data}
-        renderItem={this.renderItem(key)}
+        data={TUTOR_INFO[currentPopupProps]}
+        renderItem={this.renderItem}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => <View style={{ width: 10 }} />}
         ListFooterComponent={() => <View style={{ width: 10 }} />}
@@ -99,7 +127,6 @@ class SignupTutor extends Component {
 
   render() {
     const { isEdit } = this.props;
-    const { currentPopupProps } = this.state;
     return (
       <Container>
         <KeyboardAwareScrollView>
@@ -113,11 +140,7 @@ class SignupTutor extends Component {
             this.ActionSheet = o;
           }}
         >
-          <View style={styles.select}>
-            {currentPopupProps === 'levels' &&
-              this.renderSelect('levels', LEVELS)}
-            {currentPopupProps === 'types' && this.renderSelect('types', TYPES)}
-          </View>
+          <View style={styles.select}>{this.renderSelect()}</View>
         </ActionSheet>
       </Container>
     );
@@ -138,13 +161,14 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   item: {
-    backgroundColor: Colors.default,
+    backgroundColor: 'transparent',
   },
   textButton: {
     color: Colors.primaryText,
   },
   select: {
-    paddingBottom: 50,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   button: {
     height: 40,
