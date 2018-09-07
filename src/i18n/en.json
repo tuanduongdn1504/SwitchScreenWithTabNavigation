@@ -80,6 +80,7 @@
   "share": "Share",
   "home": {
     "title": "Home",
+    "filterBy": "Filter by",
     "filterPlaceholder": "Filter search result"
   },
   "safety": {

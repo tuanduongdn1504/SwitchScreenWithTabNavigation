@@ -132,7 +132,7 @@ class Home extends Component {
         <CheckUpdate />
         <View style={styles.header}>
           <Text type="normalBold" style={styles.headerText}>
-            {`Filter by ${filter}`}
+            {`${I18n.t('home.filterBy')} ${filter}`}
           </Text>
           <View style={styles.search}>
             <Icon
