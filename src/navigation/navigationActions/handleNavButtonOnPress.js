@@ -26,10 +26,10 @@ export const toggleSideMenu = (isVisible = true) => {
   });
 };
 
-export const pop = (componentId) => {
+export const pop = componentId => {
   Navigation.pop(componentId);
 };
 
-export const dismissModal = (componentId) => {
+export const dismissModal = componentId => {
   Navigation.dismissModal(componentId);
 };

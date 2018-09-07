@@ -9,7 +9,6 @@ import {
   Keyboard,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes/index';
 import Button from '../../components/Button';
 import EmojiBoard from '../../components/EmojiBoard';
@@ -53,7 +52,7 @@ export default class Chat extends Component {
     this.emojiPanel.toggleEmojiBoard();
   };
 
-  handlePick = (emoji) => {
+  handlePick = emoji => {
     this.inputChat._lastNativeText = this.inputChat._lastNativeText || '';
     this.inputChat._lastNativeText += emoji;
     this.inputChat.setNativeProps({ text: this.inputChat._lastNativeText });
@@ -66,7 +65,7 @@ export default class Chat extends Component {
     });
     return (
       <ScrollView
-        ref={(ref) => {
+        ref={ref => {
           this.scrollView = ref;
         }}
         style={{ flex: 1 }}
@@ -94,7 +93,7 @@ export default class Chat extends Component {
             this.setState({ heightInput: 60 });
             this.emojiPanel.hideEmojiBoard();
           }}
-          ref={(ref) => {
+          ref={ref => {
             this.inputChat = ref;
           }}
           multiline
@@ -130,7 +129,7 @@ export default class Chat extends Component {
         {this.renderInputGroup()}
         {this.renderChatInput()}
         <EmojiBoard
-          ref={(ref) => {
+          ref={ref => {
             this.emojiPanel = ref;
           }}
           onPick={this.handlePick}
