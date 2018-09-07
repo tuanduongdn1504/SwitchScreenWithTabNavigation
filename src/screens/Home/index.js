@@ -4,6 +4,7 @@ import { View, StyleSheet, FlatList, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
@@ -14,7 +15,9 @@ import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import SearchInput from '../../components/SearchInput';
-import NavBar from '../../components/NavigationBar';
+import { Colors } from '../../themes';
+import Button from '../../components/Button';
+import ActionSheet from '../../components/ActionSheet';
 
 class Home extends Component {
   constructor(props) {
@@ -65,14 +68,52 @@ class Home extends Component {
     );
   };
 
+  renderItem = key => ({ item }) => {
+    return (
+      <Button
+        onPress={() => this.onChangeItem(key, item)}
+        textStyle={styles.textButton}
+        style={styles.item}
+        buttonTitle={item.value}
+      />
+    );
+  };
+
+  renderSelect = (key, data) => {
+    return (
+      <FlatList
+        ItemSeparatorComponent={() => <Divider />}
+        data={data}
+        renderItem={this.renderItem(key)}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={() => <View style={{ width: 10 }} />}
+        ListFooterComponent={() => <View style={{ width: 10 }} />}
+      />
+    );
+  };
+
+  handleFilter = () => {};
+
   render() {
     const { tutors } = this.props;
-    const { isUpdate, selectedMarker } = this.state;
+    const { isUpdate, selectedMarker, selectName } = this.state;
     return (
       <Container style={styles.container}>
         <CheckUpdate />
         {/* <NavBar title={I18n.t('home.title')} /> */}
-        <SearchInput onChange={this.onChangeSearch} style={styles.search} />
+        <View style={styles.search}>
+          <Icon
+            name="ios-options"
+            size={24}
+            style={styles.icon}
+            onPress={this.handleFilter}
+          />
+          <SearchInput
+            onChange={this.onChangeSearch}
+            style={{ flex: 1, marginBottom: 0 }}
+          />
+        </View>
+
         <Maps
           markers={tutors}
           selectedMarker={selectedMarker}
@@ -89,6 +130,14 @@ class Home extends Component {
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />
+        {/* <ActionSheet
+          ref={o => {
+            this.ActionSheet = o;
+          }}
+          title={I18n.t(selectName)}
+        >
+          <View style={styles.select}>{this.renderSelect()}</View>
+        </ActionSheet> */}
       </Container>
     );
   }
@@ -108,7 +157,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   search: {
+    flexDirection: 'row',
     marginTop: Platform.OS === 'ios' ? 48 : 23,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    color: Colors.primaryText,
+    marginLeft: 20,
   },
 });
 
