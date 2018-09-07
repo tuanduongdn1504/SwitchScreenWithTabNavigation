@@ -27,7 +27,7 @@ const HistoryItem = ({ data, onPress }) => {
             </View>
           </View>
           <View style={styles.right}>
-            <Text type="lightNote" color={Colors.primaryTextBlur}>
+            <Text type="lightNote" center color={Colors.primaryTextBlur}>
               {data.timer}
             </Text>
           </View>
@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     // paddingLeft: 30,
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     width: 50,
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
   //   flexDirection: 'row',
   // },
   right: {
-    width: 25,
+    width: 50,
   },
   footer: {
     flex: 1,

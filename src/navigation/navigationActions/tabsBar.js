@@ -38,101 +38,46 @@ export const startWithTabs = () => {
       title: 'Chat',
       icon: iconsMap['ios-chatbubbles'],
       screen: 'chatList',
-      // options: {
-      //   ...navigatorStyle,
-      //   topBar: {
-      //     ...navigatorStyle.topBar,
-      //     title: {
-      //       text: I18n.t('chatHistory'),
-      //       color: Colors.default,
-      //     },
-      //   },
-      //   backButton: {
-      //     icon: iconsMap['md-arrow-back'],
-      //     visible: true,
-      //   },
-      // },
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('chatHistory'),
+            color: Colors.default,
+          },
         },
       },
     },
-    // {
-    //   label: 'chat',
-    //   title: 'Chat',
-    //   icon: iconsMap['ios-chatbubbles'],
-    //   screen: 'chatBox',
-    //   options: {
-    //     ...navigatorStyle,
-    //     topBar: {
-    //       ...navigatorStyle.topBar,
-    //       title: {
-    //         text: I18n.t('chatHistory'),
-    //         color: Colors.default,
-    //       },
-    //     },
-    //     backButton: {
-    //       icon: iconsMap['md-arrow-back'],
-    //       visible: true,
-    //     },
-    //   },
-    // },
     {
       label: 'safety',
       title: 'Safety',
       icon: iconsMap['ios-help-buoy'],
       screen: 'Safety',
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('safety.title'),
+            color: Colors.default,
+          },
         },
       },
     },
-    // {
-    //   label: 'notificationList',
-    //   title: 'Notification',
-    //   icon: iconsMap['ios-notifications'],
-    //   screen: 'notificationList',
-    //   options: {
-    //     ...navigatorStyle,
-    //     topBar: {
-    //       ...navigatorStyle.topBar,
-    //       title: {
-    //         text: I18n.t('notification'),
-    //         color: Colors.default,
-    //       },
-    //     },
-    //     backButton: {
-    //       icon: iconsMap['md-arrow-back'],
-    //       visible: true,
-    //     },
-    //   },
-    // },
-    // {
-    //   label: 'more',
-    //   title: 'Chat',
-    //   icon: iconsMap['ios-chatbubbles'],
-    //   screen: 'detail',
-    //   options: {
-    //     topBar: {
-    //       visible: false,
-    //       drawBehind: true,
-    //     },
-    //   },
-    // },
-
     {
       label: 'notifications',
       title: 'Notifications',
       icon: iconsMap['ios-notifications'],
       screen: 'notification',
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('notification'),
+            color: Colors.default,
+          },
         },
       },
     },
@@ -142,7 +87,9 @@ export const startWithTabs = () => {
       icon: iconsMap['md-menu'],
       screen: 'sideMenu',
       options: {
+        ...navigatorStyle,
         topBar: {
+          ...navigatorStyle.topBar,
           visible: false,
           drawBehind: true,
         },
@@ -232,4 +179,5 @@ const configTab = data => ({
   selectedIconColor: Colors.tabSelected,
   selectedTextColor: Colors.tabSelected,
   fontSize: 10,
+  drawBehind: false,
 });

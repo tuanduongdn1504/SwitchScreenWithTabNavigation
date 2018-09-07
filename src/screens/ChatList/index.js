@@ -5,7 +5,6 @@ import { showModal } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/HistoryItem';
-import NavBar from '../../components/NavigationBar';
 import Divider from '../../components/Divider';
 
 const chatList = [
@@ -69,7 +68,6 @@ class ChatList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <NavBar title="Chat History" />
         <FlatList
           style={styles.list}
           data={chatList}

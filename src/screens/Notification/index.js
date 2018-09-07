@@ -55,7 +55,6 @@ class Notification extends Component {
     // const { user } = this.props;
     return (
       <View style={styles.container}>
-        <NavBar title="Notification" />
         <FlatList
           style={styles.list}
           data={notificationList}
