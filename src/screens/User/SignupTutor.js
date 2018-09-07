@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View, StyleSheet, FlatList, Dimensions,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -50,7 +48,8 @@ class SignupTutor extends Component {
 
   onChangeItem = (currentPopupProps, item) => {
     const { subjects } = this.state;
-    const data = currentPopupProps === 'subjects' ? _.xor(subjects, [item]) : item;
+    const data =
+      currentPopupProps === 'subjects' ? _.xor(subjects, [item]) : item;
     this.setState({ [currentPopupProps]: data });
   };
 
@@ -65,7 +64,9 @@ class SignupTutor extends Component {
         <ButtonRightIcon
           onPress={this.showPopup('levels')}
           textColor={levels ? Colors.primaryText : Colors.divider}
-          title={levels ? levels.value : I18n.t('userInfo.tutor.levelsPlaceholder')}
+          title={
+            levels ? levels.value : I18n.t('userInfo.tutor.levelsPlaceholder')
+          }
         />
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.tutor.types')}
@@ -73,7 +74,9 @@ class SignupTutor extends Component {
         <ButtonRightIcon
           onPress={this.showPopup('types')}
           textColor={types ? Colors.primaryText : Colors.divider}
-          title={types ? types.value : I18n.t('userInfo.tutor.typesPlaceholder')}
+          title={
+            types ? types.value : I18n.t('userInfo.tutor.typesPlaceholder')
+          }
         />
         <Text type="subTextBlack" style={styles.txtTitle}>
           {I18n.t('userInfo.tutor.subjects')}
@@ -167,8 +170,7 @@ const styles = StyleSheet.create({
     color: Colors.primaryText,
   },
   select: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    paddingBottom: 50,
   },
   button: {
     height: 40,

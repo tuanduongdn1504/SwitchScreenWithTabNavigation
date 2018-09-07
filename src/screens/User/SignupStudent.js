@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   item: {
-    backgroundColor: Colors.default,
+    backgroundColor: 'transparent',
   },
   textButton: {
     color: Colors.primaryText,

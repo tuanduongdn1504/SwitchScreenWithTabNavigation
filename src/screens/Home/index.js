@@ -4,6 +4,7 @@ import { View, StyleSheet, FlatList, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
@@ -14,13 +15,18 @@ import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import SearchInput from '../../components/SearchInput';
-import NavBar from '../../components/NavigationBar';
+import { Colors } from '../../themes';
+import ActionSheet from '../../components/ActionSheet';
+import Button from '../../components/Button';
+import Text from '../../components/Text';
+import { TUTOR_INFO, FILTER } from '../../localData';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedMarker: {},
+      filter: 'Tutor name',
     };
     Navigation.events().bindComponent(this);
   }
@@ -65,14 +71,70 @@ class Home extends Component {
     );
   };
 
+  renderOption = ({ item }) => {
+    const { currentPopupProps } = this.state;
+    return (
+      <Button
+        onPress={() => this.onChangeItem(currentPopupProps, item.value)}
+        textStyle={styles.textButton}
+        style={styles.item}
+        buttonTitle={item.value}
+      />
+    );
+  };
+
+  renderSelect = () => {
+    const { currentPopupProps } = this.state;
+    if (!currentPopupProps) {
+      return <View />;
+    }
+    return (
+      <FlatList
+        ItemSeparatorComponent={() => <Divider />}
+        data={FILTER}
+        renderItem={this.renderOption}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={() => <View style={{ width: 10 }} />}
+        ListFooterComponent={() => <View style={{ width: 10 }} />}
+      />
+    );
+  };
+
+  onChangeItem = (currentPopupProps, value) => {
+    this.setState({ [currentPopupProps]: value });
+    this.ActionSheet.hide();
+  };
+
+  showPopup = name => () => {
+    this.setState({ currentPopupProps: name }, () => {
+      this.ActionSheet.show();
+    });
+  };
+
   render() {
     const { tutors } = this.props;
-    const { isUpdate, selectedMarker } = this.state;
+    const { isUpdate, selectedMarker, currentPopupProps, filter } = this.state;
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        {/* <NavBar title={I18n.t('home.title')} /> */}
-        <SearchInput onChange={this.onChangeSearch} style={styles.search} />
+        <View style={styles.header}>
+          <Text type="normalBold" style={styles.headerText}>
+            {`${I18n.t('home.filterBy')} ${filter}`}
+          </Text>
+          <View style={styles.search}>
+            <Icon
+              name="ios-options"
+              size={24}
+              style={styles.icon}
+              onPress={this.showPopup('filter')}
+            />
+            <SearchInput
+              onChange={this.onChangeSearch}
+              style={{ flex: 1, marginBottom: 0 }}
+            />
+          </View>
+        </View>
+
         <Maps
           markers={tutors}
           selectedMarker={selectedMarker}
@@ -89,6 +151,25 @@ class Home extends Component {
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />
+        {/* <ActionSheet
+          ref={o => {
+            this.ActionSheet = o;
+          }}
+          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
+        >
+          <View style={styles.select}>
+            {currentPopupProps === 'filter' &&
+              this.renderSelect('filter', FILTER)}
+          </View>
+        </ActionSheet> */}
+        <ActionSheet
+          ref={o => {
+            this.ActionSheet = o;
+          }}
+          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
+        >
+          <View style={styles.select}>{this.renderSelect()}</View>
+        </ActionSheet>
       </Container>
     );
   }
@@ -108,8 +189,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   search: {
-    marginTop: Platform.OS === 'ios' ? 48 : 23,
+    flexDirection: 'row',
+    // marginTop: Platform.OS === 'ios' ? 48 : 23,
+    // marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  icon: {
+    color: Colors.primaryText,
+    marginLeft: 20,
+  },
+  item: {
+    backgroundColor: 'transparent',
+  },
+  textButton: {
+    color: Colors.primaryText,
+  },
+  select: {
+    paddingBottom: 50,
+  },
+  header: {
+    marginTop: Platform.OS === 'ios' ? 48 : 23,
+    marginBottom: 10,
+  },
+  headerText: { paddingLeft: 60, paddingBottom: 10 },
 });
 
 function mapStateToProps(state) {
