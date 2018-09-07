@@ -1,4 +1,11 @@
-export const CITY = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh', 'Huế', 'Quang Ninh', 'Thanh Hoá'];
+export const CITY = [
+  'Hà Nội',
+  'Đà Nẵng',
+  'Hồ Chí Minh',
+  'Huế',
+  'Quang Ninh',
+  'Thanh Hoá',
+];
 export const SEX = [
   {
     value: 0,
@@ -154,8 +161,28 @@ export const SUBJECTS = [
   },
 ];
 
+export const FILTER = [
+  {
+    id: 0,
+    value: 'Tutor name',
+  },
+  {
+    id: 1,
+    value: 'Subject',
+  },
+  {
+    id: 2,
+    value: 'ZIP code',
+  },
+  {
+    id: 3,
+    value: 'City',
+  },
+];
+
 export const TUTOR_INFO = {
   levels: LEVELS,
   types: TYPES,
   subjects: SUBJECTS,
+  filter: FILTER,
 };

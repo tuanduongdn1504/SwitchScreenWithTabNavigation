@@ -16,14 +16,17 @@ import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
-import Button from '../../components/Button';
 import ActionSheet from '../../components/ActionSheet';
+import Button from '../../components/Button';
+import Text from '../../components/Text';
+import { TUTOR_INFO, FILTER } from '../../localData';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedMarker: {},
+      filter: 'Tutor name',
     };
     Navigation.events().bindComponent(this);
   }
@@ -68,10 +71,11 @@ class Home extends Component {
     );
   };
 
-  renderItem = key => ({ item }) => {
+  renderOption = ({ item }) => {
+    const { currentPopupProps } = this.state;
     return (
       <Button
-        onPress={() => this.onChangeItem(key, item)}
+        onPress={() => this.onChangeItem(currentPopupProps, item.value)}
         textStyle={styles.textButton}
         style={styles.item}
         buttonTitle={item.value}
@@ -79,12 +83,29 @@ class Home extends Component {
     );
   };
 
-  renderSelect = (key, data) => {
+  // renderSelect = (key, data) => {
+  //   return (
+  //     <FlatList
+  //       ItemSeparatorComponent={() => <Divider />}
+  //       data={data}
+  //       renderItem={this.renderOption(key)}
+  //       keyExtractor={item => item.id}
+  //       ListHeaderComponent={() => <View style={{ width: 10 }} />}
+  //       ListFooterComponent={() => <View style={{ width: 10 }} />}
+  //     />
+  //   );
+  // };
+
+  renderSelect = () => {
+    const { currentPopupProps } = this.state;
+    if (!currentPopupProps) {
+      return <View />;
+    }
     return (
       <FlatList
         ItemSeparatorComponent={() => <Divider />}
-        data={data}
-        renderItem={this.renderItem(key)}
+        data={FILTER}
+        renderItem={this.renderOption}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => <View style={{ width: 10 }} />}
         ListFooterComponent={() => <View style={{ width: 10 }} />}
@@ -92,26 +113,39 @@ class Home extends Component {
     );
   };
 
-  handleFilter = () => {};
+  onChangeItem = (currentPopupProps, value) => {
+    this.setState({ [currentPopupProps]: value });
+    this.ActionSheet.hide();
+  };
+
+  showPopup = name => () => {
+    this.setState({ currentPopupProps: name }, () => {
+      this.ActionSheet.show();
+    });
+  };
 
   render() {
     const { tutors } = this.props;
-    const { isUpdate, selectedMarker, selectName } = this.state;
+    const { isUpdate, selectedMarker, currentPopupProps, filter } = this.state;
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        {/* <NavBar title={I18n.t('home.title')} /> */}
-        <View style={styles.search}>
-          <Icon
-            name="ios-options"
-            size={24}
-            style={styles.icon}
-            onPress={this.handleFilter}
-          />
-          <SearchInput
-            onChange={this.onChangeSearch}
-            style={{ flex: 1, marginBottom: 0 }}
-          />
+        <View style={styles.header}>
+          <Text type="normalBold" style={styles.headerText}>
+            {`Filter by ${filter}`}
+          </Text>
+          <View style={styles.search}>
+            <Icon
+              name="ios-options"
+              size={24}
+              style={styles.icon}
+              onPress={this.showPopup('filter')}
+            />
+            <SearchInput
+              onChange={this.onChangeSearch}
+              style={{ flex: 1, marginBottom: 0 }}
+            />
+          </View>
         </View>
 
         <Maps
@@ -134,10 +168,21 @@ class Home extends Component {
           ref={o => {
             this.ActionSheet = o;
           }}
-          title={I18n.t(selectName)}
+          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
+        >
+          <View style={styles.select}>
+            {currentPopupProps === 'filter' &&
+              this.renderSelect('filter', FILTER)}
+          </View>
+        </ActionSheet> */}
+        <ActionSheet
+          ref={o => {
+            this.ActionSheet = o;
+          }}
+          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
         >
           <View style={styles.select}>{this.renderSelect()}</View>
-        </ActionSheet> */}
+        </ActionSheet>
       </Container>
     );
   }
@@ -158,8 +203,8 @@ const styles = StyleSheet.create({
   },
   search: {
     flexDirection: 'row',
-    marginTop: Platform.OS === 'ios' ? 48 : 23,
-    marginBottom: 10,
+    // marginTop: Platform.OS === 'ios' ? 48 : 23,
+    // marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -167,6 +212,20 @@ const styles = StyleSheet.create({
     color: Colors.primaryText,
     marginLeft: 20,
   },
+  item: {
+    backgroundColor: 'transparent',
+  },
+  textButton: {
+    color: Colors.primaryText,
+  },
+  select: {
+    paddingBottom: 50,
+  },
+  header: {
+    marginTop: Platform.OS === 'ios' ? 48 : 23,
+    marginBottom: 10,
+  },
+  headerText: { paddingLeft: 60, paddingBottom: 10 },
 });
 
 function mapStateToProps(state) {

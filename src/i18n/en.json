@@ -79,7 +79,8 @@
   "tutorDetail": "Tutor Detail",
   "share": "Share",
   "home": {
-    "title": "Home"
+    "title": "Home",
+    "filterPlaceholder": "Filter search result"
   },
   "safety": {
     "title": "Safety",
