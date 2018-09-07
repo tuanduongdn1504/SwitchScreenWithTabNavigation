@@ -64,7 +64,7 @@ class Safety extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.center}>
-          <NavBar title={I18n.t('safety.title')} />
+          {/* <NavBar title={I18n.t('safety.title')} /> */}
           <MapView location={location} />
 
           <CustomButton

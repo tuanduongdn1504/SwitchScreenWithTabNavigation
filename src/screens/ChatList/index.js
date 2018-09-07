@@ -69,7 +69,7 @@ class ChatList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <NavBar title="Chat History" />
+        {/* <NavBar title="Chat History" /> */}
         <FlatList
           style={styles.list}
           data={chatList}

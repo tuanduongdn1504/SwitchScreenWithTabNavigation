@@ -38,26 +38,26 @@ export const startWithTabs = () => {
       title: 'Chat',
       icon: iconsMap['ios-chatbubbles'],
       screen: 'chatList',
-      // options: {
-      //   ...navigatorStyle,
-      //   topBar: {
-      //     ...navigatorStyle.topBar,
-      //     title: {
-      //       text: I18n.t('chatHistory'),
-      //       color: Colors.default,
-      //     },
-      //   },
-      //   backButton: {
-      //     icon: iconsMap['md-arrow-back'],
-      //     visible: true,
-      //   },
-      // },
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('chatHistory'),
+            color: Colors.default,
+          },
+        },
+        backButton: {
+          icon: iconsMap['md-arrow-back'],
+          visible: true,
         },
       },
+      // options: {
+      //   topBar: {
+      //     visible: false,
+      //     drawBehind: true,
+      //   },
+      // },
     },
     // {
     //   label: 'chat',
@@ -84,10 +84,24 @@ export const startWithTabs = () => {
       title: 'Safety',
       icon: iconsMap['ios-help-buoy'],
       screen: 'Safety',
+      // options: {
+      //   topBar: {
+      //     visible: false,
+      //     drawBehind: true,
+      //   },
+      // },
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('safety.title'),
+            color: Colors.default,
+          },
+        },
+        backButton: {
+          icon: iconsMap['md-arrow-back'],
+          visible: true,
         },
       },
     },
@@ -129,10 +143,24 @@ export const startWithTabs = () => {
       title: 'Notifications',
       icon: iconsMap['ios-notifications'],
       screen: 'notification',
+      // options: {
+      //   topBar: {
+      //     visible: false,
+      //     drawBehind: true,
+      //   },
+      // },
       options: {
+        ...navigatorStyle,
         topBar: {
-          visible: false,
-          drawBehind: true,
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('notification'),
+            color: Colors.default,
+          },
+        },
+        backButton: {
+          icon: iconsMap['md-arrow-back'],
+          visible: true,
         },
       },
     },
