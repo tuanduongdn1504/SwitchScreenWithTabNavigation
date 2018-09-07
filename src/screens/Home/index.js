@@ -83,19 +83,6 @@ class Home extends Component {
     );
   };
 
-  // renderSelect = (key, data) => {
-  //   return (
-  //     <FlatList
-  //       ItemSeparatorComponent={() => <Divider />}
-  //       data={data}
-  //       renderItem={this.renderOption(key)}
-  //       keyExtractor={item => item.id}
-  //       ListHeaderComponent={() => <View style={{ width: 10 }} />}
-  //       ListFooterComponent={() => <View style={{ width: 10 }} />}
-  //     />
-  //   );
-  // };
-
   renderSelect = () => {
     const { currentPopupProps } = this.state;
     if (!currentPopupProps) {
