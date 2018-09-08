@@ -12,6 +12,7 @@
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import "RCTLinkingManager.h"
 #import "ReactNativeConfig.h"
+#import <Firebase.h>
 
 @implementation AppDelegate
 
@@ -27,6 +28,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
+  [FIRApp configure];
   return YES;
 }
 

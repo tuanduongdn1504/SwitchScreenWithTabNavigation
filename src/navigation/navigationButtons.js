@@ -62,3 +62,10 @@ export const add = () => ({
   disableIconTint: false,
   color: Colors.default,
 });
+
+export const chat = () => ({
+  id: 'chat',
+  icon: iconsMap['ios-chatbubbles'],
+  disableIconTint: false,
+  color: Colors.default,
+});

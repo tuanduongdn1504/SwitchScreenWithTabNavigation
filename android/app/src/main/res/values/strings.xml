@@ -1,5 +1,5 @@
 <resources>
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">n</string>
-    <string name="app_name">RNBaseProject</string>
+    <string name="app_name">lateam.tutorApp</string>
     <string name="google_api_key">AIzaSyDGZOhb6qWmy1PLYJrLmtBho18Vasw0C_U</string>
 </resources>

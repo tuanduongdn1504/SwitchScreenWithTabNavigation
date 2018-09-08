@@ -3,7 +3,8 @@ import {
   View, StyleSheet, ActivityIndicator, Dimensions,
 } from 'react-native';
 
-const ProgressScreen = () => {
+const ProgressScreen = ({ componentId, onDisplay }) => {
+  onDisplay(componentId);
   return (
     <View style={styles.vProgress}>
       <ActivityIndicator />

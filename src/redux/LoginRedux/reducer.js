@@ -57,6 +57,10 @@ const signIn = (state, action) => {
     isLogged: false,
     loading: true,
     token: null,
+    data: {
+      ...action.data,
+      id: action.data.username === 'longnguyen' ? 2 : 1,
+    },
   });
 };
 

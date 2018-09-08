@@ -1,12 +1,17 @@
 import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes/index';
 
+let progressId = 'progressScreen';
 export const showProgress = (isShow = true) => {
   if (isShow) {
     Navigation.showOverlay({
       component: {
-        id: 'progressScreen',
         name: 'progressScreen',
+        passProps: {
+          onDisplay: id => {
+            progressId = id;
+          },
+        },
         options: {
           overlay: {
             interceptTouchOutside: false,
@@ -18,6 +23,6 @@ export const showProgress = (isShow = true) => {
       },
     });
   } else {
-    Navigation.dismissOverlay('progressScreen');
+    Navigation.dismissOverlay(progressId);
   }
 };

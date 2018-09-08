@@ -1,4 +1,4 @@
-package com.rnbaseproject;
+package com.lateam.tutorApp;
 
 import com.reactnativenavigation.NavigationActivity;
 

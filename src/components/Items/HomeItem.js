@@ -7,6 +7,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import Text from '../Text';
 import Colors from '../../themes/Colors';
 import Touchable from '../Touchable';
+import RatingStar from '../RatingStar';
 import { Images } from '../../themes';
 
 const HomeItem = ({ data, onPress }) => {
@@ -26,6 +27,7 @@ const HomeItem = ({ data, onPress }) => {
               <Text type="normalBold" color={Colors.primaryText}>
                 {data.name}
               </Text>
+              <RatingStar left currentRating={3} maxRating={5} />
               <View style={styles.vContent}>
                 <InfoRow icon="ios-call" text={data.phoneNumber} />
                 <InfoRow icon="ios-pin" text={data.address} />

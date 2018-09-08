@@ -16,12 +16,12 @@ export default class ChatItem extends Component {
   }
 
   renderLeftAvatar() {
-    const { text, userId, thumbnail } = this.props.data;
+    const { text, idUser, thumbnail } = this.props.data;
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.props.onPress}>
         <Animatable.View animation={this.state.isInit ? '' : 'fadeInUp'} style={[styles.vContain]}>
           <View style={styles.vThumbnail}>
-            <Image style={styles.thumbnail} source={{ uri: thumbnail }} />
+            <Image style={styles.thumbnail} source={{ uri: thumbnail || global.defaultImage[idUser-1] }} />
           </View>
           <View style={styles.vRight}>
             <View style={styles.triangle} />
@@ -40,7 +40,7 @@ export default class ChatItem extends Component {
   }
 
   renderRightAvatar() {
-    const { text, userId, thumbnail } = this.props.data;
+    const { text, idUser, thumbnail } = this.props.data;
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.props.onPress}>
         <Animatable.View animation={this.state.isInit ? '' : 'fadeInUp'} style={[styles.vContain]}>
@@ -56,7 +56,7 @@ export default class ChatItem extends Component {
             <View style={styles.rightTriangle} />
           </View>
           <View style={styles.vThumbnail}>
-            <Image style={styles.thumbnail} source={{ uri: thumbnail }} />
+            <Image style={styles.thumbnail} source={{ uri:  thumbnail || global.defaultImage[idUser-1] }} />
           </View>
         </Animatable.View>
       </TouchableHighlight>
@@ -64,9 +64,9 @@ export default class ChatItem extends Component {
   }
 
   render() {
-    const { text, userId } = this.props.data;
+    const { text, idUser } = this.props.data;
     if (text) {
-      return userId === 1 ? this.renderRightAvatar() : this.renderLeftAvatar();
+      return idUser === this.props.user.id ? this.renderRightAvatar() : this.renderLeftAvatar();
     }
 
     return <View />;

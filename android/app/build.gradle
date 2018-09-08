@@ -124,7 +124,7 @@ android {
 //        javaMaxHeapSize "4g"
 //    }
     defaultConfig {
-        applicationId "com.rnbaseproject"
+        applicationId "com.lateam.tutorApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -221,8 +221,9 @@ configurations.all {
     }
 }
 dependencies {
-    compile project(':react-native-share')
-    compile project(':react-native-image-picker')
+    implementation project(':react-native-share')
+    implementation project(':react-native-image-picker')
+    implementation project(':react-native-firebase')
     implementation project(':react-native-maps')
     implementation project(':react-native-navigation')
     implementation project(':react-native-i18n')
@@ -231,6 +232,9 @@ dependencies {
     implementation project(':react-native-config')
     implementation project(':react-native-code-push')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.google.android.gms:play-services-base:15.0.1"
+    implementation "com.google.firebase:firebase-core:16.0.1"
+    implementation "com.google.firebase:firebase-firestore:17.0.2"
     implementation 'com.android.support:design:25.4.0'
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -243,3 +247,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+apply plugin: 'com.google.gms.google-services'

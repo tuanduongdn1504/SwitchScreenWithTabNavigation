@@ -6,18 +6,21 @@ import { close } from '../../navigation/navigationButtons';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/HistoryItem';
 import Divider from '../../components/Divider';
+import ChatActions from '../../redux/ChatRedux/actions';
 
 const chatList = [
   {
     id: 1,
-    user: 'Samantha Cap',
+    user: 'Anh Doan',
+    username: 'anhdoan',
     message:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor nunc felis, vel pharetra mi elementum eu.',
     timer: '2 min ago',
   },
   {
     id: 2,
-    user: 'Loise Alto',
+    user: 'Long Nguyen',
+    username: 'longnguyen',
     message:
       'Mauris quis rhoncus nisi, vitae blandit dui. Nam mollis laoreet ligula vel sollicitudin.',
     timer: '4 min ago',
@@ -53,16 +56,19 @@ class ChatList extends Component {
     this.state = {};
   }
 
-  showChatBox(user) {
+  showChatBox(item) {
     showModal('chatBox', {
-      title: user,
+      title: item.user,
       leftButtons: [],
       rightButtons: [close()],
+      passProps: {
+        receive: item,
+      },
     });
   }
 
   renderItem = ({ item, index }) => {
-    return <Item data={item} index={index} onPress={() => this.showChatBox(item.user)} />;
+    return <Item data={item} index={index} onPress={() => this.showChatBox(item)} />;
   };
 
   render() {
@@ -99,7 +105,13 @@ function mapStateToProps(state) {
   };
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    watchChat: data => dispatch(ChatActions.watchChat(data)),
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(ChatList);

@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "596050427918",
+    "firebase_url": "https://iotmanager-7e315.firebaseio.com",
+    "project_id": "iotmanager-7e315",
+    "storage_bucket": "iotmanager-7e315.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596050427918:android:8ce929325d90377b",
+        "android_client_info": {
+          "package_name": "com.lateam.iotmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596050427918-lif3dhjcno09b008nesbrudlni2kii6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lateam.iotmanager",
+            "certificate_hash": "661f219d3bafd81905cf5566cff1e3f18f5fe724"
+          }
+        },
+        {
+          "client_id": "596050427918-lrr4r3rkjflpf2strhcst6fdb9caimc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lateam.iotmanager",
+            "certificate_hash": "1e55fb1c6d80ca84303383fc7d56c742f8fbde55"
+          }
+        },
+        {
+          "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBK8UmNLSJjrAXVYQ0BLUmYlAn9PadF8w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596050427918-84hnkd5qf0kjaub1t4ag8rcj57544rdc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lateam.iotmanager"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596050427918:android:58cb2bae74187fab",
+        "android_client_info": {
+          "package_name": "com.lateam.tutorApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596050427918-psg41ip88g4fhfh82dvoij3gq1kugc7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lateam.tutorApp",
+            "certificate_hash": "0a19e09199d73d688e685fdded1a3ae0e44ed1fa"
+          }
+        },
+        {
+          "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBK8UmNLSJjrAXVYQ0BLUmYlAn9PadF8w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596050427918-84hnkd5qf0kjaub1t4ag8rcj57544rdc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lateam.iotmanager"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

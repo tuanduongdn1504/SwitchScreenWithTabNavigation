@@ -16,13 +16,11 @@ const icons = {
   'md-close': [25, '#fff'],
   'md-menu': [25, '#fff'],
   'md-add': [25, '#fff'],
-  'ios-chatbubbles': [25, '#fff'],
-  'ios-notifications': [25, '#fff'],
   qrcode: [25, '#fff', 'fontAwesome'],
 };
 
 const iconsMap = {};
-const iconsLoaded = new Promise((resolve) => {
+const iconsLoaded = new Promise(resolve => {
   new Promise.all(
     Object.keys(icons).map(
       iconName => (icons[iconName][2] === 'fontAwesome'
@@ -38,7 +36,7 @@ const iconsLoaded = new Promise((resolve) => {
         )),
     ),
   )
-    .then((sources) => {
+    .then(sources => {
       Object.keys(icons).forEach((iconName, idx) => {
         iconsMap[iconName] = sources[idx];
       });

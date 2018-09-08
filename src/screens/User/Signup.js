@@ -236,16 +236,21 @@ class Signup extends Component {
             title={I18n.t('userInfo.signupPrivacy')}
           />
         )}
-        <Button
+       {!isEdit && <Button
           style={styles.button}
           onPress={this.handleStudentRegister}
           buttonTitle={I18n.t('userInfo.registerToFindTutor')}
-        />
-        <Button
+        />}
+        {!isEdit && <Button
           style={styles.button}
           onPress={this.handleTutorRegister}
           buttonTitle={I18n.t('userInfo.becomeATutor')}
-        />
+        />}
+        {isEdit && <Button
+          style={styles.button}
+          onPress={this.submitData}
+          buttonTitle={I18n.t('save')}
+        />}
       </View>
     );
   };

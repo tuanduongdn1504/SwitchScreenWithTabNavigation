@@ -20,7 +20,14 @@ class Setting extends Component {
     this.state = {};
   }
 
-  editProfile = () => {};
+  editProfile = () => {
+    push(this.props.componentId, 'signUp', {
+      title: I18n.t('profile'),
+      passProps: {
+        isEdit: true,
+      },
+    });
+  };
 
   share = () => {};
 

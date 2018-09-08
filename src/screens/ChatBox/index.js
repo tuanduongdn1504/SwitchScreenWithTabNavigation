@@ -8,25 +8,33 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Colors } from '../../themes/index';
 import Button from '../../components/Button';
 import EmojiBoard from '../../components/EmojiBoard';
 import ChatItem from '../../components/Items/ChatItem';
+import ChatActions from '../../redux/ChatRedux/actions';
+import { getDataArr } from '../../redux/crudCreator/selectors';
+import { addStore } from '../../redux/ChatRedux/firebaseStore';
 
-export default class Chat extends Component {
+class Chat extends Component {
   constructor(props) {
     super(props);
-
+    const { user, receive } = this.props;
+    const users = user.id > receive.id ? `${receive.id},${user.id}` : `${user.id},${receive.id}`;
     this.state = {
       historyChat: props.historyChat,
       inputText: '',
       heightInput: 0,
       isInit: true,
+      users,
     };
     this.inputChat = React.createRef();
     this.scrollView = React.createRef();
     this.animatedInput = new Animated.Value(0);
+    this.props.watchChat({ users });
   }
 
   componentDidMount() {
@@ -36,10 +44,23 @@ export default class Chat extends Component {
     }, 300);
   }
 
+  componentWillUnmount() {
+    this.props.closeChat();
+  }
+
   sendChat = () => {
-    const historyChat = [...this.state.historyChat];
-    historyChat.push({ idUser: 1, text: this.inputChat._lastNativeText, ...TEST_USER[0] });
-    this.setState({ historyChat });
+    const { user, receive } = this.props;
+    const chatData = {
+      users: user.id > receive.id ? `${receive.id},${user.id}` : `${user.id},${receive.id}`,
+      ...user,
+      idUser: user.id,
+      text: this.inputChat._lastNativeText,
+      time: moment().toString(),
+    };
+    addStore(chatData);
+    // const historyChat = [...this.state.historyChat];
+    // historyChat.push({ idUser: 1, text: this.inputChat._lastNativeText, ...TEST_USER[0] });
+    // this.setState({ historyChat });
     setTimeout(() => {
       this.scrollView.scrollToEnd({ animated: true });
     }, 200);
@@ -59,9 +80,10 @@ export default class Chat extends Component {
   };
 
   renderInputGroup() {
+    const { chats, user } = this.props;
     const { historyChat, isInit, heightInput } = this.state;
-    const components = historyChat.map((data, index) => {
-      return <ChatItem isInit={isInit} key={index} data={data} right={index % 2 === 0} />;
+    const components = chats.map((data, index) => {
+      return <ChatItem user={user} isInit={isInit} key={index} data={data} />;
     });
     return (
       <ScrollView
@@ -218,3 +240,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+function mapStateToProps(state) {
+  return {
+    user: state.login.data,
+    chats: getDataArr(state, 'chat') || TEST_DATA,
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    watchChat: data => dispatch(ChatActions.watchChat(data)),
+    closeChat: data => dispatch(ChatActions.closeChat(data)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Chat);

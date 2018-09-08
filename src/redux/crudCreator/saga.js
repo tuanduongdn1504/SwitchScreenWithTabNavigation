@@ -156,12 +156,11 @@ const makeCRUDSagaCreator = (resource, actions) => {
   }
   function* createSagaCreator({ data }) {
     yield fork(
-      createSaga(
-        data,
-        resource,
-        actions[makeActionName(`CREATE_${_.snakeCase(resource).toUpperCase()}_SUCCESS`)],
-        actions[makeActionName(`CREATE_${_.snakeCase(resource).toUpperCase()}_FAILURE`)],
-      ),
+      createSaga,
+      data,
+      resource,
+      actions[makeActionName(`CREATE_${_.snakeCase(resource).toUpperCase()}_SUCCESS`)],
+      actions[makeActionName(`CREATE_${_.snakeCase(resource).toUpperCase()}_FAILURE`)],
     );
   }
   const sagas = {

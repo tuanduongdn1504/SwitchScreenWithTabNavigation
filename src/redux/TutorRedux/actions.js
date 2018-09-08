@@ -2,7 +2,7 @@ import { makeCRUDConstantCreator, makeCRUDActionsCreator } from '../crudCreator/
 
 export const MODEL = 'tutor';
 export const IGNORE_ACTIONS = ['CREATE'];
-export const EmergencyTypeTypes = {
+export const Types = {
   ...makeCRUDConstantCreator(MODEL, IGNORE_ACTIONS),
 };
 const CRUDEmergencyTypeActions = makeCRUDActionsCreator(MODEL, IGNORE_ACTIONS);

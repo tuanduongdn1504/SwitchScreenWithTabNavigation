@@ -10,7 +10,7 @@ import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
 import BackgroundImage from '../../components/BackgroundImage';
 import AppLogo from '../../components/AppLogo';
-import { push, startWithTabs } from '../../navigation/navigationActions';
+import { push } from '../../navigation/navigationActions';
 import CheckUpdate from '../Home/CheckUpdate';
 
 class Intro extends Component {
@@ -31,7 +31,7 @@ class Intro extends Component {
   };
 
   signIn = () => {
-    startWithTabs();
+    this.props.signIn(this.data);
     // if (this.data.phone_number && this.data.password) {
     //   this.props.signIn(this.data);
     // }
@@ -73,9 +73,10 @@ class Intro extends Component {
               textColor={Colors.primary}
               animatedTitle
               underLine
-              onChangeText={this.onChange('phone_number')}
+              onChangeText={this.onChange('username')}
               placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('userInfo.phone')}
+              placeholder={I18n.t('username')}
+              defaultValue="longnguyen"
             />
             <InputRow
               textColor={Colors.primary}
@@ -84,7 +85,7 @@ class Intro extends Component {
               secureTextEntry
               onChangeText={this.onChange('password')}
               placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('userInfo.password')}
+              placeholder={I18n.t('password')}
             />
           </View>
           {this.renderButtonGroup()}
