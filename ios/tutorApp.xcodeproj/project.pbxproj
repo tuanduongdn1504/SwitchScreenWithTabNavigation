@@ -13,7 +13,6 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* tutorAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* tutorAppTests.m */; };
-		0C83563BB36A4A7190D0197D /* ReactNativeNavigationTests.xctest in Frameworks */ = {isa = PBXBuildFile; fileRef = E69F5C41037B497084D8970B /* ReactNativeNavigationTests.xctest */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -42,8 +41,6 @@
 		35BBCF653EDF4257AA125E2A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9788DDC10949408D4540CF /* FontAwesome.ttf */; };
 		39477169B1F640B9ACE7432C /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DCB1B9CF437A8079EC77 /* libRNVectorIcons.a */; };
 		3A40C10D1DEB4C75BCBA7017 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0758D595295C427CB7DD9FF5 /* MaterialIcons.ttf */; };
-		4697AC12354F4330B389C504 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE3291B996D4CA0AEF45326 /* libReactNativeNavigation.a */; };
-		4F98D508989C4D32CF81F580 /* libPods-tutorAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40853DDDB6E8E4B5B652FC18 /* libPods-tutorAppTests.a */; };
 		54D06C7A114349ECBE0390FC /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B0F7FE63FB4014A61D7052 /* libReactNativeConfig.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6674C7D4CEB6401481D0C383 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A896ACF6592B44DF9949DCCD /* FontAwesome5_Brands.ttf */; };
@@ -517,7 +514,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				4F98D508989C4D32CF81F580 /* libPods-tutorAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,15 +535,13 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				9FA4AB4321363EBE003E011C /* libReactNativeNavigation.a in Frameworks */,
 				89322EB9E06A41308A6F79DF /* libCodePush.a in Frameworks */,
 				862CC00364924E8DAB4C4654 /* libz.tbd in Frameworks */,
 				54D06C7A114349ECBE0390FC /* libReactNativeConfig.a in Frameworks */,
 				83F76EAFC7DC4C85A45E6413 /* libRNDeviceInfo.a in Frameworks */,
-				4697AC12354F4330B389C504 /* libReactNativeNavigation.a in Frameworks */,
-				0C83563BB36A4A7190D0197D /* ReactNativeNavigationTests.xctest in Frameworks */,
 				39477169B1F640B9ACE7432C /* libRNVectorIcons.a in Frameworks */,
 				9FDDD3D321366C2100564532 /* libRNI18n.a in Frameworks */,
+				9FA4AB4321363EBE003E011C /* libReactNativeNavigation.a in Frameworks */,
 				BF1F52F425BA3FD17D745A35 /* libPods-tutorApp.a in Frameworks */,
 				9FD5F836213AAB61001AA978 /* libAirMaps.a in Frameworks */,
 				9ED5C75CEF3047B9927BE024 /* libRNFirebase.a in Frameworks */,
@@ -936,7 +930,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "tutorAppTests" */;
 			buildPhases = (
-				51F518342CB5CC5DFF3A88C5 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -1573,24 +1566,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		51F518342CB5CC5DFF3A88C5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-tutorAppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		99FAC5F13329D9D3F8676812 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1694,7 +1669,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BB95E3D96A0FA41E6D26779 /* Pods-tutorAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1736,7 +1710,6 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39A380390F9F77B06D990267 /* Pods-tutorAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1802,6 +1775,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = tutorApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1819,6 +1793,7 @@
 			baseConfigurationReference = ACF96C04A7FEA5E93353C0A0 /* Pods-tutorApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JN2ZHM68CD;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1842,6 +1817,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = tutorApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { height } from 'window-size';
 import { Colors } from '../../themes/index';
 import Button from '../../components/Button';
 import EmojiBoard from '../../components/EmojiBoard';
@@ -90,7 +91,7 @@ class Chat extends Component {
         ref={ref => {
           this.scrollView = ref;
         }}
-        style={{ flex: 1 }}
+        style={{ flex: 1, height: height - 120 }}
       >
         {components}
         <View

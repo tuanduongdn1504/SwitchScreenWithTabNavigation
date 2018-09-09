@@ -117,19 +117,19 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
 //    dexOptions {
 //        javaMaxHeapSize "4g"
 //    }
     defaultConfig {
         applicationId "com.lateam.tutorApp"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 19
+        targetSdkVersion  26
         versionCode 1
         versionName "1.0"
-//        multiDexEnabled true
+        multiDexEnabled true
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -212,19 +212,26 @@ buildscript {
 }
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
-            details.useVersion "${rootProject.ext.supportLibVersion}"
-        }
-    }
-}
+//configurations.all {
+//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//        def requested = details.requested
+//        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+//            details.useVersion "${rootProject.ext.supportLibVersion}"
+//        }
+//        if (requested.name != 'multidex-instrumentation') {
+//            details.useVersion "1.0.3"
+//        }
+//    }
+//}
 dependencies {
+    implementation ('com.android.support:multidex:1.0.3')
     implementation project(':react-native-share')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
-    implementation project(':react-native-maps')
+    implementation (project(':react-native-maps')) {
+        exclude group: 'com.google.android.gms', module: 'play-services-base'
+        exclude group: 'com.google.android.gms', module: 'play-services-maps'
+    }
     implementation project(':react-native-navigation')
     implementation project(':react-native-i18n')
     implementation project(':react-native-vector-icons')
@@ -235,10 +242,12 @@ dependencies {
     implementation "com.google.android.gms:play-services-base:15.0.1"
     implementation "com.google.firebase:firebase-core:16.0.1"
     implementation "com.google.firebase:firebase-firestore:17.0.2"
-    implementation 'com.android.support:design:25.4.0'
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    compile 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation "com.android.support:support-v4: 27.1.1"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:design:27.1.1"
     implementation "com.facebook.react:react-native:+"  // From node_modules
-//    implementation 'com.android.support:multidex:1.0.3'
+
 }
 
 // Run this once to be able to run the application with BUCK
@@ -248,3 +257,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

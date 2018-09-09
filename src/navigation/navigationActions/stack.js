@@ -6,7 +6,6 @@ import { navigatorStyle } from '../navigatonStyle';
 export function startStackScreen() {
   const ROOT_SCREEN = 'intro';
   // const ROOT_TITLE = 'home';
-  console.log('navigatonStyle', navigatorStyle);
   Navigation.setRoot({
     root: {
       stack: {
@@ -29,6 +28,12 @@ export function startStackScreen() {
           {
             component: {
               name: ROOT_SCREEN,
+              options: {
+                topBar: {
+                  visible: false,
+                  drawBehind: true,
+                },
+              },
             },
           },
         ],

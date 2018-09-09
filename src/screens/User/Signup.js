@@ -349,6 +349,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
+    backgroundColor: Colors.default
   },
   vInput: {
     marginTop: 35,

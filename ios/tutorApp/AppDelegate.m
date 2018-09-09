@@ -9,7 +9,7 @@
 #import "CodePush.h"
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <ReactNativeNavigation/ReactNativeNavigation.h>
+#import "ReactNativeNavigation.h"
 #import "RCTLinkingManager.h"
 #import "ReactNativeConfig.h"
 #import <Firebase.h>
