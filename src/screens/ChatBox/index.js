@@ -117,7 +117,7 @@ class Chat extends Component {
             this.setState({ heightInput: 0 });
           }}
           onFocus={() => {
-            this.setState({ heightInput: Platform.os === 'ios' ? 60 : 0 });
+            this.setState({ heightInput: 60 });
             this.emojiPanel.hideEmojiBoard();
           }}
           ref={ref => {
@@ -159,7 +159,7 @@ class Chat extends Component {
         />
       </Container>
     );
-    return Platform.os === 'ios' ? (
+    return Platform.OS === 'ios' ? (
       <KeyboardAvoidingView
         contentContainerStyle={{ flex: 1 }}
         behavior="position"
