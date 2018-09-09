@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { showModal } from '../../navigation/navigationActions';
+import { showModal, push } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/HistoryItem';
@@ -57,10 +57,10 @@ class ChatList extends Component {
   }
 
   showChatBox(item) {
-    showModal('chatBox', {
+    push(this.props.componentId, 'chatBox', {
       title: item.user,
-      leftButtons: [],
-      rightButtons: [close()],
+      // leftButtons: [],
+      // rightButtons: [close()],
       passProps: {
         receive: item,
       },
@@ -80,7 +80,7 @@ class ChatList extends Component {
           renderItem={this.renderItem}
           keyExtractor={data => data.id.toString()}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 80, marginRight: 20 }} />}
+          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 30, marginRight: 30 }} />}
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />

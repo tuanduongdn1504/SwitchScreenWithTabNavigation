@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View,
-  TouchableWithoutFeedback,
-  Image,
-  StyleSheet,
-  Dimensions,
+  View, TouchableWithoutFeedback, Image, StyleSheet, Dimensions,
 } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -23,8 +19,9 @@ export default class MapView extends Component {
   render() {
     const { location } = this.props;
     const { latitude, longitude } = location;
-    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:S%7C${latitude},${longitude}&center=${latitude},${longitude}&zoom=12&size=${width}x350&key=AIzaSyAy4q3x1jHwo4WkWPNbAl0QxVW3UETE4Ok`;
-
+    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:S%7C${latitude},${longitude}&center=${latitude},${longitude}&zoom=12&size=${width.toFixed(
+      0,
+    )}x350&key=AIzaSyB1A8FbqoXQ_ePJk0Fp9OjuJSeL8u_zmAE`;
     return (
       <View style={styles.vMap}>
         <Image style={styles.staticMap} source={{ uri: mapUrl }} />
@@ -38,7 +35,6 @@ const styles = StyleSheet.create({
     width,
     height: 300,
     zIndex: -2,
-    backgroundColor: 'red',
   },
   staticMap: {
     width,
@@ -46,6 +42,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     // marginTop: -60,
     zIndex: -99,
-    backgroundColor: 'blue',
   },
 });

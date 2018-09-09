@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View,
-  StyleSheet,
-  Animated,
-  Dimensions,
-  InteractionManager,
-  Vibration,
+  View, StyleSheet, Animated, Dimensions, InteractionManager, Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import I18n from 'react-native-i18n';
@@ -27,7 +22,7 @@ class SearchResults extends Component {
   toggleNotiAnim = (isShow = true) => {
     const handle = InteractionManager.createInteractionHandle();
     Animated.timing(this.animation, {
-      toValue: isShow ? 90 : height,
+      toValue: isShow ? (Platform.os === 'ios' ? 90 : 70) : height,
       useNativeDriver: true,
       duration: 300,
     }).start(() => {

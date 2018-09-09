@@ -9,6 +9,7 @@ Navigation.events().registerNavigationButtonPressedListener(({ buttonId, compone
       pop(componentId);
       break;
     case 'close':
+      console.log('componentId', componentId);
       dismissModal(componentId);
       break;
     default:

@@ -13,6 +13,7 @@ export const push = (componentId, screen, config, navHidden = false, tabHidden =
           drawBehind: navHidden,
           leftButtons: config.leftButtons,
           rightButtons: config.rightButtons,
+          animate: false,
           background: {
             color: Colors.secondary,
           },

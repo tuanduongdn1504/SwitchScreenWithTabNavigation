@@ -21,7 +21,10 @@ export default class ChatItem extends Component {
       <TouchableHighlight underlayColor="transparent" onPress={this.props.onPress}>
         <Animatable.View animation={this.state.isInit ? '' : 'fadeInUp'} style={[styles.vContain]}>
           <View style={styles.vThumbnail}>
-            <Image style={styles.thumbnail} source={{ uri: thumbnail || global.defaultImage[idUser-1] }} />
+            <Image
+              style={styles.thumbnail}
+              source={{ uri: thumbnail || global.defaultImage[idUser - 1] }}
+            />
           </View>
           <View style={styles.vRight}>
             <View style={styles.triangle} />
@@ -42,24 +45,25 @@ export default class ChatItem extends Component {
   renderRightAvatar() {
     const { text, idUser, thumbnail } = this.props.data;
     return (
-      <TouchableHighlight underlayColor="transparent" onPress={this.props.onPress}>
-        <Animatable.View animation={this.state.isInit ? '' : 'fadeInUp'} style={[styles.vContain]}>
-          <View style={styles.vRight}>
-            <View style={styles.vHeaderRight}>
-              {typeof text !== 'undefined' && (
-                <Text multiline style={[styles.txtHeader, { color: 'white' }]}>
-                  {text}
-                  {' '}
-                </Text>
-              )}
-            </View>
-            <View style={styles.rightTriangle} />
+      <Animatable.View animation={this.state.isInit ? '' : 'fadeInUp'} style={[styles.vContain]}>
+        <View style={styles.vRight}>
+          <View style={styles.vHeaderRight}>
+            {typeof text !== 'undefined' && (
+              <Text multiline style={[styles.txtHeader, { color: 'white' }]}>
+                {text}
+                {' '}
+              </Text>
+            )}
           </View>
-          <View style={styles.vThumbnail}>
-            <Image style={styles.thumbnail} source={{ uri:  thumbnail || global.defaultImage[idUser-1] }} />
-          </View>
-        </Animatable.View>
-      </TouchableHighlight>
+          <View style={styles.rightTriangle} />
+        </View>
+        <View style={styles.vThumbnail}>
+          <Image
+            style={styles.thumbnail}
+            source={{ uri: thumbnail || global.defaultImage[idUser - 1] }}
+          />
+        </View>
+      </Animatable.View>
     );
   }
 

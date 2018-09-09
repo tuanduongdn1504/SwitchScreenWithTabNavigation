@@ -53,7 +53,6 @@ public class MainApplication extends NavigationApplication implements ReactAppli
 
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
           new RNSharePackage(),
           new ImagePickerPackage(),
           new RNI18nPackage(),

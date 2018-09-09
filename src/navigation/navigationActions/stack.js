@@ -20,8 +20,9 @@ export function startStackScreen() {
         // }),
         options: {
           topBar: {
-            visible: false,
+            visible: true,
             drawBehind: true,
+            animate: false,
           },
         },
         children: [
@@ -32,6 +33,7 @@ export function startStackScreen() {
                 topBar: {
                   visible: false,
                   drawBehind: true,
+                  animate: false,
                 },
               },
             },

@@ -17,7 +17,9 @@ class Intro extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.data = {};
+    this.data = {
+      username: 'longnguyen',
+    };
   }
 
   onChange = name => text => {

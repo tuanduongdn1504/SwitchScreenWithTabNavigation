@@ -4,7 +4,7 @@ import { showProgress, dismissInAppNoti } from '../navigation/navigationActions'
 
 export function makeConstantCreator(...params) {
   const constant = {};
-  _.each(params, (param) => {
+  _.each(params, param => {
     constant[param] = param;
   });
   return constant;
@@ -23,13 +23,13 @@ export const makeReducerCreator = (initialState = null, handlers = {}) => (
 
 export function* apiWrapper(isHaveProgress = false, apiFunc, ...params) {
   try {
-    dismissInAppNoti();
-    isHaveProgress && showProgress();
+    // dismissInAppNoti();
+    // isHaveProgress && showProgress();
     const response = yield call(apiFunc, ...params);
-    isHaveProgress && showProgress(false);
+    // isHaveProgress && showProgress(false);
     return response;
   } catch (error) {
-    isHaveProgress && showProgress(false);
+    // isHaveProgress && showProgress(false);
     return error;
   }
 }

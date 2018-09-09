@@ -23,13 +23,21 @@
           }
         },
         {
+          "client_id": "596050427918-1o236mrk11rs6gsjpjttdahr0khuectt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lateam.tutorApp",
+            "certificate_hash": "f0ee2bcb2d20d85b78fdcc3c2f632904a778d49e"
+          }
+        },
+        {
           "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCBK8UmNLSJjrAXVYQ0BLUmYlAn9PadF8w"
+          "current_key": "AIzaSyB1A8FbqoXQ_ePJk0Fp9OjuJSeL8u_zmAE"
         }
       ],
       "services": {

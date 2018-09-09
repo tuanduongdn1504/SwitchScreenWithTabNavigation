@@ -8,7 +8,7 @@ import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import TutorInfo from './TutorInfo';
 import { close } from '../../navigation/navigationButtons';
-import { showModal } from '../../navigation/navigationActions';
+import { showModal, push } from '../../navigation/navigationActions';
 
 class Detail extends Component {
   constructor(props) {
@@ -24,10 +24,13 @@ class Detail extends Component {
   };
 
   showChatBox = () => {
-    showModal('chatBox', {
+    push(this.props.componentId, 'chatBox', {
       title: I18n.t('chatBox'),
-      leftButtons: [],
-      rightButtons: [close()],
+      // leftButtons: [],
+      // rightButtons: [close()],
+      passProps: {
+        receive: this.props.tutor,
+      },
     });
   };
 

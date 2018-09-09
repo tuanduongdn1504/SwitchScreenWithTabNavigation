@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import {
   View,
   TextInput,
-  ScrollView,
   KeyboardAvoidingView,
+  Platform,
   Animated,
   StyleSheet,
   Keyboard,
+  Dimensions,
+  FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { height } from 'window-size';
 import { Colors } from '../../themes/index';
 import Button from '../../components/Button';
 import EmojiBoard from '../../components/EmojiBoard';
@@ -19,6 +20,8 @@ import ChatItem from '../../components/Items/ChatItem';
 import ChatActions from '../../redux/ChatRedux/actions';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import { addStore } from '../../redux/ChatRedux/firebaseStore';
+import Container from '../../components/Container';
+import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 
 class Chat extends Component {
   constructor(props) {
@@ -83,23 +86,24 @@ class Chat extends Component {
   renderInputGroup() {
     const { chats, user } = this.props;
     const { historyChat, isInit, heightInput } = this.state;
-    const components = chats.map((data, index) => {
-      return <ChatItem user={user} isInit={isInit} key={index} data={data} />;
-    });
     return (
-      <ScrollView
+      <FlatList
         ref={ref => {
           this.scrollView = ref;
         }}
-        style={{ flex: 1, height: height - 120 }}
-      >
-        {components}
-        <View
-          style={{
-            height: heightInput,
-          }}
-        />
-      </ScrollView>
+        style={{ flex: 1 }}
+        data={chats}
+        renderItem={({ item, index }) => (
+          <ChatItem user={user} isInit={isInit} key={index} data={item} />
+        )}
+        ListEmptyComponent={() => (
+          <View
+            style={{
+              height: heightInput,
+            }}
+          />
+        )}
+      />
     );
   }
 
@@ -113,7 +117,7 @@ class Chat extends Component {
             this.setState({ heightInput: 0 });
           }}
           onFocus={() => {
-            this.setState({ heightInput: 60 });
+            this.setState({ heightInput: Platform.os === 'ios' ? 60 : 0 });
             this.emojiPanel.hideEmojiBoard();
           }}
           ref={ref => {
@@ -143,12 +147,8 @@ class Chat extends Component {
   }
 
   render() {
-    return (
-      <KeyboardAvoidingView
-        contentContainerStyle={{ flex: 1 }}
-        behavior="position"
-        style={styles.vChatBox}
-      >
+    const content = (
+      <Container>
         {this.renderInputGroup()}
         {this.renderChatInput()}
         <EmojiBoard
@@ -157,7 +157,18 @@ class Chat extends Component {
           }}
           onPick={this.handlePick}
         />
+      </Container>
+    );
+    return Platform.os === 'ios' ? (
+      <KeyboardAvoidingView
+        contentContainerStyle={{ flex: 1 }}
+        behavior="position"
+        style={styles.vChatBox}
+      >
+        {content}
       </KeyboardAvoidingView>
+    ) : (
+      content
     );
   }
 }
@@ -205,8 +216,13 @@ Chat.propTypes = {
 Chat.defaultProps = {
   historyChat: TEST_DATA,
 };
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.default,
+  },
   vChatBox: {
     flexGrow: 1,
   },

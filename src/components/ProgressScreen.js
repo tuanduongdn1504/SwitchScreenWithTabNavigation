@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 
 const ProgressScreen = ({ componentId, onDisplay }) => {
-  onDisplay(componentId);
   return (
     <View style={styles.vProgress}>
       <ActivityIndicator />

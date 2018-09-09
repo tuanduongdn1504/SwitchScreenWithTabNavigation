@@ -114,7 +114,7 @@ export const startWithTabs = () => {
               bottomTabs: {
                 backgroundColor: Colors.tabBackground,
                 visible: true,
-                animate: true,
+                animate: false,
                 // currentTabIndex: 0,
                 // currentTabId: 'currentTabId',
                 // testID: 'bottomTabsTestID',

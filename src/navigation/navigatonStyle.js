@@ -8,10 +8,10 @@ export const navigatorHiddenTab = {
 export const navigatorStyle = {
   topBar: {
     visible: true,
-    animate: true,
+    drawBehind: false,
+    animate: false,
     // hideOnScroll: false,
     buttonColor: Colors.titleNav,
-    drawBehind: false,
     title: {
       fontSize: 17,
       color: Colors.titleNav,

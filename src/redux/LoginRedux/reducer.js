@@ -71,7 +71,7 @@ const signInSuccess = (state, { response }) => {
     token: response.token,
     loading: false,
     data: {
-      _id: response._id,
+      // _id: response._id,
     },
   });
 };
