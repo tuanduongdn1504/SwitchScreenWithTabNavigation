@@ -42,10 +42,10 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isInit: false });
-      this.scrollView.scrollToEnd({ animated: true });
-    }, 300);
+    // setTimeout(() => {
+    //   this.setState({ isInit: false });
+    //   this.scrollView.scrollToEnd({ animated: true });
+    // }, 300);
   }
 
   componentWillUnmount() {
@@ -53,6 +53,9 @@ class Chat extends Component {
   }
 
   sendChat = () => {
+    // const historyChat = [...this.state.historyChat];
+    // historyChat.push({ idUser: 1, text: this.inputChat._lastNativeText, ...TEST_USER[0] });
+    // this.setState({ historyChat });
     const { user, receive } = this.props;
     const chatData = {
       users: user.id > receive.id ? `${receive.id},${user.id}` : `${user.id},${receive.id}`,
@@ -62,14 +65,18 @@ class Chat extends Component {
       time: moment().toString(),
     };
     addStore(chatData);
-    // const historyChat = [...this.state.historyChat];
-    // historyChat.push({ idUser: 1, text: this.inputChat._lastNativeText, ...TEST_USER[0] });
-    // this.setState({ historyChat });
+    this.inputChat.blur();
+    this.clearInput();
+  };
+
+  clearInput = () => {
+    if (Platform.OS === 'ios') {
+      this.inputChat.setNativeProps({ text: ' ' });
+    }
+
     setTimeout(() => {
-      this.scrollView.scrollToEnd({ animated: true });
-    }, 200);
-    Keyboard.dismiss();
-    this.inputChat.clear();
+      this.inputChat.setNativeProps({ text: '' });
+    });
   };
 
   openEmoji = () => {
@@ -93,6 +100,8 @@ class Chat extends Component {
         }}
         style={{ flex: 1 }}
         data={chats}
+        inverted
+        keyExtractor={data => data.key}
         renderItem={({ item, index }) => (
           <ChatItem user={user} isInit={isInit} key={index} data={item} />
         )}
@@ -108,7 +117,7 @@ class Chat extends Component {
   }
 
   renderChatInput() {
-    const { heightInput } = this.state;
+    const { heightInput, value } = this.state;
     return (
       <View style={[styles.vButtonGroup, { marginBottom: heightInput }]}>
         <TextInput
@@ -127,6 +136,7 @@ class Chat extends Component {
           placeholder="Type your message"
           placeholderTextColor={Colors.divider}
           style={styles.chatInput}
+          value={value}
         />
         <Button
           ionicons="ios-send"

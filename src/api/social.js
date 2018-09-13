@@ -1,7 +1,7 @@
-// import FBSDK from 'react-native-fbsdk';
+import FBSDK from 'react-native-fbsdk';
 // // import { GoogleSignin } from 'react-native-google-signin';
 
-// const { LoginManager, AccessToken } = FBSDK;
+const { LoginManager, AccessToken } = FBSDK;
 
 // export const googleSignInApi = () => {
 //   // return new Promise((resolve, reject) => {
@@ -70,47 +70,47 @@
 //   }
 // };
 
-// export const facebookSignInApi = () => {
-//   return new Promise((resolve, reject) => {
-//     try {
-//       LoginManager.logOut();
-//       LoginManager.logInWithReadPermissions(['email', 'public_profile']).then((result) => {
-//         // console.log(result);
-//         if (result.isCancelled) {
-//           reject('Login cancel.');
-//         } else {
-//           AccessToken.getCurrentAccessToken().then((data) => {
-//             // console.log(data);
-//             resolve(data.accessToken.toString());
-//           }, (err) => {
-//             console.log(err);
-//             reject(err);
-//           });
-//         }
-//       }, (err) => {
-//         console.log(err);
-//         reject(err);
-//       });
-//     } catch (err) {
-//       console.log(err);
-//       LoginManager.logInWithReadPermissions(['email', 'public_profile']).then((result) => {
-//         if (result.isCancelled) {
-//           reject('Login cancel.');
-//         } else {
-//           AccessToken.getCurrentAccessToken().then((data) => {
-//             resolve(data.accessToken.toString());
-//           }, (err) => {
-//             console.log(err);
-//             reject(err);
-//           });
-//         }
-//       }, (err) => {
-//         console.log(err);
-//         reject(err);
-//       });
-//     }
-//   });
-// };
+export const facebookSignInApi = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      LoginManager.logOut();
+      LoginManager.logInWithReadPermissions(['email', 'public_profile']).then((result) => {
+        // console.log(result);
+        if (result.isCancelled) {
+          reject('Login cancel.');
+        } else {
+          AccessToken.getCurrentAccessToken().then((data) => {
+            // console.log(data);
+            resolve(data.accessToken.toString());
+          }, (err) => {
+            console.log(err);
+            reject(err);
+          });
+        }
+      }, (err) => {
+        console.log(err);
+        reject(err);
+      });
+    } catch (err) {
+      console.log(err);
+      LoginManager.logInWithReadPermissions(['email', 'public_profile']).then((result) => {
+        if (result.isCancelled) {
+          reject('Login cancel.');
+        } else {
+          AccessToken.getCurrentAccessToken().then((data) => {
+            resolve(data.accessToken.toString());
+          }, (err) => {
+            console.log(err);
+            reject(err);
+          });
+        }
+      }, (err) => {
+        console.log(err);
+        reject(err);
+      });
+    }
+  });
+};
 
 // // const twitterSignIn = () => {
 // //   return new Promise(((resolve, reject) => {

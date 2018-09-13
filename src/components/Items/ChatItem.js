@@ -69,9 +69,9 @@ export default class ChatItem extends Component {
 
   render() {
     const { text, idUser } = this.props.data;
-    if (text) {
+    // if (text) {
       return idUser === this.props.user.id ? this.renderRightAvatar() : this.renderLeftAvatar();
-    }
+    // }
 
     return <View />;
   }

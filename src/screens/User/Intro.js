@@ -40,6 +40,7 @@ class Intro extends Component {
   };
 
   renderButtonGroup = () => {
+    const { fbSignIn } = this.props;
     return (
       <View style={styles.vButtonGroup}>
         <Button
@@ -47,6 +48,12 @@ class Intro extends Component {
           style={styles.btnLogin}
           onPress={this.signIn}
           buttonTitle={I18n.t('signIn').toLocaleUpperCase()}
+        />
+        <Button
+          primary
+          style={styles.btnLogin}
+          onPress={fbSignIn}
+          buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
         />
         <Text type="mediumBold" style={styles.txtSignup} color={Colors.default}>
           {`${I18n.t('dontHavePassword')} `}
@@ -140,6 +147,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     signIn: data => dispatch(LoginActions.signIn(data)),
+    fbSignIn: data => dispatch(LoginActions.fbSignIn(data)),
   };
 };
 

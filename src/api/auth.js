@@ -8,6 +8,10 @@ export async function login(data) {
   return post('/auth/login', data);
 }
 
+export async function loginfacebook(data) {
+  return post('/auth/facebook', data);
+}
+
 export async function logout() {
   return post('/auth/logout');
 }

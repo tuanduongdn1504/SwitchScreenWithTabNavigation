@@ -29,6 +29,16 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
+
+        <meta-data
+            android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
+            android:value="true"/>
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/APP_NAME"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/FACEBOOK_APP_ID" />
     </application>
 
 </manifest>

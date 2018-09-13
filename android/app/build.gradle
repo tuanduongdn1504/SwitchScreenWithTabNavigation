@@ -134,6 +134,17 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+
+        manifestPlaceholders = [manifestApplicationId: "${applicationId}",
+                                // FABRIC KEY HERE
+//                                FABRIC_KEY:project.env.get("CRASHLYTICS_API_TOKEN"),
+
+                                // FACEBOOK KEY HERE
+                                FACEBOOK_APP_ID: project.env.get("FACEBOOK_APP_ID"),
+                                // GOOGLE KEY HERE
+//                                GOOGLE_MAP_API_KEY_ANDROID: project.env.get("GOOGLE_MAP_API_KEY_ANDROID"),
+                                //APP NAME
+                                APP_NAME: project.env.get("APP_NAME")]
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -224,6 +235,8 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 //    }
 //}
 dependencies {
+    implementation 'com.facebook.android:facebook-android-sdk:4.34.0'
+    implementation project(':react-native-fbsdk')
     implementation ('com.android.support:multidex:1.0.3')
     implementation project(':react-native-share')
     implementation project(':react-native-image-picker')

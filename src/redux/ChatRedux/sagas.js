@@ -37,7 +37,7 @@ export function* watchOnChat({ data }) {
   while (true) {
     try {
       const payload = yield take(chatChannel);
-      const ids = _.sortBy(payload, data => data.time);
+      const ids = _.sortBy(payload, data => data.time).reverse();
       yield put(
         ChatActions.getAllChatSuccess({
           data: _.keyBy(payload, 'key'),

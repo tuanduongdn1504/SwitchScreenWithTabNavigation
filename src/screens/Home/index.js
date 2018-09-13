@@ -20,7 +20,7 @@ import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
 import ActionSheet from '../../components/ActionSheet';
 import Button from '../../components/Button';
-import {  FILTER } from '../../localData';
+import { FILTER } from '../../localData';
 
 class Home extends Component {
   constructor(props) {
@@ -36,12 +36,11 @@ class Home extends Component {
     this.props.getTutors();
   }
 
-
   onPressItem(item) {
     this.props.getOneTutor(item);
     push(this.props.componentId, 'detail', {
       title: I18n.t('tutorDetail'),
-      rightButtons: [chat()]
+      rightButtons: [chat()],
     });
   }
 
@@ -69,18 +68,17 @@ class Home extends Component {
   };
 
   blurSearch = () => {
-    this.setState({isShowSearch: false});
+    this.setState({ isShowSearch: false });
     Navigation.dismissOverlay('searchResults');
-  }
+  };
 
   focusSearch = () => {
-    this.setState({isShowSearch: true});
+    this.setState({ isShowSearch: true });
     Navigation.showOverlay({
       component: {
         id: 'searchResults',
         name: 'searchResults',
-        passProps: {
-        },
+        passProps: {},
         options: {
           overlay: {
             interceptTouchOutside: false,
@@ -88,9 +86,9 @@ class Home extends Component {
         },
       },
     });
-  }
+  };
 
-  showFilter= () => {
+  showFilter = () => {
     showModal('filter', {
       title: I18n.t('filter.text'),
       leftButtons: [],
@@ -144,20 +142,23 @@ class Home extends Component {
   render() {
     const { tutors } = this.props;
     const {
-      isUpdate, selectedMarker, currentPopupProps, isShowSearch
+      isUpdate, selectedMarker, currentPopupProps, isShowSearch,
     } = this.state;
     return (
       <Container style={styles.container}>
         <CheckUpdate />
         <View style={styles.header}>
           <View style={styles.search}>
-            {!isShowSearch && <Icon
-              name="ios-options"
-              size={24}
-              style={styles.icon}
-              onPress={this.showFilter}
-            />}
-            <SearchInput isFocus={isShowSearch} onClose={this.blurSearch} onFocus={this.focusSearch} onChange={this.onChangeSearch} style={{ flex: 1, marginBottom: 0 }} />
+            {!isShowSearch && (
+              <Icon name="ios-options" size={24} style={styles.icon} onPress={this.showFilter} />
+            )}
+            <SearchInput
+              isFocus={isShowSearch}
+              onClose={this.blurSearch}
+              onFocus={this.focusSearch}
+              onChange={this.onChangeSearch}
+              style={{ flex: 1, marginBottom: 0 }}
+            />
           </View>
         </View>
         <View style={styles.vMap}>
@@ -247,10 +248,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: -20,
-    backgroundColor: Colors.default
+    backgroundColor: Colors.default,
   },
   vMap: {
-    height: height * 2 / 5,
+    height: (height * 2) / 5,
   },
 });
 

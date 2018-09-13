@@ -59,6 +59,10 @@ const forgotPasswordFailure = error => makeActionCreator(LoginTypes.USER_FORGOT_
 
 const changePassword = data => makeActionCreator(LoginTypes.CHANGE_PASSWORD, { data });
 
+const fbSignIn = () => makeActionCreator(LoginTypes.FB_LOGIN);
+const fbSignInSuccess = token => makeActionCreator(LoginTypes.FB_LOGIN_SUCCESS, { token });
+const fbSignInFailure = errorCode => makeActionCreator(LoginTypes.FB_LOGIN_FAILURE, { errorCode });
+
 export default {
   closeFirstTime,
   signIn,
@@ -76,4 +80,7 @@ export default {
   updateUserFailure,
   updateUserSuccess,
   signOut,
+  fbSignIn,
+  fbSignInSuccess,
+  fbSignInFailure,
 };

@@ -123,6 +123,33 @@ const updateUserFailure = (state, action) => state.merge({
   isFetching: false,
 });
 
+const fbSignIn = (state, action) => {
+  return state.merge({
+    isLogin: true,
+    error: null,
+    isLogged: false,
+    token: null,
+    loading: true,
+  });
+};
+
+const fbSignInSuccess = (state, action) => state.merge({
+  data: { ...state.data, ...action.response },
+  isLogged: true,
+  isLogin: false,
+  signInType: Types.FB_LOGIN,
+  token: action.token,
+  loading: false,
+});
+
+const fbSignInFailure = (state, action) => state.merge({
+  isLogged: false,
+  error: action.error,
+  isLogin: false,
+  token: null,
+  loading: false,
+});
+
 const ACTION_HANDLERS = {
   // [AppLoginTypes.STARTUP]: startUp,
   [LoginTypes.SIGN_OUT]: signOut,
@@ -136,6 +163,9 @@ const ACTION_HANDLERS = {
   [LoginTypes.EDIT_USER]: editUser,
   [LoginTypes.UPDATE_USER_SUCCESS]: updateUserSuccess,
   [LoginTypes.UPDATE_USER_FAILURE]: updateUserFailure,
+  [LoginTypes.FB_LOGIN]: fbSignIn,
+  [LoginTypes.FB_LOGIN_SUCCESS]: fbSignInSuccess,
+  [LoginTypes.FB_LOGIN_FAILURE]: fbSignInFailure,
 };
 
 export default makeReducerCreator(INITIAL_STATE, ACTION_HANDLERS);

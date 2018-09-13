@@ -1,6 +1,7 @@
 package com.lateam.tutorApp;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
@@ -23,15 +24,24 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import java.util.Arrays;
 import java.util.List;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.appevents.AppEventsLogger;
 
 public class MainApplication extends NavigationApplication implements ReactApplication {
+   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
  @Override
   protected ReactGateway createReactGateway() {
     ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-      }
+//    @Override
+//    protected String getJSMainModuleName() {
+//      return "index";
+//      }
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -41,7 +51,6 @@ public class MainApplication extends NavigationApplication implements ReactAppli
         return CodePush.getJSBundleFile();
     }
     };
-
     return new ReactGateway(this, isDebug(), host);
   }
 
@@ -62,6 +71,7 @@ public class MainApplication extends NavigationApplication implements ReactAppli
           new MapsPackage(),
           new RNFirebasePackage(),
           new RNFirebaseFirestorePackage(),
+          new FBSDKPackage(mCallbackManager),
           new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG)
       );
     }
@@ -72,7 +82,8 @@ public class MainApplication extends NavigationApplication implements ReactAppli
   @Override
   public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
+//    SoLoader.init(this, /* native exopackage */ false);
   }
+
 
 }

@@ -4,7 +4,13 @@ import {
 import I18n from 'react-native-i18n';
 import Actions, { LoginTypes } from './actions';
 import {
-  login, register, getInfor, updatePassword, editUser, logout,
+  login,
+  register,
+  getInfor,
+  updatePassword,
+  editUser,
+  logout,
+  loginfacebook,
 } from '../../api/auth';
 import {
   startWithTabs,
@@ -13,6 +19,7 @@ import {
   showProgress,
 } from '../../navigation/navigationActions';
 import { apiWrapper } from '../../utils/reduxUtils';
+import { facebookSignInApi } from '../../api/social';
 
 export function* signOut() {
   global.token = null;
@@ -105,6 +112,23 @@ export function* changePassword({ data }) {
   }
 }
 
+export function* fbSignIn() {
+  try {
+    const accessToken = yield call(facebookSignInApi);
+    showProgress(true);
+    const response = yield call(loginfacebook, accessToken);
+    showProgress(false);
+    if (response && !response.token) {
+      yield put(Actions.fbSignInFailure(response));
+      return;
+    }
+    yield put(Actions.fbSignInSuccess(response.token));
+  } catch (err) {
+    console.log(err);
+    showProgress(false);
+    yield put(Actions.fbSignInFailure(err));
+  }
+}
 const loginSagas = () => {
   return [
     takeLatest(LoginTypes.SIGN_UP, signUp),
@@ -112,6 +136,7 @@ const loginSagas = () => {
     takeLatest(LoginTypes.SIGN_OUT, signOut),
     takeLatest(LoginTypes.GET_USE, getUser),
     takeLatest(LoginTypes.EDIT_USER, editUserSaga),
+    takeLatest(LoginTypes.FB_LOGIN, fbSignIn),
   ];
 };
 

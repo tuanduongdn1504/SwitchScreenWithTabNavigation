@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>tutorApp</string>
+	<string>__RN_CONFIG_APP_NAME</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,6 +22,26 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb684680845223137</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>__RN_CONFIG_FACEBOOK_APP_ID</string>
+	<key>FacebookDisplayName</key>
+	<string>__RN_CONFIG_APP_NAME</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>CodePushDeploymentKey</key>
 	<string>__RN_CONFIG_CODE_PUSH_IOS_KEY</string>
 	<key>LSRequiresIPhoneOS</key>
