@@ -3,17 +3,19 @@
   "appDescription": "Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500, khi một họa sĩ vô danh ghép nhiều đoạn văn bản với nhau để tạo thành một bản mẫu văn bản. Đoạn văn bản này không những đã tồn tại năm thế kỉ, mà khi được áp dụng vào tin học văn phòng, nội dung của nó vẫn không hề bị thay đổi. Nó đã được phổ biến trong những năm 1960 nhờ việc bán những bản giấy Letraset in những đoạn Lorem Ipsum, và gần đây hơn, được sử dụng trong các ứng dụng dàn trang, như Aldus PageMaker.",
   "devBy": "Develop by AnhDoan",
   "about": "About",
-  "username": "USERNAME",
-  "password": "PASSWORD",
+  "username": "Username",
+  "password": "Password",
   "repeatPassword": "REPEAT PASSWORD",
   "signIn": "Sign In",
   "welcome": "Welcome to IoT",
   "conectFB": "LOGIN WITH FACEBOOK",
   "dontHavePassword": "DON’T HAVE AN ACCOUNT?",
-  "signUp": "SIGN UP",
+  "signUp": "Sign Up",
   "footerLoginDescription": "By join IoT manager, you can easily handle your application",
   "send": "SEND",
   "userInfo": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "contact": "Contact",
     "name": "Full name",
     "namePlaceholder": "Enter your Last Name",
@@ -36,6 +38,7 @@
     "registerAsStudent": "Register as student",
     "registerAsTutor": "Become as tutor",
     "register": "Register",
+    "zipCode": "Zip Code",
     "tutor": {
       "levels": "Your level",
       "levelsPlaceholder": "Select your level",
@@ -65,7 +68,6 @@
   "submit": "Submit",
   "olds": "olds",
   "historyText": {},
-  "home": {},
   "busy": "Busy",
   "free": "Free",
   "register": "Register",
@@ -110,5 +112,17 @@
     "haveAccount": "Already have an account?",
     "createAccount": "Create account"
   },
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "auth": {
+    "forgotPass": "Forgot Password?",
+    "termsAndPrivacy": "By tapping Sign up, I agree to Tutor's\n",
+    "privacy": "Privacy Policy",
+    "terms": "Term of Services",
+    "and": "and"
+  },
+  "error": {
+    "login": "The Email or password is invalid.",
+    "password": "The Password has more than 6 chars",
+    "email": "This Email is invalid format."
+  }
 }

@@ -114,8 +114,8 @@ Button.defaultProps = {
   center: true,
   end: { x: 1, y: 1 },
   start: { x: 0, y: 0 },
-  startColor: '#1D976C',
-  endColor: '#93F9B9',
+  startColor: Colors.darkPrimary,
+  endColor: Colors.lightPrimary,
 };
 
 export default Button;

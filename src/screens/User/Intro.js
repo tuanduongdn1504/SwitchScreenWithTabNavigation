@@ -8,7 +8,6 @@ import { Colors, Images } from '../../themes';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
-import AppLogo from '../../components/AppLogo';
 import { push } from '../../navigation/navigationActions';
 import CheckUpdate from '../Home/CheckUpdate';
 import SwipperView from '../../components/SwipperView';
@@ -66,6 +65,8 @@ class Intro extends Component {
           endColor={Colors.facebook}
           style={styles.btnLogin}
           onPress={fbSignIn}
+          fontAwesome="facebook-f"
+          iconColor={Colors.default}
           buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
         />
         <Button

@@ -1,6 +1,6 @@
 import Config from '../config/AppSetting';
 
-const checkIfErrorOccurs = (res) => {
+const checkIfErrorOccurs = res => {
   return {
     code: res.status,
     res,
@@ -24,7 +24,7 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
     const response = await res.res.json();
     const err = {
       code: res.code,
-      message: response.Message,
+      message: response.message,
     };
     throw err;
   } catch (e) {
@@ -36,6 +36,7 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
       };
       throw err;
     } else {
+      console.log('e', res);
       const err = {
         code: res.code,
         message: e.message ? e.message : 'Something wrong. Please try again.',
@@ -51,11 +52,11 @@ export const timeoutPromise = function timeoutPromise(ms, promise) {
       reject(new Error('Request time out! Please try again.'));
     }, ms);
     promise.then(
-      (res) => {
+      res => {
         clearTimeout(timeoutId);
         resolve(res);
       },
-      (err) => {
+      err => {
         clearTimeout(timeoutId);
         reject(err);
       },
@@ -89,8 +90,6 @@ function requestWrapper(method) {
       method,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'X-Parse-Application-Id': Config.PARSE_ID,
-        'X-Parse-REST-API-Key': Config.REST_API_KEY,
       },
     };
 

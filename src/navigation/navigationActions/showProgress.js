@@ -1,17 +1,16 @@
 import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes/index';
 
-const progressId = 'progressScreen';
+let progressId = null;
 export const showProgress = (isShow = true) => {
-  Navigation.dismissOverlay(progressId);
+  progressId && Navigation.dismissOverlay(progressId);
   if (isShow) {
     Navigation.showOverlay({
       component: {
-        id: 'progressScreen',
         name: 'progressScreen',
         passProps: {
           onDisplay: id => {
-            // progressId = id;
+            progressId = id;
           },
         },
         options: {

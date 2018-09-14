@@ -52,14 +52,14 @@ export function* signUp({ data }) {
 export function* signIn({ data }) {
   try {
     const response = yield call(apiWrapper, true, login, data);
-    // if (!response || !response.token) {
-    //   yield put(Actions.signInFailure(response));
-    //   showInAppNoti('', I18n.t('error.login'), 'error');
-    //   return;
-    // }
-    // yield put(Actions.signInSuccess(response));
-    // global.token = response.token;
-    // yield put(Actions.getUser());
+    if (!response || !response.token) {
+      yield put(Actions.signInFailure(response));
+      showInAppNoti('', I18n.t('error.login'), 'error');
+      return;
+    }
+    yield put(Actions.signInSuccess(response));
+    global.token = response.token;
+    yield put(Actions.getUser());
     startWithTabs();
   } catch (err) {
     showInAppNoti('', I18n.t('error.login'), 'error');

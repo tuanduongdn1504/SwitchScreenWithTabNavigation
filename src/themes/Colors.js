@@ -17,13 +17,13 @@ const colors = {
   //
   primary: '#56C887',
   secondary: '#0097a7',
-  lightprimary: '#F7962C',
-  darkprimary: '#F26122',
+  lightPrimary: '#93F9B9',
+  darkPrimary: '#1D976C',
   // text color
   primaryText: '#070707',
   primaryTextBlur: '#808080',
   secondaryText: '#8E8D94',
-  placeholderText: '#1D1D2650',
+  placeholderText: '#d8d8d8',
 
   backgroundNav: '#0097a7',
   backgroundNavGradient: '#c9caca',
