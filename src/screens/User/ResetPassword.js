@@ -35,6 +35,8 @@ export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.newPassword = React.createRef();
+    this.confirmPassword = React.createRef();
   }
 
   onChange = name => text => {
@@ -57,21 +59,37 @@ export default class ForgotPassword extends Component {
     );
   };
 
+  focusNextField(nextField) {
+    this[nextField].focus();
+  }
+
   renderInput = () => (
     <View style={styles.groupInput}>
       <InputRow
+        ref={ref => {
+          this.newPassword = ref;
+        }}
         textColor={Colors.primary}
         animatedTitle
         underLine
-        onChangeText={this.onChange('newPassword')}
+        validateType="password"
+        secureTextEntry
+        // onChangeText={this.onChange('newPassword')}
+        onSubmitEditing={() => this.focusNextField('confirmPassword')}
+        returnKeyType="next"
         placeholderTextColor={Colors.lightGray}
         placeholder={I18n.t('userInfo.password.newPassword')}
       />
       <InputRow
+        ref={ref => {
+          this.confirmPassword = ref;
+        }}
         textColor={Colors.primary}
         animatedTitle
         underLine
-        onChangeText={this.onChange('confirmPassword')}
+        validateType="password"
+        secureTextEntry
+        // onChangeText={this.onChange('confirmPassword')}
         placeholderTextColor={Colors.lightGray}
         placeholder={I18n.t('userInfo.password.confirmPassword')}
         style={styles.input}
