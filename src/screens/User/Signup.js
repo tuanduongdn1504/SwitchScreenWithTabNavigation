@@ -142,6 +142,8 @@ class Signup extends Component {
           <Button
             style={styles.button}
             onPress={this.submitData}
+            startColor={Colors.darkPrimary}
+            endColor={Colors.lightPrimary}
             buttonTitle={I18n.t('signUp').toLocaleUpperCase()}
           />
         )}
@@ -212,11 +214,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   button: {
-    height: 40,
     width: width - 40,
-    borderRadius: 20,
     backgroundColor: Colors.primary,
-    marginTop: 20,
+    marginTop: 40,
   },
   row: {
     flexDirection: 'row',
