@@ -72,7 +72,7 @@ const Button = ({
         />
       ) : null}
       <Text
-        type="subTextBold"
+        type="button"
         style={[styles.buttonText, textStyle, disabled && { color: `${Colors.default}60` }]}
       >
         {buttonTitle}

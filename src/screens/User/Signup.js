@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {
-  View, StyleSheet, Dimensions, 
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
@@ -17,8 +16,7 @@ import InputRow from '../../components/InputRow';
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.data = {
-    };
+    this.data = {};
     Navigation.events().bindComponent(this);
   }
 
@@ -52,7 +50,11 @@ class Signup extends Component {
     }
   };
 
-  _focusNextField(nextField) {
+  onPressTerms = () => {};
+
+  onPressPrivacy = () => {};
+
+  focusNextField(nextField) {
     this[nextField].focus();
   }
 
@@ -64,7 +66,7 @@ class Signup extends Component {
             ref={ref => {
               this.firstName = ref;
             }}
-            onSubmitEditing={() => this._focusNextField('lastName')}
+            onSubmitEditing={() => this.focusNextField('lastName')}
             returnKeyType="next"
             onEdi
             animatedTitle
@@ -77,7 +79,7 @@ class Signup extends Component {
             ref={ref => {
               this.lastName = ref;
             }}
-            onSubmitEditing={() => this._focusNextField('email')}
+            onSubmitEditing={() => this.focusNextField('email')}
             style={{ flex: 1 }}
             animatedTitle
             underLine
@@ -93,7 +95,7 @@ class Signup extends Component {
           underLine
           validateType="email"
           validateMessage={I18n.t('error.email')}
-          onSubmitEditing={() => this._focusNextField('password')}
+          onSubmitEditing={() => this.focusNextField('password')}
           placeholderTextColor={Colors.placeholderText}
           placeholder={I18n.t('userInfo.email')}
         />
@@ -104,7 +106,7 @@ class Signup extends Component {
           returnKeyType="next"
           animatedTitle
           underLine
-          onSubmitEditing={() => this._focusNextField('zipCode')}
+          onSubmitEditing={() => this.focusNextField('zipCode')}
           secureTextEntry
           validateType="password"
           validateMessage={I18n.t('error.password')}
@@ -148,13 +150,13 @@ class Signup extends Component {
         )}
         <Text type="subText" color={Colors.primaryText} center style={styles.termsAndPrivacy}>
           {I18n.t('auth.termsAndPrivacy')}
-          <Text type="subText" color={Colors.primary}>
+          <Text type="subText" onPress={this.onPressTerms} color={Colors.primary}>
             {I18n.t('auth.terms')}
           </Text>
           {' '}
           {I18n.t('auth.and')}
           {' '}
-          <Text type="subText" color={Colors.primary}>
+          <Text type="subText" onPress={this.onPressPrivacy} color={Colors.primary}>
             {I18n.t('auth.privacy')}
           </Text>
           {' '}
@@ -190,7 +192,13 @@ class Signup extends Component {
   }
 }
 
-const { width, height } = Dimensions.get('window');
+Signup.propTypes = {
+  isEdit: PropTypes.bool,
+  editUser: PropTypes.func,
+  signUp: PropTypes.func,
+};
+
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {

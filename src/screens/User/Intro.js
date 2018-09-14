@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Dimensions, Image,
+ View, StyleSheet, Dimensions, Image 
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -41,10 +41,15 @@ class Intro extends Component {
     return (
       <View key={data} style={styles.vIntro}>
         <Image style={styles.introImg} source={Images[`intro${data}`]} />
-        <Text type="RegularTitle26PX" color={Colors.primaryText} center>
+        <Text type="title1" color={Colors.primaryText} center>
           {I18n.t(`intro.introTitle${data}`)}
         </Text>
-        <Text type="normal18PX" color={Colors.secondaryText} center style={styles.txtIntroDes}>
+        <Text
+          type="body1"
+          color={Colors.secondaryText}
+          center
+          style={styles.txtIntroDes}
+        >
           {I18n.t(`intro.introDes${data}`)}
         </Text>
       </View>
@@ -70,9 +75,9 @@ class Intro extends Component {
           onPress={this.signUp}
           buttonTitle={I18n.t('intro.createAccount').toLocaleUpperCase()}
         />
-        <Text type="subText" style={styles.txtSignup} color={Colors.primaryText}>
+        <Text type="body2" style={styles.txtSignup} color={Colors.primaryText}>
           {`${I18n.t('intro.haveAccount')} `}
-          <Text type="subText" onPress={this.signIn} color={Colors.primary}>
+          <Text type="body2" onPress={this.signIn} color={Colors.primary}>
             {I18n.t('signIn')}
           </Text>
         </Text>
@@ -86,7 +91,9 @@ class Intro extends Component {
       <View style={styles.container}>
         <CheckUpdate />
         <View style={styles.container}>
-          <SwipperView autoScroll>{INTROS.map(data => this.renderIntro(data))}</SwipperView>
+          <SwipperView autoScroll>
+            {INTROS.map(data => this.renderIntro(data))}
+          </SwipperView>
         </View>
         {this.renderButtonGroup()}
       </View>
@@ -94,7 +101,7 @@ class Intro extends Component {
   }
 }
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
