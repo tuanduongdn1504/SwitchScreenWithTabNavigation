@@ -32,6 +32,10 @@ class SignIn extends Component {
 
   forgotPass = () => {};
 
+  focusNextField(nextField) {
+    this[nextField].focus();
+  }
+
   renderInputView = () => {
     return (
       <View style={styles.vInput}>
@@ -43,6 +47,7 @@ class SignIn extends Component {
           animatedTitle
           underLine
           validateType="email"
+          onSubmitEditing={() => this.focusNextField('password')}
           validateMessage={I18n.t('error.email')}
           placeholderTextColor={Colors.placeholderText}
           placeholder={I18n.t('userInfo.email')}

@@ -79,6 +79,7 @@ class Signup extends Component {
             ref={ref => {
               this.lastName = ref;
             }}
+            returnKeyType="next"
             onSubmitEditing={() => this.focusNextField('email')}
             style={{ flex: 1 }}
             animatedTitle
