@@ -91,5 +91,13 @@
   "filter": {
     "text": "filter",
     "recently": "Recently"
+  },
+  "intro": {
+    "introTitle1": "Request a tutor",
+    "introDes1": "You will instantly get paired with a professional tutor",
+    "introTitle2": "Browse tutor",
+    "introDes2": "You can choose your tutor\nand schedule an apointment",
+    "introTitle3": "Become a tutor",
+    "introDes3": "You can experience the joy of making a difference by becoming a tutor"
   }
 }

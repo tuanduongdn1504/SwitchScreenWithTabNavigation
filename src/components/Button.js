@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/icomoon';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Touchable from './Touchable';
 import Text from './Text';
 import Colors from '../themes/Colors';
@@ -25,9 +26,13 @@ const Button = ({
   buttonTitle,
   loading,
   onPress,
+  start,
+  end,
+  startColor,
+  endColor,
 }) => {
   const innerView = (
-    <View
+    <LinearGradient
       style={[
         styles.buttonWithText,
         center && styles.center,
@@ -37,6 +42,10 @@ const Button = ({
         style,
         disabled && styles.disabledBtt,
       ]}
+      colors={[startColor, endColor]}
+      start={start}
+      end={end}
+      locations={[0, 1]}
     >
       {icon ? (
         <Icon
@@ -63,12 +72,12 @@ const Button = ({
         />
       ) : null}
       <Text
-        type="normalBold"
+        type="subTextBold"
         style={[styles.buttonText, textStyle, disabled && { color: `${Colors.default}60` }]}
       >
         {buttonTitle}
       </Text>
-    </View>
+    </LinearGradient>
   );
   if (loading || disabled) return innerView;
   return <Touchable onPress={onPress}>{innerView}</Touchable>;
@@ -91,10 +100,18 @@ Button.propTypes = {
   iconStyle: PropTypes.any,
   fontAwesome: PropTypes.string,
   textStyle: PropTypes.any,
+  end: PropTypes.object,
+  start: PropTypes.object,
+  startColor: PropTypes.string,
+  endColor: PropTypes.string,
 };
 
 Button.defaultProps = {
   center: true,
+  end: { x: 0.7, y: 1 },
+  start: { x: 0, y: 1.0 },
+  startColor: '#93F9B9',
+  endColor: '#1D976C',
 };
 
 export default Button;
@@ -104,6 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     height: 50,
     flexDirection: 'row',
+    borderRadius: 25,
     alignItems: 'center',
     backgroundColor: Colors.blur,
   },

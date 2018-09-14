@@ -15,12 +15,12 @@ const colors = {
   iconNav: '#3f4e5a',
   whiteSmoke: '#f4f4f4',
   //
-  primary: '#FF9800',
+  primary: '#56C887',
   secondary: '#0097a7',
   lightprimary: '#F7962C',
   darkprimary: '#F26122',
   // text color
-  primaryText: '#000',
+  primaryText: '#070707',
   primaryTextBlur: '#808080',
   secondaryText: '#8E8D94',
   placeholderText: '#1D1D2650',
@@ -46,7 +46,7 @@ const colors = {
   orange: '#f17c30',
   green: '#35b050',
 
-  facebook: '#2F4779',
+  facebook: '#4460A0',
   google: '#F24033',
   starColors: ['#CD1C26', '#FF7800', '#CDD614', '#5BA829', '#3F7E00'],
 };

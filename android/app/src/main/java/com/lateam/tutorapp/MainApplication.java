@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import cl.json.RNSharePackage;
 import com.imagepicker.ImagePickerPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
@@ -72,6 +73,7 @@ public class MainApplication extends NavigationApplication implements ReactAppli
           new RNFirebasePackage(),
           new RNFirebaseFirestorePackage(),
           new FBSDKPackage(mCallbackManager),
+          new LinearGradientPackage(),
           new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG)
       );
     }

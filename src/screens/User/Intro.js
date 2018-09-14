@@ -44,20 +44,21 @@ class Intro extends Component {
     return (
       <View style={styles.vButtonGroup}>
         <Button
+          startColor={Colors.facebook}
+          endColor={Colors.facebook}
+          style={styles.btnLogin}
+          onPress={fbSignIn}
+          buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
+        />
+        <Button
           primary
           style={styles.btnLogin}
           onPress={this.signIn}
           buttonTitle={I18n.t('signIn').toLocaleUpperCase()}
         />
-        <Button
-          primary
-          style={styles.btnLogin}
-          onPress={fbSignIn}
-          buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
-        />
-        <Text type="mediumBold" style={styles.txtSignup} color={Colors.default}>
+        <Text type="subText" style={styles.txtSignup} color={Colors.primaryText}>
           {`${I18n.t('dontHavePassword')} `}
-          <Text type="mediumBold" underLine onPress={this.signUp} color={Colors.default}>
+          <Text type="subText" underLine onPress={this.signUp} color={Colors.primary}>
             {I18n.t('signUp')}
           </Text>
         </Text>
@@ -69,36 +70,13 @@ class Intro extends Component {
     return (
       <View style={styles.container}>
         <CheckUpdate />
-        <BackgroundImage />
-        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-          <View style={styles.vTop}>
-            <AppLogo style={styles.appLogo} />
-            <Text type="headerBold" color={Colors.primary}>
-              {I18n.t('appName')}
-            </Text>
-          </View>
-          <View style={styles.vInput}>
-            <InputRow
-              textColor={Colors.primary}
-              animatedTitle
-              underLine
-              onChangeText={this.onChange('username')}
-              placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('username')}
-              defaultValue="longnguyen"
-            />
-            <InputRow
-              textColor={Colors.primary}
-              animatedTitle
-              underLine
-              secureTextEntry
-              onChangeText={this.onChange('password')}
-              placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('password')}
-            />
-          </View>
-          {this.renderButtonGroup()}
-        </KeyboardAwareScrollView>
+        <View style={styles.vTop}>
+          <AppLogo style={styles.appLogo} />
+          <Text type="headerBold" color={Colors.primary}>
+            {I18n.t('appName')}
+          </Text>
+        </View>
+        {this.renderButtonGroup()}
       </View>
     );
   }
@@ -134,9 +112,10 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     width: width - 40,
+    marginBottom: 30,
   },
   txtSignup: {
-    marginTop: 20,
+    marginBottom: 30,
   },
 });
 
