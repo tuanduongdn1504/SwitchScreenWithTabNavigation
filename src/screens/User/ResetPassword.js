@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
@@ -20,7 +20,7 @@ export default class ForgotPassword extends Component {
     return {
       topBar: {
         title: {
-          text: I18n.t('userInfo.password.forgotPassword'),
+          text: I18n.t('userInfo.password.resetPassword'),
         },
         largeTitle: {
           visible: true,
@@ -41,21 +41,19 @@ export default class ForgotPassword extends Component {
     this.data[name] = text;
   };
 
-  send = () => {
+  confirm = () => {
     const { componentId } = this.props;
-    push(componentId, 'resetPassword', {});
+    push(componentId, 'signIn', {});
   };
 
-  renderDescription = () => {
+  renderButtonGroup = () => {
     return (
-      <View style={styles.description}>
-        <Text type="body2" color={Colors.primaryText}>
-          {I18n.t('userInfo.password.forgotPasswordDescription1')}
-        </Text>
-        <Text type="body3" color={Colors.primaryTextBlur}>
-          {I18n.t('userInfo.password.forgotPasswordDescription2')}
-        </Text>
-      </View>
+      <Button
+        primary
+        style={styles.button}
+        onPress={this.confirm}
+        buttonTitle={I18n.t('confirm').toLocaleUpperCase()}
+      />
     );
   };
 
@@ -65,9 +63,18 @@ export default class ForgotPassword extends Component {
         textColor={Colors.primary}
         animatedTitle
         underLine
-        onChangeText={this.onChange('email')}
+        onChangeText={this.onChange('newPassword')}
         placeholderTextColor={Colors.lightGray}
-        placeholder={I18n.t('userInfo.email')}
+        placeholder={I18n.t('userInfo.password.newPassword')}
+      />
+      <InputRow
+        textColor={Colors.primary}
+        animatedTitle
+        underLine
+        onChangeText={this.onChange('confirmPassword')}
+        placeholderTextColor={Colors.lightGray}
+        placeholder={I18n.t('userInfo.password.confirmPassword')}
+        style={styles.input}
       />
     </View>
   );
@@ -76,14 +83,8 @@ export default class ForgotPassword extends Component {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView>
-          {this.renderDescription()}
           {this.renderInput()}
-          <Button
-            primary
-            style={styles.vBtn}
-            onPress={this.send}
-            buttonTitle={I18n.t('send').toLocaleUpperCase()}
-          />
+          {this.renderButtonGroup()}
         </KeyboardAwareScrollView>
       </View>
     );
@@ -98,13 +99,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginHorizontal: 20,
   },
-  description: {
+  groupInput: {
     marginTop: 40,
   },
-  groupInput: {
-    marginTop: 20,
+  input: {
+    marginTop: 15,
   },
-  vBtn: {
+  button: {
     width: width - 40,
     marginTop: 40,
   },

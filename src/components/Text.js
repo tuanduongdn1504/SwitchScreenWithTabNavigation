@@ -25,7 +25,7 @@ const Text = props => {
 };
 
 /* eslint-disable react-native/no-unused-styles */
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   // TODO: Title
   largeTitle: {
     // 34
@@ -95,9 +95,12 @@ const styles = StyleSheet.create({
   button: {
     // 14 bold
     fontFamily: Fonts.type.bold,
-    fontSize: 10,
+    fontSize: 14,
     fontWeight: Fonts.fontWeight.bold,
     color: Colors.default,
+    // fontFamily: Fonts.type.regular,
+    // fontWeight: Fonts.fontWeight.bold,
+    // fontSize: Fonts.size.semi,
   },
   navButton: {
     // 14 600
@@ -106,8 +109,29 @@ const styles = StyleSheet.create({
     fontWeight: Fonts.fontWeight.semibold,
     color: Colors.primary,
   },
-
-  // TODO: Title
+  // TODO: Text Style
+  center: {
+    textAlign: 'center',
+  },
+  // note: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.regular,
+  // },
+  // description: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.small,
+  // },
+  // text: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.regular,
+  // },
+  // center: {
+  //   textAlign: 'center',
+  // },
+  // txtUnderline: {
+  //   textDecorationLine: 'underline',
+  // },
   // header: {
   //   fontFamily: Fonts.type.regular,
   //   fontSize: Fonts.size.h2,
@@ -143,27 +167,6 @@ const styles = StyleSheet.create({
   //   fontSize: 26,
   //   color: Colors.lightGray,
   // },
-  // // TODO: Menu Item
-  // // TODO: Description
-  // note: {
-  //   fontFamily: Fonts.type.regular,
-  //   fontWeight: Fonts.fontWeight.light,
-  //   fontSize: Fonts.size.regular,
-  // },
-  // description: {
-  //   fontFamily: Fonts.type.regular,
-  //   fontSize: Fonts.size.small,
-  // },
-  // text: {
-  //   fontFamily: Fonts.type.regular,
-  //   fontSize: Fonts.size.subMedium,
-  // },
-  // center: {
-  //   textAlign: 'center',
-  // },
-  // txtUnderline: {
-  //   textDecorationLine: 'underline',
-  // },
   // itemName: {
   //   fontFamily: Fonts.type.regular,
   //   fontWeight: Fonts.fontWeight.bold,
@@ -184,7 +187,7 @@ const styles = StyleSheet.create({
   // },
   // normal18PX: {
   //   fontFamily: Fonts.type.regular,
-  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontWeight: Fonts.fontWeight.regular,
   //   fontSize: Fonts.size.h6,
   //   color: Colors.primaryText,
   // },
@@ -259,12 +262,12 @@ const styles = StyleSheet.create({
   //   fontSize: Fonts.size.semi,
   //   color: Colors.primaryText,
   // },
-  // subTextBold: {
-  //   fontFamily: Fonts.type.regular,
-  //   fontWeight: Fonts.fontWeight.bold,
-  //   fontSize: Fonts.size.semi,
-  //   color: Colors.primaryText,
-  // },
+  subTextBold: {
+    fontFamily: Fonts.type.regular,
+    fontWeight: Fonts.fontWeight.bold,
+    fontSize: Fonts.size.semi,
+    color: Colors.primaryText,
+  },
   // subTextMedium: {
   //   fontFamily: Fonts.type.regular,
   //   fontWeight: Fonts.fontWeight.medium,
@@ -286,6 +289,45 @@ const styles = StyleSheet.create({
   //   fontFamily: Fonts.type.regular,
   //   fontWeight: Fonts.fontWeight.light,
   //   fontSize: Fonts.size.small,
+  // },
+  // text: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.subMedium,
+  // },
+  // center: {
+  //   textAlign: 'center',
+  // },
+  // txtUnderline: {
+  //   textDecorationLine: 'underline',
+  // },
+  // itemName: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 25,
+  //   color: Colors.default,
+  // },
+  // detailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 23,
+  //   color: Colors.primaryText,
+  // },
+  // mediumDetailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.h5,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PX: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.h6,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PXLight: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.h6,
   //   color: Colors.secondaryText,
   // },
   // titleInput: {

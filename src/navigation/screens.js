@@ -17,9 +17,11 @@ import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
 import SignupStudent from '../screens/User/SignupStudent';
 import SignupTutor from '../screens/User/SignupTutor';
+import SignIn from '../screens/User/SignIn';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
 import ForgotPassword from '../screens/User/ForgotPassword';
+import ResetPassword from '../screens/User/ResetPassword';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -131,6 +133,18 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux(
     'forgotPassword',
     () => ForgotPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'resetPassword',
+    () => ResetPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'signIn',
+    () => SignIn,
     PersistProvider,
     store,
   );

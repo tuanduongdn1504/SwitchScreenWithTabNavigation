@@ -2,7 +2,13 @@ import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes/index';
 import { back } from '../navigationButtons';
 
-export const push = (componentId, screen, config, navHidden = false, tabHidden = true) => {
+export const push = (
+  componentId,
+  screen,
+  config,
+  navHidden = false,
+  tabHidden = true,
+) => {
   Navigation.push(componentId, {
     component: {
       name: screen,
@@ -15,7 +21,7 @@ export const push = (componentId, screen, config, navHidden = false, tabHidden =
           rightButtons: config.rightButtons,
           animate: false,
           background: {
-            color: Colors.secondary,
+            color: Colors.default,
           },
           title: {
             text: config.title,

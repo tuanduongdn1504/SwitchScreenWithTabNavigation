@@ -50,6 +50,7 @@
 		87D7A696DD1846B98FDDEB34 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9442D865B1EF480797D6CFD0 /* Entypo.ttf */; };
 		89322EB9E06A41308A6F79DF /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAA05F7D4AB4B4981A4FF1F /* libCodePush.a */; };
 		9ED5C75CEF3047B9927BE024 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D648ACD93144FCA83DF8BE /* libRNFirebase.a */; };
+		9F127884214B4433000CE08A /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F12784F214B4429000CE08A /* libBVLinearGradient.a */; };
 		9F2D3C802140C28D008914D0 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D3C7E2140C283008914D0 /* libRNShare.a */; };
 		9F6D9E7F214A31F0005CB2F1 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6D9E54214A31E9005CB2F1 /* libRCTFBSDK.a */; };
 		9F6D9E85214A320B005CB2F1 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F6D9E80214A320A005CB2F1 /* FacebookSDKStrings.bundle */; };
@@ -340,6 +341,20 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		9F12784E214B4429000CE08A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		9F127850214B4429000CE08A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
 		9F2D3C7D2140C283008914D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F2D3C4A2140C283008914D0 /* RNShare.xcodeproj */;
@@ -496,6 +511,7 @@
 		9751199F3D124B5986C8C729 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		9BB60668F9194A228D1D893E /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9CAA05F7D4AB4B4981A4FF1F /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
+		9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		9F2D3C4A2140C283008914D0 /* RNShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		9F6D9E47214A31E9005CB2F1 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		9F6D9E80214A320A005CB2F1 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKStrings.bundle; path = Frameworks/FacebookSDKStrings.bundle; sourceTree = "<group>"; };
@@ -565,6 +581,7 @@
 				9FA4AB4321363EBE003E011C /* libReactNativeNavigation.a in Frameworks */,
 				BF1F52F425BA3FD17D745A35 /* libPods-tutorApp.a in Frameworks */,
 				9F6D9E88214A320B005CB2F1 /* FBSDKShareKit.framework in Frameworks */,
+				9F127884214B4433000CE08A /* libBVLinearGradient.a in Frameworks */,
 				9FD5F836213AAB61001AA978 /* libAirMaps.a in Frameworks */,
 				9ED5C75CEF3047B9927BE024 /* libRNFirebase.a in Frameworks */,
 				9F6D9E7F214A31F0005CB2F1 /* libRCTFBSDK.a in Frameworks */,
@@ -767,6 +784,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */,
 				9F6D9E47214A31E9005CB2F1 /* RCTFBSDK.xcodeproj */,
 				9F2D3C4A2140C283008914D0 /* RNShare.xcodeproj */,
 				9FD5F830213AAB42001AA978 /* AirMaps.xcodeproj */,
@@ -826,6 +844,15 @@
 				00E356EE1AD99517003FC87E /* tutorAppTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* tutorApp-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* tutorApp-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F127849214B4429000CE08A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F12784F214B4429000CE08A /* libBVLinearGradient.a */,
+				9F127851214B4429000CE08A /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1080,6 +1107,10 @@
 				{
 					ProductGroup = 9FD5F831213AAB42001AA978 /* Products */;
 					ProjectRef = 9FD5F830213AAB42001AA978 /* AirMaps.xcodeproj */;
+				},
+				{
+					ProductGroup = 9F127849214B4429000CE08A /* Products */;
+					ProjectRef = 9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */;
 				},
 				{
 					ProductGroup = 9FA4AAF62136302F003E011C /* Products */;
@@ -1427,6 +1458,20 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F12784F214B4429000CE08A /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 9F12784E214B4429000CE08A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F127851214B4429000CE08A /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 9F127850214B4429000CE08A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9F2D3C7E2140C283008914D0 /* libRNShare.a */ = {

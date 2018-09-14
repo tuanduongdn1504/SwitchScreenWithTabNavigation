@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import {
+ View, StyleSheet, Dimensions, Image 
+} from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import { Colors } from '../../themes';
-import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
-import InputRow from '../../components/InputRow';
+import { Colors, Images } from '../../themes';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
-import BackgroundImage from '../../components/BackgroundImage';
 import AppLogo from '../../components/AppLogo';
 import { push } from '../../navigation/navigationActions';
 import CheckUpdate from '../Home/CheckUpdate';
+import SwipperView from '../../components/SwipperView';
 
 class Intro extends Component {
   constructor(props) {
@@ -33,10 +33,28 @@ class Intro extends Component {
   };
 
   signIn = () => {
-    this.props.signIn(this.data);
-    // if (this.data.phone_number && this.data.password) {
-    //   this.props.signIn(this.data);
-    // }
+    push(this.props.componentId, 'signIn', {
+      title: I18n.t('signIn'),
+    });
+  };
+
+  renderIntro = data => {
+    return (
+      <View key={data} style={styles.vIntro}>
+        <Image style={styles.introImg} source={Images[`intro${data}`]} />
+        <Text type="title1" color={Colors.primaryText} center>
+          {I18n.t(`intro.introTitle${data}`)}
+        </Text>
+        <Text
+          type="body1"
+          color={Colors.secondaryText}
+          center
+          style={styles.txtIntroDes}
+        >
+          {I18n.t(`intro.introDes${data}`)}
+        </Text>
+      </View>
+    );
   };
 
   renderButtonGroup = () => {
@@ -44,21 +62,22 @@ class Intro extends Component {
     return (
       <View style={styles.vButtonGroup}>
         <Button
-          primary
-          style={styles.btnLogin}
-          onPress={this.signIn}
-          buttonTitle={I18n.t('signIn').toLocaleUpperCase()}
-        />
-        <Button
-          primary
+          startColor={Colors.facebook}
+          endColor={Colors.facebook}
           style={styles.btnLogin}
           onPress={fbSignIn}
           buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
         />
-        <Text type="mediumBold" style={styles.txtSignup} color={Colors.default}>
-          {`${I18n.t('dontHavePassword')} `}
-          <Text type="mediumBold" underLine onPress={this.signUp} color={Colors.default}>
-            {I18n.t('signUp')}
+        <Button
+          primary
+          style={styles.btnLogin}
+          onPress={this.signUp}
+          buttonTitle={I18n.t('intro.createAccount').toLocaleUpperCase()}
+        />
+        <Text type="body2" style={styles.txtSignup} color={Colors.primaryText}>
+          {`${I18n.t('intro.haveAccount')} `}
+          <Text type="body2" onPress={this.signIn} color={Colors.primary}>
+            {I18n.t('signIn')}
           </Text>
         </Text>
       </View>
@@ -66,77 +85,54 @@ class Intro extends Component {
   };
 
   render() {
+    const INTROS = [1, 2, 3];
     return (
       <View style={styles.container}>
         <CheckUpdate />
-        <BackgroundImage />
-        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-          <View style={styles.vTop}>
-            <AppLogo style={styles.appLogo} />
-            <Text type="headerBold" color={Colors.primary}>
-              {I18n.t('appName')}
-            </Text>
-          </View>
-          <View style={styles.vInput}>
-            <InputRow
-              textColor={Colors.primary}
-              animatedTitle
-              underLine
-              onChangeText={this.onChange('username')}
-              placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('username')}
-              defaultValue="longnguyen"
-            />
-            <InputRow
-              textColor={Colors.primary}
-              animatedTitle
-              underLine
-              secureTextEntry
-              onChangeText={this.onChange('password')}
-              placeholderTextColor={Colors.lightGray}
-              placeholder={I18n.t('password')}
-            />
-          </View>
-          {this.renderButtonGroup()}
-        </KeyboardAwareScrollView>
+        <View style={styles.container}>
+          <SwipperView autoScroll>
+            {INTROS.map(data => this.renderIntro(data))}
+          </SwipperView>
+        </View>
+        {this.renderButtonGroup()}
       </View>
     );
   }
 }
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'transparent',
     width,
   },
-  vTop: {
-    flex: 2,
+  vIntro: {
+    flex: 1,
+    width,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  appLogo: {
-    marginBottom: 10,
+    padding: 30,
   },
   vButtonGroup: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
-    paddingHorizontal: 32,
-  },
-  vInput: {
     paddingHorizontal: 32,
   },
   btnLogin: {
     width: width - 40,
+    marginBottom: 30,
   },
   txtSignup: {
-    marginTop: 20,
+    marginBottom: 30,
+  },
+  introImg: {
+    width: width - 80,
+  },
+  txtIntroDes: {
+    marginTop: 15,
   },
 });
 
