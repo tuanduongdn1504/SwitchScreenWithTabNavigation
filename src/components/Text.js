@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text as RNText } from 'react-native';
 import { Fonts, Colors } from '../themes';
 
-const Text = (props) => {
+const Text = props => {
   const {
     type, color, center, underLine, style, children,
   } = props;
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   normal18PX: {
     fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
+    fontWeight: Fonts.fontWeight.regular,
     fontSize: Fonts.size.h6,
     color: Colors.primaryText,
   },

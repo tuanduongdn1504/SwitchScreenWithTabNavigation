@@ -17,6 +17,7 @@ import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
 import SignupStudent from '../screens/User/SignupStudent';
 import SignupTutor from '../screens/User/SignupTutor';
+import SignIn from '../screens/User/SignIn';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
 
@@ -41,6 +42,7 @@ export function registerScreens(store, persistor) {
     PersistProvider,
     store,
   );
+  Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);

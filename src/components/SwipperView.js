@@ -1,74 +1,141 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
-  View, Text, FlatList, TouchableOpacity,
+  View, Text, FlatList, TouchableOpacity, Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/icomoon';
-import { Colors, Fonts } from '../themes/index';
+import { Colors } from '../themes/index';
 import Button from './Button';
 
 export default class SwipperView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: 0,
       width: 0,
       selectedIndex: 0,
     };
-    this.onJump = this.onJump.bind(this);
-    this.scrollToItem = this.scrollToItem.bind(this);
-    (this: any).adjustPageSize = this.adjustPageSize.bind(this);
+    this.flatlist = React.createRef();
+    this.animatedPaging = new Animated.Value(0);
   }
 
-  renderPage({ item, index }) {
-    if (item == 'end') return <View />;
-    return <View style={{ flex: 1, width: this.state.width }}>{item}</View>;
+  componentDidMount() {
+    const { autoScroll } = this.props;
+    autoScroll && this.intevalScroll();
   }
 
-  scrollToItem(e) {
+  componentWillUnmount() {
+    clearInterval(this.inteval);
+  }
+
+  intevalScroll = () => {
+    let currentIndex = 0;
+    this.inteval = setInterval(() => {
+      currentIndex = currentIndex + 1 > 2 ? 0 : currentIndex + 1;
+      this.flatlist
+        && this.flatlist.scrollToIndex({
+          viewPosition: 0.5,
+          index: currentIndex,
+        });
+    }, 3000);
+  };
+
+  renderPage = ({ item, index }) => {
+    const { width } = this.state;
+    return item;
+  };
+
+  scrollToItem = e => {
+    const { selectedIndex } = this.state;
     e.viewableItems.length === 1
-      && this.state.selectedIndex < 4
-      && this.setState({ selectedIndex: e.viewableItems[0].index });
-  }
+      && selectedIndex < 4
+      && Animated.timing(this.animatedPaging, {
+        toValue: e.viewableItems[0].index,
+        duration: 100,
+      }).start();
+  };
 
-  renderPageNumber() {
-    const components = this.props.children.map((data, index) => {
-      if (data == 'end') return <View />;
+  onJump = index => {
+    const { children, next } = this.props;
+    if (!(index < children.length)) {
+      next && next();
+      return;
+    }
+    if (index < 0 || index > children.length) return;
+    this.flatlist.scrollToIndex({ viewPosition: 0.5, index });
+  };
+
+  adjustPageSize = e => {
+    this.setState({
+      width: e.nativeEvent.layout.width,
+    });
+  };
+
+  renderPageNumber = () => {
+    const { children, next, btnSkip } = this.props;
+    const { selectedIndex } = this.state;
+    const pagingColor = [];
+    const pagingRange = [];
+    const pagingRadius = [];
+    const components = children.map((data, index) => {
+      pagingColor.push(
+        this.animatedPaging.interpolate({
+          inputRange: [-999, index - 1, index, index + 1, 999],
+          outputRange: [
+            Colors.lightGray,
+            Colors.lightGray,
+            Colors.primary,
+            Colors.lightGray,
+            Colors.lightGray,
+          ],
+        }),
+      );
+      pagingRange.push(
+        this.animatedPaging.interpolate({
+          inputRange: [-999, index - 1, index, index + 1, 999],
+          outputRange: [6, 6, 8, 6, 6],
+        }),
+      );
+      pagingRadius.push(
+        this.animatedPaging.interpolate({
+          inputRange: [-999, index - 1, index, index + 1, 999],
+          outputRange: [3, 3, 4, 3, 3],
+        }),
+      );
       return (
-        <View
+        <Animated.View
           key={index}
-          style={[styles.paggingPoint, index == this.state.selectedIndex && styles.paggingPointAct]}
+          style={[
+            styles.paggingPoint,
+            {
+              backgroundColor: pagingColor[index],
+              width: pagingRange[index],
+              height: pagingRange[index],
+              borderRadius: pagingRadius[index],
+            },
+          ]}
         />
       );
     });
     return (
       <View style={styles.vPagging}>
-        {this.renderFooterTilte()}
+        {this.renderFooterTitle()}
         <View style={styles.vPointer}>{components}</View>
-        {this.props.btnSkip && (
+        {btnSkip && (
           <Button
             backgroundColor={Colors.primary}
             style={styles.btnSkip}
             textStyle={{ color: 'white' }}
             onPress={() => {
-              this.props.next && this.props.next();
+              next && next();
             }}
             text="Skip"
           />
         )}
       </View>
     );
-  }
+  };
 
-  onJump(index) {
-    if (!(index < this.props.children.length)) {
-      this.props.next && this.props.next();
-      return;
-    }
-    if (index < 0 || index > this.props.children.length) return;
-    this.refs.flatlist.scrollToIndex({ viewPosition: 0.5, index });
-  }
-
-  renderFooterTilte() {
+  renderFooterTitle = () => {
     const { selectedIndex } = this.state;
     const { children } = this.props;
     if (children[selectedIndex].props.footerTitle) {
@@ -81,62 +148,69 @@ export default class SwipperView extends Component {
         </View>
       );
     }
-  }
+    return <View />;
+  };
 
   render() {
+    const { showArrow, children, style } = this.props;
+    const { selectedIndex } = this.state;
     return (
-      <View style={[styles.vFlatList, this.props.style]}>
-        <View>
-          <FlatList
-            ref="flatlist"
-            onViewableItemsChanged={this.scrollToItem}
-            style={[styles.vFlatList]}
-            horizontal
-            pagingEnabled
-            onLayout={this.adjustPageSize}
-            directionalLockEnabled
-            onLayout={this.adjustPageSize}
-            renderItem={this.renderPage}
-            showsHorizontalScrollIndicator={false}
-            removeClippedSubviews={false}
-            data={[...this.props.children, 'end']}
-            renderItem={this.renderPage.bind(this)}
-          />
-
+      <View style={[styles.vFlatList, style]}>
+        <FlatList
+          ref={ref => {
+            this.flatlist = ref;
+          }}
+          onViewableItemsChanged={this.scrollToItem}
+          style={styles.vFlatList}
+          horizontal
+          pagingEnabled
+          directionalLockEnabled
+          onLayout={this.adjustPageSize}
+          showsHorizontalScrollIndicator={false}
+          removeClippedSubviews={false}
+          data={children}
+          renderItem={this.renderPage}
+          keyExtractor={data => {
+            return data.key;
+          }}
+        />
+        {showArrow && (
           <TouchableOpacity
             style={styles.btnBack}
             onPress={() => {
-              this.onJump(this.state.selectedIndex - 1);
+              this.onJump(selectedIndex - 1);
             }}
           >
             <View style={styles.btnBack}>
               <Icon name="left" style={styles.icon} />
             </View>
           </TouchableOpacity>
-
+        )}
+        {showArrow && (
           <TouchableOpacity
             style={styles.btnNext}
             onPress={() => {
-              this.onJump(this.state.selectedIndex + 1);
+              this.onJump(selectedIndex + 1);
             }}
           >
             <View style={styles.btnNext}>
               <Icon name="right" style={styles.icon} />
             </View>
           </TouchableOpacity>
-        </View>
+        )}
         {this.renderPageNumber()}
       </View>
     );
   }
-
-  adjustPageSize(e: any) {
-    this.setState({
-      height: e.nativeEvent.layout.height,
-      width: e.nativeEvent.layout.width,
-    });
-  }
 }
+
+SwipperView.propTypes = {
+  children: PropTypes.any,
+  showArrow: PropTypes.bool,
+  style: PropTypes.any,
+  btnSkip: PropTypes.bool,
+  autoScroll: PropTypes.bool
+};
 
 const styles = {
   vFlatList: {
@@ -150,18 +224,21 @@ const styles = {
   },
   vPointer: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   paggingPoint: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
     marginHorizontal: 5,
-    backgroundColor: Colors.gray,
+    backgroundColor: Colors.lightGray,
   },
   paggingPointAct: {
-    backgroundColor: 'white',
-    borderColor: Colors.gray,
-    borderWidth: 1,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.primary,
   },
   vTitleFooter: {
     alignItems: 'center',
@@ -175,13 +252,11 @@ const styles = {
     textAlign: 'center',
     paddingBottom: 15,
     color: Colors.secondaryText,
-    ...Fonts.style.h4,
   },
   descriptionFooter: {
     backgroundColor: 'transparent',
     textAlign: 'center',
     color: Colors.secondaryText,
-    ...Fonts.style.note,
   },
   btnSkip: {
     backgroundColor: Colors.darkprimary,
