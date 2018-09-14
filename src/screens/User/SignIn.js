@@ -10,6 +10,7 @@ import KeyboardAwareScrollViewUI from '../../components/KeyboardAwareScrollView'
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
+import { push } from '../../navigation/navigationActions';
 
 class SignIn extends Component {
   constructor(props) {
@@ -30,7 +31,10 @@ class SignIn extends Component {
     }
   };
 
-  forgotPass = () => {};
+  forgotPass = () => {
+    const { componentId } = this.props;
+    push(componentId, 'forgotPassword', {});
+  };
 
   focusNextField(nextField) {
     this[nextField].focus();
@@ -113,6 +117,7 @@ class SignIn extends Component {
 SignIn.propTypes = {
   fbSignIn: PropTypes.func,
   signIn: PropTypes.func,
+  componentId: PropTypes.string,
 };
 
 const { width } = Dimensions.get('window');

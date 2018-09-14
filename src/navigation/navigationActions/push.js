@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { Platform } from 'react-native';
 import { Colors, Fonts } from '../../themes/index';
 import { back } from '../navigationButtons';
+import { styles as TextStyle } from '../../components/Text';
 
 export const push = (
   componentId,
@@ -32,9 +33,10 @@ export const push = (
           },
           largeTitle: {
             visible: true,
-            fontSize: Fonts.size.h2,
-            color: Colors.primaryText,
-            fontFamily: Fonts.type.semiBold,
+            // fontSize: Fonts.size.h2,
+            // color: Colors.primaryText,
+            // fontFamily: Fonts.type.semiBold,
+            ...TextStyle.largeTitle,
           },
           backButton: back(),
         },
