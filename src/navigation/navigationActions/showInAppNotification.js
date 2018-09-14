@@ -1,6 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 
 export const showInAppNoti = (title, content, type) => {
+  dismissInAppNoti();
   Navigation.showOverlay({
     component: {
       id: 'inAppNotification',

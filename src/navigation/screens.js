@@ -10,7 +10,7 @@ import Home from '../screens/Home';
 import SideMenu from '../screens/SideMenu';
 import About from '../screens/SideMenu/About';
 import Detail from '../screens/Detail';
-// import NotificationList from '../screens/NotificationList';
+import InAppNotification from '../screens/Popup/Notification';
 import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
 import Safety from '../screens/Safety';
@@ -33,7 +33,12 @@ export function registerScreens(store, persistor) {
     );
   };
   Navigation.registerComponent('progressScreen', () => ProgressScreen, PersistProvider, store);
-  Navigation.registerComponent('inAppNotification', () => Notification, PersistProvider, store);
+  Navigation.registerComponent(
+    'inAppNotification',
+    () => InAppNotification,
+    PersistProvider,
+    store,
+  );
   Navigation.registerComponentWithRedux('intro', () => Intro, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUp', () => Signup, PersistProvider, store);
   Navigation.registerComponentWithRedux(

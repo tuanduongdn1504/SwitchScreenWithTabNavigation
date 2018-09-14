@@ -53,7 +53,7 @@ export const back = () => ({
   icon: iconsMap['md-arrow-back'],
   disabled: false,
   disableIconTint: false,
-  color: Colors.default,
+  color: Colors.primary,
 });
 
 export const add = () => ({
