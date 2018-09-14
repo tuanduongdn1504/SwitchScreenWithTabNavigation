@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View, StyleSheet, ActivityIndicator, Dimensions,
 } from 'react-native';
 
 const ProgressScreen = ({ componentId, onDisplay }) => {
+  onDisplay(componentId);
   return (
     <View style={styles.vProgress}>
       <ActivityIndicator />
@@ -11,7 +13,10 @@ const ProgressScreen = ({ componentId, onDisplay }) => {
   );
 };
 
-ProgressScreen.propTypes = {};
+ProgressScreen.propTypes = {
+  onDisplay: PropTypes.func,
+  componentId: PropTypes.string,
+};
 
 const { width, height } = Dimensions.get('window');
 

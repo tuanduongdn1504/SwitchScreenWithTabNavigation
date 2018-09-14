@@ -73,11 +73,7 @@ const Button = ({
       ) : null}
       <Text
         type="button"
-        style={[
-          styles.buttonText,
-          textStyle,
-          disabled && { color: `${Colors.default}60` },
-        ]}
+        style={[styles.buttonText, textStyle, disabled && { color: `${Colors.default}60` }]}
       >
         {buttonTitle}
       </Text>
@@ -112,10 +108,10 @@ Button.propTypes = {
 
 Button.defaultProps = {
   center: true,
-  end: { x: 1, y: 1 },
-  start: { x: 0, y: 0 },
-  startColor: '#1D976C',
-  endColor: '#93F9B9',
+  end: { x: 0.7, y: 1 },
+  start: { x: 0, y: 1.0 },
+  startColor: Colors.lightPrimary,
+  endColor: Colors.darkPrimary,
 };
 
 export default Button;

@@ -17,19 +17,25 @@ export async function logout() {
 }
 
 export async function forgotPassword(data) {
-  // return post('/api/Users/Password/Forgot', data);
+  return post('/users/password/forgot', data);
+}
+
+export async function newPassword(data) {
+  return post('/users/password/new', data);
 }
 
 export async function updatePassword(data) {
-  // return post('/api/Users/Password/Forgot', data);
+  return post('/users/password/change', data);
+}
+
+export async function veriryPasswordToken(data) {
+  return post('/users/password/verify', data);
 }
 
 export async function getInfor() {
-  // return requestApi(queryCustomerProfile);
   return get('/users/me');
 }
 
 export async function editUser(data) {
-  // return requestApi(queryCustomerProfile);
   return patch('/users/me', data);
 }

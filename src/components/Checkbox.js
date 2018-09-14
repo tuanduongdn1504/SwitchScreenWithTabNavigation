@@ -13,7 +13,9 @@ const Checkbox = ({
     <View style={styles.row}>
       <Touchable style={styles.txtDateContainer} onPress={onPress}>
         <View style={[styles.checkbox, isChecked && styles.checked]}>
-          {isChecked ? <Icon name="ios-checkmark" size={35} color={Colors.default} /> : null}
+          {isChecked ? (
+            <Icon name="ios-checkmark" size={35} color={Colors.default} style={{ marginTop: -3 }} />
+          ) : null}
         </View>
       </Touchable>
       <Text type="normal" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 20,
   },
   checkbox: {
     borderRadius: 5,
@@ -55,7 +58,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   checked: {
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
