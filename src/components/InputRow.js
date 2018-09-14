@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import {
-  View,
-  TextInput,
-  Dimensions,
-  Animated,
-  Platform,
-  Text,
+ View, TextInput, Animated, Platform, Text 
 } from 'react-native';
-=======
-import { View, TextInput, Animated, Platform, Text } from 'react-native';
->>>>>>> 070353a751cd870e3405e432a02587037fd43fa4
 import Icon from 'react-native-vector-icons/Ionicons';
-import {  Colors } from '../themes/index';
+import { Colors } from '../themes/index';
 import { type } from '../themes/Fonts';
 import tools from '../utils/tools';
 
@@ -22,19 +13,15 @@ export default class InputRow extends Component {
     this.state = {
       isValidate: true,
       value: props.value || props.defaultValue || '',
-      placeholderTextColor: props.placeholderTextColor || Colors.placeholderText,
+      placeholderTextColor:
+        props.placeholderTextColor || Colors.placeholderText,
       bounceValue: new Animated.Value(0),
-<<<<<<< HEAD
       placeholderTranslateY: new Animated.Value(
         props.value == '' || !props.value ? 5 : -20,
       ),
       placeholderTranslateX: new Animated.Value(
         props.value == '' || !props.value ? 0 : 0,
       ),
-=======
-      placeholderTranslateY: new Animated.Value(props.value === '' || !props.value ? 5 : -20),
-      placeholderTranslateX: new Animated.Value(props.value === '' || !props.value ? 0 : 0),
->>>>>>> 070353a751cd870e3405e432a02587037fd43fa4
       scaleText: new Animated.Value(14),
     };
   }
@@ -55,33 +42,28 @@ export default class InputRow extends Component {
   }
 
   onFocus() {
-<<<<<<< HEAD
     this.setState({
       placeholderTextColor: this.props.textColor || Colors.primary,
+      isFocus: true,
     });
-=======
-    this.setState({ placeholderTextColor: this.props.textColor || Colors.primary, isFocus: true });
->>>>>>> 070353a751cd870e3405e432a02587037fd43fa4
     this.transformOnFocus();
     this.props.onFocus && this.props.onFocus();
   }
 
   onBlur = () => {
-    const {validateType} = this.props;
+    const { validateType } = this.props;
     this.props.onBlur && this.props.onBlur();
     const isValidate = validate(validateType, this.input._lastNativeText);
-    this.setState({isValidate});
+    this.setState({ isValidate });
     if (!this.input._lastNativeText || this.input._lastNativeText == '') {
-<<<<<<< HEAD
       this.setState({
+        isValidate,
         placeholderTextColor: this.props.placeholderTextColor || Colors.divider,
+        isFocus: false,
       });
-=======
-      this.setState({isValidate, placeholderTextColor: this.props.placeholderTextColor || Colors.divider, isFocus: false });
->>>>>>> 070353a751cd870e3405e432a02587037fd43fa4
       this.transformOnFocus(false);
     }
-  }
+  };
 
   setValue(text) {
     this.setState({ value: text });
@@ -89,7 +71,7 @@ export default class InputRow extends Component {
   }
 
   getText() {
-    return this.state.isValidate? this.input._lastNativeText:null;
+    return this.state.isValidate ? this.input._lastNativeText : null;
   }
 
   transformOnFocus = (mode = true) => {
@@ -97,42 +79,7 @@ export default class InputRow extends Component {
     Animated.spring(bounceValue, {
       toValue: mode ? 1 : 0,
     }).start();
-<<<<<<< HEAD
-    if (this.props.value) return;
-    Animated.sequence([
-      Animated.parallel([
-        Animated.spring(this.state.placeholderTranslateY, {
-          toValue: mode ? -20 : 5,
-        }),
-        Animated.spring(this.state.scaleText, { toValue: mode ? 10 : 14 }),
-        Animated.spring(this.state.placeholderTranslateX, {
-          toValue: mode ? 0 : 0,
-        }),
-      ]),
-    ]).start();
-  }
-
-  render() {
-    return (
-      <View ref="containerInput" style={[styles.item, this.props.style]}>
-        <View
-          style={[
-            styles.containerInputRow,
-            { backgroundColor: this.props.backgroundColor },
-          ]}
-        >
-          {this.props.icon && this.renderIcon()}
-          {this.renderTextInput()}
-          {this.props.children}
-        </View>
-      </View>
-    );
-  }
-=======
-  }
-
- 
->>>>>>> 070353a751cd870e3405e432a02587037fd43fa4
+  };
 
   renderIcon() {
     return (
@@ -181,36 +128,24 @@ export default class InputRow extends Component {
   }
 
   renderAnimatedTitle() {
-    const {bounceValue, isFocus} = this.state;
+    const { bounceValue, isFocus } = this.state;
     const color = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        Colors.placeholderText,
-        Colors.primaryText,
-      ],
+      outputRange: [Colors.placeholderText, Colors.primaryText],
     });
     const placeholderTranslateY = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        5,
-        -20
-      ],
+      outputRange: [5, -20],
     });
     const placeholderTranslateX = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        0,
-        0
-      ],
+      outputRange: [0, 0],
     });
     const scaleText = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        16,
-        14,
-      ],
+      outputRange: [16, 14],
     });
-    
+
     return (
       <View>
         <Animated.Text
@@ -223,7 +158,7 @@ export default class InputRow extends Component {
                 { translateX: placeholderTranslateX },
               ],
               fontSize: scaleText,
-              fontWeight: isFocus?'600':'400'
+              fontWeight: isFocus ? '600' : '400',
             },
           ]}
         >
@@ -255,7 +190,7 @@ export default class InputRow extends Component {
           returnKeyType={this.props.returnKeyType || 'done'}
           keyboardType={this.props.keyboardType}
           blurOnSubmit={!this.props.multiline}
-          underlineColorAndroid='transparent'
+          underlineColorAndroid="transparent"
           multiline={this.props.multiline}
           editable={this.props.editable}
           secureTextEntry={this.props.secureTextEntry}
@@ -318,12 +253,21 @@ export default class InputRow extends Component {
     const { isValidate } = this.state;
     return (
       <View ref="containerInput" style={[styles.item, this.props.style]}>
-        <View style={[styles.containerInputRow, { backgroundColor: this.props.backgroundColor }]}>
+        <View
+          style={[
+            styles.containerInputRow,
+            { backgroundColor: this.props.backgroundColor },
+          ]}
+        >
           {this.props.icon && this.renderIcon()}
           {this.renderTextInput()}
           {this.props.children}
         </View>
-        {!isValidate && <Text type='note' color={Colors.red} style={styles.txtError}>{validateMessage}</Text>}
+        {!isValidate && (
+          <Text type="note" color={Colors.red} style={styles.txtError}>
+            {validateMessage}
+          </Text>
+        )}
       </View>
     );
   }
@@ -383,8 +327,8 @@ const styles = {
   txtError: {
     color: Colors.red,
     marginTop: 8,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 };
 function checkPhone(num) {
   const re = /^[0-9#+*.,]+$/;
@@ -412,11 +356,10 @@ function checkTypeNumber(type) {
 const validate = (type, text) => {
   switch (type) {
     case 'email':
-    return tools.validateEmail(text);
+      return tools.validateEmail(text);
     case 'password':
-    return text && text.length>5;
+      return text && text.length > 5;
     default:
-    return true;
+      return true;
   }
-
-}
+};

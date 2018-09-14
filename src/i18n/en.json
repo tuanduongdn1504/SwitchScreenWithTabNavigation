@@ -112,7 +112,7 @@
     "haveAccount": "Already have an account?",
     "createAccount": "Create account"
   },
-  "confirm": "Confirm"
+  "confirm": "Confirm",
   "auth": {
     "forgotPass": "Forgot Password?",
     "termsAndPrivacy": "By tapping Sign up, I agree to Tutor's\n",
