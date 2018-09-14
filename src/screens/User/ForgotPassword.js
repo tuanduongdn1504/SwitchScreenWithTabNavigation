@@ -35,6 +35,7 @@ export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.email = React.createRef();
   }
 
   onChange = name => text => {
@@ -62,10 +63,14 @@ export default class ForgotPassword extends Component {
   renderInput = () => (
     <View style={styles.groupInput}>
       <InputRow
+        ref={ref => {
+          this.email = ref;
+        }}
         textColor={Colors.primary}
         animatedTitle
         underLine
-        onChangeText={this.onChange('email')}
+        validateType="email"
+        // onChangeText={this.onChange('email')}
         placeholderTextColor={Colors.lightGray}
         placeholder={I18n.t('userInfo.email')}
       />
