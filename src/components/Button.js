@@ -72,8 +72,12 @@ const Button = ({
         />
       ) : null}
       <Text
-        type="subTextBold"
-        style={[styles.buttonText, textStyle, disabled && { color: `${Colors.default}60` }]}
+        type="button"
+        style={[
+          styles.buttonText,
+          textStyle,
+          disabled && { color: `${Colors.default}60` },
+        ]}
       >
         {buttonTitle}
       </Text>
@@ -108,10 +112,10 @@ Button.propTypes = {
 
 Button.defaultProps = {
   center: true,
-  end: { x: 0.7, y: 1 },
-  start: { x: 0, y: 1.0 },
-  startColor: '#93F9B9',
-  endColor: '#1D976C',
+  end: { x: 1, y: 1 },
+  start: { x: 0, y: 0 },
+  startColor: '#1D976C',
+  endColor: '#93F9B9',
 };
 
 export default Button;
