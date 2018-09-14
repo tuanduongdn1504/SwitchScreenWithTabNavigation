@@ -15,13 +15,13 @@ const colors = {
   iconNav: '#3f4e5a',
   whiteSmoke: '#f4f4f4',
   //
-  primary: '#FF9800',
+  primary: '#56c887',
   secondary: '#0097a7',
   lightprimary: '#F7962C',
   darkprimary: '#F26122',
   // text color
   primaryText: '#000',
-  primaryTextBlur: '#808080',
+  primaryTextBlur: '#9b9b9b',
   secondaryText: '#8E8D94',
   placeholderText: '#1D1D2650',
 

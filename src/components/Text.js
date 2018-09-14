@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text as RNText } from 'react-native';
 import { Fonts, Colors } from '../themes';
 
-const Text = (props) => {
+const Text = props => {
   const {
-    type, color, center, underLine, style, children,
-  } = props;
+ type, color, center, underLine, style, children 
+} = props;
   return (
     <RNText
       {...props}
@@ -26,190 +26,274 @@ const Text = (props) => {
 
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
-  note: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.regular,
-  },
-  description: {
-    fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.small,
-  },
-  text: {
-    fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.regular,
-  },
-  center: {
-    textAlign: 'center',
-  },
-  txtUnderline: {
-    textDecorationLine: 'underline',
-  },
-  header: {
-    fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.h2,
-    fontWeight: Fonts.fontWeight.regular,
-    color: Colors.default,
-  },
-  headerBold: {
-    fontFamily: Fonts.type.bold,
-    fontSize: Fonts.size.h2,
-    fontWeight: Fonts.fontWeight.bold,
-    color: Colors.default,
-  },
-  title30PX: {
-    fontFamily: Fonts.type.bold,
-    fontSize: Fonts.size.h3,
-    fontWeight: Fonts.fontWeight.bold,
-    color: Colors.primaryText,
-  },
-  title28PX: {
-    fontFamily: Fonts.type.bold,
-    fontSize: 28,
-    fontWeight: Fonts.fontWeight.bold,
-    color: Colors.primaryText,
-  },
-  title26PX: {
-    fontFamily: Fonts.type.bold,
-    fontSize: 26,
-    fontWeight: Fonts.fontWeight.bold,
-    color: Colors.primaryText,
-  },
-  RegularTitle26PX: {
-    fontFamily: Fonts.type.regular,
-    fontSize: 26,
-    color: Colors.lightGray,
-  },
-  itemName: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
-    fontSize: 25,
-    color: Colors.default,
-  },
-  detailHeader: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
-    fontSize: 23,
-    color: Colors.primaryText,
-  },
-  mediumDetailHeader: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.medium,
-    fontSize: Fonts.size.h5,
-    color: Colors.primaryText,
-  },
-  normal18PX: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
-    fontSize: Fonts.size.h6,
-    color: Colors.primaryText,
-  },
-  normal18PXLight: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.h6,
-    color: Colors.secondaryText,
-  },
-  normalSemiBold: {
-    fontFamily: Fonts.type.regular,
+  // TODO: Title
+  largeTitle: {
+    // 34
+    fontFamily: Fonts.type.semiBold,
+    fontSize: 34,
     fontWeight: Fonts.fontWeight.semibold,
-    fontSize: Fonts.size.regular,
     color: Colors.primaryText,
   },
-  normalBold: {
+  title1: {
+    // 26
     fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
-    fontSize: Fonts.size.regular,
+    fontSize: 26,
+    fontWeight: Fonts.fontWeight.normal,
     color: Colors.primaryText,
   },
-  normalBlack: {
+  title2: {
+    // 20
     fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.black,
-    fontSize: Fonts.size.regular,
+    fontSize: 20,
+    fontWeight: Fonts.fontWeight.normal,
     color: Colors.primaryText,
   },
-  normalMedium: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.medium,
-    fontSize: Fonts.size.regular,
+  headline: {
+    // semi bold 17
+    fontFamily: Fonts.type.semiBold,
+    fontSize: 17,
+    fontWeight: Fonts.fontWeight.semibold,
     color: Colors.primaryText,
   },
-  normal: {
+  // TODO: Body
+  body1: {
+    // 18
     fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.regular,
-    color: Colors.primaryText,
-    backgroundColor: 'transparent',
+    fontSize: 18,
+    fontWeight: Fonts.fontWeight.normal,
+    color: Colors.primaryTextBlur,
   },
-  normalLight: {
+  body2: {
+    // 16
     fontFamily: Fonts.type.regular,
+    fontSize: 16,
+    fontWeight: Fonts.fontWeight.normal,
+    color: Colors.primaryTextBlur,
+  },
+  body3: {
+    // 14
+    fontFamily: Fonts.type.regular,
+    fontSize: 14,
+    fontWeight: Fonts.fontWeight.normal,
+    color: Colors.primaryTextBlur,
+  },
+  small: {
+    // 12
+    fontFamily: Fonts.type.light,
+    fontSize: 12,
     fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.regular,
-    color: Colors.primaryText,
+    color: Colors.primaryTextBlur,
   },
-  medium: {
+  tiny: {
+    // 10
     fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.medium,
-    color: Colors.primaryText,
+    fontSize: 10,
+    fontWeight: Fonts.fontWeight.normal,
+    color: Colors.primaryTextBlur,
   },
-  mediumBold: {
-    fontFamily: Fonts.type.regular,
+  // TODO: Button
+  button: {
+    // 14 bold
+    fontFamily: Fonts.type.bold,
+    fontSize: 10,
     fontWeight: Fonts.fontWeight.bold,
-    fontSize: Fonts.size.medium,
-    color: Colors.primaryText,
+    color: Colors.default,
   },
-  subText: {
-    fontFamily: Fonts.type.regular,
-    fontSize: Fonts.size.semi,
-    color: Colors.lightGray,
+  navButton: {
+    // 14 600
+    fontFamily: Fonts.type.semiBold,
+    fontSize: 10,
+    fontWeight: Fonts.fontWeight.semibold,
+    color: Colors.primary,
   },
-  subTextLight: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.semi,
-    color: Colors.secondaryText,
-  },
-  subTextBlack: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.black,
-    fontSize: Fonts.size.semi,
-    color: Colors.primaryText,
-  },
-  subTextBold: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.bold,
-    fontSize: Fonts.size.semi,
-    color: Colors.primaryText,
-  },
-  subTextMedium: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.medium,
-    fontSize: Fonts.size.semi,
-    color: Colors.primaryText,
-  },
-  subTextMediumDarker: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.medium,
-    fontSize: Fonts.size.semi,
-    color: Colors.primaryTextDarker,
-  },
+
+  // TODO: Title
+  // header: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.h2,
+  //   fontWeight: Fonts.fontWeight.regular,
+  //   color: Colors.default,
+  // },
+  // headerBold: {
+  //   fontFamily: Fonts.type.bold,
+  //   fontSize: Fonts.size.h2,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   color: Colors.default,
+  // },
+  // title30PX: {
+  //   fontFamily: Fonts.type.bold,
+  //   fontSize: Fonts.size.h3,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   color: Colors.primaryText,
+  // },
+  // title28PX: {
+  //   fontFamily: Fonts.type.bold,
+  //   fontSize: 28,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   color: Colors.primaryText,
+  // },
+  // title26PX: {
+  //   fontFamily: Fonts.type.bold,
+  //   fontSize: 26,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   color: Colors.primaryText,
+  // },
+  // RegularTitle26PX: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: 26,
+  //   color: Colors.lightGray,
+  // },
+  // // TODO: Menu Item
+  // // TODO: Description
   // note: {
   //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.regular,
+  // },
+  // description: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.small,
+  // },
+  // text: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.subMedium,
+  // },
+  // center: {
+  //   textAlign: 'center',
+  // },
+  // txtUnderline: {
+  //   textDecorationLine: 'underline',
+  // },
+  // itemName: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 25,
+  //   color: Colors.default,
+  // },
+  // detailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 23,
+  //   color: Colors.primaryText,
+  // },
+  // mediumDetailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.h5,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PX: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.h6,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PXLight: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.h6,
+  //   color: Colors.secondaryText,
+  // },
+  // normalSemiBold: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.semibold,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  // },
+  // normalBold: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  // },
+  // normalBlack: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.black,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  // },
+  // normalMedium: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  // },
+  // normal: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  //   backgroundColor: 'transparent',
+  // },
+  // normalLight: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.regular,
+  //   color: Colors.primaryText,
+  // },
+  // medium: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.medium,
+  //   color: Colors.primaryText,
+  // },
+  // mediumBold: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.medium,
+  //   color: Colors.primaryText,
+  // },
+  // subText: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.lightGray,
+  // },
+  // subTextLight: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.secondaryText,
+  // },
+  // subTextBlack: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.black,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.primaryText,
+  // },
+  // subTextBold: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.primaryText,
+  // },
+  // subTextMedium: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.primaryText,
+  // },
+  // subTextMediumDarker: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.semi,
+  //   color: Colors.primaryTextDarker,
+  // },
+  // // note: {
+  // //   fontFamily: Fonts.type.regular,
+  // //   fontSize: Fonts.size.small,
+  // //   color: Colors.secondaryText,
+  // // },
+  // lightNote: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
   //   fontSize: Fonts.size.small,
   //   color: Colors.secondaryText,
   // },
-  lightNote: {
-    fontFamily: Fonts.type.regular,
-    fontWeight: Fonts.fontWeight.light,
-    fontSize: Fonts.size.small,
-    color: Colors.secondaryText,
-  },
-  titleInput: {
-    fontFamily: Fonts.type.input,
-    fontWeight: Fonts.fontWeight.normal,
-    fontSize: Fonts.size.input,
-    color: Colors.primaryTextDark,
-  },
+  // titleInput: {
+  //   fontFamily: Fonts.type.input,
+  //   fontWeight: Fonts.fontWeight.normal,
+  //   fontSize: Fonts.size.input,
+  //   color: Colors.primaryTextDark,
+  // },
 });
 
 Text.propTypes = {

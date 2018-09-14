@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, TextInput, Dimensions, Animated, Platform, Text } from 'react-native';
+import {
+  View,
+  TextInput,
+  Dimensions,
+  Animated,
+  Platform,
+  Text,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Metrics, Colors } from '../themes/index';
 import { type, size } from '../themes/Fonts';
@@ -11,8 +18,12 @@ export default class InputRow extends Component {
       value: props.value || props.defaultValue || '',
       placeholderTextColor: props.placeholderTextColor || Colors.lightDivider,
       bounceValue: new Animated.Value(0),
-      placeholderTranslateY: new Animated.Value(props.value == '' || !props.value ? 5 : -20),
-      placeholderTranslateX: new Animated.Value(props.value == '' || !props.value ? 0 : 0),
+      placeholderTranslateY: new Animated.Value(
+        props.value == '' || !props.value ? 5 : -20,
+      ),
+      placeholderTranslateX: new Animated.Value(
+        props.value == '' || !props.value ? 0 : 0,
+      ),
       scaleText: new Animated.Value(14),
     };
   }
@@ -33,7 +44,9 @@ export default class InputRow extends Component {
   }
 
   onFocus() {
-    this.setState({ placeholderTextColor: this.props.textColor || Colors.primary });
+    this.setState({
+      placeholderTextColor: this.props.textColor || Colors.primary,
+    });
     this.transformOnFocus();
     this.props.onFocus && this.props.onFocus();
   }
@@ -41,7 +54,9 @@ export default class InputRow extends Component {
   onBlur() {
     this.props.onBlur && this.props.onBlur();
     if (!this.input._lastNativeText || this.input._lastNativeText == '') {
-      this.setState({ placeholderTextColor: this.props.placeholderTextColor || Colors.divider });
+      this.setState({
+        placeholderTextColor: this.props.placeholderTextColor || Colors.divider,
+      });
       this.transformOnFocus(false);
     }
   }
@@ -62,9 +77,13 @@ export default class InputRow extends Component {
     if (this.props.value) return;
     Animated.sequence([
       Animated.parallel([
-        Animated.spring(this.state.placeholderTranslateY, { toValue: mode ? -20 : 5 }),
+        Animated.spring(this.state.placeholderTranslateY, {
+          toValue: mode ? -20 : 5,
+        }),
         Animated.spring(this.state.scaleText, { toValue: mode ? 10 : 14 }),
-        Animated.spring(this.state.placeholderTranslateX, { toValue: mode ? 0 : 0 }),
+        Animated.spring(this.state.placeholderTranslateX, {
+          toValue: mode ? 0 : 0,
+        }),
       ]),
     ]).start();
   }
@@ -72,7 +91,12 @@ export default class InputRow extends Component {
   render() {
     return (
       <View ref="containerInput" style={[styles.item, this.props.style]}>
-        <View style={[styles.containerInputRow, { backgroundColor: this.props.backgroundColor }]}>
+        <View
+          style={[
+            styles.containerInputRow,
+            { backgroundColor: this.props.backgroundColor },
+          ]}
+        >
           {this.props.icon && this.renderIcon()}
           {this.renderTextInput()}
           {this.props.children}
@@ -83,11 +107,20 @@ export default class InputRow extends Component {
 
   renderIcon() {
     return (
-      <View style={this.props.multiline ? styles.containerLeftMultil : styles.containerLeft}>
+      <View
+        style={
+          this.props.multiline
+            ? styles.containerLeftMultil
+            : styles.containerLeft
+        }
+      >
         <Icon
           name={this.props.icon}
           size={Metrics.icons.small}
-          style={[styles.icon, { color: this.props.placeholderTextColor || Colors.divider }]}
+          style={[
+            styles.icon,
+            { color: this.props.placeholderTextColor || Colors.divider },
+          ]}
         />
       </View>
     );
@@ -95,13 +128,25 @@ export default class InputRow extends Component {
 
   renderTextInput() {
     return (
-      <View style={[styles.containerRight, { paddingTop: this.props.animatedTitle ? 20 : 0 }]}>
+      <View
+        style={[
+          styles.containerRight,
+          { paddingTop: this.props.animatedTitle ? 20 : 0 },
+        ]}
+      >
         {this.props.textInputBackgroundStyle && (
-          <View style={[styles.textInputBackground, this.props.textInputBackgroundStyle]} />
+          <View
+            style={[
+              styles.textInputBackground,
+              this.props.textInputBackgroundStyle,
+            ]}
+          />
         )}
         {this.props.animatedTitle && this.renderAnimatedTitle()}
         {this.renderInput()}
-        {this.props.underLine && Platform.OS !== 'android' && this.renderUnderLine()}
+        {this.props.underLine
+          && Platform.OS !== 'android'
+          && this.renderUnderLine()}
       </View>
     );
   }
@@ -133,7 +178,7 @@ export default class InputRow extends Component {
     return (
       <View>
         <TextInput
-          onChangeText={(text) => {
+          onChangeText={text => {
             if (checkTypeNumber(this.props.keyboardType)) {
               if (text == '' || !text) return;
               if (checkPhoneType(this.props.keyboardType)) {
@@ -158,7 +203,7 @@ export default class InputRow extends Component {
           multiline={this.props.multiline}
           editable={this.props.editable}
           secureTextEntry={this.props.secureTextEntry}
-          ref={(ref) => {
+          ref={ref => {
             this.input = ref;
           }}
           placeholder={this.props.animatedTitle ? '' : this.props.placeholder}
@@ -177,9 +222,10 @@ export default class InputRow extends Component {
           onFocus={this.onFocus.bind(this)}
           onBlur={this.onBlur.bind(this)}
           defaultValue={this.props.defaultValue}
-          onChange={(event) => {
+          onChange={event => {
             this.setState({ value: event.nativeEvent.text });
-            this.props.onChangeText && this.props.onChangeText(event.nativeEvent.text);
+            this.props.onChangeText
+              && this.props.onChangeText(event.nativeEvent.text);
           }}
         />
       </View>
@@ -281,5 +327,10 @@ function checkNumber(num) {
 }
 
 function checkTypeNumber(type) {
-  return type == 'numeric' || type == 'phone-pad' || type == 'number-pad' || type == 'decimal-pad';
+  return (
+    type == 'numeric'
+    || type == 'phone-pad'
+    || type == 'number-pad'
+    || type == 'decimal-pad'
+  );
 }

@@ -19,6 +19,7 @@ import SignupStudent from '../screens/User/SignupStudent';
 import SignupTutor from '../screens/User/SignupTutor';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
+import ForgotPassword from '../screens/User/ForgotPassword';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -31,29 +32,105 @@ export function registerScreens(store, persistor) {
       </Provider>
     );
   };
-  Navigation.registerComponent('progressScreen', () => ProgressScreen, PersistProvider, store);
-  Navigation.registerComponent('inAppNotification', () => Notification, PersistProvider, store);
-  Navigation.registerComponentWithRedux('intro', () => Intro, PersistProvider, store);
-  Navigation.registerComponentWithRedux('signUp', () => Signup, PersistProvider, store);
+  Navigation.registerComponent(
+    'progressScreen',
+    () => ProgressScreen,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponent(
+    'inAppNotification',
+    () => Notification,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'intro',
+    () => Intro,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'signUp',
+    () => Signup,
+    PersistProvider,
+    store,
+  );
   Navigation.registerComponentWithRedux(
     'signUpStudent',
     () => SignupStudent,
     PersistProvider,
     store,
   );
-  Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
-  Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
-  Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);
-  Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);
-  Navigation.registerComponentWithRedux('detail', () => Detail, PersistProvider, store);
-  Navigation.registerComponentWithRedux('chatBox', () => ChatBox, PersistProvider, store);
-  Navigation.registerComponentWithRedux('Safety', () => Safety, PersistProvider, store);
-  Navigation.registerComponentWithRedux('notification', () => Notification, PersistProvider, store);
-  Navigation.registerComponentWithRedux('chatList', () => ChatList, PersistProvider, store);
-  Navigation.registerComponentWithRedux('filter', () => Filter, PersistProvider, store);
+  Navigation.registerComponentWithRedux(
+    'signUpTutor',
+    () => SignupTutor,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'home',
+    () => Home,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'sideMenu',
+    () => SideMenu,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'about',
+    () => About,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'detail',
+    () => Detail,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'chatBox',
+    () => ChatBox,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'Safety',
+    () => Safety,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'notification',
+    () => Notification,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'chatList',
+    () => ChatList,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'filter',
+    () => Filter,
+    PersistProvider,
+    store,
+  );
   Navigation.registerComponentWithRedux(
     'searchResults',
     () => SearchResults,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'forgotPassword',
+    () => ForgotPassword,
     PersistProvider,
     store,
   );
