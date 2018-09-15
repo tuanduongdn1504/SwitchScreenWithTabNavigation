@@ -14,4 +14,8 @@ target 'tutorApp' do
   pod 'Firebase/Firestore', '~> 5.3.0'
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
 end
