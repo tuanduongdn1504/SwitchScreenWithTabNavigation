@@ -15,10 +15,10 @@ const colors = {
   iconNav: '#3f4e5a',
   whiteSmoke: '#f4f4f4',
   //
-  primary: '#56C887',
+  primary: '#FF671B',
   secondary: '#0097a7',
-  lightPrimary: '#93F9B9',
-  darkPrimary: '#1D976C',
+  lightPrimary: '#F7962C',
+  darkPrimary: '#F26122',
   // text color
   primaryText: '#070707',
   primaryTextBlur: '#808080',
