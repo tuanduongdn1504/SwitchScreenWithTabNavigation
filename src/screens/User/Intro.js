@@ -88,7 +88,7 @@ class Intro extends Component {
           icon="md-lock"
           secureTextEntry
           placeholderTextColor={Colors.placeholderText}
-          placeholder={I18n.t('password')}
+          placeholder={I18n.t('userInfo.password.title')}
         />
       </View>
     );

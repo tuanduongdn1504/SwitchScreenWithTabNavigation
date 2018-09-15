@@ -128,7 +128,7 @@ class Signup extends Component {
           secureTextEntry
           validateType="password"
           validateMessage={I18n.t('error.password')}
-          placeholder={I18n.t('password')}
+          placeholder={I18n.t('userInfo.password.title')}
         />
         <InputRow
           ref={ref => {
