@@ -22,8 +22,8 @@ class Signup extends Component {
 
   submitData = () => {
     const {
-      password, firstName, email, lastName, zipCode,
-    } = this;
+ password, firstName, email, lastName, zipCode 
+} = this;
     const { isEdit, editUser, signUp } = this.props;
     if (
       firstName.getText()
@@ -111,7 +111,7 @@ class Signup extends Component {
           secureTextEntry
           validateType="password"
           validateMessage={I18n.t('error.password')}
-          placeholder={I18n.t('password')}
+          placeholder={I18n.t('password.title')}
         />
         <InputRow
           ref={ref => {
@@ -149,20 +149,37 @@ class Signup extends Component {
           />
         )}
         {isEdit && (
-          <Button style={styles.button} onPress={this.submitData} buttonTitle={I18n.t('save')} />
+          <Button
+            style={styles.button}
+            onPress={this.submitData}
+            buttonTitle={I18n.t('save')}
+          />
         )}
-        <Text type="subText" color={Colors.primaryText} center style={styles.termsAndPrivacy}>
+        <Text
+          type="subText"
+          color={Colors.primaryText}
+          center
+          style={styles.termsAndPrivacy}
+        >
           {I18n.t('auth.termsAndPrivacy')}
-          <Text type="subText" onPress={this.onPressTerms} color={Colors.primary}>
+          <Text
+            type="subText"
+            onPress={this.onPressTerms}
+            color={Colors.primary}
+          >
             {I18n.t('auth.terms')}
           </Text>
-          {' '}
+{' '}
           {I18n.t('auth.and')}
-          {' '}
-          <Text type="subText" onPress={this.onPressPrivacy} color={Colors.primary}>
+{' '}
+          <Text
+            type="subText"
+            onPress={this.onPressPrivacy}
+            color={Colors.primary}
+          >
             {I18n.t('auth.privacy')}
           </Text>
-          {' '}
+{' '}
         </Text>
       </View>
     );

@@ -4,18 +4,18 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
-import InputRow from '../../components/InputRow';
+import CodeInput from '../../components/CodeInput';
 import Button from '../../components/Button';
 import { showModal } from '../../navigation/navigationActions';
-import { close } from '../../navigation/navigationButtons';
+import { closeAll } from '../../navigation/navigationButtons';
 import Text from '../../components/Text';
 
-export default class ForgotPassword extends Component {
+export default class VerifyPassword extends Component {
   static options() {
     return {
       topBar: {
         title: {
-          text: I18n.t('userInfo.password.forgotPassword'),
+          text: I18n.t('userInfo.password.verifyPassword'),
         },
       },
     };
@@ -24,27 +24,43 @@ export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.email = React.createRef();
+    this.newPassword = React.createRef();
+    this.confirmPassword = React.createRef();
   }
 
   onChange = name => text => {
     this.data[name] = text;
   };
 
-  send = () => {
-    showModal('verifyPassword', {
-      leftButtons: [close()],
+  confirm = () => {
+    showModal('resetPassword', {
+      leftButtons: [closeAll()],
     });
   };
+
+  renderButtonGroup = () => {
+    return (
+      <Button
+        primary
+        style={styles.button}
+        onPress={this.confirm}
+        buttonTitle={I18n.t('confirm').toLocaleUpperCase()}
+      />
+    );
+  };
+
+  focusNextField(nextField) {
+    this[nextField].focus();
+  }
 
   renderDescription = () => {
     return (
       <View style={styles.description}>
         <Text type="body2" color={Colors.primaryText}>
-          {I18n.t('userInfo.password.forgotPasswordCaption')}
+          {I18n.t('userInfo.password.verifyPasswordCaption')}
         </Text>
         <Text type="body3" color={Colors.primaryTextBlur}>
-          {I18n.t('userInfo.password.forgotPasswordDescription')}
+          {I18n.t('userInfo.password.verifyPasswordDescription')}
         </Text>
       </View>
     );
@@ -52,18 +68,7 @@ export default class ForgotPassword extends Component {
 
   renderInput = () => (
     <View style={styles.groupInput}>
-      <InputRow
-        ref={ref => {
-          this.email = ref;
-        }}
-        textColor={Colors.primary}
-        animatedTitle
-        underLine
-        validateType="email"
-        // onChangeText={this.onChange('email')}
-        placeholderTextColor={Colors.lightGray}
-        placeholder={I18n.t('userInfo.email')}
-      />
+      <CodeInput numberOfDigit={4} />
     </View>
   );
 
@@ -73,12 +78,7 @@ export default class ForgotPassword extends Component {
         <KeyboardAwareScrollView>
           {this.renderDescription()}
           {this.renderInput()}
-          <Button
-            primary
-            style={styles.vBtn}
-            onPress={this.send}
-            buttonTitle={I18n.t('send').toLocaleUpperCase()}
-          />
+          {this.renderButtonGroup()}
         </KeyboardAwareScrollView>
       </View>
     );
@@ -94,13 +94,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 40,
   },
-  description: {
-    // marginTop: 40,
-  },
-  groupInput: {
-    marginTop: 20,
-  },
-  vBtn: {
+  groupInput: {},
+  button: {
     width: width - 40,
     marginTop: 40,
   },
@@ -120,4 +115,4 @@ const styles = StyleSheet.create({
 // export default connect(
 //   mapStateToProps,
 //   mapDispatchToProps,
-// )(ForgotPassword);
+// )(VerifyPassword);

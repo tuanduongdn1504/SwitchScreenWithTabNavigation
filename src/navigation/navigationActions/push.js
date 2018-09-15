@@ -1,6 +1,5 @@
 import { Navigation } from 'react-native-navigation';
-import { Platform } from 'react-native';
-import { Colors, Fonts } from '../../themes/index';
+import { Colors } from '../../themes/index';
 import { back } from '../navigationButtons';
 import { styles as TextStyle } from '../../components/Text';
 

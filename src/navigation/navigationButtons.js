@@ -24,13 +24,21 @@ export const close = () => ({
   color: Colors.primary,
 });
 
-export const qrcode = () => ({
-  id: 'qrcode',
-  icon: iconsMap.qrcode,
+export const closeAll = () => ({
+  id: 'closeAll',
+  icon: iconsMap['md-close'],
   disabled: false,
   disableIconTint: true,
   color: Colors.primary,
 });
+
+// export const qrcode = () => ({
+//   id: 'qrcode',
+//   icon: iconsMap.qrcode,
+//   disabled: false,
+//   disableIconTint: true,
+//   color: Colors.primary,
+// });
 
 export const send = (disabled = true) => ({
   title: I18n.t('send'),

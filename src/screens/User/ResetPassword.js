@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import { push } from '../../navigation/navigationActions';
-import { back } from '../../navigation/navigationButtons';
-import Text, { styles as TextStyle } from '../../components/Text';
 
 export default class ForgotPassword extends Component {
   static propTypes = {
@@ -22,12 +20,6 @@ export default class ForgotPassword extends Component {
         title: {
           text: I18n.t('userInfo.password.resetPassword'),
         },
-        largeTitle: {
-          visible: true,
-          ...TextStyle.largeTitle,
-        },
-        leftButtons: [back()],
-        drawBehind: true,
       },
     };
   }
@@ -116,9 +108,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     marginHorizontal: 20,
+    marginTop: 40,
   },
   groupInput: {
-    marginTop: 40,
+    // marginTop: 40,
   },
   input: {
     marginTop: 15,

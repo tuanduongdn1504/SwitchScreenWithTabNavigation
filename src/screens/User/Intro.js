@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
  View, StyleSheet, Dimensions, Image 
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors, Images } from '../../themes';
@@ -13,6 +14,11 @@ import CheckUpdate from '../Home/CheckUpdate';
 import SwipperView from '../../components/SwipperView';
 
 class Intro extends Component {
+  static propTypes = {
+    componentId: PropTypes.string,
+    fbSignIn: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -26,14 +32,16 @@ class Intro extends Component {
   };
 
   signUp = () => {
-    push(this.props.componentId, 'signUp', {
+    const { componentId } = this.props;
+    push(componentId, 'signUp', {
       title: I18n.t('signUp'),
     });
   };
 
   signIn = () => {
-    push(this.props.componentId, 'signIn', {
-      title: I18n.t('signIn'),
+    const { componentId } = this.props;
+    push(componentId, 'signIn', {
+      // title: I18n.t('signIn'),
     });
   };
 

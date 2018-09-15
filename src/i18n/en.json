@@ -4,7 +4,6 @@
   "devBy": "Develop by AnhDoan",
   "about": "About",
   "username": "Username",
-  "password": "Password",
   "repeatPassword": "REPEAT PASSWORD",
   "signIn": "Sign In",
   "welcome": "Welcome to IoT",
@@ -27,8 +26,7 @@
     "email": "Email",
     "emailPlaceholder": "Enter your email",
     "homeTown": "Home town",
-    "password": "Password",
-    "passwordPlaceholder": "Enter your Password",
+
     "sex": "Gender",
     "sexPlaceholder": "Select your gender",
     "homeTownPlaceholder": "Enter your Home Town",
@@ -36,7 +34,7 @@
     "registerToFindTutor": "Register to find a tutor",
     "becomeATutor": "Become a tutor",
     "registerAsStudent": "Register as student",
-    "registerAsTutor": "Become as tutor",
+    "registerAsTutor": "Become as tutor",
     "register": "Register",
     "zipCode": "Zip Code",
     "tutor": {
@@ -54,12 +52,17 @@
       "typesPlaceholder": "Select types of tutor"
     },
     "password": {
+      "title": "Password",
+      "placeholder": "Enter your Password",
       "forgotPassword": "Forgot Password",
       "resetPassword": "Reset Password",
       "newPassword": "New password",
       "confirmPassword": "Confirm password",
-      "forgotPasswordDescription1": "Enter email address you used when joined.",
-      "forgotPasswordDescription2": "We will email you a link to reset your password."
+      "forgotPasswordCaption": "Enter email address you used when joined.",
+      "forgotPasswordDescription": "We will email you a link to reset your password.",
+      "verifyPassword": "Verify password",
+      "verifyPasswordCaption": "The verification code has been sent to your email.",
+      "verifyPasswordDescription": "Please enter that code to reset your password."
     }
   },
   "inputOTP": "Confirm OTP",

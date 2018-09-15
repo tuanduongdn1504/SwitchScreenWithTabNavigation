@@ -13,6 +13,16 @@ import LoginActions from '../../redux/LoginRedux/actions';
 import { push } from '../../navigation/navigationActions';
 
 class SignIn extends Component {
+  static options() {
+    return {
+      topBar: {
+        title: {
+          text: I18n.t('signIn'),
+        },
+      },
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -64,7 +74,7 @@ class SignIn extends Component {
           underLine
           secureTextEntry
           placeholderTextColor={Colors.placeholderText}
-          placeholder={I18n.t('password')}
+          placeholder={I18n.t('userInfo.password.title')}
         />
       </View>
     );

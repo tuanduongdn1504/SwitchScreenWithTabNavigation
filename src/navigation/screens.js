@@ -22,6 +22,7 @@ import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
 import ForgotPassword from '../screens/User/ForgotPassword';
 import ResetPassword from '../screens/User/ResetPassword';
+import VerifyPassword from '../screens/User/VerifyPassword';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -133,6 +134,12 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux(
     'forgotPassword',
     () => ForgotPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'verifyPassword',
+    () => VerifyPassword,
     PersistProvider,
     store,
   );

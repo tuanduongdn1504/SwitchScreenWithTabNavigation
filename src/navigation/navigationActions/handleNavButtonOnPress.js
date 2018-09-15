@@ -1,20 +1,24 @@
 import { Navigation } from 'react-native-navigation';
 
-Navigation.events().registerNavigationButtonPressedListener(({ buttonId, componentId }) => {
-  switch (buttonId) {
-    case 'sideMenu':
-      toggleSideMenu();
-      break;
-    case 'back':
-      pop(componentId);
-      break;
-    case 'close':
-      console.log('componentId', componentId);
-      dismissModal(componentId);
-      break;
-    default:
-  }
-});
+Navigation.events().registerNavigationButtonPressedListener(
+  ({ buttonId, componentId }) => {
+    switch (buttonId) {
+      case 'sideMenu':
+        toggleSideMenu();
+        break;
+      case 'back':
+        pop(componentId);
+        break;
+      case 'close':
+        dismissModal(componentId);
+        break;
+      case 'closeAll':
+        dismissAllModals();
+        break;
+      default:
+    }
+  },
+);
 
 export const toggleSideMenu = (isVisible = true) => {
   Navigation.mergeOptions('sideMenu', {
@@ -33,4 +37,8 @@ export const pop = componentId => {
 
 export const dismissModal = componentId => {
   Navigation.dismissModal(componentId);
+};
+
+export const dismissAllModals = () => {
+  Navigation.dismissAllModals();
 };
