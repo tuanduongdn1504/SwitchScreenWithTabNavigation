@@ -43,3 +43,21 @@ export function startStackScreen() {
     },
   });
 }
+
+// export function startStackScreen() {
+//   const ROOT_SCREEN = 'forgotPassword';
+//   // const ROOT_TITLE = 'home';
+//   Navigation.setRoot({
+//     root: {
+//       stack: {
+//         children: [
+//           {
+//             component: {
+//               name: ROOT_SCREEN,
+//             },
+//           },
+//         ],
+//       },
+//     },
+//   });
+// }

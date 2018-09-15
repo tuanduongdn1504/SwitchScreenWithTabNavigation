@@ -6,7 +6,7 @@ export const menu = () => ({
   id: 'sideMenu',
   icon: iconsMap['md-menu'],
   disableIconTint: false,
-  color: Colors.default,
+  color: Colors.primary,
 });
 
 export const search = () => ({
@@ -21,16 +21,24 @@ export const close = () => ({
   icon: iconsMap['md-close'],
   disabled: false,
   disableIconTint: true,
-  color: Colors.default,
+  color: Colors.primary,
 });
 
-export const qrcode = () => ({
-  id: 'qrcode',
-  icon: iconsMap.qrcode,
+export const closeAll = () => ({
+  id: 'closeAll',
+  icon: iconsMap['md-close'],
   disabled: false,
   disableIconTint: true,
-  color: Colors.default,
+  color: Colors.primary,
 });
+
+// export const qrcode = () => ({
+//   id: 'qrcode',
+//   icon: iconsMap.qrcode,
+//   disabled: false,
+//   disableIconTint: true,
+//   color: Colors.primary,
+// });
 
 export const send = (disabled = true) => ({
   title: I18n.t('send'),
@@ -60,12 +68,12 @@ export const add = () => ({
   id: 'add',
   icon: iconsMap['md-add'],
   disableIconTint: false,
-  color: Colors.default,
+  color: Colors.primary,
 });
 
 export const chat = () => ({
   id: 'chat',
   icon: iconsMap['ios-chatbubbles'],
   disableIconTint: false,
-  color: Colors.default,
+  color: Colors.primary,
 });

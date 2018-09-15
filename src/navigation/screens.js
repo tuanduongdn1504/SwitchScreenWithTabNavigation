@@ -20,6 +20,9 @@ import SignupTutor from '../screens/User/SignupTutor';
 import SignIn from '../screens/User/SignIn';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
+import ForgotPassword from '../screens/User/ForgotPassword';
+import ResetPassword from '../screens/User/ResetPassword';
+import VerifyPassword from '../screens/User/VerifyPassword';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -63,4 +66,23 @@ export function registerScreens(store, persistor) {
     PersistProvider,
     store,
   );
+  Navigation.registerComponentWithRedux(
+    'forgotPassword',
+    () => ForgotPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'verifyPassword',
+    () => VerifyPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux(
+    'resetPassword',
+    () => ResetPassword,
+    PersistProvider,
+    store,
+  );
+  Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
 }

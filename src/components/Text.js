@@ -25,7 +25,7 @@ const Text = props => {
 };
 
 /* eslint-disable react-native/no-unused-styles */
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   // TODO: Title
   largeTitleBold: {
     // 34
@@ -296,6 +296,45 @@ const styles = StyleSheet.create({
   //   fontFamily: Fonts.type.regular,
   //   fontWeight: Fonts.fontWeight.light,
   //   fontSize: Fonts.size.small,
+  // },
+  // text: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontSize: Fonts.size.subMedium,
+  // },
+  // center: {
+  //   textAlign: 'center',
+  // },
+  // txtUnderline: {
+  //   textDecorationLine: 'underline',
+  // },
+  // itemName: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 25,
+  //   color: Colors.default,
+  // },
+  // detailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: 23,
+  //   color: Colors.primaryText,
+  // },
+  // mediumDetailHeader: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.medium,
+  //   fontSize: Fonts.size.h5,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PX: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.bold,
+  //   fontSize: Fonts.size.h6,
+  //   color: Colors.primaryText,
+  // },
+  // normal18PXLight: {
+  //   fontFamily: Fonts.type.regular,
+  //   fontWeight: Fonts.fontWeight.light,
+  //   fontSize: Fonts.size.h6,
   //   color: Colors.secondaryText,
   // },
   // titleInput: {

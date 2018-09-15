@@ -10,8 +10,19 @@ import KeyboardAwareScrollViewUI from '../../components/KeyboardAwareScrollView'
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
+import { push } from '../../navigation/navigationActions';
 
 class SignIn extends Component {
+  static options() {
+    return {
+      topBar: {
+        title: {
+          text: I18n.t('signIn'),
+        },
+      },
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,7 +41,10 @@ class SignIn extends Component {
     }
   };
 
-  forgotPass = () => {};
+  forgotPass = () => {
+    const { componentId } = this.props;
+    push(componentId, 'forgotPassword', {});
+  };
 
   focusNextField(nextField) {
     this[nextField].focus();
@@ -60,7 +74,7 @@ class SignIn extends Component {
           underLine
           secureTextEntry
           placeholderTextColor={Colors.placeholderText}
-          placeholder={I18n.t('password')}
+          placeholder={I18n.t('userInfo.password.title')}
         />
       </View>
     );
@@ -113,6 +127,7 @@ class SignIn extends Component {
 SignIn.propTypes = {
   fbSignIn: PropTypes.func,
   signIn: PropTypes.func,
+  componentId: PropTypes.string,
 };
 
 const { width } = Dimensions.get('window');
