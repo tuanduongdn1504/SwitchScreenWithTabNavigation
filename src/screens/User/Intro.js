@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import {
- View, StyleSheet, Dimensions, Image 
-} from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import { Colors, Images } from '../../themes';
+import { Colors } from '../../themes';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import LoginActions from '../../redux/LoginRedux/actions';
 import { push } from '../../navigation/navigationActions';
 import CheckUpdate from '../Home/CheckUpdate';
-import SwipperView from '../../components/SwipperView';
+import AppLogo from '../../components/AppLogo';
+import InputRow from '../../components/InputRow';
+import Container from '../../components/Container';
+import KeyboardAwareScrollViewUI from '../../components/KeyboardAwareScrollView';
 
 class Intro extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.data = {
-      username: 'longnguyen',
-    };
+    this.email = React.createRef();
+    this.password = React.createRef();
   }
 
   onChange = name => text => {
@@ -31,72 +32,111 @@ class Intro extends Component {
     });
   };
 
-  signIn = () => {
-    push(this.props.componentId, 'signIn', {
-      title: I18n.t('signIn'),
-    });
+  login = () => {
+    const { signIn } = this.props;
+    if (this.email.getText() && this.password.getText()) {
+      const data = {
+        email: this.email.getText(),
+        password: this.password.getText(),
+      };
+      signIn(data);
+    }
   };
 
-  renderIntro = data => {
+  focusNextField(nextField) {
+    this[nextField].focus();
+  }
+
+  renderHeader = () => {
     return (
-      <View key={data} style={styles.vIntro}>
-        <Image style={styles.introImg} source={Images[`intro${data}`]} />
-        <Text type="title1" color={Colors.primaryText} center>
-          {I18n.t(`intro.introTitle${data}`)}
+      <View style={styles.vHeader}>
+        <AppLogo />
+        <Text type="largeTitleBold" style={styles.txtAppName} center color={Colors.primaryText}>
+          {I18n.t('appName')}
         </Text>
-        <Text
-          type="body1"
-          color={Colors.secondaryText}
-          center
-          style={styles.txtIntroDes}
-        >
-          {I18n.t(`intro.introDes${data}`)}
+        <Text type="body2" center style={styles.txtDes} color={Colors.secondaryText}>
+          {I18n.t('intro.appDes')}
         </Text>
+      </View>
+    );
+  };
+
+  renderInputView = () => {
+    return (
+      <View style={styles.vInput}>
+        <InputRow
+          ref={ref => {
+            this.email = ref;
+          }}
+          returnKeyType="next"
+          animatedTitle
+          underLine
+          keyboardType="email-address"
+          validateType="email"
+          icon="md-mail"
+          onSubmitEditing={() => this.focusNextField('password')}
+          validateMessage={I18n.t('error.email')}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.email')}
+        />
+        <InputRow
+          ref={ref => {
+            this.password = ref;
+          }}
+          animatedTitle
+          underLine
+          icon="md-lock"
+          secureTextEntry
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('password')}
+        />
       </View>
     );
   };
 
   renderButtonGroup = () => {
-    const { fbSignIn } = this.props;
     return (
       <View style={styles.vButtonGroup}>
         <Button
-          startColor={Colors.facebook}
-          endColor={Colors.facebook}
-          style={styles.btnLogin}
-          onPress={fbSignIn}
-          fontAwesome="facebook-f"
-          iconColor={Colors.default}
-          buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
-        />
-        <Button
           primary
           style={styles.btnLogin}
-          onPress={this.signUp}
-          buttonTitle={I18n.t('intro.createAccount').toLocaleUpperCase()}
+          onPress={this.login}
+          buttonTitle={I18n.t('intro.login').toLocaleUpperCase()}
         />
         <Text type="body2" style={styles.txtSignup} color={Colors.primaryText}>
-          {`${I18n.t('intro.haveAccount')} `}
-          <Text type="body2" onPress={this.signIn} color={Colors.primary}>
-            {I18n.t('signIn')}
+          {`${I18n.t('intro.dontHaveAccount')} `}
+          <Text type="body2" onPress={this.signUp} color={Colors.primary}>
+            {`${I18n.t('intro.signUp')}`}
           </Text>
         </Text>
+        <View style={{ height: 40 }} />
       </View>
     );
   };
 
   render() {
-    const INTROS = [1, 2, 3];
+    const { fbSignIn } = this.props;
     return (
-      <View style={styles.container}>
-        <CheckUpdate />
-        <View style={styles.container}>
-          <SwipperView autoScroll>
-            {INTROS.map(data => this.renderIntro(data))}
-          </SwipperView>
-        </View>
-        {this.renderButtonGroup()}
-      </View>
+      <Container>
+        <KeyboardAwareScrollViewUI style={styles.container}>
+          <CheckUpdate />
+          {this.renderHeader()}
+          <Button
+            startColor={Colors.facebook}
+            endColor={Colors.facebook}
+            style={styles.btnLogin}
+            onPress={fbSignIn}
+            fontAwesome="facebook-f"
+            iconColor={Colors.default}
+            buttonTitle={I18n.t('conectFB').toLocaleUpperCase()}
+          />
+          <Text type="body2" center color={Colors.secondaryText}>
+            {`${I18n.t('intro.orLoginWithEmail')} `}
+          </Text>
+          {this.renderInputView()}
+          {this.renderButtonGroup()}
+        </KeyboardAwareScrollViewUI>
+      </Container>
     );
   }
 }
@@ -108,13 +148,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     width,
-  },
-  vIntro: {
-    flex: 1,
-    width,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 30,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
   vButtonGroup: {
     justifyContent: 'center',
@@ -124,18 +159,26 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     width: width - 40,
-    marginBottom: 30,
+    marginBottom: 20,
   },
-  txtSignup: {
-    marginBottom: 30,
+  vHeader: {
+    marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  introImg: {
-    width: width - 80,
+  txtDes: {
+    marginTop: 10,
+    marginBottom: 20,
   },
-  txtIntroDes: {
-    marginTop: 15,
+  txtAppName: {
+    marginTop: 20,
   },
 });
+
+Intro.propTypes = {
+  fbSignIn: PropTypes.func,
+  signIn: PropTypes.func,
+};
 
 function mapStateToProps(state) {
   return {};

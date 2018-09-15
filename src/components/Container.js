@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import ProgressScreen from './ProgressScreen';
-import { Colors } from '../themes';
 
 const Container = ({ children, style, loading }) => {
   return (
@@ -22,8 +21,6 @@ Container.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // borderTopWidth: 5,
-    borderTopColor: Colors.primary,
   },
 });
 

@@ -21,7 +21,9 @@ class Notification extends Component {
   }
 
   componentDidMount() {
+    const { onDisplay, componentId } = this.props;
     this.toggleNotiAnim();
+    onDisplay(componentId);
   }
 
   toggleNotiAnim = (isShow = true) => {
@@ -89,6 +91,8 @@ Notification.propTypes = {
   type: PropTypes.string,
   autoDismissTime: PropTypes.number,
   isAutoDismiss: PropTypes.bool,
+  componentId: PropTypes.string,
+  onDisplay: PropTypes.func,
 };
 
 Notification.defaultProps = {

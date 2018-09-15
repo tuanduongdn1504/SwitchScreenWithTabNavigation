@@ -3,8 +3,8 @@ import { Colors } from '../../themes/index';
 
 let progressId = null;
 export const showProgress = (isShow = true) => {
-  progressId && Navigation.dismissOverlay(progressId);
   if (isShow) {
+    progressId && Navigation.dismissOverlay(progressId);
     Navigation.showOverlay({
       component: {
         name: 'progressScreen',
@@ -23,5 +23,7 @@ export const showProgress = (isShow = true) => {
         },
       },
     });
+  } else {
+    progressId && Navigation.dismissOverlay(progressId);
   }
 };

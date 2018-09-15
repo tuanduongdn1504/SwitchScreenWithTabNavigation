@@ -22,7 +22,7 @@ class Signup extends Component {
 
   submitData = () => {
     const {
-      password, firstName, email, lastName, zipCode,
+      password, firstName, email, lastName, zipCode, phoneNumber,
     } = this;
     const { isEdit, editUser, signUp } = this.props;
     if (
@@ -31,12 +31,14 @@ class Signup extends Component {
       && password.getText()
       && lastName.getText()
       && zipCode.getText()
+      && phoneNumber.getText()
     ) {
       const data = {
         first_name: firstName.getText(),
         email: email.getText(),
         last_name: lastName.getText(),
         zip_code: zipCode.getText(),
+        phone_number: phoneNumber.getText(),
       };
       if (!isEdit) {
         data.password = password.getText();
@@ -94,11 +96,26 @@ class Signup extends Component {
           returnKeyType="next"
           animatedTitle
           underLine
+          keyboardType="email-address"
           validateType="email"
           validateMessage={I18n.t('error.email')}
-          onSubmitEditing={() => this.focusNextField('password')}
+          onSubmitEditing={() => this.focusNextField('phoneNumber')}
           placeholderTextColor={Colors.placeholderText}
           placeholder={I18n.t('userInfo.email')}
+        />
+        <InputRow
+          ref={ref => {
+            this.phoneNumber = ref;
+          }}
+          returnKeyType="next"
+          animatedTitle
+          underLine
+          keyboardType="phone-pad"
+          validateType="number"
+          validateMessage={I18n.t('error.phoneNumber')}
+          onSubmitEditing={() => this.focusNextField('password')}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.phone')}
         />
         <InputRow
           ref={ref => {
@@ -119,6 +136,7 @@ class Signup extends Component {
           }}
           animatedTitle
           underLine
+          keyboardType="number-pad"
           validateType="number"
           validateMessage={I18n.t('error.numberError')}
           placeholderTextColor={Colors.placeholderText}
@@ -151,15 +169,15 @@ class Signup extends Component {
         {isEdit && (
           <Button style={styles.button} onPress={this.submitData} buttonTitle={I18n.t('save')} />
         )}
-        <Text type="subText" color={Colors.primaryText} center style={styles.termsAndPrivacy}>
+        <Text type="body3" color={Colors.primaryText} center style={styles.termsAndPrivacy}>
           {I18n.t('auth.termsAndPrivacy')}
-          <Text type="subText" onPress={this.onPressTerms} color={Colors.primary}>
+          <Text type="body3" onPress={this.onPressTerms} color={Colors.primary}>
             {I18n.t('auth.terms')}
           </Text>
           {' '}
           {I18n.t('auth.and')}
           {' '}
-          <Text type="subText" onPress={this.onPressPrivacy} color={Colors.primary}>
+          <Text type="body3" onPress={this.onPressPrivacy} color={Colors.primary}>
             {I18n.t('auth.privacy')}
           </Text>
           {' '}

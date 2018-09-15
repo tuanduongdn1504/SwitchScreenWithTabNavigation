@@ -1,15 +1,19 @@
 import { Navigation } from 'react-native-navigation';
 
+let inAppComponentId = null;
+
 export const showInAppNoti = (title, content, type) => {
-  dismissInAppNoti();
+  inAppComponentId && dismissInAppNoti();
   Navigation.showOverlay({
     component: {
-      id: 'inAppNotification',
       name: 'inAppNotification',
       passProps: {
         title,
         content,
         type,
+        onDisplay: id => {
+          inAppComponentId = id;
+        },
       },
       options: {
         overlay: {
@@ -21,5 +25,6 @@ export const showInAppNoti = (title, content, type) => {
 };
 
 export const dismissInAppNoti = () => {
-  Navigation.dismissOverlay('inAppNotification');
+  Navigation.dismissOverlay(inAppComponentId);
+  inAppComponentId = null;
 };

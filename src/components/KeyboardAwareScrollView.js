@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const KeyboardAwareScrollViewUI = (props) => {
+const KeyboardAwareScrollViewUI = props => {
   return (
     <KeyboardAwareScrollView
       keyboardShouldPersistTaps="always"
@@ -13,6 +13,8 @@ const KeyboardAwareScrollViewUI = (props) => {
         props.contentContainerStyle && props.contentContainerStyle,
       ]}
       style={props.style}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>{props.children}</View>

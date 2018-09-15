@@ -5,8 +5,8 @@ import { Fonts, Colors } from '../themes';
 
 const Text = props => {
   const {
- type, color, center, underLine, style, children 
-} = props;
+    type, color, center, underLine, style, children,
+  } = props;
   return (
     <RNText
       {...props}
@@ -27,6 +27,13 @@ const Text = props => {
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
   // TODO: Title
+  largeTitleBold: {
+    // 34
+    fontFamily: Fonts.type.bold,
+    fontSize: 34,
+    fontWeight: Fonts.fontWeight.bold,
+    color: Colors.primaryText,
+  },
   largeTitle: {
     // 34
     fontFamily: Fonts.type.semiBold,

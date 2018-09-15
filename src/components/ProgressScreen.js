@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View, StyleSheet, ActivityIndicator, Dimensions,
-} from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import LottieView from 'lottie-react-native';
+import loading from '../assets/loading.json';
 
 const ProgressScreen = ({ componentId, onDisplay }) => {
   onDisplay(componentId);
   return (
     <View style={styles.vProgress}>
-      <ActivityIndicator />
+      <LottieView source={loading} autoPlay loop style={styles.vAnimation} />
     </View>
   );
 };
@@ -26,7 +26,11 @@ const styles = StyleSheet.create({
     height,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(10, 10, 10, 0.4)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  vAnimation: {
+    width: 150,
+    height: 150,
   },
 });
 

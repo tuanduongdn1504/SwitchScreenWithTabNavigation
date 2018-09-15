@@ -1,6 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 
 Navigation.events().registerNavigationButtonPressedListener(({ buttonId, componentId }) => {
+  console.log('componentId', componentId);
   switch (buttonId) {
     case 'sideMenu':
       toggleSideMenu();
@@ -9,7 +10,6 @@ Navigation.events().registerNavigationButtonPressedListener(({ buttonId, compone
       pop(componentId);
       break;
     case 'close':
-      console.log('componentId', componentId);
       dismissModal(componentId);
       break;
     default:

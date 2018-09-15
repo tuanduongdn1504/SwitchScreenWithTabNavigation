@@ -47,7 +47,6 @@ export function registerScreens(store, persistor) {
     PersistProvider,
     store,
   );
-  Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);

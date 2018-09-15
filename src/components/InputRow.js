@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, TextInput, Animated, Platform, Text } from 'react-native';
+import {
+  View, TextInput, Animated, Platform, Text, LayoutAnimation
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {  Colors } from '../themes/index';
-import { type } from '../themes/Fonts';
+import { Colors } from '../themes/index';
+import Fonts, { type } from '../themes/Fonts';
 import tools from '../utils/tools';
 
 export default class InputRow extends Component {
@@ -41,15 +43,20 @@ export default class InputRow extends Component {
   }
 
   onBlur = () => {
-    const {validateType} = this.props;
+    const { validateType } = this.props;
     this.props.onBlur && this.props.onBlur();
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     const isValidate = validate(validateType, this.input._lastNativeText);
-    this.setState({isValidate});
+    this.setState({ isValidate });
     if (!this.input._lastNativeText || this.input._lastNativeText == '') {
-      this.setState({isValidate, placeholderTextColor: this.props.placeholderTextColor || Colors.divider, isFocus: false });
+      this.setState({
+        isValidate,
+        placeholderTextColor: this.props.placeholderTextColor || Colors.divider,
+        isFocus: false,
+      });
       this.transformOnFocus(false);
     }
-  }
+  };
 
   setValue(text) {
     this.setState({ value: text });
@@ -57,7 +64,7 @@ export default class InputRow extends Component {
   }
 
   getText() {
-    return this.state.isValidate? this.input._lastNativeText:null;
+    return this.state.isValidate ? this.input._lastNativeText : null;
   }
 
   transformOnFocus = (mode = true) => {
@@ -65,16 +72,14 @@ export default class InputRow extends Component {
     Animated.spring(bounceValue, {
       toValue: mode ? 1 : 0,
     }).start();
-  }
-
- 
+  };
 
   renderIcon() {
     return (
       <View style={this.props.multiline ? styles.containerLeftMultil : styles.containerLeft}>
         <Icon
           name={this.props.icon}
-          size={Metrics.icons.small}
+          size={25}
           style={[styles.icon, { color: this.props.placeholderTextColor || Colors.divider }]}
         />
       </View>
@@ -89,42 +94,30 @@ export default class InputRow extends Component {
         )}
         {this.props.animatedTitle && this.renderAnimatedTitle()}
         {this.renderInput()}
-        {this.props.underLine && Platform.OS !== 'android' && this.renderUnderLine()}
       </View>
     );
   }
 
   renderAnimatedTitle() {
-    const {bounceValue, isFocus} = this.state;
+    const { bounceValue, isFocus } = this.state;
+    const { icon } = this.props;
     const color = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        Colors.placeholderText,
-        Colors.primaryText,
-      ],
+      outputRange: [Colors.placeholderText, Colors.primaryText],
     });
     const placeholderTranslateY = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        5,
-        -20
-      ],
+      outputRange: [5, -20],
     });
     const placeholderTranslateX = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        0,
-        0
-      ],
+      outputRange: [0, icon ? -38 : 0],
     });
     const scaleText = bounceValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [
-        16,
-        14,
-      ],
+      outputRange: [16, 14],
     });
-    
+
     return (
       <View>
         <Animated.Text
@@ -137,7 +130,7 @@ export default class InputRow extends Component {
                 { translateX: placeholderTranslateX },
               ],
               fontSize: scaleText,
-              fontWeight: isFocus?'600':'400'
+              fontWeight: isFocus ? '600' : '400',
             },
           ]}
         >
@@ -149,17 +142,21 @@ export default class InputRow extends Component {
   }
 
   renderInput() {
+    const {validateType} = this.props;
     return (
       <View>
         <TextInput
-          onChangeText={(text) => {
+          onChangeText={text => {
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+            const isValidate = validate(validateType, text);
+            !this.state.isValidate && isValidate && this.setState({isValidate});
             if (checkTypeNumber(this.props.keyboardType)) {
               if (text == '' || !text) return;
               if (checkPhoneType(this.props.keyboardType)) {
-                !checkPhone(text) && this.setState({ value: this.state.value });
+                !checkPhone(text) && this.setState({isValidate, value: this.state.value });
                 return;
               }
-              !checkNumber(text) && this.setState({ value: this.state.value });
+              !checkNumber(text) && this.setState({isValidate, value: this.state.value });
             }
           }}
           spellCheck={false}
@@ -169,11 +166,11 @@ export default class InputRow extends Component {
           returnKeyType={this.props.returnKeyType || 'done'}
           keyboardType={this.props.keyboardType}
           blurOnSubmit={!this.props.multiline}
-          underlineColorAndroid='transparent'
+          underlineColorAndroid="transparent"
           multiline={this.props.multiline}
           editable={this.props.editable}
           secureTextEntry={this.props.secureTextEntry}
-          ref={(ref) => {
+          ref={ref => {
             this.input = ref;
           }}
           placeholder={this.props.animatedTitle ? '' : this.props.placeholder}
@@ -192,7 +189,7 @@ export default class InputRow extends Component {
           onFocus={this.onFocus.bind(this)}
           onBlur={this.onBlur.bind(this)}
           defaultValue={this.props.defaultValue}
-          onChange={(event) => {
+          onChange={event => {
             this.setState({ value: event.nativeEvent.text });
             this.props.onChangeText && this.props.onChangeText(event.nativeEvent.text);
           }}
@@ -236,7 +233,12 @@ export default class InputRow extends Component {
           {this.renderTextInput()}
           {this.props.children}
         </View>
-        {!isValidate && <Text type='note' color={Colors.red} style={styles.txtError}>{validateMessage}</Text>}
+        {this.props.underLine && Platform.OS !== 'android' && this.renderUnderLine()}
+        {!isValidate && (
+          <Text type="note" color={Colors.red} style={styles.txtError}>
+            {validateMessage}
+          </Text>
+        )}
       </View>
     );
   }
@@ -252,8 +254,9 @@ const styles = {
   },
   containerLeft: {
     width: 38,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingBottom: 5,
   },
   containerLeftMultil: {
     width: 38,
@@ -296,8 +299,8 @@ const styles = {
   txtError: {
     color: Colors.red,
     marginTop: 8,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 };
 function checkPhone(num) {
   const re = /^[0-9#+*.,]+$/;
@@ -320,11 +323,14 @@ function checkTypeNumber(type) {
 const validate = (type, text) => {
   switch (type) {
     case 'email':
-    return tools.validateEmail(text);
+      return tools.validateEmail(text);
     case 'password':
-    return text && text.length>5;
+      return text && text.length > 5;
+    case 'phone':
+      return checkPhone(text);
+    case 'number':
+      return checkNumber(text);
     default:
-    return true;
+      return true;
   }
-
-}
+};

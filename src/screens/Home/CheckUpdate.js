@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import CodePush from 'react-native-code-push';
+import { showProgress } from '../../navigation/navigationActions';
 
 export default class CheckUpdate extends Component {
   constructor() {
@@ -9,22 +10,25 @@ export default class CheckUpdate extends Component {
   }
 
   componentDidMount() {
-    !__DEV__ &&
-      CodePush.sync(
+    !__DEV__
+      && CodePush.sync(
         {
           checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
           installMode: CodePush.InstallMode.IMMEDIATE,
           updateDialog: false,
           appendReleaseDescription: true,
         },
-        (status) => {
+        status => {
           switch (status) {
             case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+              showProgress();
               break;
             case CodePush.SyncStatus.INSTALLING_UPDATE:
+              showProgress();
               break;
             case CodePush.SyncStatus.UNKNOWN_ERROR:
             case CodePush.SyncStatus.UPDATE_INSTALLED:
+              showProgress(false);
               break;
             default:
               break;
