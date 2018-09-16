@@ -77,6 +77,13 @@ export const styles = StyleSheet.create({
     fontWeight: Fonts.fontWeight.normal,
     color: Colors.primaryTextBlur,
   },
+  body2Bold: {
+    // 16
+    fontFamily: Fonts.type.bold,
+    fontSize: 16,
+    fontWeight: Fonts.fontWeight.bold,
+    color: Colors.primaryTextBlur,
+  },
   body3: {
     // 14
     fontFamily: Fonts.type.regular,
@@ -110,7 +117,7 @@ export const styles = StyleSheet.create({
     // fontSize: Fonts.size.semi,
   },
   navButton: {
-    // 14 600
+    // 10 600
     fontFamily: Fonts.type.semiBold,
     fontSize: 10,
     fontWeight: Fonts.fontWeight.semibold,
@@ -218,7 +225,7 @@ export const styles = StyleSheet.create({
   // },
   // normalBlack: {
   //   fontFamily: Fonts.type.regular,
-  //   fontWeight: Fonts.fontWeight.black,
+  //   fontWeight: Fonts.fontWeignormalMediumht.black,
   //   fontSize: Fonts.size.regular,
   //   color: Colors.primaryText,
   // },

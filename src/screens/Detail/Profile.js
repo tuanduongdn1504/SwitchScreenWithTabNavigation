@@ -1,11 +1,7 @@
 import React from 'react';
 import I18n from 'react-native-i18n';
 import {
-  View,
-  Image,
-  Dimensions,
-  TouchableHighlight,
-  Platform,
+  View, Image, Dimensions, TouchableHighlight, Platform,
 } from 'react-native';
 import { Colors, Images } from '../../themes';
 import Text from '../../components/Text';
@@ -15,10 +11,7 @@ import { pop } from '../../navigation/navigationActions';
 const Profile = props => {
   // const { full_name, avatar, sex } = props.user;
   return (
-    <TouchableHighlight
-      underlayColor="transparent"
-      onPress={() => props.onPress()}
-    >
+    <TouchableHighlight underlayColor="transparent" onPress={() => props.onPress()}>
       <View style={styles.content}>
         <View style={styles.row}>
           <Button
@@ -38,10 +31,10 @@ const Profile = props => {
           style={styles.avatar}
         />
         <View style={styles.vRight}>
-          <Text type="title26PX" color={Colors.primary}>
+          <Text type="title1" color={Colors.primary}>
             Jennifer Aniston
           </Text>
-          <Text type="lightNote" color={Colors.default}>
+          <Text type="small" color={Colors.default}>
             {I18n.t('menu.editProfile')}
           </Text>
         </View>

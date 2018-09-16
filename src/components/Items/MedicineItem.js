@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import I18n from 'react-native-i18n';
-import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import {
+  View, StyleSheet, Image, Dimensions,
+} from 'react-native';
 import Text from '../Text';
 import Colors from '../../themes/Colors';
 import Touchable from '../Touchable';
@@ -14,7 +16,7 @@ const MedicineItem = ({ data, onPress }) => {
       <Touchable onPress={onPress}>
         <View style={styles.container}>
           <View style={styles.vLeft}>
-            <Text type="normalBold" color={Colors.primaryText}>
+            <Text type="body2Bold" color={Colors.primaryText}>
               {data.name}
             </Text>
             <Text type="subTextLight" color={Colors.secondaryText} style={styles.subTitle}>

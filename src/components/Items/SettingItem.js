@@ -38,7 +38,7 @@ const SettingView = props => {
         ]}
       >
         <Text
-          type={props.bold ? 'normalBlack' : 'normalMedium'}
+          type={props.bold ? 'body2Bold' : 'body2'}
           style={[styles.txtTitle, props.color && { color: props.color }]}
         >
           {props.title}

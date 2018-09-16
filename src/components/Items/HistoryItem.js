@@ -12,12 +12,12 @@ const HistoryItem = ({ data, onPress }) => {
         <View style={styles.container}>
           <Image style={styles.image} defaultSource={Images.defaultUser} />
           <View style={styles.footer}>
-            <Text type="normalBold" numberOfLines={1} color={Colors.primaryText}>
+            <Text type="body2Bold" numberOfLines={1} color={Colors.primaryText}>
               {data.user}
             </Text>
             <View style={styles.vContent}>
               <Text
-                type="lightNote"
+                type="small"
                 numberOfLines={1}
                 color={Colors.primaryTextBlur}
                 style={{ flex: 1 }}
@@ -27,7 +27,7 @@ const HistoryItem = ({ data, onPress }) => {
             </View>
           </View>
           <View style={styles.right}>
-            <Text type="lightNote" center color={Colors.primaryTextBlur}>
+            <Text type="small" center color={Colors.primaryTextBlur}>
               {data.timer}
             </Text>
           </View>
