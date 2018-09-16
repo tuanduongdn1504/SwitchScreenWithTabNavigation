@@ -86,8 +86,6 @@ class SignIn extends Component {
       <View style={styles.vButtonGroup}>
         <Button
           primary
-          startColor={Colors.darkPrimary}
-          endColor={Colors.lightPrimary}
           style={styles.btn}
           onPress={this.login}
           buttonTitle={I18n.t('signIn').toLocaleUpperCase()}
