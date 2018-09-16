@@ -27,9 +27,15 @@ class Intro extends Component {
   };
 
   signUp = () => {
-    push(this.props.componentId, 'signUp', {
+    const { componentId } = this.props;
+    push(componentId, 'signUp', {
       title: I18n.t('signUp'),
     });
+  };
+
+  forgotPassword = () => {
+    const { componentId } = this.props;
+    push(componentId, 'forgotPassword', {});
   };
 
   login = () => {
@@ -109,6 +115,9 @@ class Intro extends Component {
             {`${I18n.t('intro.signUp')}`}
           </Text>
         </Text>
+        <Text type="body2" onPress={this.forgotPassword} color={Colors.primary}>
+          {`${I18n.t('intro.forgotPass')}`}
+        </Text>
         <View style={{ height: 40 }} />
       </View>
     );
@@ -178,6 +187,7 @@ const styles = StyleSheet.create({
 Intro.propTypes = {
   fbSignIn: PropTypes.func,
   signIn: PropTypes.func,
+  componentId: PropTypes.string,
 };
 
 function mapStateToProps(state) {
