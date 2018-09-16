@@ -13,7 +13,7 @@ const Notifications = ({ title }) => {
         <Text type="title26PX" color={Colors.primary}>
           {title}
         </Text>
-        {/* <Text type="lightNote" color={Colors.default}>
+        {/* <Text type="small" color={Colors.default}>
             {I18n.t('menu.editProfile')}
           </Text> */}
       </View>

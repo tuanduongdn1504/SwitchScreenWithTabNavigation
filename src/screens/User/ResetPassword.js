@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
-import { push, startStackScreen } from '../../navigation/navigationActions';
+import Actions from '../../redux/ForgotPasswordRedux/actions';
 
-export default class ForgotPassword extends Component {
+class ForgotPassword extends Component {
   static propTypes = {
-    componentId: PropTypes.string,
+    resetPassword: PropTypes.func,
+    resetEmail: PropTypes.string,
+    verifyToken: PropTypes.string,
   };
 
   static options() {
@@ -36,9 +39,18 @@ export default class ForgotPassword extends Component {
   };
 
   confirm = () => {
-    // const { componentId } = this.props;
-    // push(componentId, 'intro', {});
-    startStackScreen();
+    const { resetEmail, verifyToken, resetPassword } = this.props;
+    const newPassword = this.newPassword.getText();
+    const confirmPassword = this.confirmPassword.getText();
+    if (newPassword && confirmPassword) {
+      const data = {
+        password: newPassword,
+        confirmPassword,
+        email: resetEmail,
+        verify_token: verifyToken,
+      };
+      resetPassword(data);
+    }
   };
 
   renderButtonGroup = () => {
@@ -67,11 +79,11 @@ export default class ForgotPassword extends Component {
         underLine
         validateType="password"
         secureTextEntry
-        // onChangeText={this.onChange('newPassword')}
         onSubmitEditing={() => this.focusNextField('confirmPassword')}
         returnKeyType="next"
         placeholderTextColor={Colors.lightGray}
         placeholder={I18n.t('userInfo.password.newPassword')}
+        validateMessage={I18n.t('error.password')}
       />
       <InputRow
         ref={ref => {
@@ -82,10 +94,10 @@ export default class ForgotPassword extends Component {
         underLine
         validateType="password"
         secureTextEntry
-        // onChangeText={this.onChange('confirmPassword')}
         placeholderTextColor={Colors.lightGray}
         placeholder={I18n.t('userInfo.password.confirmPassword')}
         style={styles.input}
+        validateMessage={I18n.t('error.password')}
       />
     </View>
   );
@@ -123,18 +135,15 @@ const styles = StyleSheet.create({
   },
 });
 
-// function mapStateToProps(state) {
-//   return {};
-// }
+function mapStateToProps(state) {
+  return state.password;
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signIn: data => dispatch(LoginActions.signIn(data)),
-//     fbSignIn: data => dispatch(LoginActions.fbSignIn(data)),
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(Actions, dispatch);
+};
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(ForgotPassword);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ForgotPassword);

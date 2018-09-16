@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, StyleSheet, Dimensions } from 'react-native';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
-import { showModal } from '../../navigation/navigationActions';
-import { close } from '../../navigation/navigationButtons';
 import Text from '../../components/Text';
+import Actions from '../../redux/ForgotPasswordRedux/actions';
 
-export default class ForgotPassword extends Component {
+class ForgotPassword extends Component {
+  static propTypes = {
+    forgotPassword: PropTypes.func,
+  };
+
   static options() {
     return {
       topBar: {
@@ -32,9 +37,13 @@ export default class ForgotPassword extends Component {
   };
 
   send = () => {
-    showModal('verifyPassword', {
-      leftButtons: [close()],
-    });
+    const { forgotPassword } = this.props;
+    if (this.email.getText()) {
+      const data = {
+        email: this.email.getText(),
+      };
+      forgotPassword(data);
+    }
   };
 
   renderDescription = () => {
@@ -106,18 +115,15 @@ const styles = StyleSheet.create({
   },
 });
 
-// function mapStateToProps(state) {
-//   return {};
-// }
+function mapStateToProps() {
+  return {};
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signIn: data => dispatch(LoginActions.signIn(data)),
-//     fbSignIn: data => dispatch(LoginActions.fbSignIn(data)),
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(Actions, dispatch);
+};
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(ForgotPassword);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ForgotPassword);

@@ -8,7 +8,7 @@ export async function login(data) {
   return post('/auth/login', data);
 }
 
-export async function loginfacebook(data) {
+export async function loginFacebook(data) {
   return post('/auth/facebook', data);
 }
 
@@ -28,11 +28,12 @@ export async function updatePassword(data) {
   return post('/users/password/change', data);
 }
 
-export async function veriryPasswordToken(data) {
+export async function verifyPasswordToken(data) {
+  console.log('/users/password/verify', data);
   return post('/users/password/verify', data);
 }
 
-export async function getInfor() {
+export async function getInfo() {
   return get('/users/me');
 }
 

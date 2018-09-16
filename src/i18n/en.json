@@ -136,7 +136,7 @@
     "signUp": "Sign Up",
     "login": "Login",
     "appDes": "Find tutor near you",
-    "forgotPass": "Forgot Password?"
+    "forgotPass": "Forgot password?"
   },
   "confirm": "Confirm",
   "auth": {
@@ -148,7 +148,9 @@
   "error": {
     "login": "The Email or password is invalid.",
     "password": "The Password has more than 6 chars",
-    "email": "This Email is invalid format."
+    "email": "This Email is invalid format.",
+    "passwordMismatch": " Your password and confirm password do not match.",
+    "somethingWentWrong": "Something went wrong."
   },
   "button": {
     "confirm": "Confirm",

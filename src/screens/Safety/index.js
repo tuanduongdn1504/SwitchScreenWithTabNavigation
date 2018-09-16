@@ -178,7 +178,7 @@ class Safety extends Component {
         <MapView location={location} />
         <View style={styles.vInfo}>
           <View style={styles.description}>
-            <Text type="normalBold" center>
+            <Text type="body2Bold" center>
               {I18n.t('safety.shareYourCurrentLocation')}
             </Text>
           </View>
