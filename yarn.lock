@@ -680,9 +680,9 @@ acorn@^5.0.0, acorn@^5.0.3, acorn@^5.5.3, acorn@^5.6.0:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.2.tgz#91fa871883485d06708800318404e72bfb26dcc5"
 
-ad-rn-generator@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/ad-rn-generator/-/ad-rn-generator-1.0.4.tgz#195a09bc7a7034a7ac1193d467a4314e94c934e2"
+ad-rn-generator@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ad-rn-generator/-/ad-rn-generator-1.0.6.tgz#bc8034877149c5d3c772f72b63ed87f53bad1df4"
   dependencies:
     inquirer "1.1.2"
     inquirer-recursive "^0.0.5"

@@ -53,7 +53,7 @@
     "projectDirectory": "iOS"
   },
   "devDependencies": {
-    "ad-rn-generator": "^1.0.4",
+    "ad-rn-generator": "^1.0.6",
     "babel-eslint": "^9.0.0",
     "babel-jest": "23.4.2",
     "babel-preset-react-native": "^5",
