@@ -1,10 +1,10 @@
 import login from './LoginRedux/reducer';
 import tutor from './TutorRedux/reducer';
 import chat from './ChatRedux/reducer';
-import ForgotPassword from './ForgotPasswordRedux/reducer';
+import password from './ForgotPasswordRedux/reducer';
 
 export default {
-  ForgotPassword,
+  password,
   chat,
   login,
   tutor,

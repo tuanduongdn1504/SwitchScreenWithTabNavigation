@@ -29,6 +29,7 @@ export async function updatePassword(data) {
 }
 
 export async function verifyPasswordToken(data) {
+  console.log('/users/password/verify', data);
   return post('/users/password/verify', data);
 }
 

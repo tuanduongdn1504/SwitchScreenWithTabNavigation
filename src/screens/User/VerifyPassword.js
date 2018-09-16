@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, StyleSheet, Dimensions } from 'react-native';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import CodeInput from '../../components/CodeInput';
 import Button from '../../components/Button';
-import { showModal } from '../../navigation/navigationActions';
-import { closeAll } from '../../navigation/navigationButtons';
 import Text from '../../components/Text';
+import Actions from '../../redux/ForgotPasswordRedux/actions';
 
-export default class VerifyPassword extends Component {
+class VerifyPassword extends Component {
+  static propTypes = {
+    verifyPassword: PropTypes.func,
+  };
+
   static options() {
     return {
       topBar: {
@@ -24,8 +29,7 @@ export default class VerifyPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.newPassword = React.createRef();
-    this.confirmPassword = React.createRef();
+    this.code = React.createRef();
   }
 
   onChange = name => text => {
@@ -33,9 +37,15 @@ export default class VerifyPassword extends Component {
   };
 
   confirm = () => {
-    showModal('resetPassword', {
-      leftButtons: [closeAll()],
-    });
+    const { verifyPassword } = this.props;
+    const code = this.code.getInputData();
+    console.log('verify_token', code);
+    if (code) {
+      const data = {
+        verify_token: code,
+      };
+      verifyPassword(data);
+    }
   };
 
   renderButtonGroup = () => {
@@ -68,7 +78,12 @@ export default class VerifyPassword extends Component {
 
   renderInput = () => (
     <View style={styles.groupInput}>
-      <CodeInput numberOfDigit={4} />
+      <CodeInput
+        numberOfDigit={4}
+        ref={ref => {
+          this.code = ref;
+        }}
+      />
     </View>
   );
 
@@ -101,18 +116,15 @@ const styles = StyleSheet.create({
   },
 });
 
-// function mapStateToProps(state) {
-//   return {};
-// }
+function mapStateToProps(state) {
+  return state.password;
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signIn: data => dispatch(LoginActions.signIn(data)),
-//     fbSignIn: data => dispatch(LoginActions.fbSignIn(data)),
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(Actions, dispatch);
+};
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(VerifyPassword);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VerifyPassword);

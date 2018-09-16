@@ -6,6 +6,5 @@ import chatSagas from './ChatRedux/sagas';
 import ForgotPasswordSagas from './ForgotPasswordRedux/sagas';
 
 export default function* root() {
-  yield all([
-    ...ForgotPasswordSagas,...chatSagas, ...appSagas, ...loginSagas, ...tutorSagas]);
+  yield all([...ForgotPasswordSagas, ...chatSagas, ...appSagas, ...loginSagas, ...tutorSagas]);
 }

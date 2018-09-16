@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {};
 }
 

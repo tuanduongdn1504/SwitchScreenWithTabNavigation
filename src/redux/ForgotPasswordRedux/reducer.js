@@ -1,13 +1,60 @@
+import Immutable from 'seamless-immutable';
+import { Types } from './actions';
 import { makeReducerCreator } from '../../utils/reduxUtils';
-import { makeCRUDReducerCreator, INITIAL_CRUD_STATE } from '../crudCreator/reducer';
-import { MODEL, IGNORE_ACTIONS } from './actions';
 
-export const INITIAL_STATE = {
-  ...INITIAL_CRUD_STATE,
+export const INITIAL_STATE = Immutable({
+  data: {},
+  error: null,
+  loading: null,
+  resetEmail: null,
+  verifyToken: null,
+});
+// TODO: Forgot password
+const forgotPassword = (state, { data }) => {
+  return state.merge({
+    resetEmail: data.email,
+  });
 };
 
-const reducer = makeReducerCreator(INITIAL_STATE, {
-  ...makeCRUDReducerCreator(MODEL, IGNORE_ACTIONS),
+const forgotPasswordSuccess = (state, { data }) => state.merge({});
+
+const forgotPasswordFailure = (state, action) => state.merge({});
+
+// TODO: Verify password
+const verifyPassword = (state, { data }) => state.merge({
+  verifyToken: data.verify_token,
 });
 
-export default reducer;
+const verifyPasswordSuccess = (state, { data }) => state.merge({});
+
+const verifyPasswordFailure = (state, action) => state.merge({
+  verifyToken: null,
+});
+
+// TODO: Reset password
+const resetPassword = (state, { data }) => {
+  return state.merge({});
+};
+
+const resetPasswordSuccess = (state, { data }) => state.merge({
+  resetEmail: null,
+  verifyToken: null,
+});
+
+const resetPasswordFailure = (state, action) => state.merge({});
+
+const ACTION_HANDLERS = {
+  [Types.FORGOT_PASSWORD]: forgotPassword,
+  [Types.FORGOT_PASSWORD_SUCCESS]: forgotPasswordSuccess,
+  [Types.FORGOT_PASSWORD_FAILURE]: forgotPasswordFailure,
+
+  [Types.VERIFY_PASSWORD]: verifyPassword,
+  [Types.VERIFY_PASSWORD_SUCCESS]: verifyPasswordSuccess,
+  [Types.VERIFY_PASSWORD_FAILURE]: verifyPasswordFailure,
+
+  [Types.RESET_PASSWORD]: resetPassword,
+  [Types.RESET_PASSWORD_SUCCESS]: resetPasswordSuccess,
+  [Types.RESET_PASSWORD_FAILURE]: resetPasswordFailure,
+};
+
+export default makeReducerCreator(INITIAL_STATE, ACTION_HANDLERS);
