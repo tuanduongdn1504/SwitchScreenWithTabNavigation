@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && rm -rf ~/.rncache && yarn install && cd android && ./gradlew clean && yarn run fix-xcode",
-    "createIconFont": "./node_modules/.bin/generate-icon ./src/assets/img/customFont/styles.css --componentName=icomoon --fontFamily=icomoon > ./node_modules/react-native-vector-icons/icomoon.js && cp ./src/assets/img/customFont/icomoon.ttf ./node_modules/react-native-vector-icons/Fonts/icomoon.ttf",
+    "createIconFont": "./node_modules/.bin/generate-icon ./src/assets/img/customFont/styles.css --componentName=Tutor  --prefix=anticon-me- --fontFamily=tutor > ./node_modules/react-native-vector-icons/Tutor.js && cp ./src/assets/img/customFont/tutor.ttf ./node_modules/react-native-vector-icons/Fonts/tutor.ttf",
     "buildandroid": "cd android && ./gradlew clean && ./gradlew assembleRelease",
     "fix-xcode": "react-native-schemes-manager all",
     "postinstall": "react-native-schemes-manager all"
@@ -36,6 +36,7 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
+    "redux-persist-seamless-immutable": "^2.0.0",
     "redux-saga": "^0.16.0",
     "remotedev-serialize": "^0.1.1",
     "reselect": "^3.0.1",

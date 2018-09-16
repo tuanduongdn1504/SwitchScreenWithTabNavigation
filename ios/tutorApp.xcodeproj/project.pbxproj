@@ -50,6 +50,7 @@
 		87D7A696DD1846B98FDDEB34 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9442D865B1EF480797D6CFD0 /* Entypo.ttf */; };
 		89322EB9E06A41308A6F79DF /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAA05F7D4AB4B4981A4FF1F /* libCodePush.a */; };
 		9ED5C75CEF3047B9927BE024 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D648ACD93144FCA83DF8BE /* libRNFirebase.a */; };
+		9F0AEDD5214E1F0D000AACB6 /* tutor.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F0AEDD4214E1F0C000AACB6 /* tutor.ttf */; };
 		9F127884214B4433000CE08A /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F12784F214B4429000CE08A /* libBVLinearGradient.a */; };
 		9F2D3C802140C28D008914D0 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2D3C7E2140C283008914D0 /* libRNShare.a */; };
 		9F6D9E7F214A31F0005CB2F1 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6D9E54214A31E9005CB2F1 /* libRCTFBSDK.a */; };
@@ -65,7 +66,6 @@
 		9FCFA4AF214D3D7D0045E00C /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCFA4A5214D3D590045E00C /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FD5F836213AAB61001AA978 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD5F835213AAB42001AA978 /* libAirMaps.a */; };
 		9FDDD3D321366C2100564532 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDDD3CF21366C1800564532 /* libRNI18n.a */; };
-		9FDDD3D521366F5500564532 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FDDD3D421366F5500564532 /* icomoon.ttf */; };
 		9FE5FF7821438205006876C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FE5FF4521438204006876C9 /* GoogleService-Info.plist */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AEEEDF0C7F40442294B95DA1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9751199F3D124B5986C8C729 /* Feather.ttf */; };
@@ -571,6 +571,7 @@
 		9751199F3D124B5986C8C729 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		9BB60668F9194A228D1D893E /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9CAA05F7D4AB4B4981A4FF1F /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
+		9F0AEDD4214E1F0C000AACB6 /* tutor.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tutor.ttf; path = ../src/assets/img/customFont/tutor.ttf; sourceTree = "<group>"; };
 		9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		9F2D3C4A2140C283008914D0 /* RNShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		9F6D9E47214A31E9005CB2F1 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
@@ -587,7 +588,6 @@
 		9FD5F7C9213AA75A001AA978 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		9FD5F830213AAB42001AA978 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		9FDDD39D21366C1800564532 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
-		9FDDD3D421366F5500564532 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		9FE5FF4521438204006876C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4D648ACD93144FCA83DF8BE /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		A896ACF6592B44DF9949DCCD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -1054,10 +1054,10 @@
 		E13D8C2C6AFF4B7BA3F51224 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F0AEDD4214E1F0C000AACB6 /* tutor.ttf */,
 				9442D865B1EF480797D6CFD0 /* Entypo.ttf */,
 				0AC4E5DE89254C389899E68D /* EvilIcons.ttf */,
 				9751199F3D124B5986C8C729 /* Feather.ttf */,
-				9FDDD3D421366F5500564532 /* icomoon.ttf */,
 				FA9788DDC10949408D4540CF /* FontAwesome.ttf */,
 				A896ACF6592B44DF9949DCCD /* FontAwesome5_Brands.ttf */,
 				446C6F82941A409C8747EEC3 /* FontAwesome5_Regular.ttf */,
@@ -1724,10 +1724,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FDDD3D521366F5500564532 /* icomoon.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				87D7A696DD1846B98FDDEB34 /* Entypo.ttf in Resources */,
+				9F0AEDD5214E1F0D000AACB6 /* tutor.ttf in Resources */,
 				FE6EA47E3FB7466C9F61F35B /* EvilIcons.ttf in Resources */,
 				AEEEDF0C7F40442294B95DA1 /* Feather.ttf in Resources */,
 				35BBCF653EDF4257AA125E2A /* FontAwesome.ttf in Resources */,

@@ -10,7 +10,7 @@ export const startWithTabs = () => {
     {
       label: 'home',
       title: 'Tutor',
-      icon: iconsMap['ios-home'],
+      icon: iconsMap.home,
       screen: 'home',
       options: {
         topBar: {
@@ -37,7 +37,7 @@ export const startWithTabs = () => {
     {
       label: 'chatList',
       title: 'Chat',
-      icon: iconsMap['ios-chatbubbles'],
+      icon: iconsMap.chat,
       screen: 'chatList',
       options: {
         ...navigatorStyle,
@@ -54,7 +54,7 @@ export const startWithTabs = () => {
     {
       label: 'safety',
       title: 'Safety',
-      icon: iconsMap['ios-help-buoy'],
+      icon: iconsMap.shield,
       screen: 'Safety',
       options: {
         ...navigatorStyle,
@@ -71,7 +71,7 @@ export const startWithTabs = () => {
     {
       label: 'notifications',
       title: 'Notifications',
-      icon: iconsMap['ios-notifications'],
+      icon: iconsMap.notification,
       screen: 'notification',
       options: {
         ...navigatorStyle,
@@ -88,7 +88,7 @@ export const startWithTabs = () => {
     {
       label: 'more',
       title: 'Menu',
-      icon: iconsMap['md-menu'],
+      icon: iconsMap.user,
       screen: 'sideMenu',
       options: {
         ...navigatorStyle,

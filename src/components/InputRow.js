@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../themes/index';
-import Fonts, { type } from '../themes/Fonts';
+import { type } from '../themes/Fonts';
 import tools from '../utils/tools';
 
 export default class InputRow extends Component {
