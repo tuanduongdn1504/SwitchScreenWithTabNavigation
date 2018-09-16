@@ -10,7 +10,7 @@ import {
   updatePassword,
   editUser,
   logout,
-  loginfacebook,
+  loginFacebook,
 } from '../../api/auth';
 import {
   startWithTabs,
@@ -116,7 +116,7 @@ export function* fbSignIn() {
   try {
     const accessToken = yield call(facebookSignInApi);
     showProgress(true);
-    const response = yield call(loginfacebook, accessToken);
+    const response = yield call(loginFacebook, accessToken);
     showProgress(false);
     if (response && !response.token) {
       yield put(Actions.fbSignInFailure(response));
