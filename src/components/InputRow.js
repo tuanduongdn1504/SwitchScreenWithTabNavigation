@@ -182,7 +182,7 @@ export default class InputRow extends Component {
               color: this.props.textColor || Colors.primaryTextBlur,
               textAlign: this.props.textAlign === 'center' ? 'center' : null,
             },
-            this.props.multiline ? { height: 100, margin: 10 } : {},
+            this.props.multiline ? { height: 100, marginVertical: 10 } : {},
             this.props.textInputStyle,
           ]}
           value={this.state.value}
@@ -224,16 +224,16 @@ export default class InputRow extends Component {
   }
 
   render() {
-    const { validateMessage } = this.props;
+    const { validateMessage, underLine, children, icon, style, backgroundColor } = this.props;
     const { isValidate } = this.state;
     return (
-      <View ref="containerInput" style={[styles.item, this.props.style]}>
-        <View style={[styles.containerInputRow, { backgroundColor: this.props.backgroundColor }]}>
-          {this.props.icon && this.renderIcon()}
+      <View ref="containerInput" style={[styles.item, style]}>
+        <View style={[styles.containerInputRow, { backgroundColor: backgroundColor }]}>
+          {icon && this.renderIcon()}
           {this.renderTextInput()}
-          {this.props.children}
+          {children}
         </View>
-        {this.props.underLine && Platform.OS !== 'android' && this.renderUnderLine()}
+        {underLine && Platform.OS !== 'android' && this.renderUnderLine()}
         {!isValidate && (
           <Text type="note" color={Colors.red} style={styles.txtError}>
             {validateMessage}

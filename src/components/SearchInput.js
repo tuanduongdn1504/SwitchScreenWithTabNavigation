@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, Keyboard } from 'react-native';
+import {
+  View, TextInput, StyleSheet, Keyboard,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../themes';
@@ -23,15 +25,17 @@ const SearchInput = props => {
           onFocus={props.onFocus}
         />
       </View>
-      {props.isFocus && <Button
-        style={styles.button}
-        textStyle={styles.txtButton}
-        onPress={() => {
-          Keyboard.dismiss();
-          props.onClose && props.onClose();
+      {props.isFocus && (
+        <Button
+          style={styles.button}
+          textStyle={styles.txtButton}
+          onPress={() => {
+            Keyboard.dismiss();
+            props.onClose && props.onClose();
           }}
-        buttonTitle="Cancel"
-      />}
+          buttonTitle="Cancel"
+        />
+      )}
     </View>
   );
 };
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 10,
-    marginHorizontal: 15,
+    marginHorizontal: 20,
   },
   contentInput: {
     flex: 1,

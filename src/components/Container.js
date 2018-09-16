@@ -4,12 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import ProgressScreen from './ProgressScreen';
 
 const Container = ({ children, style, loading }) => {
-  return (
-    <View style={[styles.container, style]}>
-      {children}
-      {loading && <ProgressScreen />}
-    </View>
-  );
+  return <View style={[styles.container, style]}>{children}</View>;
 };
 
 Container.propTypes = {
