@@ -43,7 +43,7 @@ class Setting extends Component {
   };
 
   logout = () => {
-    startStackScreen();
+    this.props.logout();
   };
 
   render() {
