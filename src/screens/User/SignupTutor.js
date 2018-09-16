@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
   },
   vInput: {
     marginTop: 35,
+    paddingBottom: 100,
   },
   txtTitle: {
     paddingTop: 15,
