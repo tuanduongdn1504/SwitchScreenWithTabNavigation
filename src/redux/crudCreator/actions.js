@@ -4,12 +4,12 @@ import { makeActionCreator } from '../../utils/reduxUtils';
 
 export const CRUD_ACTIONS = ['GET_ALL', 'GET_ONE', 'DELETE', 'EDIT', 'CREATE'];
 export const ACTIONS_STATE = ['', 'SUCCESS', 'FAILURE'];
-export const PRIMARY_KEY = 'objectId';
+export const PRIMARY_KEY = 'id';
 
 export function makeCRUDConstantCreator(resource, ignoreActions = []) {
   const constants = {};
-  _.xor(CRUD_ACTIONS, ignoreActions).forEach((action) => {
-    ACTIONS_STATE.forEach((state) => {
+  _.xor(CRUD_ACTIONS, ignoreActions).forEach(action => {
+    ACTIONS_STATE.forEach(state => {
       const convertActionStr = [action, _.snakeCase(resource).toUpperCase()];
       state !== '' && convertActionStr.push(state);
       const type = convertActionStr.join('_');
@@ -22,7 +22,7 @@ export function makeCRUDConstantCreator(resource, ignoreActions = []) {
 export const makeCRUDActionsCreator = (resource, ignoreActions = []) => {
   const actions = {};
   const constants = makeCRUDConstantCreator(resource, ignoreActions);
-  _.values(constants).forEach((type) => {
+  _.values(constants).forEach(type => {
     const actionName = makeActionName(type);
     actions[actionName] = data => makeActionCreator(type, { data });
   });
