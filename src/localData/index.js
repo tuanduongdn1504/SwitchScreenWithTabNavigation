@@ -1,11 +1,4 @@
-export const CITY = [
-  'Hà Nội',
-  'Đà Nẵng',
-  'Hồ Chí Minh',
-  'Huế',
-  'Quang Ninh',
-  'Thanh Hoá',
-];
+export const CITY = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh', 'Huế', 'Quang Ninh', 'Thanh Hoá'];
 export const SEX = [
   {
     value: 0,
@@ -186,3 +179,77 @@ export const TUTOR_INFO = {
   subjects: SUBJECTS,
   filter: FILTER,
 };
+
+export const ROLES = [
+  {
+    title: 'Student',
+    id: 'student',
+  },
+  {
+    title: 'Tutor',
+    id: 'tutor',
+  },
+];
+
+export const DUMMY_SUBJECTS = [
+  {
+    title: 'Subjects',
+    id: 'Subjects',
+  },
+  {
+    title: 'Mathematics',
+    id: 'Mathematics',
+  },
+  {
+    title: 'Chemistry',
+    id: 'Chemistry',
+  },
+  {
+    title: 'Physics',
+    id: 'Physics',
+  },
+  {
+    title: 'Statistics',
+    id: 'Statistics',
+  },
+  {
+    title: 'Finance',
+    id: 'Finance',
+  },
+  {
+    title: 'Accounting',
+    id: 'Accounting',
+  },
+  {
+    title: 'Economics',
+    id: 'Economics',
+  },
+  {
+    title: 'English',
+    id: 'English',
+  },
+  {
+    title: 'Spanish',
+    id: 'Spanish',
+  },
+  {
+    title: 'Business',
+    id: 'Business',
+  },
+  {
+    title: 'History',
+    id: 'History',
+  },
+  {
+    title: 'Entrepreneurship',
+    id: 'Entrepreneurship',
+  },
+  {
+    title: 'Health',
+    id: 'Health',
+  },
+  {
+    title: 'Biology',
+    id: 'Biology',
+  },
+];

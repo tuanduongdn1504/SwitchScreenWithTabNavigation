@@ -1,5 +1,6 @@
 import { Colors } from '../themes/index';
 import { iconsMap } from '../utils/appIcons';
+import { styles as TextStyle } from '../components/Text';
 
 export const navigatorHiddenTab = {
   tabBarHidden: true,
@@ -11,13 +12,19 @@ export const navigatorStyle = {
     drawBehind: false,
     animate: false,
     // hideOnScroll: false,
+    elevation: 0,
+    noBorder: true,
     buttonColor: Colors.titleNav,
     title: {
       fontSize: 17,
       color: Colors.titleNav,
     },
     background: {
-      color: Colors.backgroundNav,
+      color: Colors.default,
+    },
+    largeTitle: {
+      visible: true,
+      ...TextStyle.largeTitle,
     },
     backButton: {
       icon: iconsMap['md-arrow-back'],

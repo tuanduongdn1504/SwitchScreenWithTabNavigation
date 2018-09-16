@@ -77,3 +77,10 @@ export const chat = () => ({
   disableIconTint: false,
   color: Colors.primary,
 });
+
+export const skip = () => ({
+  id: 'skip',
+  text: I18n.t('userInfo.tutor.skip'),
+  disableIconTint: false,
+  color: Colors.primary,
+});

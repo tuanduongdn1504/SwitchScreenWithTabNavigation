@@ -35,12 +35,11 @@ export function* signUp({ data }) {
     if (!response || !response.token) {
       yield put(Actions.signUpFailure(response));
       showInAppNoti('', response.message, 'error');
-      return;
     }
     yield put(Actions.signInSuccess(response));
     global.token = response.token;
-    startWithTabs();
     yield put(Actions.getUser());
+    startStackScreen('selectRole', I18n.t('userInfo.selectRole'), true);
   } catch (err) {
     yield put(Actions.signUpFailure(err));
     if (err && err.error && err.error.response) {

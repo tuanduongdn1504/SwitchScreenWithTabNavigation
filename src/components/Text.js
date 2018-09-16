@@ -120,6 +120,9 @@ export const styles = StyleSheet.create({
   center: {
     textAlign: 'center',
   },
+  txtUnderline: {
+    textDecorationLine: 'underline',
+  },
   // note: {
   //   fontFamily: Fonts.type.regular,
   //   fontWeight: Fonts.fontWeight.light,
@@ -132,12 +135,6 @@ export const styles = StyleSheet.create({
   // text: {
   //   fontFamily: Fonts.type.regular,
   //   fontSize: Fonts.size.regular,
-  // },
-  // center: {
-  //   textAlign: 'center',
-  // },
-  // txtUnderline: {
-  //   textDecorationLine: 'underline',
   // },
   // header: {
   //   fontFamily: Fonts.type.regular,

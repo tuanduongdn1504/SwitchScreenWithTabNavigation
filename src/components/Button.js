@@ -30,6 +30,7 @@ const Button = ({
   end,
   startColor,
   endColor,
+  isShadow,
 }) => {
   const innerView = (
     <LinearGradient
@@ -39,6 +40,7 @@ const Button = ({
         primary && { backgroundColor: Colors.primary },
         secondary && { backgroundColor: Colors.secondary },
         transparent && { backgroundColor: 'transparent' },
+        isShadow && styles.shadow,
         style,
         disabled && styles.disabledBtt,
       ]}
@@ -80,7 +82,11 @@ const Button = ({
     </LinearGradient>
   );
   if (loading || disabled) return innerView;
-  return <Touchable onPress={onPress}>{innerView}</Touchable>;
+  return (
+    <Touchable style={isShadow && styles.shadow} onPress={onPress}>
+      {innerView}
+    </Touchable>
+  );
 };
 
 Button.propTypes = {
@@ -104,6 +110,7 @@ Button.propTypes = {
   start: PropTypes.object,
   startColor: PropTypes.string,
   endColor: PropTypes.string,
+  isShadow: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -134,5 +141,15 @@ const styles = StyleSheet.create({
   },
   disabledBtt: {
     backgroundColor: Colors.blur,
+  },
+  shadow: {
+    shadowColor: 'rgba(0, 0, 0, 0.15)',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowRadius: 4,
+    shadowOpacity: 1,
+    elevation: 4,
   },
 });

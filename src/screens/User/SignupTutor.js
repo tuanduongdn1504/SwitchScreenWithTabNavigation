@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import Container from '../../components/Container';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import Text from '../../components/Text';
-import ButtonRightIcon from '../../components/ButtonRightIcon';
-import ActionSheet from '../../components/ActionSheet';
-import { TUTOR_INFO } from '../../localData';
+import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
-import Divider from '../../components/Divider';
 import LoginActions from '../../redux/LoginRedux/actions';
-import { startWithTabs } from '../../navigation/navigationActions';
+import { startWithTabs, push } from '../../navigation/navigationActions';
 
 class SignupTutor extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentPopupProps: '',
-    };
-    this.data = {};
+    this.state = {};
+    Navigation.events().bindComponent(this);
   }
+
+  navigationButtonPressed = ({ buttonId }) => {
+    if (buttonId === 'skip') {
+      startWithTabs();
+    }
+  };
 
   submitData = () => {
     // const { types, levels } = this.data;
@@ -30,121 +33,95 @@ class SignupTutor extends Component {
     // const data = {
     //   types, levels
     // };
+    this.goTutorSubjects();
   };
 
-  showPopup = name => () => {
-    this.setState({ currentPopupProps: name }, () => {
-      this.ActionSheet.show();
+  goTutorSubjects = () => {
+    const { componentId, isFromMenu } = this.props;
+    push(componentId, 'selectTutorSubjects', {
+      title: I18n.t('userInfo.tutor.titleSubjects'),
+      passProps: {
+        isFromMenu,
+      },
     });
-  };
-
-  _focusNextField(nextField) {
-    this.refs[nextField].focus();
-  }
-
-  handleRegister = () => {
-    startWithTabs();
   };
 
   onChangeItem = (currentPopupProps, item) => {
     const { subjects } = this.state;
-    const data =
-      currentPopupProps === 'subjects' ? _.xor(subjects, [item]) : item;
+    const data = currentPopupProps === 'subjects' ? _.xor(subjects, [item]) : item;
     this.setState({ [currentPopupProps]: data });
   };
 
   renderInput = () => {
-    const { types, levels, subjects } = this.state;
-
     return (
       <View style={styles.vInput}>
-        <Text type="subTextBlack" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.levels')}
+        <Text type="headline" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.pricePerHour')}
         </Text>
-        <ButtonRightIcon
-          onPress={this.showPopup('levels')}
-          textColor={levels ? Colors.primaryText : Colors.divider}
-          title={
-            levels ? levels.value : I18n.t('userInfo.tutor.levelsPlaceholder')
-          }
+        <InputRow
+          ref={ref => {
+            this.pricePerHour = ref;
+          }}
+          underLine
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.tutor.pricePerHourPlaceholder')}
         />
-        <Text type="subTextBlack" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.types')}
+        <Text type="headline" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.education')}
         </Text>
-        <ButtonRightIcon
-          onPress={this.showPopup('types')}
-          textColor={types ? Colors.primaryText : Colors.divider}
-          title={
-            types ? types.value : I18n.t('userInfo.tutor.typesPlaceholder')
-          }
+        <InputRow
+          ref={ref => {
+            this.grade = ref;
+          }}
+          underLine
+          multiline
+          style={styles.textarea}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.tutor.educationPlaceholder')}
         />
-        <Text type="subTextBlack" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.subjects')}
+        <Text type="headline" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.experience')}
         </Text>
-        <ButtonRightIcon
-          onPress={this.showPopup('subjects')}
-          textColor={subjects ? Colors.primaryText : Colors.divider}
-          title={
-            Array.isArray(subjects) && subjects.length > 0
-              ? subjects.map(data => data.value).join(', ')
-              : I18n.t('userInfo.tutor.subjectsPlaceholder')
-          }
+        <InputRow
+          ref={ref => {
+            this.school = ref;
+          }}
+          underLine
+          multiline
+          style={styles.textarea}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.tutor.experiencePlaceholder')}
         />
-        <Button
-          style={styles.button}
-          onPress={this.handleRegister}
-          buttonTitle={I18n.t('userInfo.register')}
+        <Text type="headline" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.hobbies')}
+        </Text>
+        <InputRow
+          ref={ref => {
+            this.hobbies = ref;
+          }}
+          underLine
+          multiline
+          style={styles.textarea}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.tutor.hobbiesPlaceholder')}
         />
       </View>
-    );
-  };
-
-  renderItem = ({ item }) => {
-    const { currentPopupProps } = this.state;
-    return (
-      <Button
-        onPress={() => this.onChangeItem(currentPopupProps, item)}
-        textStyle={styles.textButton}
-        style={styles.item}
-        buttonTitle={item.value}
-      />
-    );
-  };
-
-  renderSelect = () => {
-    const { currentPopupProps } = this.state;
-    if (currentPopupProps === '') {
-      return <View />;
-    }
-    return (
-      <FlatList
-        ItemSeparatorComponent={() => <Divider />}
-        data={TUTOR_INFO[currentPopupProps]}
-        renderItem={this.renderItem}
-        keyExtractor={item => item.id}
-        ListHeaderComponent={() => <View style={{ width: 10 }} />}
-        ListFooterComponent={() => <View style={{ width: 10 }} />}
-      />
     );
   };
 
   render() {
     const { isEdit } = this.props;
     return (
-      <Container>
+      <Container style={styles.container}>
         <KeyboardAwareScrollView>
-          <View style={styles.container}>
-            {isEdit && this.renderHeader()}
-            {this.renderInput()}
-          </View>
+          {isEdit && this.renderHeader()}
+          {this.renderInput()}
         </KeyboardAwareScrollView>
-        <ActionSheet
-          ref={o => {
-            this.ActionSheet = o;
-          }}
-        >
-          <View style={styles.select}>{this.renderSelect()}</View>
-        </ActionSheet>
+        <Button
+          style={styles.button}
+          onPress={this.submitData}
+          buttonTitle={I18n.t('button.next')}
+        />
       </Container>
     );
   }
@@ -155,22 +132,13 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
+    paddingHorizontal: 20,
   },
   vInput: {
     marginTop: 35,
-    paddingHorizontal: 20,
   },
   txtTitle: {
-    paddingBottom: 5,
-  },
-  item: {
-    backgroundColor: 'transparent',
-  },
-  textButton: {
-    color: Colors.primaryText,
-  },
-  select: {
-    paddingBottom: 50,
+    paddingTop: 15,
   },
   button: {
     height: 40,
@@ -178,9 +146,19 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: Colors.primary,
     marginTop: 20,
+    position: 'absolute',
+    bottom: 30,
+  },
+  textarea: {
+    marginTop: 0,
+    marginHorizontal: 0,
   },
 });
-
+SignupTutor.propTypes = {
+  isEdit: PropTypes.bool,
+  isFromMenu: PropTypes.bool,
+  componentId: PropTypes.string,
+};
 function mapStateToProps(state) {
   return {
     user: state.login.data,
