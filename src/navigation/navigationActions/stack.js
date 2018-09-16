@@ -18,13 +18,13 @@ export function startStackScreen() {
         //     },
         //   },
         // }),
-        options: {
-          topBar: {
-            visible: true,
-            drawBehind: true,
-            animate: false,
-          },
-        },
+        // options: {
+        //   topBar: {
+        //     visible: true,
+        //     drawBehind: true,
+        //     animate: false,
+        //   },
+        // },
         children: [
           {
             component: {

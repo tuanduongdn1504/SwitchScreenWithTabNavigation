@@ -7,7 +7,7 @@ import { Colors } from '../../themes';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
-import { push } from '../../navigation/navigationActions';
+import { push, startStackScreen } from '../../navigation/navigationActions';
 
 export default class ForgotPassword extends Component {
   static propTypes = {
@@ -36,8 +36,9 @@ export default class ForgotPassword extends Component {
   };
 
   confirm = () => {
-    const { componentId } = this.props;
-    push(componentId, 'signIn', {});
+    // const { componentId } = this.props;
+    // push(componentId, 'intro', {});
+    startStackScreen();
   };
 
   renderButtonGroup = () => {

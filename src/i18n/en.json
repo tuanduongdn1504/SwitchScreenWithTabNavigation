@@ -117,11 +117,11 @@
     "dontHaveAccount": "Don't have account?",
     "signUp": "Sign Up",
     "login": "Login",
-    "appDes": "Find tutor near you"
+    "appDes": "Find tutor near you",
+    "forgotPass": "Forgot Password?"
   },
   "confirm": "Confirm",
   "auth": {
-    "forgotPass": "Forgot Password?",
     "termsAndPrivacy": "By tapping Sign up, I agree to Tutor's\n",
     "privacy": "Privacy Policy",
     "terms": "Term of Services",
