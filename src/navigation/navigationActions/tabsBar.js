@@ -1,6 +1,5 @@
 import { Navigation } from 'react-native-navigation';
 import I18n from 'react-native-i18n';
-import _ from 'lodash';
 import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
 import { iconsMap } from '../../utils/appIcons';

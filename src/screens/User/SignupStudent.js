@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import Container from '../../components/Container';
 import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
-import Text from '../../components/Text';
-import ButtonRightIcon from '../../components/ButtonRightIcon';
-import ActionSheet from '../../components/ActionSheet';
-import { TYPES, LEVELS } from '../../localData';
+import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
-import Divider from '../../components/Divider';
 import LoginActions from '../../redux/LoginRedux/actions';
 import { startWithTabs } from '../../navigation/navigationActions';
 
@@ -29,96 +25,48 @@ class SignupStudent extends Component {
     // };
   };
 
-  showPopup = name => () => {
-    this.setState({ currentPopupProps: name }, () => {
-      this.ActionSheet.show();
-    });
+  submitData = () => {
+    startWithTabs();
   };
 
-  _focusNextField(nextField) {
-    this.refs[nextField].focus();
-  }
-
-  handleRegister = () => {
-    startWithTabs();
-  }
-
   renderInput = () => {
-    const { types, levels } = this.state;
-
     return (
       <View style={styles.vInput}>
-        <Text type="subTextBlack" style={styles.txtTitle}>
-          {I18n.t('userInfo.student.levels')}
-        </Text>
-        <ButtonRightIcon
-          onPress={this.showPopup('levels')}
-          textColor={levels ? Colors.primaryText : Colors.divider}
-          title={levels || I18n.t('userInfo.student.levelsPlaceholder')}
+        <InputRow
+          ref={ref => {
+            this.grade = ref;
+          }}
+          returnKeyType="next"
+          animatedTitle
+          underLine
+          onSubmitEditing={() => this.focusNextField('school')}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.student.grade')}
         />
-        <Text type="subTextBlack" style={styles.txtTitle}>
-          {I18n.t('userInfo.student.types')}
-        </Text>
-        <ButtonRightIcon
-          onPress={this.showPopup('types')}
-          textColor={types ? Colors.primaryText : Colors.divider}
-          title={types || I18n.t('userInfo.student.typesPlaceholder')}
-        />
-        <Button
-          style={styles.button}
-          onPress={this.handleRegister}
-          buttonTitle={I18n.t('userInfo.register')}
+        <InputRow
+          ref={ref => {
+            this.school = ref;
+          }}
+          animatedTitle
+          underLine
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.student.school')}
         />
       </View>
     );
   };
 
-  renderItem = key => ({ item }) => {
-    return (
-      <Button
-        onPress={() => this.onChangeItem(key, item)}
-        textStyle={styles.textButton}
-        style={styles.item}
-        buttonTitle={item.value}
-      />
-    );
-  };
-
-  renderSelect = (key, data) => {
-    return (
-      <FlatList
-        ItemSeparatorComponent={() => <Divider />}
-        data={data}
-        renderItem={this.renderItem(key)}
-        keyExtractor={item => item.id}
-        ListHeaderComponent={() => <View style={{ width: 10 }} />}
-        ListFooterComponent={() => <View style={{ width: 10 }} />}
-      />
-    );
-  };
-
   render() {
-    const { isEdit } = this.props;
-    const { currentPopupProps } = this.state;
     return (
       <Container>
         <KeyboardAwareScrollView>
-          <View style={styles.container}>
-            {isEdit && this.renderHeader()}
-            {this.renderInput()}
-          </View>
+          {this.renderInput()}
+          <Button
+            onPress={this.submitData}
+            style={styles.btnConfirm}
+            buttonTitle={I18n.t('button.confirm').toLocaleUpperCase()}
+          />
         </KeyboardAwareScrollView>
-        <ActionSheet
-          ref={o => {
-            this.ActionSheet = o;
-          }}
-        >
-          <View style={styles.select}>
-            {currentPopupProps === 'levels' &&
-              this.renderSelect('levels', LEVELS)}
-            {currentPopupProps === 'types' && this.renderSelect('types', TYPES)}
-          </View>
-        </ActionSheet>
       </Container>
     );
   }
@@ -127,31 +75,17 @@ class SignupStudent extends Component {
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 20,
-  },
   vInput: {
     marginTop: 35,
     paddingHorizontal: 20,
   },
-  txtTitle: {
-    paddingBottom: 5,
-  },
-  item: {
-    backgroundColor: 'transparent',
-  },
-  textButton: {
-    color: Colors.primaryText,
-  },
-  select: {
-    paddingBottom: 50,
-  },
-  button: {
+  btnConfirm: {
     height: 40,
     width: width - 40,
     borderRadius: 20,
     backgroundColor: Colors.primary,
     marginTop: 20,
+    marginLeft: 20,
   },
 });
 

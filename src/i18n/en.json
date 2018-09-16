@@ -36,19 +36,37 @@
     "registerAsTutor": "Become as tutor",
     "register": "Register",
     "zipCode": "Zip Code",
+    "selectRole": "What are you?",
     "tutor": {
+      "title": "Tutor Info",
+      "titleAbout": "Tutor About",
+      "titleSubjects": "Tutor Subjects",
       "levels": "Your level",
       "levelsPlaceholder": "Select your level",
       "types": "Types of teaching",
       "typesPlaceholder": "Select types of teaching",
       "subjects": "Subjects",
-      "subjectsPlaceholder": "Choose the subjects you teach"
+      "subjectsPlaceholder": "Choose the subjects you teach",
+      "skip": "Skip",
+      "pricePerHour": "Price Per Hour",
+      "pricePerHourPlaceholder": "Enter the PRICING you'll receive for an hour",
+      "education": "Education",
+      "educationPlaceholder": "Ex: Junior Accounting at New York university",
+      "experience": "Experience",
+      "experiencePlaceholder": "Any previous tutoring experience",
+      "hobbies": "Hobbies",
+      "hobbiesPlaceholder": "Ex: Camping, listen music, reading book,..",
+      "subjectSelected": "The Subjects Selected",
+      "suggestionSubjects": "Suggestion Subjects"
     },
     "student": {
+      "title": "Student Info",
       "levels": "Level of tutor you're finding",
       "levelsPlaceholder": "Select level of tutor",
       "types": "Types of tutor",
-      "typesPlaceholder": "Select types of tutor"
+      "typesPlaceholder": "Select types of tutor",
+      "grade": "Grade",
+      "school": "School/University"
     },
     "password": {
       "title": "Password",
@@ -131,5 +149,14 @@
     "login": "The Email or password is invalid.",
     "password": "The Password has more than 6 chars",
     "email": "This Email is invalid format."
+  },
+  "button": {
+    "confirm": "Confirm",
+    "next": "Next",
+    "add": "Add"
+  },
+  "empty": {
+    "subjectSelected": "You need to select any Subject to start tutoring.",
+    "unselect": "Don't have the subjects you search"
   }
 }

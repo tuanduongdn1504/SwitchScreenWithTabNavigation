@@ -14,6 +14,7 @@ import LoginActions from '../../redux/LoginRedux/actions';
 import InputRow from '../../components/InputRow';
 
 class Signup extends Component {
+
   constructor(props) {
     super(props);
     this.data = {};
@@ -247,6 +248,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     user: state.login.data,
+    token: state.login.token
   };
 }
 

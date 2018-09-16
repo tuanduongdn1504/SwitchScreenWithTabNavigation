@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {
   ScrollView, StyleSheet, View, Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import UserInfo from './UserInfo';
 import SettingItem from '../../components/Items/SettingItem';
 import LoginActions from '../../redux/LoginRedux/actions';
-import { startStackScreen, push } from '../../navigation/navigationActions';
+import { push } from '../../navigation/navigationActions';
 import { back } from '../../navigation/navigationButtons';
 import Button from '../../components/Button';
 
@@ -21,7 +22,8 @@ class Setting extends Component {
   }
 
   editProfile = () => {
-    push(this.props.componentId, 'signUp', {
+    const { componentId } = this.props;
+    push(componentId, 'signUp', {
       title: I18n.t('profile'),
       passProps: {
         isEdit: true,
@@ -36,18 +38,18 @@ class Setting extends Component {
   goTerms = () => {};
 
   beComeTutor = () => {
-    push(this.props.componentId, 'signUpTutor', {
-      title: I18n.t('userInfo.registerAsTutor'),
+    const { componentId } = this.props;
+    push(componentId, 'tutorInfo', {
+      title: I18n.t('userInfo.tutor.titleAbout'),
       leftButtons: [back()],
+      passProps: {
+        isFromMenu: true,
+      },
     });
   };
 
-  logout = () => {
-    this.props.logout();
-  };
-
   render() {
-    const { user } = this.props;
+    const { user, logout } = this.props;
     return (
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
@@ -59,7 +61,7 @@ class Setting extends Component {
             unShowArrow
             noBottomBorder
             color={Colors.primary}
-            onPress={this.logout}
+            onPress={logout}
             title={I18n.t('moreText.logout')}
           />
         </ScrollView>
@@ -83,7 +85,6 @@ class Setting extends Component {
     );
   }
 }
-const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -97,6 +98,12 @@ const styles = StyleSheet.create({
     right: 20,
   },
 });
+
+Setting.propTypes = {
+  componentId: PropTypes.string,
+  user: PropTypes.object,
+  logout: PropTypes.func,
+};
 
 function mapStateToProps(state) {
   return {

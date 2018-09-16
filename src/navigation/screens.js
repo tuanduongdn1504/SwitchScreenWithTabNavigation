@@ -16,6 +16,7 @@ import ResetPassword from '../screens/User/ResetPassword';
 import VerifyPassword from '../screens/User/VerifyPassword';
 import SignupStudent from '../screens/User/SignupStudent';
 import SignupTutor from '../screens/User/SignupTutor';
+import SelectTutorSubjects from '../screens/User/SelectTutorSubjects';
 // tabbar
 import Home from '../screens/Home';
 import SideMenu from '../screens/SideMenu';
@@ -49,14 +50,15 @@ export function registerScreens(store, persistor) {
   );
   Navigation.registerComponentWithRedux('intro', () => Intro, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUp', () => Signup, PersistProvider, store);
+  Navigation.registerComponentWithRedux('studentInfo', () => SignupStudent, PersistProvider, store);
+  Navigation.registerComponentWithRedux('selectRole', () => SelectRole, PersistProvider, store);
+  Navigation.registerComponentWithRedux('tutorInfo', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux(
-    'signUpStudent',
-    () => SignupStudent,
+    'selectTutorSubjects',
+    () => SelectTutorSubjects,
     PersistProvider,
     store,
   );
-  Navigation.registerComponentWithRedux('selectRole', () => SelectRole, PersistProvider, store);
-  Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);
   Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);

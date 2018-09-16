@@ -3,9 +3,7 @@ import _ from 'lodash';
 import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
 
-export function startStackScreen() {
-  const ROOT_SCREEN = 'intro';
-  // const ROOT_TITLE = 'home';
+export function startStackScreen(screen = 'intro', title = '', isHaveNav = false) {
   Navigation.setRoot({
     root: {
       stack: {
@@ -28,12 +26,18 @@ export function startStackScreen() {
         children: [
           {
             component: {
-              name: ROOT_SCREEN,
+              name: screen,
               options: {
                 topBar: {
-                  visible: false,
-                  drawBehind: true,
+                  ...navigatorStyle.topBar,
+                  visible: isHaveNav,
+                  drawBehind: !isHaveNav,
                   animate: false,
+                  title: {
+                    text: title,
+                    fontSize: 17,
+                    color: Colors.titleNav,
+                  },
                 },
               },
             },
