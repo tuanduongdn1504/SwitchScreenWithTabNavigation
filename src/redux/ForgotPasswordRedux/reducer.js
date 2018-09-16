@@ -16,32 +16,32 @@ const forgotPassword = (state, { data }) => {
   });
 };
 
-const forgotPasswordSuccess = (state, { data }) => state.merge({});
+const forgotPasswordSuccess = state => state.merge({});
 
-const forgotPasswordFailure = (state, action) => state.merge({});
+const forgotPasswordFailure = state => state.merge({});
 
 // TODO: Verify password
 const verifyPassword = (state, { data }) => state.merge({
   verifyToken: data.verify_token,
 });
 
-const verifyPasswordSuccess = (state, { data }) => state.merge({});
+const verifyPasswordSuccess = state => state.merge({});
 
-const verifyPasswordFailure = (state, action) => state.merge({
+const verifyPasswordFailure = state => state.merge({
   verifyToken: null,
 });
 
 // TODO: Reset password
-const resetPassword = (state, { data }) => {
+const resetPassword = state => {
   return state.merge({});
 };
 
-const resetPasswordSuccess = (state, { data }) => state.merge({
+const resetPasswordSuccess = state => state.merge({
   resetEmail: null,
   verifyToken: null,
 });
 
-const resetPasswordFailure = (state, action) => state.merge({});
+const resetPasswordFailure = state => state.merge({});
 
 const ACTION_HANDLERS = {
   [Types.FORGOT_PASSWORD]: forgotPassword,

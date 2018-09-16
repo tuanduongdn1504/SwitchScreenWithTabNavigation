@@ -39,7 +39,6 @@ class VerifyPassword extends Component {
   confirm = () => {
     const { verifyPassword } = this.props;
     const code = this.code.getInputData();
-    console.log('verify_token', code);
     if (code) {
       const data = {
         verify_token: code,

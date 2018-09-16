@@ -24,7 +24,6 @@ const App = () => {
     return Promise.all([loadStore(), iconsLoaded])
       .then((response) => {
         const store = response[0];
-        console.log('store', store);
         const { token } = store.getState().login;
         global.token = token;
         store.dispatch(Actions.startup());

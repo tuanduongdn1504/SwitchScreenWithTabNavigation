@@ -37,9 +37,6 @@ class ForgotPassword extends Component {
   };
 
   send = () => {
-    // showModal('verifyPassword', {
-    //   leftButtons: [close()],
-    // });
     const { forgotPassword } = this.props;
     if (this.email.getText()) {
       const data = {

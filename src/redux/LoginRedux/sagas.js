@@ -6,7 +6,7 @@ import Actions, { LoginTypes } from './actions';
 import {
   login,
   register,
-  getInfor,
+  getInfo,
   updatePassword,
   editUser,
   logout,
@@ -69,7 +69,7 @@ export function* signIn({ data }) {
 
 export function* getUser() {
   try {
-    const response = yield call(apiWrapper, true, getInfor);
+    const response = yield call(apiWrapper, true, getInfo);
     if (!response) {
       yield put(Actions.updateUserFailure(response));
       return;
@@ -107,7 +107,6 @@ export function* changePassword({ data }) {
     }
     yield put(Actions.updateUserSuccess(response.user));
   } catch (err) {
-    console.log(err);
     yield put(Actions.updateUserFailure(err));
   }
 }
@@ -124,7 +123,6 @@ export function* fbSignIn() {
     }
     yield put(Actions.fbSignInSuccess(response.token));
   } catch (err) {
-    console.log(err);
     showProgress(false);
     yield put(Actions.fbSignInFailure(err));
   }
