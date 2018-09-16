@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import {
+  View, StyleSheet, Dimensions, ScrollView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -127,13 +129,13 @@ class SelectTutorSubjects extends Component {
     // const { isEdit } = this.props;
     return (
       <Container style={styles.container}>
-      <ScrollView   style={styles.container} stickyHeaderIndices={[0]}>
-        {this.renderHeader()}
-        <View style={styles.vContent}>
-          {this.renderSelected()}
-          {this.renderUnselect()}
-        </View>
-      </ScrollView>
+        <ScrollView style={styles.container} stickyHeaderIndices={[0]}>
+          {this.renderHeader()}
+          <View style={styles.vContent}>
+            {this.renderSelected()}
+            {this.renderUnselect()}
+          </View>
+        </ScrollView>
         <Button
           style={styles.button}
           onPress={this.submitData}
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   vHeader: {
-    backgroundColor: Colors.default
+    backgroundColor: Colors.default,
   },
   vSelected: {
     width: width - 40,
@@ -199,7 +201,7 @@ const styles = StyleSheet.create({
 
 SelectTutorSubjects.propTypes = {
   subjects: PropTypes.array,
-  isEdit: PropTypes.bool,
+  // isEdit: PropTypes.bool,
   isFromMenu: PropTypes.bool,
   componentId: PropTypes.string,
 };

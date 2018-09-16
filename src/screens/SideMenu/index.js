@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ScrollView, StyleSheet, View, Dimensions,
-} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -116,7 +114,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: data => dispatch(LoginActions.signOut()),
+    logout: () => dispatch(LoginActions.signOut()),
   };
 };
 

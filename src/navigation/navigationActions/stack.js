@@ -1,5 +1,4 @@
 import { Navigation } from 'react-native-navigation';
-import _ from 'lodash';
 import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
 
