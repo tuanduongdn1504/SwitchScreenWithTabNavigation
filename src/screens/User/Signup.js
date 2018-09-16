@@ -161,8 +161,6 @@ class Signup extends Component {
           <Button
             style={styles.button}
             onPress={this.submitData}
-            startColor={Colors.darkPrimary}
-            endColor={Colors.lightPrimary}
             buttonTitle={I18n.t('signUp').toLocaleUpperCase()}
           />
         )}

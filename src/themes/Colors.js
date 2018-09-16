@@ -15,7 +15,7 @@ const colors = {
   iconNav: '#3f4e5a',
   whiteSmoke: '#f4f4f4',
   //
-  primary: '#FF671B',
+  primary: '#F7962C', // '#FF671B',
   secondary: '#0097a7',
   lightPrimary: '#F7962C',
   darkPrimary: '#F26122',
