@@ -9,7 +9,7 @@
     "createIconFont": "./node_modules/.bin/generate-icon ./src/assets/img/customFont/styles.css --componentName=Tutor  --prefix=anticon-me- --fontFamily=tutor > ./node_modules/react-native-vector-icons/Tutor.js && cp ./src/assets/img/customFont/tutor.ttf ./node_modules/react-native-vector-icons/Fonts/tutor.ttf",
     "buildandroid": "cd android && ./gradlew clean && ./gradlew assembleRelease",
     "fix-xcode": "react-native-schemes-manager all",
-    "postinstall": "react-native-schemes-manager all"
+    "postinstall": "react-native-schemes-manager all && yarn run createIconFont"
   },
   "dependencies": {
     "lodash": "^4.17.10",
