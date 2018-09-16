@@ -4,7 +4,7 @@ import { Colors } from '../themes';
 
 export const menu = () => ({
   id: 'sideMenu',
-  icon: iconsMap['md-menu'],
+  icon: iconsMap.user,
   disableIconTint: false,
   color: Colors.primary,
 });
@@ -18,7 +18,7 @@ export const search = () => ({
 
 export const close = () => ({
   id: 'close',
-  icon: iconsMap['md-close'],
+  icon: iconsMap.close,
   disabled: false,
   disableIconTint: true,
   color: Colors.primary,
@@ -26,7 +26,7 @@ export const close = () => ({
 
 export const closeAll = () => ({
   id: 'closeAll',
-  icon: iconsMap['md-close'],
+  icon: iconsMap.close,
   disabled: false,
   disableIconTint: true,
   color: Colors.primary,
@@ -58,7 +58,7 @@ export const save = (disabled = true) => ({
 
 export const back = () => ({
   id: 'back',
-  icon: iconsMap['md-arrow-back'],
+  icon: iconsMap.back,
   disabled: false,
   disableIconTint: false,
   color: Colors.primary,
@@ -73,7 +73,7 @@ export const add = () => ({
 
 export const chat = () => ({
   id: 'chat',
-  icon: iconsMap['ios-chatbubbles'],
+  icon: iconsMap.chat,
   disableIconTint: false,
   color: Colors.primary,
 });

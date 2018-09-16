@@ -1,6 +1,8 @@
 import _ from 'lodash';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { persistCombineReducers, persistStore } from 'redux-persist';
+import {
+  createStore, applyMiddleware, compose, combineReducers,
+} from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
@@ -8,7 +10,7 @@ import Config from '../config/DebugSettings';
 import rootSaga from './sagas';
 import { REDUX_PERSIST } from '../config/AppSetting';
 
-export default (onComplete) => {
+export default onComplete => {
   /* ------------- Redux Configuration ------------- */
 
   const middleware = [];
@@ -40,10 +42,9 @@ export default (onComplete) => {
 
   enhancers.push(applyMiddleware(...middleware));
 
-  const persistedReducer = persistCombineReducers(REDUX_PERSIST, rootReducer);
+  const persistedReducer = persistReducer(REDUX_PERSIST, combineReducers(rootReducer));
   const store = createStore(persistedReducer, compose(...enhancers));
-  const persistor = persistStore(store);
+  const persistor = persistStore(store, {}, () => onComplete(store, persistor));
   sagaMiddleware.run(rootSaga);
-  onComplete(store, persistor);
   return { store, persistor };
 };

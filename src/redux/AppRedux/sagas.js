@@ -5,8 +5,7 @@ import { Types } from './actions';
 export function* startup() {
   yield all([]);
   const { token } = yield select(state => state.login);
-  // !token ? startWelcome() : startHome();
-  startStackScreen();
+  !token ? startStackScreen() : startWithTabs();
 }
 
 const appSagas = () => {

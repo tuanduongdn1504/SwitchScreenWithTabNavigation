@@ -1,6 +1,9 @@
 import Config from 'react-native-config';
 import { AsyncStorage } from 'react-native';
-import { immutablePersistenceTransform } from '../utils/dataUtils';
+import {
+  seamlessImmutableReconciler,
+  seamlessImmutableTransformCreator,
+} from 'redux-persist-seamless-immutable';
 
 const APP_CONFIG = {
   BASE_URL: Config.BASE_URL,
@@ -12,12 +15,22 @@ const APP_CONFIG = {
   CLOUNDINARY_AVATAR_URL: Config.CLOUNDINARY_AVATAR_URL,
 };
 
+const transformerConfig = {
+  whitelistPerReducer: {
+    root: ['login', 'token', 'isFirstTime'],
+  },
+  // blacklistPerReducer: {
+  //   reducerB: ['keyC', 'keyD'],
+  // },
+};
+
 export const REDUX_PERSIST = {
   key: 'root',
   storage: AsyncStorage,
   version: 1,
-  whitelist: ['tutor'],
-  transforms: [immutablePersistenceTransform],
+  whitelist: ['login'],
+  stateReconciler: seamlessImmutableReconciler,
+  transforms: [seamlessImmutableTransformCreator(transformerConfig)],
 };
 
 export default APP_CONFIG;

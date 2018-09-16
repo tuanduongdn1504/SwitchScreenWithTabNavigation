@@ -2,29 +2,34 @@ import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import ProgressScreen from '../components/ProgressScreen';
 
+// Common screen
+import InAppNotification from '../screens/Popup/Notification';
+import ProgressScreen from '../components/ProgressScreen';
+// Intro
 import Intro from '../screens/User/Intro';
+import SignIn from '../screens/User/SignIn';
 import Signup from '../screens/User/Signup';
+import SelectRole from '../screens/User/SelectRole';
+import ForgotPassword from '../screens/User/ForgotPassword';
+import ResetPassword from '../screens/User/ResetPassword';
+import VerifyPassword from '../screens/User/VerifyPassword';
+import SignupStudent from '../screens/User/SignupStudent';
+import SignupTutor from '../screens/User/SignupTutor';
+// tabbar
 import Home from '../screens/Home';
 import SideMenu from '../screens/SideMenu';
 import About from '../screens/SideMenu/About';
 import Detail from '../screens/Detail';
-import InAppNotification from '../screens/Popup/Notification';
 import ChatList from '../screens/ChatList';
 import ChatBox from '../screens/ChatBox';
 import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
-import SignupStudent from '../screens/User/SignupStudent';
-import SignupTutor from '../screens/User/SignupTutor';
-import SignIn from '../screens/User/SignIn';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
-import ForgotPassword from '../screens/User/ForgotPassword';
-import ResetPassword from '../screens/User/ResetPassword';
-import VerifyPassword from '../screens/User/VerifyPassword';
 
 export function registerScreens(store, persistor) {
+  console.log('persistor', persistor.getState());
   const PersistProvider = props => {
     const { children } = props;
     return (
@@ -50,6 +55,7 @@ export function registerScreens(store, persistor) {
     PersistProvider,
     store,
   );
+  Navigation.registerComponentWithRedux('selectRole', () => SelectRole, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUpTutor', () => SignupTutor, PersistProvider, store);
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);

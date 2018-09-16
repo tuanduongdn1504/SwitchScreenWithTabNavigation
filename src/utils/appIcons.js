@@ -1,22 +1,18 @@
 import { PixelRatio } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Tutor';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const navIconSize = __DEV__ === false ? PixelRatio.getPixelSizeForLayoutSize(40) : 40; // eslint-disable-line
 const replaceSuffixPattern = /--(active|big|small|very-big)/g;
 const icons = {
-  'ios-home': [25, '#000'],
-  'ios-search': [25, '#000'],
-  'ios-create': [25, '#000'],
-  'ios-settings': [25, '#000'],
-  'ios-chatbubbles': [25, '#000'],
-  'ios-notifications': [25, '#000'],
-  'ios-help-buoy': [25, '#000'],
-  'md-arrow-back': [25, '#fff'],
-  'md-close': [25, '#fff'],
-  'md-menu': [25, '#fff'],
-  'md-add': [25, '#fff'],
-  qrcode: [25, '#fff', 'fontAwesome'],
+  home: [20, '#000'],
+  search: [20, '#000'],
+  chat: [20, '#000'],
+  notification: [20, '#000'],
+  shield: [20, '#000'],
+  back: [25, '#fff'],
+  close: [20, '#fff'],
+  user: [20, '#fff'],
 };
 
 const iconsMap = {};
