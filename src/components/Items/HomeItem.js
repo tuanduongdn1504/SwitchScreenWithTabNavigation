@@ -24,7 +24,7 @@ const HomeItem = ({ data, onPress }) => {
               defaultSource={Images.defaultUser}
             />
             <View style={styles.footer}>
-              <Text type="normalBold" color={Colors.primaryText}>
+              <Text type="body2Bold" color={Colors.primaryText}>
                 {data.name}
               </Text>
               <RatingStar left currentRating={3} maxRating={5} />
@@ -33,7 +33,7 @@ const HomeItem = ({ data, onPress }) => {
                 <InfoRow icon="ios-pin" text={data.address} />
               </View>
             </View>
-            <Text type="subText" color={Colors.secondaryText} style={styles.subTitle}>
+            <Text type="small" color={Colors.secondaryText} style={styles.subTitle}>
               {`${moment().diff(moment(data.dob), 'years')} ${I18n.t('olds')}`}
             </Text>
           </View>
@@ -47,7 +47,7 @@ const InfoRow = ({ icon, text }) => {
   return (
     <View style={styles.row}>
       <Icon name={icon} color={Colors.primaryTextBlur} style={styles.icon} />
-      <Text type="lightNote" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
+      <Text type="small" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
         {text}
       </Text>
     </View>

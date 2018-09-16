@@ -16,10 +16,10 @@ const Item = ({
     <View style={styles.container}>
       <Image style={styles.image} defaultSource={Images.defaultUser} />
       <View style={styles.row}>
-        <Text type="normal" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
+        <Text type="body2" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
           {data.title}
         </Text>
-        <Text type="lightNote">{data.timer}</Text>
+        <Text type="small">{data.timer}</Text>
       </View>
     </View>
   );

@@ -6,11 +6,11 @@ import Actions, { LoginTypes } from './actions';
 import {
   login,
   register,
-  getInfor,
+  getInfo,
   updatePassword,
   editUser,
   logout,
-  loginfacebook,
+  loginFacebook,
 } from '../../api/auth';
 import {
   startWithTabs,
@@ -68,7 +68,7 @@ export function* signIn({ data }) {
 
 export function* getUser() {
   try {
-    const response = yield call(apiWrapper, true, getInfor);
+    const response = yield call(apiWrapper, true, getInfo);
     if (!response) {
       yield put(Actions.updateUserFailure(response));
       return;
@@ -106,7 +106,6 @@ export function* changePassword({ data }) {
     }
     yield put(Actions.updateUserSuccess(response.user));
   } catch (err) {
-    console.log(err);
     yield put(Actions.updateUserFailure(err));
   }
 }
@@ -115,7 +114,7 @@ export function* fbSignIn() {
   try {
     const accessToken = yield call(facebookSignInApi);
     showProgress(true);
-    const response = yield call(loginfacebook, accessToken);
+    const response = yield call(loginFacebook, accessToken);
     showProgress(false);
     if (response && !response.token) {
       yield put(Actions.fbSignInFailure(response));
@@ -123,7 +122,6 @@ export function* fbSignIn() {
     }
     yield put(Actions.fbSignInSuccess(response.token));
   } catch (err) {
-    console.log(err);
     showProgress(false);
     yield put(Actions.fbSignInFailure(err));
   }

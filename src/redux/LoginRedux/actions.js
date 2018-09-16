@@ -14,9 +14,9 @@ export const LoginTypes = makeConstantCreator(
   'SIGN_UP_SUCCESS',
   'SIGN_UP_FAILURE',
 
-  'USER_FORGOT',
-  'USER_FORGOT_SUCCESS',
-  'USER_FORGOT_FAILURE',
+  // 'USER_FORGOT',
+  // 'USER_FORGOT_SUCCESS',
+  // 'USER_FORGOT_FAILURE',
 
   'GOOGLE_LOGIN',
   'GOOGLE_LOGIN_SUCCESS',
@@ -53,9 +53,9 @@ const editUser = data => makeActionCreator(LoginTypes.EDIT_USER, { data });
 const updateUserSuccess = data => makeActionCreator(LoginTypes.UPDATE_USER_SUCCESS, { data });
 const updateUserFailure = errorCode => makeActionCreator(LoginTypes.UPDATE_USER_FAILURE, { errorCode });
 
-const forgotPassword = data => makeActionCreator(LoginTypes.USER_FORGOT, { data });
-const forgotPasswordSuccess = response => makeActionCreator(LoginTypes.USER_FORGOT_SUCCESS, { response });
-const forgotPasswordFailure = error => makeActionCreator(LoginTypes.USER_FORGOT_FAILURE, { error });
+// const forgotPassword = data => makeActionCreator(LoginTypes.USER_FORGOT, { data });
+// const forgotPasswordSuccess = response => makeActionCreator(LoginTypes.USER_FORGOT_SUCCESS, { response });
+// const forgotPasswordFailure = error => makeActionCreator(LoginTypes.USER_FORGOT_FAILURE, { error });
 
 const changePassword = data => makeActionCreator(LoginTypes.CHANGE_PASSWORD, { data });
 
@@ -71,9 +71,9 @@ export default {
   signUp,
   signUpSuccess,
   signUpFailure,
-  forgotPassword,
-  forgotPasswordSuccess,
-  forgotPasswordFailure,
+  // forgotPassword,
+  // forgotPasswordSuccess,
+  // forgotPasswordFailure,
   getUser,
   changePassword,
   editUser,
