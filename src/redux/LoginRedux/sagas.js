@@ -121,6 +121,9 @@ export function* fbSignIn() {
       return;
     }
     yield put(Actions.fbSignInSuccess(response.token));
+    global.token = response.token;
+    yield put(Actions.getUser());
+    startWithTabs();
   } catch (err) {
     showProgress(false);
     yield put(Actions.fbSignInFailure(err));

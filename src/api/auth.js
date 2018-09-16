@@ -9,7 +9,7 @@ export async function login(data) {
 }
 
 export async function loginFacebook(data) {
-  return post('/auth/facebook', data);
+  return post('/auth/facebook', { access_token: data });
 }
 
 export async function logout() {
