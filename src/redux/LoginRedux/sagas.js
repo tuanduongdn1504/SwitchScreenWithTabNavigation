@@ -11,6 +11,7 @@ import {
   editUser,
   logout,
   loginFacebook,
+  becomeTutor,
 } from '../../api/auth';
 import {
   startWithTabs,
@@ -117,18 +118,32 @@ export function* fbSignIn() {
     const response = yield call(loginFacebook, accessToken);
     showProgress(false);
     if (response && !response.token) {
-      yield put(Actions.fbSignInFailure(response));
+      yield put(Actions.signInFailure(response));
       return;
     }
-    yield put(Actions.fbSignInSuccess(response.token));
+    yield put(Actions.signInSuccess(response));
     global.token = response.token;
     yield put(Actions.getUser());
     startWithTabs();
   } catch (err) {
     showProgress(false);
-    yield put(Actions.fbSignInFailure(err));
+    yield put(Actions.signInFailure(err));
   }
 }
+
+export function* becomeTutorSaga({ data }) {
+  try {
+    const response = yield call(becomeTutor, data);
+    if (!response || !response.success) {
+      yield put(Actions.updateUserFailure(response));
+      return;
+    }
+    yield put(Actions.updateUserSuccess(response.data));
+  } catch (err) {
+    yield put(Actions.updateUserFailure(err));
+  }
+}
+
 const loginSagas = () => {
   return [
     takeLatest(LoginTypes.SIGN_UP, signUp),
@@ -137,6 +152,7 @@ const loginSagas = () => {
     takeLatest(LoginTypes.GET_USE, getUser),
     takeLatest(LoginTypes.EDIT_USER, editUserSaga),
     takeLatest(LoginTypes.FB_LOGIN, fbSignIn),
+    takeLatest(LoginTypes.BECOME_TUTOR, becomeTutorSaga),
   ];
 };
 

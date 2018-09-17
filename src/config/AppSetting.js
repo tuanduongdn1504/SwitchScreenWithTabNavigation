@@ -19,15 +19,16 @@ const transformerConfig = {
   whitelistPerReducer: {
     login: ['data', 'token', 'isFirstTime'],
   },
-  // blacklistPerReducer: {
-  //   reducerB: ['keyC', 'keyD'],
-  // },
+  blacklistPerReducer: {
+    subjects: ['data', 'ids'],
+  },
 };
 
 export const REDUX_PERSIST = {
   key: 'root',
   storage: AsyncStorage,
   version: 1,
+  blacklist: ['subjects'],
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)],
 };

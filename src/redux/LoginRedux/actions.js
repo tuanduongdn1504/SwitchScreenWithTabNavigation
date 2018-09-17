@@ -36,6 +36,9 @@ export const LoginTypes = makeConstantCreator(
   'EDIT_USER',
   'UPDATE_USER_SUCCESS',
   'UPDATE_USER_FAILURE',
+
+  'BECOME_TUTOR',
+  'PRE_BECOME_TUTOR',
 );
 
 const closeFirstTime = () => makeActionCreator(LoginTypes.CLOSE_FIRST_TIME);
@@ -63,6 +66,9 @@ const fbSignIn = () => makeActionCreator(LoginTypes.FB_LOGIN);
 const fbSignInSuccess = token => makeActionCreator(LoginTypes.FB_LOGIN_SUCCESS, { token });
 const fbSignInFailure = errorCode => makeActionCreator(LoginTypes.FB_LOGIN_FAILURE, { errorCode });
 
+const becomeTutor = data => makeActionCreator(LoginTypes.BECOME_TUTOR, { data });
+const preBecomeTutor = data => makeActionCreator(LoginTypes.PRE_BECOME_TUTOR, { data });
+
 export default {
   closeFirstTime,
   signIn,
@@ -83,4 +89,6 @@ export default {
   fbSignIn,
   fbSignInSuccess,
   fbSignInFailure,
+  becomeTutor,
+  preBecomeTutor,
 };

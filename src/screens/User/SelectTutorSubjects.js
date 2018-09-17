@@ -20,8 +20,9 @@ import { getDataArr } from '../../redux/crudCreator/selectors';
 class SelectTutorSubjects extends Component {
   constructor(props) {
     super(props);
+    const { tutor_info } = props.user;
     this.state = {
-      selected: [],
+      selected: tutor_info?[...tutor_info.subjects]:[],
     };
     this.data = {};
     Navigation.events().bindComponent(this);
@@ -34,12 +35,21 @@ class SelectTutorSubjects extends Component {
   };
 
   submitData = () => {
-    const { isFromMenu, componentId } = this.props;
+    const {
+      isFromMenu, componentId, becomeTutor, user,
+    } = this.props;
     // const { types, levels } = this.data;
-    // const { isEdit, editUser, signUp } = this.props;
-    // const data = {
-    //   types, levels
-    // };
+    const { selected } = this.state;
+    const data = {
+      about: user.tutor_info.about,
+      availability: user.tutor_info.availability,
+      subjects: selected.map(item => ({
+        name: item.name,
+        id: item.id,
+        level: item.level,
+      })),
+    };
+    becomeTutor(data);
     if (isFromMenu) {
       Navigation.popToRoot(componentId);
     } else {
@@ -86,7 +96,7 @@ class SelectTutorSubjects extends Component {
             selected.map(data => (
               <Chip
                 color={Colors.primaryText}
-                text={data.title}
+                text={data.name}
                 key={data.id}
                 onPress={() => this.selectSubject(data)}
               />
@@ -114,7 +124,7 @@ class SelectTutorSubjects extends Component {
                 color={
                   selected.find(item => data.id === item.id) ? Colors.primaryText : Colors.default
                 }
-                text={data.title}
+                text={data.name}
                 key={data.id}
                 onPress={() => this.selectSubject(data)}
               />
@@ -217,6 +227,7 @@ const mapDispatchToProps = dispatch => {
   return {
     signUp: data => dispatch(LoginActions.signUp(data)),
     editUser: data => dispatch(LoginActions.editUser(data)),
+    becomeTutor: data => dispatch(LoginActions.becomeTutor(data)),
   };
 };
 

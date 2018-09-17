@@ -43,7 +43,11 @@
       "titleSubjects": "Tutor Subjects",
       "levels": "Your level",
       "levelsPlaceholder": "Select your level",
-      "types": "Types of teaching",
+      "types": {
+        "title": "Types of teaching",
+        "online": "Online",
+        "offline": "Offline"
+      },
       "typesPlaceholder": "Select types of teaching",
       "subjects": "Subjects",
       "subjectsPlaceholder": "Choose the subjects you teach",
@@ -57,7 +61,9 @@
       "hobbies": "Hobbies",
       "hobbiesPlaceholder": "Ex: Camping, listen music, reading book,..",
       "subjectSelected": "The Subjects Selected",
-      "suggestionSubjects": "Suggestion Subjects"
+      "suggestionSubjects": "Suggestion Subjects",
+      "type": "Type",
+      "description": "Description"
     },
     "student": {
       "title": "Student Info",

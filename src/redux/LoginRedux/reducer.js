@@ -70,9 +70,7 @@ const signInSuccess = (state, { response }) => {
     isLogin: false,
     token: response.token,
     loading: false,
-    data: {
-      // _id: response._id,
-    },
+    ...response,
   });
 };
 const signInFailure = (state, action) => state.merge({
@@ -150,6 +148,10 @@ const fbSignInFailure = (state, action) => state.merge({
   loading: false,
 });
 
+const preBecomeTutor = (state, { data }) => state.merge({
+  data: { ...state.data, tutor_info: { ...data } },
+});
+
 const ACTION_HANDLERS = {
   // [AppLoginTypes.STARTUP]: startUp,
   [LoginTypes.SIGN_OUT]: signOut,
@@ -166,6 +168,7 @@ const ACTION_HANDLERS = {
   [LoginTypes.FB_LOGIN]: fbSignIn,
   [LoginTypes.FB_LOGIN_SUCCESS]: fbSignInSuccess,
   [LoginTypes.FB_LOGIN_FAILURE]: fbSignInFailure,
+  [LoginTypes.PRE_BECOME_TUTOR]: preBecomeTutor,
 };
 
 export default makeReducerCreator(INITIAL_STATE, ACTION_HANDLERS);

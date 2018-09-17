@@ -193,63 +193,63 @@ export const ROLES = [
 
 export const DUMMY_SUBJECTS = [
   {
-    title: 'Subjects',
+    name: 'Subjects',
     id: 'Subjects',
   },
   {
-    title: 'Mathematics',
+    name: 'Mathematics',
     id: 'Mathematics',
   },
   {
-    title: 'Chemistry',
+    name: 'Chemistry',
     id: 'Chemistry',
   },
   {
-    title: 'Physics',
+    name: 'Physics',
     id: 'Physics',
   },
   {
-    title: 'Statistics',
+    name: 'Statistics',
     id: 'Statistics',
   },
   {
-    title: 'Finance',
+    name: 'Finance',
     id: 'Finance',
   },
   {
-    title: 'Accounting',
+    name: 'Accounting',
     id: 'Accounting',
   },
   {
-    title: 'Economics',
+    name: 'Economics',
     id: 'Economics',
   },
   {
-    title: 'English',
+    name: 'English',
     id: 'English',
   },
   {
-    title: 'Spanish',
+    name: 'Spanish',
     id: 'Spanish',
   },
   {
-    title: 'Business',
+    name: 'Business',
     id: 'Business',
   },
   {
-    title: 'History',
+    name: 'History',
     id: 'History',
   },
   {
-    title: 'Entrepreneurship',
+    name: 'Entrepreneurship',
     id: 'Entrepreneurship',
   },
   {
-    title: 'Health',
+    name: 'Health',
     id: 'Health',
   },
   {
-    title: 'Biology',
+    name: 'Biology',
     id: 'Biology',
   },
 ];

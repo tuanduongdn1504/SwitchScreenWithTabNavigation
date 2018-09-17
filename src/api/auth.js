@@ -29,7 +29,6 @@ export async function updatePassword(data) {
 }
 
 export async function verifyPasswordToken(data) {
-  console.log('/users/password/verify', data);
   return post('/users/password/verify', data);
 }
 
@@ -39,4 +38,8 @@ export async function getInfo() {
 
 export async function editUser(data) {
   return patch('/users/me', data);
+}
+
+export async function becomeTutor(data) {
+  return post('/users/tutors', data);
 }
