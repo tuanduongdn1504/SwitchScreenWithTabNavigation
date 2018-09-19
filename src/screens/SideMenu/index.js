@@ -51,7 +51,7 @@ class Setting extends Component {
     return (
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
-        <ScrollView>
+        <ScrollView style={{ flex: 1 }}>
           <SettingItem onPress={this.goAbout} title={I18n.t('moreText.tutorFAQ')} />
           <SettingItem onPress={this.goAbout} title={I18n.t('moreText.studentFAQ')} />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.updateCurrentLocation')} />

@@ -1,5 +1,5 @@
 import { PixelRatio } from 'react-native';
-import Icon from 'react-native-vector-icons/Tutor';
+import Icon from 'react-native-vector-icons/tutor';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const navIconSize = __DEV__ === false ? PixelRatio.getPixelSizeForLayoutSize(40) : 40; // eslint-disable-line

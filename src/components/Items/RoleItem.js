@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Tutor';
+import Icon from 'react-native-vector-icons/tutor';
 import { Colors } from '../../themes/index';
 import Text from '../Text';
 import Touchable from '../Touchable';

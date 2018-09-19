@@ -3,13 +3,8 @@ import { Colors } from '../../themes/index';
 import { back } from '../navigationButtons';
 import { styles as TextStyle } from '../../components/Text';
 
-export const push = (
-  componentId,
-  screen,
-  config,
-  navHidden = false,
-  tabHidden = true,
-) => {
+export const push = (componentId, screen, config, navHidden = false, tabHidden = true) => {
+  console.log('config', config);
   Navigation.push(componentId, {
     component: {
       name: screen,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   View, Text, FlatList, TouchableOpacity, Animated,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Tutor';
+import Icon from 'react-native-vector-icons/tutor';
 import { Colors } from '../themes/index';
 import Button from './Button';
 
