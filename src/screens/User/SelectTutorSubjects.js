@@ -228,6 +228,7 @@ const mapDispatchToProps = dispatch => {
     signUp: data => dispatch(LoginActions.signUp(data)),
     editUser: data => dispatch(LoginActions.editUser(data)),
     becomeTutor: data => dispatch(LoginActions.becomeTutor(data)),
+    getAllSubjects: data => dispatch(SubjectsActions.getAllSubjects(data))
   };
 };
 

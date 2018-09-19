@@ -27,7 +27,7 @@ export const navigatorStyle = {
       ...TextStyle.largeTitle,
     },
     backButton: {
-      icon: iconsMap['md-arrow-back'],
+      icon: iconsMap.back,
       visible: true,
       color: Colors.titleNav,
     },

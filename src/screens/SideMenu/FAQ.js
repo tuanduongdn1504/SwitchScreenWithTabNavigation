@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import CollapseView from '../../components/CollapseView';
+import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import Accordion from '../../components/Accordion';
+import Text from '../../components/Text';
+import FaqItem from '../../components/Items/FaqItem';
 
-export default class FAQ extends Component {
-  state = {};
+const SECTIONS = [
+  {
+    title: 'First',
+    content: 'Lorem ipsum...',
+  },
+  {
+    title: 'Second',
+    content: 'Lorem ipsum...',
+  },
+];
 
-  renderView = collapse => {
+class FAQ extends Component {
+  renderHeader(section, _, isActive) {
+    return <FaqItem title={section.title} collapsed={!isActive} />;
+  }
+
+  renderContent(section) {
     return (
-      <View style={styles.view}>
-        <Text>{collapse ? 'Toggle on' : 'Toggle off'}</Text>
+      <View style={styles.content}>
+        <Text type="body2">{section.content}</Text>
       </View>
     );
-  };
-
-  renderCollapseView = collapse => {
-    return (
-      <View style={styles.collapseView}>
-        <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industrys standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </Text>
-      </View>
-    );
-  };
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <CollapseView
-          renderView={this.renderView}
-          renderCollapseView={this.renderCollapseView}
+        <Accordion
+          sections={SECTIONS}
+          renderHeader={this.renderHeader}
+          renderContent={this.renderContent}
         />
       </View>
     );
@@ -47,22 +45,29 @@ export default class FAQ extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009688',
   },
-  view: {
-    height: 50,
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor: '#ffffff',
-  },
-  collapseView: {
+  content: {
     padding: 20,
   },
-  // iconView: {
-  //   padding: 20,
-  //   alignItems: 'center',
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   backgroundColor: '#ffffff',
-  // },
 });
+
+function mapStateToProps(state) {
+  return {
+    // user: state.login.data,
+    // user: {
+    //   fullName: 'Anh Doan',
+    //   location: 'Osaka, Japan',
+    // },
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // logout: () => dispatch(LoginActions.signOut()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FAQ);

@@ -31,7 +31,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
 
-public class MainApplication extends NavigationApplication implements ReactApplication {
+public class MainApplication extends NavigationApplication {
    private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
 
   protected static CallbackManager getCallbackManager() {
@@ -42,7 +42,7 @@ public class MainApplication extends NavigationApplication implements ReactAppli
     ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
 //    @Override
 //    protected String getJSMainModuleName() {
-//      return "index";
+//      return "index.android";
 //      }
     @Override
     public boolean getUseDeveloperSupport() {
@@ -75,6 +75,7 @@ public class MainApplication extends NavigationApplication implements ReactAppli
           new RNFirebaseFirestorePackage(),
           new FBSDKPackage(mCallbackManager),
           new LinearGradientPackage(),
+          new LottiePackage(),
           new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG)
       );
     }

@@ -18,20 +18,20 @@ export const startWithTabs = () => {
           backButton: {},
         },
       },
-      // options: {
-      //   ...navigatorStyle,
-      //   topBar: {
-      //     ...navigatorStyle.topBar,
-      //     title: {
-      //       text: I18n.t('appName'),
-      //       color: Colors.default,
-      //     },
-      //   },
-      //   backButton: {
-      //     icon: iconsMap['md-arrow-back'],
-      //     visible: true,
-      //   },
-      // },
+      options: {
+        ...navigatorStyle,
+        topBar: {
+          ...navigatorStyle.topBar,
+          title: {
+            text: I18n.t('appName'),
+            color: Colors.default,
+          },
+        },
+        backButton: {
+          icon: iconsMap.back,
+          visible: true,
+        },
+      },
     },
     {
       label: 'chatList',

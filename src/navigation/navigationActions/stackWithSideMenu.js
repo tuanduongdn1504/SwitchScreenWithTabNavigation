@@ -28,10 +28,10 @@ export const startWithSideMenu = () => {
                 color: Colors.default,
               },
             },
-            backButton: {
-              icon: iconsMap['md-arrow-back'],
-              visible: true,
-            },
+            // backButton: {
+            //   icon: iconsMap.back,
+            //   visible: true,
+            // },
           }),
         },
       },
