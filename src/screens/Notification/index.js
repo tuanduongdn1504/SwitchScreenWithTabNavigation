@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet, View, FlatList, Text,
-} from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/NotificationItem';
-import NavBar from '../../components/NavigationBar';
 import Divider from '../../components/Divider';
 
 const notificationList = [
