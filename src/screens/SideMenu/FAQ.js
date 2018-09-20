@@ -7,46 +7,49 @@ import Accordion from '../../components/Accordion';
 import Text from '../../components/Text';
 import FaqItem from '../../components/Items/FaqItem';
 import FaqActions from '../../redux/FaqsRedux/actions';
+import { getDataArr } from '../../redux/crudCreator/selectors';
 
-const SECTIONS = [
-  {
-    title: 'First',
-    content: 'Lorem ipsum...',
-  },
-  {
-    title: 'Second',
-    content: 'Lorem ipsum...',
-  },
-];
+// const SECTIONS = [
+//   {
+//     title: 'First',
+//     content: 'Lorem ipsum...',
+//   },
+//   {
+//     title: 'Second',
+//     content: 'Lorem ipsum...',
+//   },
+// ];
 
 class FAQ extends Component {
   static propTypes = {
     getAllFaqs: PropTypes.func,
+    faqs: PropTypes.array,
   };
 
   componentDidMount() {
     const { getAllFaqs } = this.props;
-    const res = getAllFaqs({ type: 'tutor' });
-    console.log('res', res);
+    getAllFaqs({ type: 'tutor' });
   }
 
   renderHeader(section, _, isActive) {
-    return <FaqItem title={section.title} collapsed={!isActive} />;
+    return <FaqItem title={section.question} collapsed={!isActive} />;
   }
 
   renderContent(section) {
     return (
       <View style={styles.content}>
-        <Text type="body2">{section.content}</Text>
+        <Text type="body2">{section.answer}</Text>
       </View>
     );
   }
 
   render() {
+    const { faqs } = this.props;
+    console.log('FAQ DATA', faqs);
     return (
       <View style={styles.container}>
         <Accordion
-          sections={SECTIONS}
+          sections={faqs}
           renderHeader={this.renderHeader}
           renderContent={this.renderContent}
         />
@@ -65,7 +68,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return state.faqs;
+  return {
+    faqs: getDataArr(state, 'faqs'),
+  };
 }
 
 const mapDispatchToProps = dispatch => {

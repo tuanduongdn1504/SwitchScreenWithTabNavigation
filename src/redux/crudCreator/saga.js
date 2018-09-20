@@ -1,5 +1,5 @@
 import {
-  takeLatest, put, call, fork, select,
+  takeLatest, put, call, fork,
 } from 'redux-saga/effects';
 import _ from 'lodash';
 import { apiWrapper } from '../../utils/reduxUtils';
@@ -20,15 +20,13 @@ function* getAllSaga(data, resource, successAction, failureAction) {
       ...data,
     };
     const response = yield call(apiWrapper, true, getAllApi, resource, convertRequest);
-    console.log('RESPONSE:', response);
-    // if (response.results) {
     if (response.success) {
+      const result = _.omit(response, ['success', 'data']);
       yield put(
         successAction({
-          // data: _.keyBy(response.results, PRIMARY_KEY),
-          data: _.keyBy(response.results, PRIMARY_KEY),
-          ids: response.results.map(item => item[PRIMARY_KEY]),
-          total: response.count,
+          ids: response.data.map(item => item[PRIMARY_KEY]),
+          data: _.keyBy(response.data, PRIMARY_KEY),
+          ...result,
         }),
       );
     } else {

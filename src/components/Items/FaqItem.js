@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes/index';
 import Text from '../Text';
@@ -46,7 +46,7 @@ const SettingItem = ({
         },
       ]}
     >
-      <Text type="body2" style={[styles.txtTitle, { color }]}>
+      <Text type="body2Bold" style={[styles.txtTitle, { color }]}>
         {title}
       </Text>
       <Icon name={icon} style={styles.icon} />
