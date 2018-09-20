@@ -24,11 +24,12 @@ class FAQ extends Component {
   static propTypes = {
     getAllFaqs: PropTypes.func,
     faqs: PropTypes.array,
+    type: PropTypes.string,
   };
 
   componentDidMount() {
-    const { getAllFaqs } = this.props;
-    getAllFaqs({ type: 'tutor' });
+    const { getAllFaqs, type } = this.props;
+    getAllFaqs({ type });
   }
 
   renderHeader(section, _, isActive) {

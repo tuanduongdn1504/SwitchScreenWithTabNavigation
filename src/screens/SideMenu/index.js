@@ -35,13 +35,13 @@ class Setting extends Component {
 
   goTerms = () => {};
 
-  openTutorFAQ = type => () => {
+  openFAQ = type => () => {
     const { componentId } = this.props;
     push(componentId, 'FAQ', {
-      title: type,
+      title: I18n.t(`faq.${type}`),
       leftButtons: [back()],
       passProps: {
-        isFromMenu: true,
+        type,
       },
     });
   };
@@ -73,24 +73,15 @@ class Setting extends Component {
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
         <ScrollView>
-          <SettingItem
-            onPress={this.openTutorFAQ('tutor')}
-            title={I18n.t('moreText.tutorFAQ')}
-          />
-          <SettingItem
-            onPress={this.goAbout}
-            title={I18n.t('moreText.studentFAQ')}
-          />
+          <SettingItem onPress={this.openFAQ('tutor')} title={I18n.t('moreText.tutorFAQ')} />
+          <SettingItem onPress={this.openFAQ('student')} title={I18n.t('moreText.studentFAQ')} />
           <SettingItem
             onPress={() => {}}
             title={I18n.t('moreText.updateLocation')}
             subTitle={user.location}
           />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.privacy')} />
-          <SettingItem
-            onPress={() => {}}
-            title={I18n.t('moreText.termOfService')}
-          />
+          <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />
           <SettingItem
             unShowArrow
             noBottomBorder

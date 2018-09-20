@@ -111,6 +111,7 @@
     "logout": "Logout"
   },
   "menu": { "editProfile": "Edit profile", "verified": "Verified Tutor" },
+  "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
   "detail": "Detail",
   "chatHistory": "Chat History",
