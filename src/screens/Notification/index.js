@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import {
+  StyleSheet, View, FlatList, Text,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/NotificationItem';
@@ -40,8 +42,6 @@ const notificationList = [
 ];
 
 class Notification extends Component {
-  static navigatorStyle = {};
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -55,15 +55,15 @@ class Notification extends Component {
     // const { user } = this.props;
     return (
       <View style={styles.container}>
+        <View />
         <FlatList
-          style={styles.list}
           data={notificationList}
           renderItem={this.renderItem}
           keyExtractor={data => data.id.toString()}
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <Divider style={{ marginLeft: 80, marginRight: 20 }} />}
-          ListFooterComponent={() => <View style={{ width: 20 }} />}
-          ListHeaderComponent={() => <View style={{ width: 20 }} />}
+          ListFooterComponent={() => <View style={{ height: 20 }} />}
+          ListHeaderComponent={() => <View style={{ height: 20 }} />}
         />
       </View>
     );
@@ -73,9 +73,6 @@ class Notification extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.default,
-    flex: 1,
-  },
-  list: {
     flex: 1,
   },
 });

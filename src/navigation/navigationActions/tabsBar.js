@@ -3,6 +3,7 @@ import I18n from 'react-native-i18n';
 import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
 import { iconsMap } from '../../utils/appIcons';
+import { styles as TextStyle } from '../../components/Text';
 
 export const startWithTabs = () => {
   const Tabs = [
@@ -14,24 +15,24 @@ export const startWithTabs = () => {
       options: {
         topBar: {
           visible: false,
-          drawBehind: true,
+          drawBehind: false,
           backButton: {},
         },
       },
-      options: {
-        ...navigatorStyle,
-        topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('appName'),
-            color: Colors.default,
-          },
-        },
-        backButton: {
-          icon: iconsMap.back,
-          visible: true,
-        },
-      },
+      // options: {
+      // ...navigatorStyle,
+      // topBar: {
+      //   ...navigatorStyle.topBar,
+      //   title: {
+      //     text: I18n.t('appName'),
+      //     color: Colors.default,
+      //   },
+      // },
+      // backButton: {
+      //   icon: iconsMap.back,
+      //   visible: true,
+      // },
+      // },
     },
     {
       label: 'chatList',
@@ -41,10 +42,11 @@ export const startWithTabs = () => {
       options: {
         ...navigatorStyle,
         topBar: {
-          ...navigatorStyle.topBar,
+          // ...navigatorStyle.topBar,
+          noBorder: true,
           title: {
             text: I18n.t('chatHistory'),
-            color: Colors.default,
+            color: Colors.primaryText,
           },
           backButton: {},
         },
@@ -56,13 +58,9 @@ export const startWithTabs = () => {
       icon: iconsMap.shield,
       screen: 'Safety',
       options: {
-        ...navigatorStyle,
         topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('safety.title'),
-            color: Colors.default,
-          },
+          visible: false,
+          drawBehind: false,
           backButton: {},
         },
       },
@@ -78,7 +76,7 @@ export const startWithTabs = () => {
           ...navigatorStyle.topBar,
           title: {
             text: I18n.t('notification'),
-            color: Colors.default,
+            color: Colors.primary,
           },
           backButton: {},
         },

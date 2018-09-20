@@ -24,6 +24,16 @@ import Button from '../../components/Button';
 import { FILTER } from '../../localData';
 
 class Home extends Component {
+  // static options() {
+  //   return {
+  //     topBar: {
+  //       drawBehind: true,
+  //       visible: false,
+  //       animate: false,
+  //     },
+  //   };
+  // }
+
   constructor(props) {
     super(props);
     this.state = {
