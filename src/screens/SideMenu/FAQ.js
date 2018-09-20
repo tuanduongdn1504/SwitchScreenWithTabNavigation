@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Accordion from '../../components/Accordion';
 import Text from '../../components/Text';
 import FaqItem from '../../components/Items/FaqItem';
+import FaqActions from '../../redux/FaqsRedux/actions';
 
 const SECTIONS = [
   {
@@ -17,6 +20,16 @@ const SECTIONS = [
 ];
 
 class FAQ extends Component {
+  static propTypes = {
+    getAllFaqs: PropTypes.func,
+  };
+
+  componentDidMount() {
+    const { getAllFaqs } = this.props;
+    const res = getAllFaqs({ type: 'tutor' });
+    console.log('res', res);
+  }
+
   renderHeader(section, _, isActive) {
     return <FaqItem title={section.title} collapsed={!isActive} />;
   }
@@ -52,19 +65,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return {
-    // user: state.login.data,
-    // user: {
-    //   fullName: 'Anh Doan',
-    //   location: 'Osaka, Japan',
-    // },
-  };
+  return state.faqs;
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    // logout: () => dispatch(LoginActions.signOut()),
-  };
+  return bindActionCreators(FaqActions, dispatch);
 };
 
 export default connect(

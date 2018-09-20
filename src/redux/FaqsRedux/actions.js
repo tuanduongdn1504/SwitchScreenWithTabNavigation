@@ -1,10 +1,7 @@
-import {
-  makeCRUDConstantCreator,
-  makeCRUDActionsCreator,
-} from '../crudCreator/actions';
+import { makeCRUDConstantCreator, makeCRUDActionsCreator } from '../crudCreator/actions';
 
 export const MODEL = 'faqs';
-export const IGNORE_ACTIONS = [];
+export const IGNORE_ACTIONS = ['GET_ONE', 'DELETE', 'EDIT', 'CREATE'];
 export const FaqsTypes = {
   ...makeCRUDConstantCreator(MODEL, IGNORE_ACTIONS),
 };
