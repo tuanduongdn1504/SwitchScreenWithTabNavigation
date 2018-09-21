@@ -46,7 +46,6 @@ class FAQ extends Component {
 
   render() {
     const { faqs } = this.props;
-    console.log('FAQ DATA', faqs);
     return (
       <View style={styles.container}>
         <Accordion

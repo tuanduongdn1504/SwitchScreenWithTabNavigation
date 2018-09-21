@@ -68,7 +68,8 @@ class Setting extends Component {
   };
 
   render() {
-    const { user, logout } = this.props;
+    const { logout, user } = this.props;
+
     return (
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
@@ -78,7 +79,7 @@ class Setting extends Component {
           <SettingItem
             onPress={() => {}}
             title={I18n.t('moreText.updateLocation')}
-            subTitle={user.location}
+            subTitle="Osaka, Japan"
           />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.privacy')} />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />
@@ -129,11 +130,7 @@ Setting.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // user: state.login.data,
-    user: {
-      fullName: 'Anh Doan',
-      location: 'Osaka, Japan',
-    },
+    user: state.login.data,
   };
 }
 

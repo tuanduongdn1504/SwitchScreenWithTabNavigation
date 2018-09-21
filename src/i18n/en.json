@@ -110,7 +110,11 @@
     "termOfService": "Term of service",
     "logout": "Logout"
   },
-  "menu": { "editProfile": "Edit profile", "verified": "Verified Tutor" },
+  "menu": {
+    "editProfile": "Edit profile",
+    "verified": "Verified Tutor",
+    "student": "You're student"
+  },
   "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
   "detail": "Detail",
