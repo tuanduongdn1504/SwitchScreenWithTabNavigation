@@ -11,7 +11,6 @@ import { push, showModal } from '../../navigation/navigationActions';
 import { close, chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorActions from '../../redux/TutorRedux/actions';
-import LoginActions from '../../redux/LoginRedux/actions';
 import CheckUpdate from './CheckUpdate';
 import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
@@ -44,9 +43,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { getTutors, getUser } = this.props;
-    getUser();
-    // getTutors();
+    const { getTutors } = this.props;
+    getTutors();
   }
 
   onPressItem(item) {
@@ -280,7 +278,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorActions.getAllTutor()),
     getOneTutor: data => dispatch(TutorActions.getOneTutor(data)),
-    getUser: () => dispatch(LoginActions.getUser()),
   };
 };
 
