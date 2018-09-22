@@ -43,7 +43,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.getTutors();
+    const { getTutors } = this.props;
+    getTutors();
   }
 
   onPressItem(item) {
@@ -218,6 +219,7 @@ Home.propTypes = {
   getTutors: PropTypes.func,
   componentId: PropTypes.string,
   tutors: PropTypes.array,
+  getUser: PropTypes.func,
 };
 
 const { height } = Dimensions.get('window');

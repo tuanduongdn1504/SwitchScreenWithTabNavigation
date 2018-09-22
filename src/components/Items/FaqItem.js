@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes/index';
 import Text from '../Text';
@@ -33,39 +33,31 @@ const styles = {
 };
 
 const SettingItem = ({
-  onPress, noBottomBorder, title, subTitle, unShowArrow, color,
+  noBottomBorder, title, color, collapsed,
 }) => {
+  const icon = collapsed ? 'ios-arrow-down' : 'ios-arrow-up';
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View
-        style={[
-          styles.container,
-          noBottomBorder && {
-            borderBottomWidth: 0,
-            borderBottomColor: Colors.primaryText,
-          },
-        ]}
-      >
-        <Text type="body2" style={[styles.txtTitle, { color }]}>
-          {title}
-        </Text>
-        {subTitle && (
-          <Text type="body2" style={[styles.subTitle]}>
-            {subTitle}
-          </Text>
-        )}
-        {!unShowArrow && <Icon name="ios-arrow-forward" style={styles.icon} />}
-      </View>
-    </TouchableOpacity>
+    <View
+      style={[
+        styles.container,
+        noBottomBorder && {
+          borderBottomWidth: 0,
+          borderBottomColor: Colors.primaryText,
+        },
+      ]}
+    >
+      <Text type="body2Bold" style={[styles.txtTitle, { color }]}>
+        {title}
+      </Text>
+      <Icon name={icon} style={styles.icon} />
+    </View>
   );
 };
 
 SettingItem.propTypes = {
-  onPress: PropTypes.func,
   noBottomBorder: PropTypes.bool,
   title: PropTypes.string,
-  subTitle: PropTypes.string,
-  unShowArrow: PropTypes.bool,
+  collapsed: PropTypes.bool,
   color: PropTypes.string,
 };
 

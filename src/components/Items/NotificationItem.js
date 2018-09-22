@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View, TouchableOpacity, StyleSheet, Image,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Image } from 'react-native';
 import { Colors, Images } from '../../themes/index';
 import Text from '../Text';
 

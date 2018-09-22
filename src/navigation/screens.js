@@ -28,6 +28,7 @@ import Safety from '../screens/Safety';
 import Notification from '../screens/Notification';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
+import FAQ from '../screens/SideMenu/FAQ';
 
 export function registerScreens(store, persistor) {
   console.log('persistor', persistor.getState());
@@ -93,4 +94,5 @@ export function registerScreens(store, persistor) {
     store,
   );
   Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
+  Navigation.registerComponentWithRedux('FAQ', () => FAQ, PersistProvider, store);
 }
