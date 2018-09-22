@@ -35,6 +35,17 @@ class Setting extends Component {
 
   goTerms = () => {};
 
+  openFAQ = type => () => {
+    const { componentId } = this.props;
+    push(componentId, 'FAQ', {
+      title: I18n.t(`faq.${type}`),
+      leftButtons: [back()],
+      passProps: {
+        type,
+      },
+    });
+  };
+
   beComeTutor = () => {
     const { componentId } = this.props;
     push(componentId, 'tutorInfo', {
@@ -46,15 +57,39 @@ class Setting extends Component {
     });
   };
 
+  showChatBox = () => {
+    const { componentId } = this.props;
+    push(componentId, 'chatBox', {
+      title: I18n.t('chatBox'),
+      passProps: {
+        receive: 'supporter',
+      },
+    });
+  };
+
   render() {
-    const { user, logout } = this.props;
+    const { logout, user } = this.props;
+
     return (
       <View style={styles.container}>
         <UserInfo user={user} onPress={this.editProfile} />
-        <ScrollView style={{ flex: 1 }}>
-          <SettingItem onPress={this.goAbout} title={I18n.t('moreText.tutorFAQ')} />
-          <SettingItem onPress={this.goAbout} title={I18n.t('moreText.studentFAQ')} />
-          <SettingItem onPress={() => {}} title={I18n.t('moreText.updateCurrentLocation')} />
+        <ScrollView>
+          <SettingItem onPress={this.openFAQ('tutor')} title={I18n.t('moreText.tutorFAQ')} />
+          <SettingItem onPress={this.openFAQ('student')} title={I18n.t('moreText.studentFAQ')} />
+          <SettingItem
+            onPress={() => {}}
+            title={I18n.t('moreText.updateLocation')}
+            subTitle="Osaka, Japan"
+          />
+          <SettingItem onPress={() => {}} title={I18n.t('moreText.privacy')} />
+          <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />
+          <SettingItem
+            unShowArrow
+            noBottomBorder
+            color={Colors.primary}
+            onPress={this.showChatBox}
+            title={I18n.t('moreText.customerSupport')}
+          />
           <SettingItem
             unShowArrow
             noBottomBorder
@@ -63,21 +98,11 @@ class Setting extends Component {
             title={I18n.t('moreText.logout')}
           />
         </ScrollView>
-        {/* <Button
-          center={false}
-          onPress={this.logout}
-          transparent
-          ionicons="md-log-out"
-          iconSize={30}
-          buttonTitle={I18n.t('moreText.logout')}
-          style={styles.btnLogout}
-          textStyle={styles.txtLogout}
-        /> */}
         <Button
           style={styles.btnBecomeATutor}
           primary
           onPress={this.beComeTutor}
-          buttonTitle={I18n.t('moreText.becomeATutor')}
+          buttonTitle={I18n.t('moreText.becomeATutor').toLocaleUpperCase()}
         />
       </View>
     );
@@ -105,10 +130,7 @@ Setting.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // user: state.login.data,
-    user: {
-      full_name: 'Anh Doan',
-    },
+    user: state.login.data,
   };
 }
 

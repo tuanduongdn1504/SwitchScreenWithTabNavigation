@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, FlatList, Text,
+  StyleSheet, View, FlatList, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
+import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/NotificationItem';
-import NavBar from '../../components/NavigationBar';
 import Divider from '../../components/Divider';
+import Text from '../../components/Text';
+import Button from '../../components/Button';
+import { push } from '../../navigation/navigationActions';
 
 const notificationList = [
   {
@@ -39,6 +42,66 @@ const notificationList = [
       'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
     timer: '10 min ago',
   },
+  {
+    id: 6,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 7,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 8,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 9,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 10,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 11,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 12,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 13,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 14,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 15,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
 ];
 
 class Notification extends Component {
@@ -51,11 +114,17 @@ class Notification extends Component {
     return <Item data={item} index={index} onPress={() => {}} />;
   };
 
+  send = () => {
+    const { componentId } = this.props;
+    push(componentId, 'notification', {
+      title: 'Notification',
+    });
+  };
+
   render() {
     // const { user } = this.props;
     return (
       <View style={styles.container}>
-        <View />
         <FlatList
           data={notificationList}
           renderItem={this.renderItem}
@@ -72,8 +141,8 @@ class Notification extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.default,
     flex: 1,
+    backgroundColor: Colors.default,
   },
 });
 

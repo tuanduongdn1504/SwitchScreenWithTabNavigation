@@ -74,9 +74,10 @@ export const startWithTabs = () => {
         ...navigatorStyle,
         topBar: {
           ...navigatorStyle.topBar,
+          visible: true,
           title: {
+            visible: true,
             text: I18n.t('notification'),
-            color: Colors.primary,
           },
           backButton: {},
         },
