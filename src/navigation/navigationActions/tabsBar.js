@@ -4,7 +4,6 @@ import { Colors } from '../../themes/index';
 import { navigatorStyle } from '../navigatonStyle';
 import { iconsMap } from '../../utils/appIcons';
 import { styles as TextStyle } from '../../components/Text';
-import { back } from '../navigationButtons';
 
 export const startWithTabs = () => {
   const Tabs = [
@@ -20,6 +19,20 @@ export const startWithTabs = () => {
           backButton: {},
         },
       },
+      // options: {
+      // ...navigatorStyle,
+      // topBar: {
+      //   ...navigatorStyle.topBar,
+      //   title: {
+      //     text: I18n.t('appName'),
+      //     color: Colors.default,
+      //   },
+      // },
+      // backButton: {
+      //   icon: iconsMap.back,
+      //   visible: true,
+      // },
+      // },
     },
     {
       label: 'chatList',
@@ -29,6 +42,7 @@ export const startWithTabs = () => {
       options: {
         ...navigatorStyle,
         topBar: {
+          // ...navigatorStyle.topBar,
           noBorder: true,
           title: {
             text: I18n.t('chatHistory'),
@@ -57,23 +71,15 @@ export const startWithTabs = () => {
       icon: iconsMap.notification,
       screen: 'notification',
       options: {
+        ...navigatorStyle,
         topBar: {
+          ...navigatorStyle.topBar,
           visible: true,
-          drawBehind: true,
-          animate: false,
-          elevation: 0,
-          noBorder: true,
-          background: {
-            color: Colors.default,
-          },
           title: {
-            text: I18n.t('notification'),
-            color: Colors.primaryText,
-          },
-          largeTitle: {
             visible: true,
-            ...TextStyle.largeTitle,
+            text: I18n.t('notification'),
           },
+          backButton: {},
         },
       },
     },
@@ -88,6 +94,7 @@ export const startWithTabs = () => {
           ...navigatorStyle.topBar,
           visible: false,
           drawBehind: true,
+          backButton: {},
         },
       },
     },
@@ -133,9 +140,9 @@ export const startWithTabs = () => {
   Navigation.setRoot({
     root: {
       options: {
-        // topBar: {
-        //   visible: true,
-        // },
+        topBar: {
+          visible: true,
+        },
         bottomTabs: {
           backgroundColor: Colors.tabBackground,
           visible: true,
