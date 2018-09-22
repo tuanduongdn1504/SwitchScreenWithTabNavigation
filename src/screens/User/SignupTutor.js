@@ -97,6 +97,20 @@ class SignupTutor extends Component {
           />
         </View>
         <Text type="headline" style={styles.txtTitle}>
+          {I18n.t('userInfo.tutor.description')}
+        </Text>
+        <InputRow
+          ref={ref => {
+            this.description = ref;
+          }}
+          underLine
+          multiline
+          style={styles.textarea}
+          placeholderTextColor={Colors.placeholderText}
+          placeholder={I18n.t('userInfo.tutor.descriptionPlaceholder')}
+          defaultValue={about.description}
+        />
+        <Text type="headline" style={styles.txtTitle}>
           {I18n.t('userInfo.tutor.pricePerHour')}
         </Text>
         <InputRow
@@ -150,20 +164,6 @@ class SignupTutor extends Component {
           placeholderTextColor={Colors.placeholderText}
           placeholder={I18n.t('userInfo.tutor.hobbiesPlaceholder')}
           defaultValue={about.interests}
-        />
-        <Text type="headline" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.description')}
-        </Text>
-        <InputRow
-          ref={ref => {
-            this.description = ref;
-          }}
-          underLine
-          multiline
-          style={styles.textarea}
-          placeholderTextColor={Colors.placeholderText}
-          placeholder={I18n.t('userInfo.tutor.hobbiesPlaceholder')}
-          defaultValue={about.description}
         />
       </View>
     );

@@ -83,7 +83,7 @@ const Button = ({
   );
   if (loading || disabled) return innerView;
   return (
-    <Touchable style={isShadow && styles.shadow} onPress={onPress}>
+    <Touchable style={[isShadow && styles.shadow]} onPress={onPress}>
       {innerView}
     </Touchable>
   );

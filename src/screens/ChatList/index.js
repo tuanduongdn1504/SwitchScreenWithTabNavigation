@@ -66,9 +66,7 @@ class ChatList extends Component {
   }
 
   renderItem = ({ item, index }) => {
-    return (
-      <Item data={item} index={index} onPress={() => this.showChatBox(item)} />
-    );
+    return <Item data={item} index={index} onPress={() => this.showChatBox(item)} />;
   };
 
   render() {
@@ -80,9 +78,7 @@ class ChatList extends Component {
           renderItem={this.renderItem}
           keyExtractor={data => data.id.toString()}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => (
-            <Divider style={{ marginLeft: 30, marginRight: 30 }} />
-          )}
+          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 30, marginRight: 30 }} />}
           ListFooterComponent={() => <View style={{ width: 20 }} />}
           ListHeaderComponent={() => <View style={{ width: 20 }} />}
         />

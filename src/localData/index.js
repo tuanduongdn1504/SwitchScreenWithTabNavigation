@@ -53,6 +53,8 @@ export const DUMMY_USER_DATA = [
       des: 'Bị viêm Xoang mãng tính đang theo dõi...',
     },
     bloodGroup: 'A',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
   },
   {
     id: 'b',
@@ -67,6 +69,8 @@ export const DUMMY_USER_DATA = [
       des: 'Bị mỡ trong máu đang theo dõi...',
     },
     bloodGroup: 'B',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
   },
   {
     id: 'c',
@@ -81,6 +85,8 @@ export const DUMMY_USER_DATA = [
       des: 'Bị Tiểu Đường mãng tính đang theo dõi...',
     },
     bloodGroup: 'AB',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
   },
   {
     id: 'd',
@@ -95,6 +101,8 @@ export const DUMMY_USER_DATA = [
       des: 'Mắc bệnh ung thư đang theo dõi...',
     },
     bloodGroup: 'O',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
   },
 ];
 

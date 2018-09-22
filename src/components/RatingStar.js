@@ -8,8 +8,13 @@ import { Fonts, Colors } from '../themes';
 
 const star = {
   full: 'ios-star',
-  half: 'ios-star-half',
-  empty: 'ios-star-outline',
+  half: 'ios-star',
+  empty: 'ios-star',
+};
+const colorStar = {
+  full: Colors.primary,
+  half: Colors.primary,
+  empty: Colors.divider,
 };
 // <RatingStar size={20} maxRating={5} currentRating={rowData.rate} />
 
@@ -44,12 +49,16 @@ class RatingStar extends React.Component {
     // const half = currentRating - full >= 0.5 ? 'half' : 'empty';
     for (let i = 0; i < maxRating; i += 1) {
       let iconName;
+      let iconColor;
       if (full > i) {
         iconName = star.full;
+        iconColor = colorStar.full;
       } else if (full === i) {
         iconName = star.half;
+        iconColor = colorStar.half;
       } else {
         iconName = star.empty;
+        iconColor = colorStar.empty;
       }
 
       components.push(
@@ -64,7 +73,7 @@ class RatingStar extends React.Component {
               size={this.props.size ? this.props.size : 24}
               style={[
                 {
-                  color: this.props.color ? this.props.color : Colors.primary,
+                  color: iconColor,
                   marginRight: 5,
                 },
                 this.props.colors && { color: this.props.colors[i] },
@@ -133,6 +142,7 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     fontSize: Fonts.size.semiSmall,
+    color: Colors.secondaryText,
   },
 });
 

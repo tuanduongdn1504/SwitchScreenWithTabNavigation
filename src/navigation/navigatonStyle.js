@@ -49,3 +49,15 @@ export const navigatorHavNavStyle = {
   statusBarTextColorSchemeSingleScreen: 'light',
   // navBarTextFontFamily: Fonts.type.bold,
 };
+
+export const bottomTabs = {
+  backgroundColor: Colors.tabBackground,
+  visible: true,
+  animate: false,
+  // currentTabIndex: 0,
+  // currentTabId: 'currentTabId',
+  // testID: 'bottomTabsTestID',
+  drawBehind: false,
+  translucent: true,
+  hideShadow: false,
+};

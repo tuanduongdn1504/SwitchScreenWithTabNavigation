@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import I18n from 'react-native-i18n';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet, Image } from 'react-native';
 import Text from '../Text';
@@ -15,7 +13,7 @@ const HomeItem = ({ data, onPress }) => {
     <View style={styles.root}>
       <Touchable onPress={onPress}>
         <View style={styles.container}>
-          <View style={styles.vHeader}>
+          <View style={styles.vContent}>
             <Image
               style={styles.image}
               source={{
@@ -23,19 +21,40 @@ const HomeItem = ({ data, onPress }) => {
               }}
               defaultSource={Images.defaultUser}
             />
-            <View style={styles.footer}>
-              <Text type="body2Bold" color={Colors.primaryText}>
+            <View style={styles.vCenter}>
+              <Text type="body2" color={Colors.primaryText}>
                 {data.name}
               </Text>
-              <RatingStar left currentRating={3} maxRating={5} />
-              <View style={styles.vContent}>
-                <InfoRow icon="ios-call" text={data.phoneNumber} />
-                <InfoRow icon="ios-pin" text={data.address} />
+              <RatingStar
+                size={17}
+                showTotalAfterStar
+                left
+                currentRating={3}
+                maxRating={5}
+                totalRated={120}
+              />
+              <Text
+                numberOfLines={2}
+                type="body3"
+                color={Colors.secondaryText}
+                style={styles.description}
+              >
+                {data.description}
+              </Text>
+              {/* <InfoRow icon="ios-call" text={data.phoneNumber} />
+                <InfoRow icon="ios-pin" text={data.address} /> */}
+            </View>
+            <View style={styles.vPrice}>
+              <Image style={styles.imagePriceTag} source={Images.priceTag} />
+              <View style={{ flex: 1, marginLeft: 10 }}>
+                <Text center type="body3" color={Colors.default}>
+                  $35.00
+                </Text>
+                <Text center type="tiny" color={Colors.default}>
+                  per hour
+                </Text>
               </View>
             </View>
-            <Text type="small" color={Colors.secondaryText} style={styles.subTitle}>
-              {`${moment().diff(moment(data.dob), 'years')} ${I18n.t('olds')}`}
-            </Text>
           </View>
         </View>
       </Touchable>
@@ -66,25 +85,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.default,
     padding: 15,
+    paddingVertical: 10,
   },
-  vHeader: {
+  vContent: {
     flexDirection: 'row',
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
-  footer: {
+  vCenter: {
     flex: 1,
     backgroundColor: Colors.default,
     marginLeft: 15,
-  },
-  subTitle: {
-    paddingTop: 5,
-  },
-  vContent: {
-    paddingTop: 5,
   },
   row: {
     flexDirection: 'row',
@@ -96,7 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   description: {
-    paddingLeft: 30,
     marginTop: 5,
   },
   btnQR: {
@@ -120,6 +133,16 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 15,
     height: 30,
+  },
+  vPrice: {
+    width: 110,
+    alignItems: 'flex-end',
+    paddingRight: 5,
+  },
+  imagePriceTag: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
 });
 

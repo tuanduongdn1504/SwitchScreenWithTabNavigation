@@ -76,7 +76,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapperView: {
     width,
-    height: height - 100,
+    height: height - 60,
     backgroundColor: Colors.default,
   },
   container: {

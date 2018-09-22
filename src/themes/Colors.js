@@ -1,9 +1,9 @@
 const colors = {
   default: '#ffffff',
-  background: 'rgba(100, 100, 100, 0.2)',
+  background: '#ffffff',
   // tabsStyle
   tabSelected: '#FF9800',
-  tabBackground: '#252C33',
+  tabBackground: '#ffffff',
 
   divider: '#d1d1d1',
   lightDivider: '#F4F3F3',

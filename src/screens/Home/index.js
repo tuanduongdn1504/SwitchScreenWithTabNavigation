@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, FlatList, Platform, Dimensions,
+  View, StyleSheet, FlatList, Platform, Dimensions, Animated,
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close, chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
@@ -18,7 +17,6 @@ import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
-import ActionSheet from '../../components/ActionSheet';
 import Button from '../../components/Button';
 import { FILTER } from '../../localData';
 
@@ -29,6 +27,7 @@ class Home extends Component {
       selectedMarker: {},
       filter: 'Tutor name',
     };
+    this.animatedSearch = new Animated.Value(0);
     Navigation.events().bindComponent(this);
   }
 
@@ -68,12 +67,22 @@ class Home extends Component {
   };
 
   blurSearch = () => {
-    this.setState({ isShowSearch: false });
+    this.setState({ isShowSearch: false }, () => {
+      Animated.timing(this.animatedSearch, {
+        toValue: 0,
+        duration: 200,
+      }).start();
+    });
     Navigation.dismissOverlay('searchResults');
   };
 
   focusSearch = () => {
-    this.setState({ isShowSearch: true });
+    this.setState({ isShowSearch: true }, () => {
+      Animated.timing(this.animatedSearch, {
+        toValue: 1,
+        duration: 200,
+      }).start();
+    });
     Navigation.showOverlay({
       component: {
         id: 'searchResults',
@@ -133,6 +142,7 @@ class Home extends Component {
         data={FILTER}
         renderItem={this.renderOption}
         keyExtractor={item => item.id}
+        stickyHeaderIndices={[0]}
         ListHeaderComponent={() => <View style={{ width: 10 }} />}
         ListFooterComponent={() => <View style={{ width: 10 }} />}
       />
@@ -141,26 +151,20 @@ class Home extends Component {
 
   render() {
     const { tutors } = this.props;
+    const left = this.animatedSearch.interpolate({
+      inputRange: [0, 1],
+      outputRange: [60, 0],
+    });
+    const searchBackground = this.animatedSearch.interpolate({
+      inputRange: [0, 0.65, 1],
+      outputRange: ['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,1)'],
+    });
     const {
       isUpdate, selectedMarker, currentPopupProps, isShowSearch,
     } = this.state;
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <View style={styles.header}>
-          <View style={styles.search}>
-            {!isShowSearch && (
-              <Icon name="ios-options" size={24} style={styles.icon} onPress={this.showFilter} />
-            )}
-            <SearchInput
-              isFocus={isShowSearch}
-              onClose={this.blurSearch}
-              onFocus={this.focusSearch}
-              onChange={this.onChangeSearch}
-              style={{ flex: 1, marginBottom: 0 }}
-            />
-          </View>
-        </View>
         <View style={styles.vMap}>
           <Maps
             markers={tutors}
@@ -168,37 +172,57 @@ class Home extends Component {
             onPressMarker={this.onPressMarker}
           />
         </View>
-        <View style={styles.space} />
-        <FlatList
-          style={styles.list}
-          extraData={isUpdate}
-          data={tutors}
-          renderItem={this.renderItem}
-          keyExtractor={data => data.objectId}
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <Divider />}
-          ListFooterComponent={() => <View style={{ width: 20 }} />}
-          ListHeaderComponent={() => <View style={{ width: 20 }} />}
-        />
-        {/* <ActionSheet
-          ref={o => {
-            this.ActionSheet = o;
-          }}
-          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
-        >
-          <View style={styles.select}>
-            {currentPopupProps === 'filter' &&
-              this.renderSelect('filter', FILTER)}
+        <View style={{ flex: 1 }}>
+          <View style={styles.space} />
+          <FlatList
+            style={styles.list}
+            extraData={isUpdate}
+            data={tutors}
+            renderItem={this.renderItem}
+            keyExtractor={data => data.objectId}
+            showsVerticalScrollIndicator={false}
+            stickyHeaderIndices={[0]}
+            ItemSeparatorComponent={() => <Divider />}
+            ListFooterComponent={() => <View style={{ width: 20 }} />}
+            ListHeaderComponent={() => <View style={{ height: 30 }} />}
+          />
+          <View style={styles.vHeaderList}>
+            <View style={styles.vLinePrimary} />
           </View>
-        </ActionSheet> */}
-        <ActionSheet
-          ref={o => {
-            this.ActionSheet = o;
-          }}
-          title={I18n.t(`home.${currentPopupProps}Placeholder`)}
+        </View>
+        {!isShowSearch && (
+          <View style={styles.iconFilter}>
+            <Button
+              isShadow
+              ionicons="ios-options"
+              endColor={Colors.default}
+              startColor={Colors.default}
+              onPress={this.showFilter}
+              iconColor={Colors.primaryText}
+              iconStyle={{ marginRight: 0 }}
+              style={styles.btnFilter}
+            />
+          </View>
+        )}
+        <Animated.View
+          style={[
+            styles.iconSearch,
+            {
+              backgroundColor: searchBackground,
+              left,
+            },
+          ]}
         >
-          <View style={styles.select}>{this.renderSelect()}</View>
-        </ActionSheet>
+          <SearchInput
+            isShadow={!isShowSearch}
+            isFocus={isShowSearch}
+            onClose={this.blurSearch}
+            onFocus={this.focusSearch}
+            onChange={this.onChangeSearch}
+            style={styles.search}
+            unFocusBackground={Colors.default}
+          />
+        </Animated.View>
       </Container>
     );
   }
@@ -218,6 +242,9 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    marginTop: -20,
   },
   search: {
     flexDirection: 'row',
@@ -226,22 +253,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  icon: {
-    color: Colors.primaryText,
-    marginLeft: 20,
+  btnFilter: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  iconFilter: {
+    position: 'absolute',
+    top: 30,
+    left: 20,
+    width: 50,
+    height: 50,
+  },
+  iconSearch: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 60,
+    paddingTop: 30,
   },
   item: {
     backgroundColor: 'transparent',
   },
   textButton: {
     color: Colors.primaryText,
-  },
-  select: {
-    paddingBottom: 50,
-  },
-  header: {
-    marginTop: Platform.OS === 'ios' ? 48 : 23,
-    marginBottom: 10,
   },
   space: {
     height: 20,
@@ -252,6 +287,21 @@ const styles = StyleSheet.create({
   },
   vMap: {
     height: (height * 2) / 5,
+  },
+  vHeaderList: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: -20,
+    left: 0,
+    right: 0,
+  },
+  vLinePrimary: {
+    width: 68,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: Colors.primary,
   },
 });
 

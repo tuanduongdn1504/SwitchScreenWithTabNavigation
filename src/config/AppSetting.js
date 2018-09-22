@@ -21,6 +21,7 @@ const transformerConfig = {
   },
   blacklistPerReducer: {
     subjects: ['data', 'ids'],
+    tutor: ['data', 'ids'],
   },
 };
 
@@ -28,7 +29,7 @@ export const REDUX_PERSIST = {
   key: 'root',
   storage: AsyncStorage,
   version: 1,
-  blacklist: ['subjects'],
+  blacklist: ['subjects', 'tutor'],
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)],
 };

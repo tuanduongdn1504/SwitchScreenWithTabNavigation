@@ -63,7 +63,8 @@
       "subjectSelected": "The Subjects Selected",
       "suggestionSubjects": "Suggestion Subjects",
       "type": "Type",
-      "description": "Description"
+      "description": "Description",
+      "descriptionPlaceholder": "Enter your Description"
     },
     "student": {
       "title": "Student Info",

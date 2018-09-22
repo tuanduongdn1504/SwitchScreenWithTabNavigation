@@ -30,7 +30,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.7.2",
     "react-native-linear-gradient": "^2.4.2",
     "react-native-maps": "https://github.com/mikemorris/react-native-maps.git#rm-airgooglemaps",
-    "react-native-navigation": "^2.0.2538",
+    "react-native-navigation": "^2.0.2556",
     "react-native-share": "^1.1.1",
     "react-native-vector-icons": "^5.0.0",
     "react-redux": "^5.0.7",
@@ -53,7 +53,7 @@
     "projectDirectory": "iOS"
   },
   "devDependencies": {
-    "ad-rn-generator": "^1.0.7",
+    "ad-rn-generator": "^1.0.8",
     "babel-eslint": "^9.0.0",
     "babel-jest": "23.4.2",
     "babel-preset-react-native": "^5",

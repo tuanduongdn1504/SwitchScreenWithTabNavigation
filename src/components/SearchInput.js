@@ -7,10 +7,27 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../themes';
 import Button from './Button';
 
-const SearchInput = props => {
+const SearchInput = ({
+  style,
+  unFocusBackground,
+  isFocus,
+  isShadow,
+  onChange,
+  onSearch,
+  onFocus,
+  onClose,
+}) => {
   return (
-    <View style={[styles.container, props.style]}>
-      <View style={styles.contentInput}>
+    <View style={[styles.container, style]}>
+      <View
+        style={[
+          styles.contentInput,
+          unFocusBackground && {
+            backgroundColor: !isFocus ? unFocusBackground : Colors.lightDivider,
+          },
+          isShadow && styles.shadow,
+        ]}
+      >
         <Icon name="md-search" size={24} style={styles.icon} />
         <TextInput
           style={styles.input}
@@ -19,19 +36,19 @@ const SearchInput = props => {
           placeholderTextColor={Colors.grey}
           returnKeyType="search"
           onChange={event => {
-            props.onChange(event.nativeEvent.text);
+            onChange(event.nativeEvent.text);
           }}
-          onSubmitEditing={props.onSearch}
-          onFocus={props.onFocus}
+          onSubmitEditing={onSearch}
+          onFocus={onFocus}
         />
       </View>
-      {props.isFocus && (
+      {isFocus && (
         <Button
           style={styles.button}
           textStyle={styles.txtButton}
           onPress={() => {
             Keyboard.dismiss();
-            props.onClose && props.onClose();
+            onClose && onClose();
           }}
           buttonTitle="Cancel"
         />
@@ -40,9 +57,15 @@ const SearchInput = props => {
   );
 };
 
-SearchInput.prototype = {
+SearchInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
+  isShadow: PropTypes.bool,
+  unFocusBackground: PropTypes.string,
+  onClose: PropTypes.func,
+  isFocus: PropTypes.bool,
+  onSearch: PropTypes.func,
+  style: PropTypes.any,
 };
 
 const styles = StyleSheet.create({
@@ -65,6 +88,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  shadow: {
+    shadowColor: 'rgba(0, 0, 0, 0.15)',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowRadius: 4,
+    shadowOpacity: 1,
+    elevation: 4,
+  },
   input: {
     flex: 1,
     color: Colors.grayBorder,
@@ -73,7 +106,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   icon: {
-    color: Colors.primaryText,
+    color: Colors.divider,
   },
   button: {
     height: 40,

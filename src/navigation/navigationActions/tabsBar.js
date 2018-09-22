@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes/index';
-import { navigatorStyle } from '../navigatonStyle';
+import { navigatorStyle, bottomTabs } from '../navigatonStyle';
 import { iconsMap } from '../../utils/appIcons';
 
 export const startWithTabs = () => {
@@ -12,19 +12,14 @@ export const startWithTabs = () => {
       icon: iconsMap.home,
       screen: 'home',
       options: {
-        topBar: {
-          visible: false,
-          drawBehind: true,
-          backButton: {},
-        },
-      },
-      options: {
         ...navigatorStyle,
         topBar: {
           ...navigatorStyle.topBar,
+          visible: false,
+          drawBehind: true,
           title: {
             text: I18n.t('appName'),
-            color: Colors.default,
+            color: Colors.primaryText,
           },
         },
         backButton: {
@@ -44,7 +39,7 @@ export const startWithTabs = () => {
           ...navigatorStyle.topBar,
           title: {
             text: I18n.t('chatHistory'),
-            color: Colors.default,
+            color: Colors.primaryText,
           },
           backButton: {},
         },
@@ -61,7 +56,7 @@ export const startWithTabs = () => {
           ...navigatorStyle.topBar,
           title: {
             text: I18n.t('safety.title'),
-            color: Colors.default,
+            color: Colors.primaryText,
           },
           backButton: {},
         },
@@ -78,7 +73,7 @@ export const startWithTabs = () => {
           ...navigatorStyle.topBar,
           title: {
             text: I18n.t('notification'),
-            color: Colors.default,
+            color: Colors.primaryText,
           },
           backButton: {},
         },
@@ -110,30 +105,17 @@ export const startWithTabs = () => {
             name: data.screen,
             options: {
               ...data.options,
-              bottomTabs: {
-                backgroundColor: Colors.tabBackground,
-                visible: true,
-                animate: false,
-                // currentTabIndex: 0,
-                // currentTabId: 'currentTabId',
-                // testID: 'bottomTabsTestID',
-                drawBehind: false,
-              },
             },
           },
         },
       ],
       options: {
-        bottomTab: configTab(data),
         bottomTabs: {
-          backgroundColor: Colors.tabBackground,
-          visible: true,
-          animate: true,
-          // currentTabIndex: 0,
-          // currentTabId: 'currentTabId',
-          // testID: 'bottomTabsTestID',
           drawBehind: false,
+          translucent: true,
+          hideShadow: false,
         },
+        bottomTab: configTab(data),
       },
     },
   }));
@@ -144,28 +126,12 @@ export const startWithTabs = () => {
         topBar: {
           visible: true,
         },
-        bottomTabs: {
-          backgroundColor: Colors.tabBackground,
-          visible: true,
-          animate: true,
-          // currentTabIndex: 0,
-          // currentTabId: 'currentTabId',
-          // testID: 'bottomTabsTestID',
-          drawBehind: false,
-        },
+        // bottomTabs,
       },
       bottomTabs: {
         children: childrens,
         options: {
-          bottomTabs: {
-            backgroundColor: Colors.tabBackground,
-            visible: true,
-            animate: true,
-            // currentTabIndex: 0,
-            // currentTabId: 'currentTabId',
-            // testID: 'bottomTabsTestID',
-            drawBehind: false,
-          },
+          // bottomTabs,
         },
       },
     },

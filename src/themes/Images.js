@@ -4,6 +4,7 @@ import defaultUser from '../assets/img/default.png';
 import intro1 from '../assets/img/intro1.png';
 import intro2 from '../assets/img/intro2.png';
 import intro3 from '../assets/img/intro3.png';
+import priceTag from '../assets/img/priceTag.png';
 
 const Images = {
   background,
@@ -12,6 +13,7 @@ const Images = {
   intro1,
   intro2,
   intro3,
+  priceTag,
 };
 
 export default Images;
