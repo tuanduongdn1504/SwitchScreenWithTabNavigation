@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import LottieView from 'lottie-react-native';
 import loading from '../assets/loading.json';
 
-class ProgressScreen extends PureComponent {
+class ProgressScreen extends Component {
   constructor(props) {
     super(props);
     this.loading = React.createRef();
