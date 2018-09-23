@@ -38,12 +38,11 @@ class Home extends Component {
   onPressItem(item) {
     const { componentId } = this.props;
     push(componentId, 'detail', {
-      // title: I18n.t('tutorDetail'),
       passProps: {
         item,
       },
       rightButtons: [chat()],
-      largeTitle: true,
+      largeTitle: false,
     });
   }
 

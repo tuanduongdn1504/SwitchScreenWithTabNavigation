@@ -13,12 +13,13 @@ const Profile = props => {
   return (
     <View style={styles.content}>
       <Image
-        // source={{ uri: avatar || global.defaultImage[sex] }}
-        source={{ uri: global.defaultImage[1] }}
+        // source={{ uri: global.defaultImage[1] }}
         defaultSource={Images.defaultUser}
         style={styles.avatar}
       />
-      <Text type="title2">Mei Nagano</Text>
+      <Text type="title2" style={styles.title}>
+        Mei Nagano
+      </Text>
       {/* <View style={styles.row}>
           <Button
             onPress={() => {
@@ -71,6 +72,9 @@ const styles = {
   vRight: {
     flex: 1,
     paddingLeft: 10,
+  },
+  title: {
+    marginTop: 10,
   },
 };
 
