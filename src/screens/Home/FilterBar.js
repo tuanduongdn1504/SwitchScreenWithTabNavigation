@@ -4,6 +4,7 @@ import {
   View, StyleSheet, Animated, TouchableWithoutFeedback,
 } from 'react-native';
 import I18n from 'react-native-i18n';
+import DeviceInfo from 'react-native-device-info';
 import { Navigation } from 'react-native-navigation';
 import { showModal } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
@@ -142,13 +143,13 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     left: 0,
-    paddingTop: 30,
+    paddingTop: DeviceInfo.getModel().toLocaleLowerCase().search('iphone x')>-1?45: 30,
   },
   searchContent: {
     position: 'absolute',
     top: 0,
     right: 0,
-    paddingTop: 30,
+    paddingTop: DeviceInfo.getModel().toLocaleLowerCase().search('iphone x')>-1?45: 30,
   },
   mask: {
     position: 'absolute',

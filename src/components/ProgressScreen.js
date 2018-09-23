@@ -34,10 +34,7 @@ class ProgressScreen extends PureComponent {
   }
 }
 
-ProgressScreen.propTypes = {
-  onDisplay: PropTypes.func,
-  componentId: PropTypes.string,
-};
+ProgressScreen.propTypes = {};
 
 const { width, height } = Dimensions.get('window');
 
@@ -45,6 +42,7 @@ const styles = StyleSheet.create({
   vProgress: {
     width,
     height,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',

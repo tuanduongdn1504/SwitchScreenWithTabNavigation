@@ -101,7 +101,6 @@ export const startWithTabs = () => {
       children: [
         {
           component: {
-            id: data.screen,
             name: data.screen,
             options: {
               ...data.options,

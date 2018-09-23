@@ -25,6 +25,6 @@ export const showInAppNoti = (title, content, type) => {
 };
 
 export const dismissInAppNoti = () => {
-  Navigation.dismissOverlay(inAppComponentId);
+  inAppComponentId && Navigation.dismissOverlay(inAppComponentId);
   inAppComponentId = null;
 };

@@ -8,9 +8,11 @@ const Container = ({ children, style, loading }) => {
   return (
     <View style={[styles.container, style]}>
       {children}
-      {/* <Modal visible={loading} animationType="fade" transparent>
-        <ProgressScreen />
-      </Modal> */}
+      {loading && (
+        <Modal visible={loading} animationType="fade" transparent>
+          <ProgressScreen />
+        </Modal>
+      )}
     </View>
   );
 };

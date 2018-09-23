@@ -24,19 +24,18 @@ export const makeReducerCreator = (initialState = null, handlers = {}) => (
 
 export function* apiWrapper(isHaveProgress = false, apiFunc, ...params) {
   try {
-    // dismissInAppNoti();
-    showProgress();
+    dismissInAppNoti();
     if (isHaveProgress) {
-      showProgress();
-      // yield put(loading());
+      // showProgress();
+      yield put(loading());
     }
     const response = yield call(apiFunc, ...params);
-    // yield put(clearLoading());
-    showProgress(false);
+    yield put(clearLoading());
+    // showProgress(false);
     return response;
   } catch (error) {
-    showProgress(false);
-    // yield put(clearLoading());
+    // showProgress(false);
+    yield put(clearLoading());
     return error;
   }
 }

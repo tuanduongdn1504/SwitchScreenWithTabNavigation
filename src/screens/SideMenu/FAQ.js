@@ -8,6 +8,7 @@ import Text from '../../components/Text';
 import FaqItem from '../../components/Items/FaqItem';
 import FaqActions from '../../redux/FaqsRedux/actions';
 import { getDataArr } from '../../redux/crudCreator/selectors';
+import Container from '../../components/Container';
 
 // const SECTIONS = [
 //   {
@@ -47,13 +48,13 @@ class FAQ extends Component {
   render() {
     const { faqs } = this.props;
     return (
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <Accordion
           sections={faqs}
           renderHeader={this.renderHeader}
           renderContent={this.renderContent}
         />
-      </View>
+      </Container>
     );
   }
 }

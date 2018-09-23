@@ -3,10 +3,15 @@ import {
   View, StyleSheet, Animated, Dimensions, InteractionManager, Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import DeviceInfo from 'react-native-device-info';
 import I18n from 'react-native-i18n';
 import Text from '../../components/Text';
 import { Colors } from '../../themes';
 import { dismissInAppNoti } from '../../navigation/navigationActions';
+
+const isIphoneX = DeviceInfo.getModel()
+  .toLocaleLowerCase()
+  .search('iphone x') > -1;
 
 class SearchResults extends Component {
   constructor(props) {
@@ -22,7 +27,7 @@ class SearchResults extends Component {
   toggleNotiAnim = (isShow = true) => {
     const handle = InteractionManager.createInteractionHandle();
     Animated.timing(this.animation, {
-      toValue: isShow ? (Platform.os === 'ios' ? 90 : 70) : height,
+      toValue: isShow ? (Platform.OS === 'ios' ? (isIphoneX ? 90 : 70) : 60) : height,
       useNativeDriver: true,
       duration: 300,
     }).start(() => {
@@ -76,7 +81,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapperView: {
     width,
-    height: height - 60,
+    height: isIphoneX ? height - 100 : height - 60,
     backgroundColor: Colors.default,
   },
   container: {
