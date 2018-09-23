@@ -7,6 +7,7 @@ import I18n from 'react-native-i18n';
 // import Profile from './Profile';
 import { Colors } from '../../themes';
 import TutorInfo from './TutorInfo';
+import TutorsActions from '../../redux/TutorsRedux/actions';
 import { close } from '../../navigation/navigationButtons';
 import { showModal, push } from '../../navigation/navigationActions';
 
@@ -15,6 +16,11 @@ class Detail extends Component {
     super(props);
     this.state = {};
     Navigation.events().bindComponent(this);
+  }
+
+  componentDidMount() {
+    const { getOneTutors, item } = this.props;
+    getOneTutors(item);
   }
 
   navigationButtonPressed = ({ buttonId }) => {
@@ -61,7 +67,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    getOneTutors: data => dispatch(TutorsActions.getOneTutors(data)),
+  };
 };
 
 export default connect(

@@ -2,19 +2,19 @@ import Immutable from 'seamless-immutable';
 import { Types } from './actions';
 import { makeReducerCreator } from '../../utils/reduxUtils';
 
-export const INITIAL_STATE = Immutable({
+export const INITIAL_STATE = {
   loading: null,
-});
+};
 const loading = state => {
-  return state.merge({
+  return {
     loading: true,
-  });
+  };
 };
 
 const clearLoading = state => {
-  return state.merge({
-    loading: false,
-  });
+  return {
+    loading: null,
+  };
 };
 const ACTION_HANDLERS = {
   [Types.LOADING]: loading,

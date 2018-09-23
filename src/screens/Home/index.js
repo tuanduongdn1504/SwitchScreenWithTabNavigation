@@ -34,10 +34,12 @@ class Home extends Component {
   }
 
   onPressItem(item) {
-    const {getOneTutors, componentId} = this.props;
-    getOneTutors(item);
+    const { componentId } = this.props;
     push(componentId, 'detail', {
       title: I18n.t('tutorDetail'),
+      passProps: {
+        item,
+      },
       rightButtons: [chat()],
     });
   }
@@ -203,7 +205,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
-    getOneTutors: data => dispatch(TutorsActions.getOneTutors(data)),
   };
 };
 
