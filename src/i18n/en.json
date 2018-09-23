@@ -104,11 +104,19 @@
   "moreText": {
     "tutorFAQ": "Tutor FAQ",
     "studentFAQ": "Student FAQ",
-    "updateCurrentLocation": "Update current location",
+    "updateLocation": "Update location",
     "becomeATutor": "Become a tutor",
+    "customerSupport": "Customer support",
+    "privacy": "Privacy policy",
+    "termOfService": "Term of service",
     "logout": "Logout"
   },
-  "menu": { "editProfile": "Edit profile" },
+  "menu": {
+    "editProfile": "Edit profile",
+    "verified": "Verified Tutor",
+    "student": "You're student"
+  },
+  "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
   "detail": "Detail",
   "chatHistory": "Chat History",

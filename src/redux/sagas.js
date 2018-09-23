@@ -5,9 +5,11 @@ import tutorSagas from './TutorRedux/sagas';
 import chatSagas from './ChatRedux/sagas';
 import ForgotPasswordSagas from './ForgotPasswordRedux/sagas';
 import subjectsSagas from './SubjectsRedux/sagas';
+import faqsSagas from './FaqsRedux/sagas';
 
 export default function* root() {
   yield all([
+    ...faqsSagas,
     ...subjectsSagas,
     ...ForgotPasswordSagas,
     ...chatSagas,

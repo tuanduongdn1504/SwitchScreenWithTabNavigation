@@ -1,5 +1,5 @@
 import {
-  takeLatest, put, call, fork, select,
+  takeLatest, put, call, fork,
 } from 'redux-saga/effects';
 import _ from 'lodash';
 import { apiWrapper } from '../../utils/reduxUtils';
@@ -12,19 +12,21 @@ import { showInAppNoti } from '../../navigation/navigationActions';
 
 function* getAllSaga(data, resource, successAction, failureAction) {
   try {
-    const { pageSize, page } = yield select(state => state[resource]);
+    // const { pageSize, page } = yield select(state => state[resource]);
     const convertRequest = {
-      limit: pageSize,
-      skip: page === 0 ? 0 : pageSize * (page - 1),
-      count: 1,
+      // limit: pageSize,
+      // skip: page === 0 ? 0 : pageSize * (page - 1),
+      // count: 1,
+      ...data,
     };
     const response = yield call(apiWrapper, true, getAllApi, resource, convertRequest);
-    if (response.results) {
+    if (response.success) {
+      const result = _.omit(response, ['success', 'data']);
       yield put(
         successAction({
-          data: _.keyBy(response.results, PRIMARY_KEY),
-          ids: response.results.map(item => item[PRIMARY_KEY]),
-          total: response.count,
+          ids: response.data.map(item => item[PRIMARY_KEY]),
+          data: _.keyBy(response.data, PRIMARY_KEY),
+          ...result,
         }),
       );
     } else {

@@ -1,9 +1,12 @@
-import { takeLatest, select, all } from 'redux-saga/effects';
+import {
+  takeLatest, select, all, put,
+} from 'redux-saga/effects';
 import { startWithTabs, startStackScreen } from '../../navigation/navigationActions';
 import { Types } from './actions';
+import SubjectsActions from '../SubjectsRedux/actions';
 
 export function* startup() {
-  yield all([]);
+  yield all([put(SubjectsActions.getAllSubjects())]);
   const { token } = yield select(state => state.login);
   !token ? startStackScreen() : startWithTabs();
 }

@@ -8,13 +8,14 @@ import { TUTOR_INFO } from '../../localData';
 import Text from '../../components/Text';
 import Chip from '../../components/Chip';
 import { Colors } from '../../themes';
+import { getDataArr } from '../../redux/crudCreator/selectors';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       subjects: [],
-      levels: [],
+      types: [],
     };
   }
 
@@ -22,19 +23,11 @@ class Filter extends Component {
     this.setState({ [type]: _.xor(this.state[type], [item]) });
   };
 
-  renderList = (title, data) => {
-    return (
-      <View>
-        <Text type="title30PX">{I18n.t(title)}</Text>
-      </View>
-    );
-  };
-
   render() {
-    const { subjects, levels, types } = this.state;
+    const { subjects, types } = this.state;
     return (
       <View style={styles.container}>
-        <Text type="title26PX">{I18n.t('userInfo.tutor.types')}</Text>
+        <Text type="title26PX">{I18n.t('userInfo.tutor.types.title')}</Text>
         <View style={styles.vSubjects}>
           {TUTOR_INFO.types.map(data => (
             <Chip
@@ -44,22 +37,12 @@ class Filter extends Component {
             />
           ))}
         </View>
-        <Text type="title26PX">{I18n.t('userInfo.tutor.levels')}</Text>
-        <View style={styles.vSubjects}>
-          {TUTOR_INFO.levels.map(data => (
-            <Chip
-              color={_.find(levels, data, 'id') ? Colors.primaryText : Colors.default}
-              text={data.value}
-              onPress={() => this.selectedData('levels')(data)}
-            />
-          ))}
-        </View>
         <Text type="title26PX">{I18n.t('userInfo.tutor.subjects')}</Text>
         <View style={styles.vSubjects}>
-          {TUTOR_INFO.subjects.map(data => (
+          {this.props.subjects.map(data => (
             <Chip
               color={_.find(subjects, data, 'id') ? Colors.primaryText : Colors.default}
-              text={data.value}
+              text={data.name}
               onPress={() => this.selectedData('subjects')(data)}
             />
           ))}
@@ -68,7 +51,9 @@ class Filter extends Component {
     );
   }
 }
-Filter.propTypes = {};
+Filter.propTypes = {
+  subjects: PropTypes.array,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -84,7 +69,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    subjects: getDataArr(state, 'subjects'),
+  };
 }
 
 const mapDispatchToProps = dispatch => {

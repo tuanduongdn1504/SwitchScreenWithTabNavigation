@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import {
+  StyleSheet, View, FlatList, ScrollView,
+} from 'react-native';
 import { connect } from 'react-redux';
+import I18n from 'react-native-i18n';
 import { Colors } from '../../themes';
 import Item from '../../components/Items/NotificationItem';
-import NavBar from '../../components/NavigationBar';
 import Divider from '../../components/Divider';
+import Text from '../../components/Text';
+import Button from '../../components/Button';
+import { push } from '../../navigation/navigationActions';
 
 const notificationList = [
   {
@@ -37,11 +42,69 @@ const notificationList = [
       'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
     timer: '10 min ago',
   },
+  {
+    id: 6,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 7,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 8,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 9,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 10,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 11,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 12,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 13,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 14,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
+  {
+    id: 15,
+    title:
+      'Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et. Donec eget euismod mauris, at congue dolor. In ultricies neque nulla, nec suscipit justo molestie et.',
+    timer: '10 min ago',
+  },
 ];
 
 class Notification extends Component {
-  static navigatorStyle = {};
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -51,19 +114,25 @@ class Notification extends Component {
     return <Item data={item} index={index} onPress={() => {}} />;
   };
 
+  send = () => {
+    const { componentId } = this.props;
+    push(componentId, 'notification', {
+      title: 'Notification',
+    });
+  };
+
   render() {
     // const { user } = this.props;
     return (
       <View style={styles.container}>
         <FlatList
-          style={styles.list}
           data={notificationList}
           renderItem={this.renderItem}
           keyExtractor={data => data.id.toString()}
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <Divider style={{ marginLeft: 80, marginRight: 20 }} />}
-          ListFooterComponent={() => <View style={{ width: 20 }} />}
-          ListHeaderComponent={() => <View style={{ width: 20 }} />}
+          ListFooterComponent={() => <View style={{ height: 20 }} />}
+          ListHeaderComponent={() => <View style={{ height: 20 }} />}
         />
       </View>
     );
@@ -72,11 +141,8 @@ class Notification extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: Colors.default,
-    flex: 1,
-  },
-  list: {
-    flex: 1,
   },
 });
 

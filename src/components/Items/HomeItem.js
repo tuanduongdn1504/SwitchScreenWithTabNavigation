@@ -22,7 +22,7 @@ const HomeItem = ({ data, onPress }) => {
               defaultSource={Images.defaultUser}
             />
             <View style={styles.vCenter}>
-              <Text type="body2" color={Colors.primaryText}>
+              <Text numberOfLines={1} type="body2" color={Colors.primaryText}>
                 {data.name}
               </Text>
               <RatingStar

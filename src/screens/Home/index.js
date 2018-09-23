@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, FlatList, Platform, Dimensions, Animated,
+  View, StyleSheet, FlatList, Dimensions, Animated, PanResponder,
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import { Navigation } from 'react-native-navigation';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close, chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
@@ -15,25 +14,66 @@ import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
-import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
 import Button from '../../components/Button';
 import { FILTER } from '../../localData';
+import FilterBar from './FilterBar';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedMarker: {},
-      filter: 'Tutor name',
     };
-    this.animatedSearch = new Animated.Value(0);
-    Navigation.events().bindComponent(this);
+    this.animated = new Animated.Value(300);
+    this.y= 300;
+    this.initPanResponder();
   }
 
   componentDidMount() {
-    this.props.getTutors();
+    const { getTutors } = this.props;
+    getTutors();
   }
+
+  initPanResponder = () => {
+    this.panResponder = PanResponder.create({
+      // Ask to be the responder:
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onMoveShouldSetPanResponder: (evt, gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+
+      onPanResponderGrant: (evt, gestureState) => {
+        // The gesture has started. Show visual feedback so the user knows
+        // what is happening!
+        // gestureState.d{x,y} will be set to zero now
+        // this.animated.setOffset(this.y);
+      },
+      onPanResponderMove: (e, gestureState) => {
+        // custom logic here
+        console.log('JSON.stringifye', JSON.stringify(gestureState.moveY));
+        Animated.event([null, {
+          moveY: this.animated,
+        }])(e, gestureState); // <<--- INVOKING HERE!
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) => true,
+      onPanResponderRelease: (evt, gestureState) => {
+        // The user has released all touches while this view is the
+        // responder. This typically means a gesture has succeeded
+        this.y = this.animated._value;
+        console.log('JSON.stringifye', JSON.stringify(this.y ));
+      },
+      onPanResponderTerminate: (evt, gestureState) => {
+        // Another component has become the responder, so this gesture
+        // should be cancelled
+      },
+      onShouldBlockNativeResponder: (evt, gestureState) => {
+        // Returns whether this component should block native components from becoming the JS
+        // responder. Returns true by default. Is currently only supported on android.
+        return true;
+      },
+    });
+  };
 
   onPressItem(item) {
     this.props.getOneTutor(item);
@@ -55,59 +95,6 @@ class Home extends Component {
     });
   };
 
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId === 'add') {
-      this.showChatBox();
-    }
-  };
-
-  onChangeItem = (currentPopupProps, value) => {
-    this.setState({ [currentPopupProps]: value });
-    this.ActionSheet.hide();
-  };
-
-  blurSearch = () => {
-    this.setState({ isShowSearch: false }, () => {
-      Animated.timing(this.animatedSearch, {
-        toValue: 0,
-        duration: 200,
-      }).start();
-    });
-    Navigation.dismissOverlay('searchResults');
-  };
-
-  focusSearch = () => {
-    this.setState({ isShowSearch: true }, () => {
-      Animated.timing(this.animatedSearch, {
-        toValue: 1,
-        duration: 200,
-      }).start();
-    });
-    Navigation.showOverlay({
-      component: {
-        id: 'searchResults',
-        name: 'searchResults',
-        passProps: {},
-        options: {
-          overlay: {
-            interceptTouchOutside: false,
-          },
-        },
-      },
-    });
-  };
-
-  showFilter = () => {
-    showModal('filter', {
-      title: I18n.t('filter.text'),
-      leftButtons: [],
-      rightButtons: [close()],
-    });
-    // this.setState({ currentPopupProps: name }, () => {
-    //   this.ActionSheet.show();
-    // });
-  };
-
   renderItem = ({ item, index }) => {
     return (
       <HomeItem
@@ -119,59 +106,24 @@ class Home extends Component {
     );
   };
 
-  renderOption = ({ item }) => {
-    const { currentPopupProps } = this.state;
-    return (
-      <Button
-        onPress={() => this.onChangeItem(currentPopupProps, item.value)}
-        textStyle={styles.textButton}
-        style={styles.item}
-        buttonTitle={item.value}
-      />
-    );
-  };
-
-  renderSelect = () => {
-    const { currentPopupProps } = this.state;
-    if (!currentPopupProps) {
-      return <View />;
-    }
-    return (
-      <FlatList
-        ItemSeparatorComponent={() => <Divider />}
-        data={FILTER}
-        renderItem={this.renderOption}
-        keyExtractor={item => item.id}
-        stickyHeaderIndices={[0]}
-        ListHeaderComponent={() => <View style={{ width: 10 }} />}
-        ListFooterComponent={() => <View style={{ width: 10 }} />}
-      />
-    );
-  };
-
   render() {
     const { tutors } = this.props;
-    const left = this.animatedSearch.interpolate({
-      inputRange: [0, 1],
-      outputRange: [60, 0],
-    });
-    const searchBackground = this.animatedSearch.interpolate({
-      inputRange: [0, 0.65, 1],
-      outputRange: ['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,1)'],
-    });
-    const {
-      isUpdate, selectedMarker, currentPopupProps, isShowSearch,
-    } = this.state;
+    const { isUpdate, selectedMarker } = this.state;
+    const animatedHeight = this.animated.interpolate({
+      inputRange: [0,200, height],
+      outputRange: [40, 40, height- 200]
+    })
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <View style={styles.vMap}>
-          <Maps
+        <Animated.View style={[styles.vMap, {height: animatedHeight}]}>
+          {/* <Maps
             markers={tutors}
             selectedMarker={selectedMarker}
             onPressMarker={this.onPressMarker}
-          />
-        </View>
+          /> */}
+        </Animated.View>
+        <FilterBar />
         <View style={{ flex: 1 }}>
           <View style={styles.space} />
           <FlatList
@@ -186,43 +138,10 @@ class Home extends Component {
             ListFooterComponent={() => <View style={{ width: 20 }} />}
             ListHeaderComponent={() => <View style={{ height: 30 }} />}
           />
-          <View style={styles.vHeaderList}>
+          <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
             <View style={styles.vLinePrimary} />
           </View>
         </View>
-        {!isShowSearch && (
-          <View style={styles.iconFilter}>
-            <Button
-              isShadow
-              ionicons="ios-options"
-              endColor={Colors.default}
-              startColor={Colors.default}
-              onPress={this.showFilter}
-              iconColor={Colors.primaryText}
-              iconStyle={{ marginRight: 0 }}
-              style={styles.btnFilter}
-            />
-          </View>
-        )}
-        <Animated.View
-          style={[
-            styles.iconSearch,
-            {
-              backgroundColor: searchBackground,
-              left,
-            },
-          ]}
-        >
-          <SearchInput
-            isShadow={!isShowSearch}
-            isFocus={isShowSearch}
-            onClose={this.blurSearch}
-            onFocus={this.focusSearch}
-            onChange={this.onChangeSearch}
-            style={styles.search}
-            unFocusBackground={Colors.default}
-          />
-        </Animated.View>
       </Container>
     );
   }
@@ -245,32 +164,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: -20,
-  },
-  search: {
-    flexDirection: 'row',
-    // marginTop: Platform.OS === 'ios' ? 48 : 23,
-    // marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnFilter: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-  },
-  iconFilter: {
-    position: 'absolute',
-    top: 30,
-    left: 20,
-    width: 50,
-    height: 50,
-  },
-  iconSearch: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    left: 60,
-    paddingTop: 30,
   },
   item: {
     backgroundColor: 'transparent',

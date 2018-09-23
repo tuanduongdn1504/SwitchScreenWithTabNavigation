@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width,
-    paddingBottom: 20,
   },
   vHeader: {
     backgroundColor: Colors.default,
@@ -188,9 +187,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    height: 40,
     width: width - 40,
-    borderRadius: 20,
     backgroundColor: Colors.primary,
     position: 'absolute',
     bottom: 30,

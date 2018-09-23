@@ -191,7 +191,6 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 20,
     paddingHorizontal: 20,
   },
   vInput: {
@@ -202,9 +201,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   button: {
-    height: 40,
     width: width - 40,
-    borderRadius: 20,
     backgroundColor: Colors.primary,
     marginTop: 20,
     position: 'absolute',
