@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Animated } from 'react-native';
+import {
+  View, StyleSheet, Animated, TouchableWithoutFeedback,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 import { Navigation } from 'react-native-navigation';
 import { showModal } from '../../navigation/navigationActions';
@@ -20,7 +22,7 @@ class FilterBar extends Component {
     this.setState({ isShowSearch: false }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 0,
-        duration: 400
+        duration: 400,
       }).start();
     });
     Navigation.dismissOverlay('searchResults');
@@ -30,7 +32,7 @@ class FilterBar extends Component {
     this.setState({ isShowSearch: true }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 1,
-        duration: 400
+        duration: 400,
       }).start();
     });
     Navigation.showOverlay({
@@ -95,11 +97,16 @@ class FilterBar extends Component {
             isShadow={!isShowSearch}
             isFocus={isShowSearch}
             onClose={this.blurSearch}
-            onFocus={this.focusSearch}
+            // onFocus={this.focusSearch}
             onChange={this.onChangeSearch}
             style={styles.search}
             unFocusBackground={Colors.default}
           />
+          {!isShowSearch && (
+            <TouchableWithoutFeedback style={styles.mask} onPress={this.focusSearch}>
+              <View style={styles.mask} />
+            </TouchableWithoutFeedback>
+          )}
         </Animated.View>
       </Animated.View>
     );
@@ -140,6 +147,13 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     paddingTop: 30,
+  },
+  mask: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 });
 

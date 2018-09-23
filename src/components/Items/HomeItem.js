@@ -7,6 +7,7 @@ import Colors from '../../themes/Colors';
 import Touchable from '../Touchable';
 import RatingStar from '../RatingStar';
 import { Images } from '../../themes';
+import { formatMoney } from '../../utils/textUtils';
 
 const HomeItem = ({ data, onPress }) => {
   return (
@@ -23,7 +24,7 @@ const HomeItem = ({ data, onPress }) => {
             />
             <View style={styles.vCenter}>
               <Text numberOfLines={1} type="body2" color={Colors.primaryText}>
-                {data.name}
+                {`${data.first_name} ${data.last_name}`}
               </Text>
               <RatingStar
                 size={17}
@@ -39,7 +40,7 @@ const HomeItem = ({ data, onPress }) => {
                 color={Colors.secondaryText}
                 style={styles.description}
               >
-                {data.description}
+                {data.tutor_info?.about?.description}
               </Text>
               {/* <InfoRow icon="ios-call" text={data.phoneNumber} />
                 <InfoRow icon="ios-pin" text={data.address} /> */}
@@ -48,7 +49,8 @@ const HomeItem = ({ data, onPress }) => {
               <Image style={styles.imagePriceTag} source={Images.priceTag} />
               <View style={{ flex: 1, marginLeft: 10 }}>
                 <Text center type="body3" color={Colors.default}>
-                  $35.00
+                  $
+                  {formatMoney(data.tutor_info?.availability?.hourly_rate)}
                 </Text>
                 <Text center type="tiny" color={Colors.default}>
                   per hour

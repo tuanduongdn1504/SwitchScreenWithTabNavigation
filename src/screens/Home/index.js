@@ -34,8 +34,9 @@ class Home extends Component {
   }
 
   onPressItem(item) {
-    this.props.getOneTutor(item);
-    push(this.props.componentId, 'detail', {
+    const {getOneTutors, componentId} = this.props;
+    getOneTutors(item);
+    push(componentId, 'detail', {
       title: I18n.t('tutorDetail'),
       rightButtons: [chat()],
     });

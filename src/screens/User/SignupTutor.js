@@ -34,36 +34,37 @@ class SignupTutor extends Component {
   };
 
   submitData = () => {
-    const { types,subjects } = this.state;
+    const { types, subjects } = this.state;
     const {
       hourly_rate, education, exp, interests, description,
     } = this;
     // const { isEdit, editUser, signUp } = this.props;
-    if (education.getText() && 
-    exp.getText() &&
-    interests.getText() &&
-    description.getText() &&
-    hourly_rate.getText()
-  ) {
-    const data = {
-      about: {
-        education: education.getText(),
-        exp: exp.getText(),
-        interests: interests.getText(),
-        description: description.getText(),
-      },
-      availability: {
-        session_types: types,
-        hourly_rate: hourly_rate.getText(),
-        currency: 'USD',
-      },
-      subjects: subjects,
-    };
-    this.props.preBecomeTutor(data);
-    this.goTutorSubjects();
-  } else {
-    showInAppNoti('', I18n.t('error.becomeTutor.info'), 'error');
-  }
+    if (
+      education.getText()
+      && exp.getText()
+      && interests.getText()
+      && description.getText()
+      && hourly_rate.getText()
+    ) {
+      const data = {
+        about: {
+          education: education.getText(),
+          exp: exp.getText(),
+          interests: interests.getText(),
+          description: description.getText(),
+        },
+        availability: {
+          session_types: types,
+          hourly_rate: hourly_rate.getText(),
+          currency: 'USD',
+        },
+        subjects,
+      };
+      this.props.preBecomeTutor(data);
+      this.goTutorSubjects();
+    } else {
+      showInAppNoti('', I18n.t('error.becomeTutor.info'), 'error');
+    }
   };
 
   onSelectType = type => () => {

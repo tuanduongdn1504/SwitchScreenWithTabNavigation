@@ -46,8 +46,8 @@ const SearchInput = ({
         <Button
           style={styles.button}
           textStyle={styles.txtButton}
-          endColor={Colors.default}
-          startColor={Colors.default}
+          endColor="transparent"
+          startColor="transparent"
           onPress={() => {
             Keyboard.dismiss();
             onClose && onClose();
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 40,
+    borderRadius: 0,
     backgroundColor: 'transparent',
   },
   txtButton: {
