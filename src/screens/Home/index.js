@@ -15,8 +15,6 @@ import HomeItem from '../../components/Items/HomeItem';
 import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
-import Button from '../../components/Button';
-import { FILTER } from '../../localData';
 import FilterBar from './FilterBar';
 
 class Home extends Component {
@@ -25,14 +23,22 @@ class Home extends Component {
     this.state = {
       selectedMarker: {},
     };
-    this.animated = new Animated.Value(300);
-    this.y= 300;
+    this.animated = new Animated.Value(height - 100);
+    this.y = height - 100;
     this.initPanResponder();
   }
 
   componentDidMount() {
     const { getTutors } = this.props;
     getTutors();
+  }
+
+  onPressItem(item) {
+    this.props.getOneTutor(item);
+    push(this.props.componentId, 'detail', {
+      title: I18n.t('tutorDetail'),
+      rightButtons: [chat()],
+    });
   }
 
   initPanResponder = () => {
@@ -47,21 +53,16 @@ class Home extends Component {
         // The gesture has started. Show visual feedback so the user knows
         // what is happening!
         // gestureState.d{x,y} will be set to zero now
-        // this.animated.setOffset(this.y);
       },
       onPanResponderMove: (e, gestureState) => {
         // custom logic here
-        console.log('JSON.stringifye', JSON.stringify(gestureState.moveY));
-        Animated.event([null, {
-          moveY: this.animated,
-        }])(e, gestureState); // <<--- INVOKING HERE!
+        this.animated.setValue(this.y + gestureState.dy);
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
         this.y = this.animated._value;
-        console.log('JSON.stringifye', JSON.stringify(this.y ));
       },
       onPanResponderTerminate: (evt, gestureState) => {
         // Another component has become the responder, so this gesture
@@ -74,14 +75,6 @@ class Home extends Component {
       },
     });
   };
-
-  onPressItem(item) {
-    this.props.getOneTutor(item);
-    push(this.props.componentId, 'detail', {
-      title: I18n.t('tutorDetail'),
-      rightButtons: [chat()],
-    });
-  }
 
   onPressMarker = item => {
     this.setState({ selectedMarker: item });
@@ -110,21 +103,21 @@ class Home extends Component {
     const { tutors } = this.props;
     const { isUpdate, selectedMarker } = this.state;
     const animatedHeight = this.animated.interpolate({
-      inputRange: [0,200, height],
-      outputRange: [40, 40, height- 200]
-    })
+      inputRange: [-9999, 0, 200, height, 9999],
+      outputRange: [height - 80, height - 80, height - 80, 150, 150],
+    });
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <Animated.View style={[styles.vMap, {height: animatedHeight}]}>
-          {/* <Maps
+        <Animated.View style={styles.vMap}>
+          <Maps
             markers={tutors}
             selectedMarker={selectedMarker}
             onPressMarker={this.onPressMarker}
-          /> */}
+          />
         </Animated.View>
         <FilterBar />
-        <View style={{ flex: 1 }}>
+        <Animated.View style={[styles.vList, { height: animatedHeight }]}>
           <View style={styles.space} />
           <FlatList
             style={styles.list}
@@ -141,7 +134,7 @@ class Home extends Component {
           <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
             <View style={styles.vLinePrimary} />
           </View>
-        </View>
+        </Animated.View>
       </Container>
     );
   }
@@ -179,7 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.default,
   },
   vMap: {
-    height: (height * 2) / 5,
+    height,
   },
   vHeaderList: {
     height: 40,
@@ -195,6 +188,13 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: 2,
     backgroundColor: Colors.primary,
+  },
+  vList: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
   },
 });
 

@@ -31,5 +31,7 @@ export function* apiWrapper(isHaveProgress = false, apiFunc, ...params) {
   } catch (error) {
     isHaveProgress && showProgress(false);
     return error;
+  } finally {
+    showProgress(false);
   }
 }
