@@ -179,6 +179,8 @@ const styles = StyleSheet.create({
     top: -20,
     left: 0,
     right: 0,
+    backgroundColor: Colors.default,
+    
   },
   vLinePrimary: {
     width: 68,
