@@ -10,6 +10,7 @@ import CodeInput from '../../components/CodeInput';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import Actions from '../../redux/ForgotPasswordRedux/actions';
+import Container from '../../components/Container';
 
 class VerifyPassword extends Component {
   static propTypes = {
@@ -88,13 +89,13 @@ class VerifyPassword extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container isLargeTitle style={styles.container}>
         <KeyboardAwareScrollView>
           {this.renderDescription()}
           {this.renderInput()}
           {this.renderButtonGroup()}
         </KeyboardAwareScrollView>
-      </View>
+      </Container>
     );
   }
 }

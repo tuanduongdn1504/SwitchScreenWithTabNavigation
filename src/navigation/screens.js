@@ -31,7 +31,6 @@ import SearchResults from '../screens/Filter/SearchResults';
 import FAQ from '../screens/SideMenu/FAQ';
 
 export function registerScreens(store, persistor) {
-  console.log('persistor', persistor.getState());
   const PersistProvider = props => {
     const { children } = props;
     return (

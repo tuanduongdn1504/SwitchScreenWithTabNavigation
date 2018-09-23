@@ -20,6 +20,7 @@ class FilterBar extends Component {
     this.setState({ isShowSearch: false }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 0,
+        duration: 400
       }).start();
     });
     Navigation.dismissOverlay('searchResults');
@@ -29,6 +30,7 @@ class FilterBar extends Component {
     this.setState({ isShowSearch: true }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 1,
+        duration: 400
       }).start();
     });
     Navigation.showOverlay({

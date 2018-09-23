@@ -71,18 +71,16 @@ class ChatList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          style={styles.list}
-          data={chatList}
-          renderItem={this.renderItem}
-          keyExtractor={data => data.id.toString()}
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 30, marginRight: 30 }} />}
-          ListFooterComponent={() => <View style={{ width: 20 }} />}
-          ListHeaderComponent={() => <View style={{ width: 20 }} />}
-        />
-      </View>
+      <FlatList
+        style={styles.list}
+        data={chatList}
+        renderItem={this.renderItem}
+        keyExtractor={data => data.id.toString()}
+        showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={() => <Divider style={{ marginLeft: 30, marginRight: 30 }} />}
+        ListFooterComponent={() => <View style={{ width: 20 }} />}
+        ListHeaderComponent={() => <View style={{ width: 20 }} />}
+      />
     );
   }
 }

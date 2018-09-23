@@ -46,6 +46,8 @@ const SearchInput = ({
         <Button
           style={styles.button}
           textStyle={styles.txtButton}
+          endColor={Colors.default}
+          startColor={Colors.default}
           onPress={() => {
             Keyboard.dismiss();
             onClose && onClose();

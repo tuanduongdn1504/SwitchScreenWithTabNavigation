@@ -30,7 +30,7 @@ function* getAllSaga(data, resource, successAction, failureAction) {
         }),
       );
     } else {
-      showInAppNoti('', response.message, 'error');
+      // showInAppNoti('', response.message, 'error');
       yield put(failureAction(response));
     }
   } catch (error) {

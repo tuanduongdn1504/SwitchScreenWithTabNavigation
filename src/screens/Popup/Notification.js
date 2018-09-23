@@ -48,6 +48,7 @@ class Notification extends Component {
 
   render() {
     const { title, content, type } = this.props;
+    console.log('error', type);
     return (
       <Animated.View
         style={[

@@ -9,6 +9,7 @@ import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import Actions from '../../redux/ForgotPasswordRedux/actions';
+import Container from '../../components/Container';
 
 class ForgotPassword extends Component {
   static propTypes = {
@@ -104,12 +105,12 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <KeyboardAwareScrollView>
           {this.renderInput()}
           {this.renderButtonGroup()}
         </KeyboardAwareScrollView>
-      </View>
+      </Container>
     );
   }
 }

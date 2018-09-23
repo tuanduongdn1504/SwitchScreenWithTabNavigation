@@ -4,8 +4,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import LottieView from 'lottie-react-native';
 import loading from '../assets/loading.json';
 
-const ProgressScreen = ({ componentId, onDisplay }) => {
-  onDisplay(componentId);
+const ProgressScreen = () => {
   return (
     <View style={styles.vProgress}>
       <LottieView source={loading} autoPlay loop style={styles.vAnimation} />

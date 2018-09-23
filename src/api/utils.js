@@ -36,7 +36,6 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
       };
       throw err;
     } else {
-      console.log('e', res);
       const err = {
         code: res.code,
         message: e.message ? e.message : 'Something wrong. Please try again.',

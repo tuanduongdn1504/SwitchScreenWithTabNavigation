@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { View, StyleSheet, Modal } from 'react-native';
 import ProgressScreen from './ProgressScreen';
 
 const Container = ({ children, style, loading }) => {
-  return <View style={[styles.container, style]}>{children}</View>;
+  return (
+    <View style={[styles.container, style]}>
+      {children}
+      {/* <Modal visible={loading} animationType="fade" transparent>
+        <ProgressScreen />
+      </Modal> */}
+    </View>
+  );
 };
 
 Container.propTypes = {
@@ -19,4 +27,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Container;
+export default connect(
+  state => {
+    return {
+      loading: state.app.loading,
+    };
+  },
+  {},
+)(Container);

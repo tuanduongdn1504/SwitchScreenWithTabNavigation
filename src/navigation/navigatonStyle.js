@@ -11,9 +11,9 @@ export const navigatorStyle = {
     visible: true,
     drawBehind: false,
     animate: false,
-    // hideOnScroll: false,
+    hideOnScroll: false,
     elevation: 0,
-    noBorder: true,
+    noBorder: false,
     buttonColor: Colors.titleNav,
     title: {
       fontSize: 17,

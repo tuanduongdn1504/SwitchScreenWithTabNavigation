@@ -1,6 +1,7 @@
-import { call } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import _ from 'lodash';
-import { showProgress, dismissInAppNoti } from '../navigation/navigationActions';
+import { loading, clearLoading } from '../redux/AppRedux/actions';
+import { showProgress, dismissInAppNoti, showModal } from '../navigation/navigationActions';
 
 export function makeConstantCreator(...params) {
   const constant = {};
@@ -23,15 +24,19 @@ export const makeReducerCreator = (initialState = null, handlers = {}) => (
 
 export function* apiWrapper(isHaveProgress = false, apiFunc, ...params) {
   try {
-    dismissInAppNoti();
-    isHaveProgress && showProgress();
+    // dismissInAppNoti();
+    showProgress();
+    if (isHaveProgress) {
+      showProgress();
+      // yield put(loading());
+    }
     const response = yield call(apiFunc, ...params);
-    isHaveProgress && showProgress(false);
+    // yield put(clearLoading());
+    showProgress(false);
     return response;
   } catch (error) {
-    isHaveProgress && showProgress(false);
-    return error;
-  } finally {
     showProgress(false);
+    // yield put(clearLoading());
+    return error;
   }
 }

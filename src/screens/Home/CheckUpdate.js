@@ -21,16 +21,17 @@ export default class CheckUpdate extends Component {
         status => {
           switch (status) {
             case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-              showProgress();
+              // showProgress();
               break;
             case CodePush.SyncStatus.INSTALLING_UPDATE:
-              showProgress();
+              // showProgress();
               break;
             case CodePush.SyncStatus.UNKNOWN_ERROR:
             case CodePush.SyncStatus.UPDATE_INSTALLED:
-              showProgress(false);
+              // showProgress(false);
               break;
             default:
+            //  showProgress(false);
               break;
           }
         },

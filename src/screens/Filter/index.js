@@ -9,6 +9,7 @@ import Text from '../../components/Text';
 import Chip from '../../components/Chip';
 import { Colors } from '../../themes';
 import { getDataArr } from '../../redux/crudCreator/selectors';
+import Container from '../../components/Container';
 
 class Filter extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Filter extends Component {
   render() {
     const { subjects, types } = this.state;
     return (
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <Text type="title26PX">{I18n.t('userInfo.tutor.types.title')}</Text>
         <View style={styles.vSubjects}>
           {TUTOR_INFO.types.map(data => (
@@ -47,7 +48,7 @@ class Filter extends Component {
             />
           ))}
         </View>
-      </View>
+      </Container>
     );
   }
 }
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: 'white',
   },
   vSubjects: {
     flexDirection: 'row',

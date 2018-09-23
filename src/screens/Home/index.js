@@ -8,7 +8,7 @@ import I18n from 'react-native-i18n';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close, chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
-import TutorActions from '../../redux/TutorRedux/actions';
+import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
 import Container from '../../components/Container';
 import HomeItem from '../../components/Items/HomeItem';
@@ -200,15 +200,15 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    tutors: getDataArr(state, 'tutor'),
-    loading: state.tutor.loading,
+    tutors: getDataArr(state, 'tutors'),
+    loading: state.tutors.loading,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTutors: () => dispatch(TutorActions.getAllTutor()),
-    getOneTutor: data => dispatch(TutorActions.getOneTutor(data)),
+    getTutors: () => dispatch(TutorsActions.getAllTutors()),
+    getOneTutors: data => dispatch(TutorsActions.getOneTutors(data)),
   };
 };
 

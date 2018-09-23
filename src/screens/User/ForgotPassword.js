@@ -10,6 +10,7 @@ import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import Actions from '../../redux/ForgotPasswordRedux/actions';
+import Container from '../../components/Container';
 
 class ForgotPassword extends Component {
   static propTypes = {
@@ -78,7 +79,7 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <KeyboardAwareScrollView>
           {this.renderDescription()}
           {this.renderInput()}
@@ -89,7 +90,7 @@ class ForgotPassword extends Component {
             buttonTitle={I18n.t('send').toLocaleUpperCase()}
           />
         </KeyboardAwareScrollView>
-      </View>
+      </Container>
     );
   }
 }

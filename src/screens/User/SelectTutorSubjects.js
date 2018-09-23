@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 import Chip from '../../components/Chip';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
-import { startWithTabs } from '../../navigation/navigationActions';
+import { startWithTabs, showInAppNoti } from '../../navigation/navigationActions';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 
 class SelectTutorSubjects extends Component {
@@ -40,14 +40,14 @@ class SelectTutorSubjects extends Component {
     } = this.props;
     // const { types, levels } = this.data;
     const { selected } = this.state;
+    if (selected.length === 0) {
+      showInAppNoti('', I18n.t('error.becomeTutor.subjects'), 'error');
+      return;
+    }
     const data = {
       about: user.tutor_info.about,
       availability: user.tutor_info.availability,
-      subjects: selected.map(item => ({
-        name: item.name,
-        id: item.id,
-        level: item.level,
-      })),
+      subjects: selected,
     };
     becomeTutor(data);
     if (isFromMenu) {
@@ -72,6 +72,7 @@ class SelectTutorSubjects extends Component {
 
   renderSelected = () => {
     const { selected } = this.state;
+    const {subjects} = this.props;
     return (
       <View style={styles.vSelected}>
         <View style={styles.row}>
@@ -96,8 +97,8 @@ class SelectTutorSubjects extends Component {
             selected.map(data => (
               <Chip
                 color={Colors.primaryText}
-                text={data.name}
-                key={data.id}
+                text={subjects[data].name}
+                key={data}
                 onPress={() => this.selectSubject(data)}
               />
             ))
@@ -108,7 +109,7 @@ class SelectTutorSubjects extends Component {
   };
 
   renderUnselect = () => {
-    const { subjects } = this.props;
+    const { subjects, ids } = this.props;
     const { selected } = this.state;
     return (
       <View style={styles.vUnselect}>
@@ -119,13 +120,13 @@ class SelectTutorSubjects extends Component {
           {subjects.length === 0 ? (
             <Text color={Colors.secondaryText}>{I18n.t('empty.unselect')}</Text>
           ) : (
-            subjects.map(data => (
+            ids.map(data => (
               <Chip
                 color={
-                  selected.find(item => data.id === item.id) ? Colors.primaryText : Colors.default
+                  selected.indexOf(data) > -1 ? Colors.primaryText : Colors.default
                 }
-                text={data.name}
-                key={data.id}
+                text={subjects[data].name}
+                key={subjects[data].id}
                 onPress={() => this.selectSubject(data)}
               />
             ))
@@ -207,16 +208,18 @@ const styles = StyleSheet.create({
 });
 
 SelectTutorSubjects.propTypes = {
-  subjects: PropTypes.array,
+  subjects: PropTypes.object,
   // isEdit: PropTypes.bool,
   isFromMenu: PropTypes.bool,
   componentId: PropTypes.string,
+  ids: PropTypes.array
 };
 
 function mapStateToProps(state) {
   return {
     user: state.login.data,
-    subjects: getDataArr(state, 'subjects'),
+    ids: state.subjects.ids,
+    subjects: state.subjects.data
   };
 }
 

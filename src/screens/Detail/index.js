@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    tutor: state.tutor.current,
+    tutor: state.tutors.current,
   };
 }
 

@@ -12,7 +12,7 @@ import Text from '../../components/Text';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import LoginActions from '../../redux/LoginRedux/actions';
-import { startWithTabs, push } from '../../navigation/navigationActions';
+import { startWithTabs, push, showInAppNoti } from '../../navigation/navigationActions';
 
 class SignupTutor extends Component {
   constructor(props) {
@@ -39,6 +39,12 @@ class SignupTutor extends Component {
       hourly_rate, education, exp, interests, description,
     } = this;
     // const { isEdit, editUser, signUp } = this.props;
+    if (education.getText() && 
+    exp.getText() &&
+    interests.getText() &&
+    description.getText() &&
+    hourly_rate.getText()
+  ) {
     const data = {
       about: {
         education: education.getText(),
@@ -55,6 +61,9 @@ class SignupTutor extends Component {
     };
     this.props.preBecomeTutor(data);
     this.goTutorSubjects();
+  } else {
+    showInAppNoti('', I18n.t('error.becomeTutor.info'), 'error');
+  }
   };
 
   onSelectType = type => () => {

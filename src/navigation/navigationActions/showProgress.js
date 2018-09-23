@@ -1,29 +1,40 @@
 import { Navigation } from 'react-native-navigation';
-import { Colors } from '../../themes/index';
+import { Dimensions } from 'react-native';
 
+const { height } = Dimensions.get('window');
 let progressId = null;
 export const showProgress = (isShow = true) => {
-  if (isShow) {
-    progressId && Navigation.dismissOverlay(progressId);
-    Navigation.showOverlay({
-      component: {
-        name: 'progressScreen',
-        passProps: {
-          onDisplay: id => {
-            progressId = id;
+  if (isShow && !progressId) {
+    progressId = 'progressScreen';
+    setTimeout(() => {
+      Navigation.showModal({
+        component: {
+          id: 'progressScreen',
+          name: 'progressScreen',
+          passProps: {},
+          options: {
+            overlay: {
+              interceptTouchOutside: true,
+            },
+            layout: {
+              backgroundColor: 'transparent',
+            },
+            screenBackgroundColor: 'transparent',
+            modalPresentationStyle: 'overCurrentContext',
+            animations: {
+              dismissModal: {
+                y: {
+                  from: height,
+                  to: height,
+                },
+              },
+            },
           },
         },
-        options: {
-          overlay: {
-            interceptTouchOutside: false,
-          },
-          layout: {
-            backgroundColor: Colors.blur,
-          },
-        },
-      },
+      });
     });
-  } else {
-    progressId && Navigation.dismissOverlay(progressId);
+  } else if (!isShow) {
+    progressId && Navigation.dismissModal(progressId);
+    progressId = null;
   }
 };
