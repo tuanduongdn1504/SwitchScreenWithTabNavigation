@@ -5,6 +5,7 @@ import subjects from './SubjectsRedux/reducer';
 import faqs from './FaqsRedux/reducer';
 import app from './AppRedux/reducer';
 import tutors from './TutorsRedux/reducer';
+import location from './LocationRedux/reducer';
 
 export default {
   tutors,
@@ -14,4 +15,5 @@ export default {
   password,
   chat,
   login,
+  location,
 };

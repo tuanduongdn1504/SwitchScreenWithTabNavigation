@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import Immutable from 'seamless-immutable';
 import { PRIMARY_KEY } from './actions';
 
-export const INITIAL_CRUD_STATE = {
+export const INITIAL_CRUD_STATE = Immutable({
   loading: false,
   itemloadings: {},
   error: null,
@@ -12,91 +13,81 @@ export const INITIAL_CRUD_STATE = {
   page: 0,
   pageSize: 10,
   sort: '',
-};
+});
 // getAll
 
-export const getAll = (state, { data }) => ({
-  ...state,
+export const getAll = (state, { data }) => state.merge({
   loading: true,
   error: null,
   ...data,
 });
 
-export const getAllSuccess = (state, { data }) => ({
-  ...state,
+export const getAllSuccess = (state, { data }) => state.merge({
   loading: false,
   ...data,
 });
 
-export const getAllFailure = (state, { data }) => ({ ...state, loading: false, error: data });
+export const getAllFailure = (state, { data }) => state.merge({ ...state, loading: false, error: data });
 
 // getOne
 
 export const setCurrent = (state, { data }) => {
-  return {
-    ...state,
+  return state.merge({
     current: data,
     loading: true,
-  };
+  });
 };
-export const setCurrentSuccess = (state, { data }) => ({
-  ...state,
+export const setCurrentSuccess = (state, { data }) => state.merge({
   data: { ...state.data, [data[PRIMARY_KEY]]: data },
   loading: false,
   current: data,
 });
 
-export const setCurrentFailure = (state, { data }) => ({ ...state, loading: false, error: data });
+export const setCurrentFailure = (state, { data }) => state.merge({ ...state, loading: false, error: data });
 
 // Create
 
-export const create = state => ({
-  ...state,
+export const create = state => state.merge({
   error: null,
   loading: true,
 });
 
-export const createSuccess = (state, { data }) => ({
-  ...state,
+export const createSuccess = (state, { data }) => state.merge({
   data: { ...state.data, [data[PRIMARY_KEY]]: data },
+  ids: [...state.ids, data[PRIMARY_KEY]],
   current: data,
   loading: false,
   error: null,
 });
 
-export const createFailure = (state, { data }) => ({
-  ...state,
+export const createFailure = (state, { data }) => state.merge({
   loading: false,
   error: data,
 });
 
 // Edit
 
-export const edit = (state, { data }) => ({
-  ...state,
+export const edit = (state, { data }) => state.merge({
   error: null,
   itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: true },
   loading: true,
 });
 
-export const editSuccess = (state, { data }) => ({
-  ...state,
+export const editSuccess = (state, { data }) => state.merge({
   data: { ...state.data, [data[PRIMARY_KEY]]: { ...state.data[data[PRIMARY_KEY]], ...data } },
   itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: false },
   current: { ...state.data[data[PRIMARY_KEY]], ...data },
   error: null,
 });
 
-export const editFailure = (state, { data }) => ({
-  ...state,
+export const editFailure = (state, { data }) => state.merge({
   itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: false },
   error: data,
 });
 
 // Delete
 
-export const del = (state, { data }) => ({
-  ...state,
+export const del = (state, { data }) => state.merge({
   error: null,
   itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: true },
 });
@@ -108,8 +99,7 @@ export const delSuccess = (state, { data }) => ({
   current: {},
 });
 
-export const delFailure = (state, { data }) => ({
-  ...state,
+export const delFailure = (state, { data }) => state.merge({
   itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: false },
   error: data,
 });

@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 // Common screen
 import InAppNotification from '../screens/Popup/Notification';
+import AddSubjectPopup from '../screens/Popup/AddSubjectPopup';
 import ProgressScreen from '../components/ProgressScreen';
 // Intro
 import Intro from '../screens/User/Intro';
@@ -29,6 +30,7 @@ import Notification from '../screens/Notification';
 import Filter from '../screens/Filter';
 import SearchResults from '../screens/Filter/SearchResults';
 import FAQ from '../screens/SideMenu/FAQ';
+import AddSubjects from '../screens/Popup/AddSubjectPopup';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -94,4 +96,5 @@ export function registerScreens(store, persistor) {
   );
   Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
   Navigation.registerComponentWithRedux('FAQ', () => FAQ, PersistProvider, store);
+  Navigation.registerComponentWithRedux('addSubjects', () => AddSubjects, PersistProvider, store);
 }

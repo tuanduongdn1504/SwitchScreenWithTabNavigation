@@ -6,6 +6,7 @@ import ForgotPasswordSagas from './ForgotPasswordRedux/sagas';
 import subjectsSagas from './SubjectsRedux/sagas';
 import faqsSagas from './FaqsRedux/sagas';
 import tutorsSagas from './TutorsRedux/sagas';
+import locationSagas from './LocationRedux/sagas';
 
 export default function* root() {
   yield all([
@@ -16,5 +17,6 @@ export default function* root() {
     ...chatSagas,
     ...appSagas,
     ...loginSagas,
+    ...locationSagas,
   ]);
 }

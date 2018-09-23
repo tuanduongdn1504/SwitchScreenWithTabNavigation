@@ -18,9 +18,9 @@ const APP_CONFIG = {
 const transformerConfig = {
   whitelistPerReducer: {
     login: ['data', 'token', 'isFirstTime'],
+    subjects: ['data', 'ids', 'userCreateSubjects'],
   },
   blacklistPerReducer: {
-    subjects: ['data', 'ids'],
     tutor: ['data', 'ids'],
     app: ['loading'],
   },
@@ -30,7 +30,7 @@ export const REDUX_PERSIST = {
   key: 'root',
   storage: AsyncStorage,
   version: 1,
-  blacklist: ['subjects', 'tutor', 'app'],
+  blacklist: ['tutor', 'app'],
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)],
 };

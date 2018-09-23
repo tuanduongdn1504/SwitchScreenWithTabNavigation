@@ -16,6 +16,7 @@ import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
 import FilterBar from './FilterBar';
+import { requestLocation as requestLocationActions } from '../../redux/LocationRedux/actions';
 
 class Home extends Component {
   constructor(props) {
@@ -29,8 +30,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { getTutors } = this.props;
+    const { getTutors, requestLocation } = this.props;
     getTutors();
+    requestLocation();
   }
 
   onPressItem(item) {
@@ -80,6 +82,7 @@ class Home extends Component {
   };
 
   onPressMarker = item => {
+    console.log('item', item);
     this.setState({ selectedMarker: item });
   };
 
@@ -107,14 +110,14 @@ class Home extends Component {
     const { isUpdate, selectedMarker } = this.state;
     const animatedHeight = this.animated.interpolate({
       inputRange: [-9999, 0, 200, height, 9999],
-      outputRange: [height - 80, height - 80, height - 80, 150, 150],
+      outputRange: [height - 100, height - 100, height - 100, 150, 150],
     });
     return (
       <Container style={styles.container}>
         <CheckUpdate />
         <View style={styles.vMap}>
           <Maps
-            // markers={tutors}
+            markers={tutors}
             selectedMarker={selectedMarker}
             onPressMarker={this.onPressMarker}
           />
@@ -179,8 +182,6 @@ const styles = StyleSheet.create({
     top: -20,
     left: 0,
     right: 0,
-    backgroundColor: Colors.default,
-    
   },
   vLinePrimary: {
     width: 68,
@@ -207,6 +208,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
+    requestLocation: () => dispatch(requestLocationActions()),
   };
 };
 

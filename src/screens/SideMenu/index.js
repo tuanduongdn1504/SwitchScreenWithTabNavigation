@@ -79,7 +79,7 @@ class Setting extends Component {
           <SettingItem
             onPress={() => {}}
             title={I18n.t('moreText.updateLocation')}
-            subTitle="Osaka, Japan"
+            subTitle={user.address || I18n.t('moreText.unknow')}
           />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.privacy')} />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />

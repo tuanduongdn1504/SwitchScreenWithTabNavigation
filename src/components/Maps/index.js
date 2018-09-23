@@ -24,15 +24,35 @@ export default class CustomMap extends Component {
 
   componentDidMount() {
     const { selectedMarker } = this.props;
+
     AppState.addEventListener('change', this.handleAppStateChange);
     const region = {
-      longitude: selectedMarker?.location?.longitude || DEFAULT_REGION.longitude,
-      latitude: selectedMarker?.location?.latitude || DEFAULT_REGION.latitude,
+      longitude: selectedMarker?.location?.coordinates[1] || DEFAULT_REGION.longitude,
+      latitude: selectedMarker?.location?.coordinates[0] || DEFAULT_REGION.latitude,
+      latitudeDelta: 0.00922,
+      longitudeDelta: 0.00421,
     };
-    this.setState({
-      region,
-    });
-    this.map.animateToCoordinate(region, 200);
+    if (selectedMarker._id) {
+      this.setState({
+        region,
+      });
+      this.map.animateToCoordinate(region, 200);
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        e => {
+          this.map.animateToCoordinate(
+            {
+              longitude: e.coords.longitude,
+              latitude: e.coords.latitude,
+              latitudeDelta: 0.00922,
+              longitudeDelta: 0.00421,
+            },
+            200,
+          );
+        },
+        err => {},
+      );
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -40,12 +60,13 @@ export default class CustomMap extends Component {
     if (
       (prevProps.selectedMarker
         && selectedMarker
-        && prevProps.selectedMarker.location?.longitude != selectedMarker.location?.longitude)
-      || prevProps.selectedMarker?.location?.latitude != selectedMarker?.location?.latitude
+        && prevProps.selectedMarker.location?.coordinates[1]
+          != selectedMarker.location?.coordinates[1])
+      || prevProps.selectedMarker?.location?.coordinates[0] != selectedMarker?.location?.coordinates[0]
     ) {
       const region = {
-        longitude: selectedMarker.location.longitude || DEFAULT_REGION.longitude,
-        latitude: selectedMarker.location.latitude || DEFAULT_REGION.latitude,
+        longitude: selectedMarker?.location?.coordinates[0] || DEFAULT_REGION.longitude,
+        latitude: selectedMarker?.location?.coordinates[1] || DEFAULT_REGION.latitude,
         latitudeDelta: 0.00922,
         longitudeDelta: 0.00421,
       };
@@ -56,16 +77,23 @@ export default class CustomMap extends Component {
     if (markers.length === 0 && prevProps.markers.length > 0) {
       const firstMarker = markers[0];
       // test
-      // this.map.animateToCoordinate({
-      //   longitude: 8.305394,
-      //   latitude: 47.04838,
-      // }, 200);
-      // this.setState({
-      //   region: {
-      //     longitude: 8.305394,
-      //     latitude: 47.04838,
-      //   },
-      // });
+      this.map.animateToCoordinate(
+        {
+          longitude: firstMarker?.location?.coordinates[0] || DEFAULT_REGION.longitude,
+          latitude: firstMarker?.location?.coordinates[1] || DEFAULT_REGION.latitude,
+          latitudeDelta: 0.00922,
+          longitudeDelta: 0.00421,
+        },
+        200,
+      );
+      this.setState({
+        region: {
+          longitude: firstMarker?.location?.coordinates[0] || DEFAULT_REGION.longitude,
+          latitude: firstMarker?.location?.coordinates[1] || DEFAULT_REGION.latitude,
+          latitudeDelta: 0.00922,
+          longitudeDelta: 0.00421,
+        },
+      });
     }
   }
 
@@ -100,11 +128,12 @@ export default class CustomMap extends Component {
     const { onPressMarker } = this.props;
     this.map.animateToCoordinate(
       {
-        ...data.location,
+        longitude: data?.location?.coordinates[0] || DEFAULT_REGION.longitude,
+        latitude: data?.location?.coordinates[1] || DEFAULT_REGION.latitude,
       },
       200,
     );
-    this.map.fitToSuppliedMarkers([data.objectId], true);
+    this.map.fitToSuppliedMarkers([data._id], true);
     onPressMarker && onPressMarker(data);
   };
 
@@ -153,19 +182,19 @@ export default class CustomMap extends Component {
     const components = markers.map(data => {
       return (
         <CustomCallout
-          identifier={data.objectId}
+          identifier={data._id}
           map={this.map}
           title={data.name}
           address={data.address}
           image={data.thumbnail}
-          key={data.objectId}
+          key={data._id}
           selectedMarker={markers.length > 1 ? selectedMarker : data.objectId}
           onPressMarker={() => this.onPressMarker(data)}
           currentLocation={currentLocation}
           onPress={this.onPressPin}
           coordinate={{
-            latitude: data.location ? data.location.latitude : 0,
-            longitude: data.location ? data.location.longitude : 0,
+            latitude: data.location?.coordinates ? data.location?.coordinates[1] : 0,
+            longitude: data.location?.coordinates ? data.location?.coordinates[0] : 0,
           }}
         />
       );

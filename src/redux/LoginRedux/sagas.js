@@ -91,7 +91,7 @@ export function* editUserSaga({ data }) {
       return;
     }
     yield put(Actions.updateUserSuccess(response.data));
-    showInAppNoti('', I18n.t('success.editUser'), 'success');
+    // showInAppNoti('', I18n.t('success.editUser'), 'success');
   } catch (err) {
     showProgress();
     yield put(Actions.updateUserFailure(err));

@@ -67,7 +67,7 @@ export default {
     str = str.replace(/đ/g, 'd');
     str = str.replace(
       /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,
-      '-'
+      '-',
     );
     str = str.replace(/-+-/g, '-');
     str = str.replace(/^\-+|\-+$/g, '');
@@ -85,7 +85,7 @@ export default {
         },
         error => {
           reject(error);
-        }
+        },
       );
     });
   },
@@ -119,35 +119,26 @@ export default {
   },
   calculatorPrice(room, timer) {
     const start = moment(timer.start, 'h:mmA');
-    const end =
-      timer.end == '12:00AM'
-        ? moment(timer.end, 'h:mmA').add(1, 'd')
-        : moment(timer.end, 'h:mmA');
+    const end = timer.end == '12:00AM' ? moment(timer.end, 'h:mmA').add(1, 'd') : moment(timer.end, 'h:mmA');
     const specialStartTime = room.special_price
       ? moment(room.special_price.start_time, 'HH:mm')
       : 0;
-    const specialEndTime = room.special_price
-      ? moment(room.special_price.end_time, 'HH:mm')
-      : 0;
+    const specialEndTime = room.special_price ? moment(room.special_price.end_time, 'HH:mm') : 0;
     const specialTimeRange = room.special_price
       ? specialEndTime.diff(specialStartTime, 'hours', true)
       : 0;
     const specialStartTimeRange = room.special_price
       ? start.diff(specialStartTime, 'hours', true)
       : 0; // 1
-    const specialEndTimeRange = room.special_price
-      ? end.diff(specialEndTime, 'hours', true)
-      : 0; // 1.5
+    const specialEndTimeRange = room.special_price ? end.diff(specialEndTime, 'hours', true) : 0; // 1.5
     const timeRange = end.diff(start, 'hours', true); // 1.5
-    let specialTime =
-      specialTimeRange -
-      (specialStartTimeRange > 0 ? specialStartTimeRange : 0) +
-      (specialEndTimeRange < 0 ? specialEndTimeRange : 0);
+    let specialTime = specialTimeRange
+      - (specialStartTimeRange > 0 ? specialStartTimeRange : 0)
+      + (specialEndTimeRange < 0 ? specialEndTimeRange : 0);
     specialTime = specialStartTimeRange > specialTimeRange ? 0 : specialTime;
     const regularTime = timeRange - specialTime;
-    const total =
-      specialTime * (room.special_price ? room.special_price.price : 0) +
-      room.regular_price * regularTime;
+    const total = specialTime * (room.special_price ? room.special_price.price : 0)
+      + room.regular_price * regularTime;
     return {
       specialTimeRange: room.special_price
         ? `${room.special_price.start_time} - ${room.special_price.end_time}`
@@ -157,14 +148,14 @@ export default {
       specialPrice: room.special_price ? room.special_price.price : 0,
       regularPrice: room.regular_price,
       tax_price: (room.tax / 100) * total,
-      total
+      total,
     };
   },
   renderContentForShare(roomData) {
     return {
       contentType: 'link',
       contentUrl: 'http://blackorchidz.com/',
-      contentDescription: `Check this great room for ${roomData.room_type.name}`
+      contentDescription: `Check this great room for ${roomData.room_type.name}`,
     };
   },
   // shareFacebook(roomData) {
@@ -178,16 +169,12 @@ export default {
   // },
   checkURLImg(url) {
     return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-  }
+  },
 };
 
 export const openURL = (url, isWeb) => {
   let newUrl = url;
-  if (
-    isWeb &&
-    newUrl.indexOf('http://') < 0 &&
-    newUrl.indexOf('https://') < 0
-  ) {
+  if (isWeb && newUrl.indexOf('http://') < 0 && newUrl.indexOf('https://') < 0) {
     newUrl = `http://${newUrl}`;
   }
   Linking.canOpenURL(newUrl)
@@ -208,7 +195,7 @@ export const shareApp = () => {
     title: 'Bệnh viện ABC',
     message: 'Benh vien ABC cho bạn trải nghiệm tốt hơn.',
     url: 'https://google.com',
-    subject: 'Bệnh viện ABC' //  for email
+    subject: 'Bệnh viện ABC', //  for email
   };
   Share.open(shareOptions).then(data => {});
 };
@@ -229,4 +216,18 @@ export const convertAppoiment = appointments => {
   const during = appointments.filter(data => data.status === 1).reverse();
   const completed = appointments.filter(data => data.status === 2).reverse();
   return [...during, ...waiting, ...completed];
+};
+
+export const findCity = result => {
+  // const data = result.find(item => item.types[0] === 'locality');
+  const address = result.plus_code.compound_code.split(',');
+  if (address.length > 0) {
+    return `${address[address.length - 2]},${address[address.length - 1]}`;
+    // return {
+    //   // city: data.address_components[0].long_name,
+    //   // country: data.address_components[2].long_name,
+    //   address:address[address.length-2]+','+ address[address.length-1]
+    // };
+  }
+  return null;
 };

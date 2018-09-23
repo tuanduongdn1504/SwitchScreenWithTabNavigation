@@ -82,16 +82,11 @@ function* editSaga(data, resource, successAction, failureAction, getOne) {
 
 function* createSaga(data, resource, successAction, failureAction) {
   try {
-    const response = yield call(
-      apiWrapper,
-      true,
-      postApi,
-      _.snakeCaseupperFirstChar(resource),
-      data,
-    );
-    if (response.results) {
-      yield put(successAction(response.results));
+    const response = yield call(apiWrapper, true, postApi, resource, data);
+    if (response.success) {
+      yield put(successAction(response.data));
     } else {
+      showInAppNoti('', response.message, 'error');
       yield put(failureAction(response));
     }
   } catch (error) {

@@ -4,7 +4,7 @@ import { makeActionCreator } from '../../utils/reduxUtils';
 
 export const CRUD_ACTIONS = ['GET_ALL', 'GET_ONE', 'DELETE', 'EDIT', 'CREATE'];
 export const ACTIONS_STATE = ['', 'SUCCESS', 'FAILURE'];
-export const PRIMARY_KEY = 'id';
+export const PRIMARY_KEY = '_id';
 
 export function makeCRUDConstantCreator(resource, ignoreActions = []) {
   const constants = {};

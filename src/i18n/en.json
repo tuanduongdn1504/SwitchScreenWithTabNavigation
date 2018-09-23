@@ -62,9 +62,12 @@
       "hobbiesPlaceholder": "Ex: Camping, listen music, reading book,..",
       "subjectSelected": "The Subjects Selected",
       "suggestionSubjects": "Suggestion Subjects",
+      "yourCreatedSubjects": "Your created Subjects",
       "type": "Type",
       "description": "Description",
-      "descriptionPlaceholder": "Enter your Description"
+      "descriptionPlaceholder": "Enter your Description",
+      "newSubjects": "Add a new subject",
+      "subjectName": "Name"
     },
     "student": {
       "title": "Student Info",
@@ -109,7 +112,8 @@
     "customerSupport": "Customer support",
     "privacy": "Privacy policy",
     "termOfService": "Term of service",
-    "logout": "Logout"
+    "logout": "Logout",
+    "unknow": "Unknow"
   },
   "menu": {
     "editProfile": "Edit profile",
@@ -168,13 +172,16 @@
     "somethingWentWrong": "Something went wrong.",
     "becomeTutor": {
       "info": "Please enter all info before go to next step",
-      "subjects": "Please select any subject before submit."
+      "subjects": "Please select any subject before submit.",
+      "createSubjects": "Please enter all info before submit data"
     }
   },
   "button": {
     "confirm": "Confirm",
     "next": "Next",
-    "add": "Add"
+    "add": "Add",
+    "submit": "Submit",
+    "cancel": "Cancel"
   },
   "empty": {
     "subjectSelected": "You need to select any Subject to start tutoring.",

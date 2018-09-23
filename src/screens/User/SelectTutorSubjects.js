@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Dimensions, ScrollView,
+  View, StyleSheet, Dimensions, ScrollView, Modal,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
@@ -14,24 +14,40 @@ import Button from '../../components/Button';
 import Chip from '../../components/Chip';
 import SearchInput from '../../components/SearchInput';
 import LoginActions from '../../redux/LoginRedux/actions';
+import SubjectsActions from '../../redux/SubjectsRedux/actions';
 import { startWithTabs, showInAppNoti } from '../../navigation/navigationActions';
-import { getDataArr } from '../../redux/crudCreator/selectors';
+import {
+  getUserCreateSubjects,
+  getUserCreateSubjectsIds,
+} from '../../redux/SubjectsRedux/selectors';
+import AddSubjects from '../Popup/AddSubjectPopup';
 
 class SelectTutorSubjects extends Component {
   constructor(props) {
     super(props);
     const { tutor_info } = props.user;
     this.state = {
-      selected: tutor_info?[...tutor_info.subjects]:[],
+      selected: tutor_info ? [...tutor_info.subjects] : [],
+      visiblePopup: false,
     };
     this.data = {};
     Navigation.events().bindComponent(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userCreateSubjectsIds.length !== this.props.userCreateSubjectsIds.length) {
+      this.selectSubject(this.props.userCreateSubjectsIds[this.props.userCreateSubjectsIds.length - 1]);
+    }
   }
 
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId === 'skip') {
       startWithTabs();
     }
+  };
+
+  addSubject = () => {
+    this.setState({ visiblePopup: true });
   };
 
   submitData = () => {
@@ -59,7 +75,11 @@ class SelectTutorSubjects extends Component {
 
   selectSubject = item => {
     const { selected } = this.state;
-    this.setState({ selected: _.xor(selected, [item]) });
+    this.setState({ visiblePopup: false, selected: _.xor(selected, [item]) });
+  };
+
+  dismissModalAddSubject = () => {
+    this.setState({ visiblePopup: false });
   };
 
   renderHeader = () => {
@@ -72,7 +92,8 @@ class SelectTutorSubjects extends Component {
 
   renderSelected = () => {
     const { selected } = this.state;
-    const {subjects} = this.props;
+    const { subjects, userCreateSubjects } = this.props;
+    const bigSubjects = { ...subjects, ...userCreateSubjects };
     return (
       <View style={styles.vSelected}>
         <View style={styles.row}>
@@ -97,7 +118,7 @@ class SelectTutorSubjects extends Component {
             selected.map(data => (
               <Chip
                 color={Colors.primaryText}
-                text={subjects[data].name}
+                text={bigSubjects[data]?.name}
                 key={data}
                 onPress={() => this.selectSubject(data)}
               />
@@ -108,25 +129,22 @@ class SelectTutorSubjects extends Component {
     );
   };
 
-  renderUnselect = () => {
-    const { subjects, ids } = this.props;
+  renderUnselect = (subjects, ids, title) => {
     const { selected } = this.state;
     return (
       <View style={styles.vUnselect}>
         <Text type="headline" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.suggestionSubjects')}
+          {title}
         </Text>
         <View style={styles.vWrapper}>
-          {subjects.length === 0 ? (
+          {ids.length === 0 ? (
             <Text color={Colors.secondaryText}>{I18n.t('empty.unselect')}</Text>
           ) : (
             ids.map(data => (
               <Chip
-                color={
-                  selected.indexOf(data) > -1 ? Colors.primaryText : Colors.default
-                }
-                text={subjects[data].name}
-                key={subjects[data].id}
+                color={selected.indexOf(data) > -1 ? Colors.primaryText : Colors.default}
+                text={subjects[data]?.name}
+                key={data}
                 onPress={() => this.selectSubject(data)}
               />
             ))
@@ -138,20 +156,33 @@ class SelectTutorSubjects extends Component {
 
   render() {
     // const { isEdit } = this.props;
+    const {
+      subjects, ids, userCreateSubjects, userCreateSubjectsIds, createSubjects,
+    } = this.props;
     return (
       <Container style={styles.container}>
         <ScrollView style={styles.container} stickyHeaderIndices={[0]}>
           {this.renderHeader()}
           <View style={styles.vContent}>
             {this.renderSelected()}
-            {this.renderUnselect()}
+            {userCreateSubjectsIds.length > 0
+              && this.renderUnselect(
+                userCreateSubjects,
+                userCreateSubjectsIds,
+                I18n.t('userInfo.tutor.yourCreatedSubjects'),
+              )}
+            {this.renderUnselect(subjects, ids, I18n.t('userInfo.tutor.suggestionSubjects'))}
           </View>
+          <View style={{ height: 100 }} />
         </ScrollView>
         <Button
           style={styles.button}
           onPress={this.submitData}
           buttonTitle={I18n.t('button.confirm')}
         />
+        <Modal visible={this.state.visiblePopup} transparent>
+          <AddSubjects dismissModal={this.dismissModalAddSubject} createSubjects={createSubjects} />
+        </Modal>
       </Container>
     );
   }
@@ -171,8 +202,7 @@ const styles = StyleSheet.create({
     width: width - 40,
   },
   vUnselect: {
-    paddingVertical: 20,
-    paddingBottom: 100,
+    paddingTop: 20,
     width: width - 40,
   },
   txtTitle: {},
@@ -212,14 +242,16 @@ SelectTutorSubjects.propTypes = {
   // isEdit: PropTypes.bool,
   isFromMenu: PropTypes.bool,
   componentId: PropTypes.string,
-  ids: PropTypes.array
+  ids: PropTypes.array,
 };
 
 function mapStateToProps(state) {
   return {
     user: state.login.data,
     ids: state.subjects.ids,
-    subjects: state.subjects.data
+    subjects: state.subjects.data,
+    userCreateSubjects: getUserCreateSubjects(state),
+    userCreateSubjectsIds: getUserCreateSubjectsIds(state),
   };
 }
 
@@ -228,7 +260,8 @@ const mapDispatchToProps = dispatch => {
     signUp: data => dispatch(LoginActions.signUp(data)),
     editUser: data => dispatch(LoginActions.editUser(data)),
     becomeTutor: data => dispatch(LoginActions.becomeTutor(data)),
-    getAllSubjects: data => dispatch(SubjectsActions.getAllSubjects(data))
+    getAllSubjects: data => dispatch(SubjectsActions.getAllSubjects(data)),
+    createSubjects: data => dispatch(SubjectsActions.createSubjects(data)),
   };
 };
 

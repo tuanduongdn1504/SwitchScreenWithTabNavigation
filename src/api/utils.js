@@ -7,7 +7,7 @@ const checkIfErrorOccurs = res => {
   };
 };
 
-const TIME_OUT = 30000;
+const TIME_OUT = 10000;
 
 async function xfetch(path, headerOptions, ops = { noParse: false }) {
   const normalFetch = fetch(path, headerOptions);
