@@ -184,9 +184,9 @@ export default class CustomMap extends Component {
         <CustomCallout
           identifier={data._id}
           map={this.map}
-          title={data.name}
+          title={`${data.first_name} ${data.last_name}`}
           address={data.address}
-          image={data.thumbnail}
+          image={data.avatar}
           key={data._id}
           selectedMarker={markers.length > 1 ? selectedMarker : data.objectId}
           onPressMarker={() => this.onPressMarker(data)}

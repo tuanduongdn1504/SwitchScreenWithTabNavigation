@@ -18,7 +18,7 @@ const HomeItem = ({ data, onPress }) => {
             <Image
               style={styles.image}
               source={{
-                uri: data.thumbnail || global.defaultImage[data.gender === 'Male' ? 0 : 1],
+                uri: data.avatar || global.defaultImage[data.gender === 'Male' ? 0 : 1],
               }}
               defaultSource={Images.defaultUser}
             />

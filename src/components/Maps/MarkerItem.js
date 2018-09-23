@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable';
-import { Colors } from '../../themes/index';
+import { Colors, Images } from '../../themes/index';
 
 const styles = StyleSheet.create({
   contentMarker: {
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 4,
     backgroundColor: 'transparent',
-    fontSize: 55,
+    fontSize: 60,
     color: Colors.default,
   },
   marker: {
     position: 'absolute',
-    top: 4,
-    left: 4,
+    top: 8,
+    left: 3,
     width: 32,
     height: 32,
     borderRadius: 18,
@@ -42,7 +42,7 @@ const Marker = ({ animation, duration, image }) => {
   return (
     <Animatable.View animation={animation} duration={duration} style={styles.contentMarker}>
       <Icon name="md-pin" style={styles.markerIcon} />
-      <Image source={{ uri: image }} style={styles.marker} />
+      <Image source={image ? { uri: image } : Images.defaultUser} style={styles.marker} />
     </Animatable.View>
   );
 };

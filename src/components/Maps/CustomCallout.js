@@ -178,10 +178,9 @@ const styles = StyleSheet.create({
     marginTop: -0.5,
   },
   thumbnail: {
-    width: 39,
-    height: 39,
+    width: 30,
+    height: 30,
     borderRadius: 5,
-    marginLeft: 4,
   },
   txtTitle: {
     color: Colors.primaryText,
