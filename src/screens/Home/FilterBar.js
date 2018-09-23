@@ -49,6 +49,8 @@ class FilterBar extends Component {
     });
   };
 
+  onChangeSearch = () => {};
+
   showFilter = () => {
     showModal('filter', {
       title: I18n.t('filter.text'),

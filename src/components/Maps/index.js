@@ -224,6 +224,10 @@ CustomMap.propTypes = {
   onPressPin: PropTypes.func,
 };
 
+CustomMap.defaultProps = {
+  markers: [],
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

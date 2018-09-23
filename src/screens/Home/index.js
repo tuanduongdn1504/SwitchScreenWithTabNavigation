@@ -110,13 +110,13 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <CheckUpdate />
-        <Animated.View style={styles.vMap}>
+        <View style={styles.vMap}>
           <Maps
-            markers={tutors}
+            // markers={tutors}
             selectedMarker={selectedMarker}
             onPressMarker={this.onPressMarker}
           />
-        </Animated.View>
+        </View>
         <FilterBar />
         <Animated.View style={[styles.vList, { height: animatedHeight }]}>
           <View style={styles.space} />
@@ -124,8 +124,8 @@ class Home extends Component {
             style={styles.list}
             extraData={isUpdate}
             data={tutors}
+            keyExtractor={data => data.id}
             renderItem={this.renderItem}
-            keyExtractor={data => data.objectId}
             showsVerticalScrollIndicator={false}
             stickyHeaderIndices={[0]}
             ItemSeparatorComponent={() => <Divider />}
@@ -158,12 +158,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: -20,
-  },
-  item: {
-    backgroundColor: 'transparent',
-  },
-  textButton: {
-    color: Colors.primaryText,
   },
   space: {
     height: 20,

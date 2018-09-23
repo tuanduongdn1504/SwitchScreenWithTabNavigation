@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import LottieView from 'lottie-react-native';
 import loading from '../assets/loading.json';
 
-const ProgressScreen = () => {
-  return (
-    <View style={styles.vProgress}>
-      <LottieView source={loading} autoPlay loop style={styles.vAnimation} />
-    </View>
-  );
-};
+class ProgressScreen extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.loading = React.createRef();
+  }
+
+  componentDidMount() {
+    this.loading.play();
+  }
+
+  componentWillUnmount() {
+    this.loading.reset();
+  }
+
+  render() {
+    return (
+      <View style={styles.vProgress}>
+        <LottieView
+          ref={ref => {
+            this.loading = ref;
+          }}
+          source={loading}
+          loop
+          style={styles.vAnimation}
+        />
+      </View>
+    );
+  }
+}
 
 ProgressScreen.propTypes = {
   onDisplay: PropTypes.func,
