@@ -85,7 +85,6 @@ class Setting extends Component {
           <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />
           <SettingItem
             unShowArrow
-            noBottomBorder
             color={Colors.primary}
             onPress={this.showChatBox}
             title={I18n.t('moreText.customerSupport')}
