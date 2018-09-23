@@ -25,7 +25,7 @@ export const push = (componentId, screen, config, navHidden = false, tabHidden =
             color: Colors.primaryText,
           },
           largeTitle: {
-            visible: true,
+            visible: config.largeTitle || true,
             // fontSize: Fonts.size.h2,
             // color: Colors.primaryText,
             // fontFamily: Fonts.type.semiBold,

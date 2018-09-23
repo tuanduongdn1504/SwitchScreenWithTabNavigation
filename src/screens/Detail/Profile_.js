@@ -11,15 +11,9 @@ import { pop } from '../../navigation/navigationActions';
 const Profile = props => {
   // const { full_name, avatar, sex } = props.user;
   return (
-    <View style={styles.content}>
-      <Image
-        // source={{ uri: avatar || global.defaultImage[sex] }}
-        source={{ uri: global.defaultImage[1] }}
-        defaultSource={Images.defaultUser}
-        style={styles.avatar}
-      />
-      <Text type="title2">Mei Nagano</Text>
-      {/* <View style={styles.row}>
+    <TouchableHighlight underlayColor="transparent" onPress={() => props.onPress()}>
+      <View style={styles.content}>
+        <View style={styles.row}>
           <Button
             onPress={() => {
               pop(props.componentId);
@@ -29,8 +23,8 @@ const Profile = props => {
             ionicons="md-arrow-back"
             style={styles.btnBack}
           />
-        </View> */}
-      {/* <Image
+        </View>
+        <Image
           // source={{ uri: avatar || global.defaultImage[sex] }}
           source={{ uri: global.defaultImage[1] }}
           defaultSource={Images.defaultUser}
@@ -44,29 +38,29 @@ const Profile = props => {
             {I18n.t('menu.editProfile')}
           </Text>
         </View>
-      </View> */}
-    </View>
+      </View>
+    </TouchableHighlight>
   );
 };
 
-// const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const styles = {
   content: {
     alignItems: 'center',
     justifyContent: 'center',
-    // width,
-    // paddingHorizontal: 20,
-    // paddingTop: Platform.OS === 'ios' ? 38 : 13,
-    // paddingBottom: 13,
-    // flexDirection: 'row',
-    // borderBottomWidth: 5,
-    // borderBottomColor: Colors.primary,
-    // backgroundColor: Colors.secondary,
+    width,
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'ios' ? 38 : 13,
+    paddingBottom: 13,
+    flexDirection: 'row',
+    borderBottomWidth: 5,
+    borderBottomColor: Colors.primary,
+    backgroundColor: Colors.secondary,
   },
   avatar: {
-    height: 120,
-    width: 120,
-    borderRadius: 60,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
   },
   vRight: {
     flex: 1,

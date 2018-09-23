@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 // import Text from '../../components/Text';
-// import Profile from './Profile';
+import Profile from './Profile';
 import { Colors } from '../../themes';
-import TutorInfo from './TutorInfo';
+// import TutorInfo from './TutorInfo';
 import TutorsActions from '../../redux/TutorsRedux/actions';
-import { close } from '../../navigation/navigationButtons';
-import { showModal, push } from '../../navigation/navigationActions';
+// import { close } from '../../navigation/navigationButtons';
+// import { showModal, push } from '../../navigation/navigationActions';
 
 class Detail extends Component {
+  // static options(passProps) {
+  //   return {
+  //     topBar: {
+  //       title: {
+  //         text: 'My Screen',
+  //       },
+  //     },
+  //   };
+  // }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -43,15 +53,16 @@ class Detail extends Component {
   render() {
     const { tutor } = this.props;
     return (
-      //       <View>
-      //         <Profile />
-      //       </View>
-      <ScrollView style={styles.container}>
-        <TutorInfo data={tutor} />
-      </ScrollView>
+      <View>
+        <Profile />
+      </View>
     );
   }
 }
+
+// <ScrollView style={styles.container}>
+//      <TutorInfo data={tutor} />
+//  </ScrollView>
 
 const styles = StyleSheet.create({
   container: {
