@@ -12,16 +12,6 @@ import TutorsActions from '../../redux/TutorsRedux/actions';
 // import { showModal, push } from '../../navigation/navigationActions';
 
 class Detail extends Component {
-  // static options(passProps) {
-  //   return {
-  //     topBar: {
-  //       title: {
-  //         text: 'My Screen',
-  //       },
-  //     },
-  //   };
-  // }
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -51,18 +41,14 @@ class Detail extends Component {
   };
 
   render() {
-    const { tutor } = this.props;
+    // const { tutor } = this.props;
     return (
       <View>
-        <Profile />
+        <Profile fullName="Mei Nagano" avatar={global.defaultImage[1]} />
       </View>
     );
   }
 }
-
-// <ScrollView style={styles.container}>
-//      <TutorInfo data={tutor} />
-//  </ScrollView>
 
 const styles = StyleSheet.create({
   container: {

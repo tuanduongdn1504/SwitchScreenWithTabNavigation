@@ -38,90 +38,105 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.anticon-me-accounting:before {
-  content: "\61";
-}
-.anticon-me-history:before {
-  content: "\62";
-}
 .anticon-me-tutor:before {
-  content: "\63";
+  content: "\e000";
 }
-.anticon-me-user:before {
-  content: "\64";
-}
-.anticon-me-home:before {
-  content: "\65";
+.anticon-me-accounting:before {
+  content: "\e000";
 }
 .anticon-me-back:before {
-  content: "\66";
+  content: "\e001";
 }
 .anticon-me-biology:before {
-  content: "\67";
-}
-.anticon-me-logo:before {
-  content: "\68";
-}
-.anticon-me-verifed:before {
-  content: "\69";
-}
-.anticon-me-marker:before {
-  content: "\6a";
+  content: "\e002";
 }
 .anticon-me-business:before {
-  content: "\6b";
+  content: "\e003";
 }
 .anticon-me-chat:before {
-  content: "\6c";
-}
-.anticon-me-mathematic:before {
-  content: "\6d";
-}
-.anticon-me-notification:before {
-  content: "\6e";
+  content: "\e004";
 }
 .anticon-me-chemistry:before {
-  content: "\6f";
+  content: "\e005";
 }
 .anticon-me-close:before {
-  content: "\70";
-}
-.anticon-me-physics:before {
-  content: "\71";
-}
-.anticon-me-right:before {
-  content: "\72";
+  content: "\e006";
 }
 .anticon-me-economics:before {
-  content: "\73";
+  content: "\e007";
 }
 .anticon-me-english:before {
-  content: "\74";
-}
-.anticon-me-search:before {
-  content: "\75";
-}
-.anticon-me-shield:before {
-  content: "\76";
+  content: "\e008";
 }
 .anticon-me-entrepreneurship:before {
-  content: "\77";
+  content: "\e009";
 }
 .anticon-me-finance:before {
-  content: "\78";
-}
-.anticon-me-spanish:before {
-  content: "\79";
-}
-.anticon-me-statistics:before {
-  content: "\7a";
+  content: "\e00a";
 }
 .anticon-me-geographic:before {
-  content: "\41";
+  content: "\e00b";
 }
 .anticon-me-health:before {
-  content: "\42";
+  content: "\e00c";
+}
+.anticon-me-history:before {
+  content: "\e00d";
+}
+.anticon-me-home:before {
+  content: "\e00e";
+}
+.anticon-me-logo:before {
+  content: "\e00f";
+}
+.anticon-me-marker:before {
+  content: "\e010";
+}
+.anticon-me-mathematic:before {
+  content: "\e011";
+}
+.anticon-me-notification:before {
+  content: "\e012";
+}
+.anticon-me-physics:before {
+  content: "\e013";
+}
+.anticon-me-right:before {
+  content: "\e014";
+}
+.anticon-me-search:before {
+  content: "\e015";
+}
+.anticon-me-shield:before {
+  content: "\e016";
+}
+.anticon-me-spanish:before {
+  content: "\e017";
+}
+.anticon-me-statistics:before {
+  content: "\e018";
 }
 .anticon-me-student:before {
-  content: "\43";
+  content: "\e019";
+}
+.anticon-me-tutor:before {
+  content: "\e01a";
+}
+.anticon-me-user:before {
+  content: "\e01b";
+}
+.anticon-me-verifed:before {
+  content: "\e01c";
+}
+.anticon-me-star-half:before {
+  content: "\e01d";
+}
+.anticon-me-star-full:before {
+  content: "\e01e";
+}
+.anticon-me-star-empty:before {
+  content: "\e01f";
+}
+.anticon-me-menu:before {
+  content: "\e020";
 }

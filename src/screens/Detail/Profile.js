@@ -1,68 +1,53 @@
-import React from 'react';
-import I18n from 'react-native-i18n';
-import {
-  View, Image, Dimensions, TouchableHighlight, Platform,
-} from 'react-native';
-import { Colors, Images } from '../../themes';
+import React, { Component } from 'react';
+import { View, Image } from 'react-native';
+import PropTypes from 'prop-types';
+import { Images, Colors } from '../../themes';
 import Text from '../../components/Text';
-import Button from '../../components/Button';
-import { pop } from '../../navigation/navigationActions';
+import RatingStar from '../../components/RatingStar';
 
-const Profile = props => {
-  // const { full_name, avatar, sex } = props.user;
-  return (
-    <View style={styles.content}>
-      <Image
-        // source={{ uri: global.defaultImage[1] }}
-        defaultSource={Images.defaultUser}
-        style={styles.avatar}
-      />
-      <Text type="title2" style={styles.title}>
-        Mei Nagano
-      </Text>
-      {/* <View style={styles.row}>
-          <Button
-            onPress={() => {
-              pop(props.componentId);
-            }}
-            iconColor={Colors.default}
-            transparent
-            ionicons="md-arrow-back"
-            style={styles.btnBack}
-          />
-        </View> */}
-      {/* <Image
-          // source={{ uri: avatar || global.defaultImage[sex] }}
-          source={{ uri: global.defaultImage[1] }}
-          defaultSource={Images.defaultUser}
-          style={styles.avatar}
+export default class Profile extends Component {
+  static propTypes = {
+    fullName: PropTypes.string,
+    avatar: PropTypes.string,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      rateValue: 0,
+    };
+  }
+
+  onRating = value => {
+    this.setState({ rateValue: value });
+  };
+
+  render() {
+    const { fullName, avatar } = this.props;
+    return (
+      <View style={styles.content}>
+        <Image source={{ uri: avatar }} defaultSource={Images.defaultUser} style={styles.avatar} />
+        <Text type="title2" style={styles.title}>
+          {fullName}
+        </Text>
+        <RatingStar
+          onRating={this.onRating}
+          left
+          colors={Colors.starColors}
+          size={32}
+          maxRating={5}
+          currentRating={this.state.rateValue}
+          style={[styles.vRating]}
         />
-        <View style={styles.vRight}>
-          <Text type="title1" color={Colors.primary}>
-            Jennifer Aniston
-          </Text>
-          <Text type="small" color={Colors.default}>
-            {I18n.t('menu.editProfile')}
-          </Text>
-        </View>
-      </View> */}
-    </View>
-  );
-};
+      </View>
+    );
+  }
+}
 
-// const { width, height } = Dimensions.get('window');
 const styles = {
   content: {
     alignItems: 'center',
     justifyContent: 'center',
-    // width,
-    // paddingHorizontal: 20,
-    // paddingTop: Platform.OS === 'ios' ? 38 : 13,
-    // paddingBottom: 13,
-    // flexDirection: 'row',
-    // borderBottomWidth: 5,
-    // borderBottomColor: Colors.primary,
-    // backgroundColor: Colors.secondary,
   },
   avatar: {
     height: 120,
@@ -77,5 +62,3 @@ const styles = {
     marginTop: 10,
   },
 };
-
-export default Profile;
