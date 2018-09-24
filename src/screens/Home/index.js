@@ -16,7 +16,7 @@ import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
 import FilterBar from './FilterBar';
-import { requestLocation as requestLocationActions } from '../../redux/LocationRedux/actions';
+import LocationActions from '../../redux/LocationRedux/actions';
 
 class Home extends Component {
   constructor(props) {
@@ -208,7 +208,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
-    requestLocation: () => dispatch(requestLocationActions()),
+    requestLocation: () => dispatch(LocationActions.requestLocation()),
   };
 };
 

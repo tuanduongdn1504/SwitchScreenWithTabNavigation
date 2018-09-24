@@ -6,9 +6,9 @@ export const Types = {
   MAP_LOCATION_FAILURE: 'MAP_LOCATION_FAILURE',
 };
 
-export const requestLocation = () => makeActionCreator(Types.MAP_LOCATION_REQUEST);
-export const receiveLocation = (latitude, longitude, location) => makeActionCreator(Types.MAP_LOCATION_RECEIVE, { latitude, longitude, location });
-export const receiveLocationFailure = errorCode => makeActionCreator(Types.MAP_LOCATION_FAILURE, { errorCode });
+const requestLocation = () => makeActionCreator(Types.MAP_LOCATION_REQUEST);
+const receiveLocation = (latitude, longitude, location) => makeActionCreator(Types.MAP_LOCATION_RECEIVE, { latitude, longitude, location });
+const receiveLocationFailure = errorCode => makeActionCreator(Types.MAP_LOCATION_FAILURE, { errorCode });
 
 export default {
   requestLocation,
