@@ -1,3 +1,5 @@
+/* eslint no-alert: 0 */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -5,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import OneSignal from 'react-native-onesignal';
 import { push, showModal } from '../../navigation/navigationActions';
 import { close, chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
@@ -17,6 +20,7 @@ import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
 import FilterBar from './FilterBar';
 import LocationActions from '../../redux/LocationRedux/actions';
+import config from '../../config/AppSetting';
 
 class Home extends Component {
   constructor(props) {
@@ -29,10 +33,40 @@ class Home extends Component {
     this.initPanResponder();
   }
 
+  componentWillMount() {
+    const { ONE_SIGNAL_APP_ID } = config;
+    OneSignal.init(ONE_SIGNAL_APP_ID);
+
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('ids', this.onIds);
+  }
+
   componentDidMount() {
     const { getTutors, requestLocation } = this.props;
     getTutors();
     requestLocation();
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('received', this.onReceived);
+    OneSignal.removeEventListener('opened', this.onOpened);
+    OneSignal.removeEventListener('ids', this.onIds);
+  }
+
+  onReceived(notification) {
+    alert(`Notification received: ${JSON.stringify(notification)}`);
+  }
+
+  onOpened(openResult) {
+    alert(`Message: ${JSON.stringify(openResult.notification.payload.body)}
+    Data: ${JSON.stringify(openResult.notification.payload.additionalData)}
+    isActive: ${JSON.stringify(openResult.notification.isAppInFocus)}
+    openResult: ${JSON.stringify(openResult)}`);
+  }
+
+  onIds(device) {
+    alert(`Device info: ${JSON.stringify(device)}`);
   }
 
   onPressItem(item) {
