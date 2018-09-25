@@ -70,6 +70,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AEEEDF0C7F40442294B95DA1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9751199F3D124B5986C8C729 /* Feather.ttf */; };
 		B15450AE53E64A4FBE3504EB /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 096A4BC2CDE946D5A067DDDF /* FontAwesome5_Solid.ttf */; };
+		B35BCD23215A951C00DB205E /* libreact-native-onesignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35BCD22215A951C00DB205E /* libreact-native-onesignal.a */; };
 		BF1F52F425BA3FD17D745A35 /* libPods-tutorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 365911C40EE7509469186DB1 /* libPods-tutorApp.a */; };
 		C4901ED37E1646589063B4BB /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E86DFA6C957443858D4FF27A /* Zocial.ttf */; };
 		DC5A49C9323F4EDBB108CDF5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 517055EF97BA4349859DF167 /* MaterialCommunityIcons.ttf */; };
@@ -594,6 +595,8 @@
 		ACF96C04A7FEA5E93353C0A0 /* Pods-tutorApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tutorApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-tutorApp/Pods-tutorApp.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ADE3291B996D4CA0AEF45326 /* libReactNativeNavigation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeNavigation.a; sourceTree = "<group>"; };
+		B35BCCCF215A822100DB205E /* tutorApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = tutorApp.entitlements; path = tutorApp/tutorApp.entitlements; sourceTree = "<group>"; };
+		B35BCD22215A951C00DB205E /* libreact-native-onesignal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-onesignal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DE0717AF904D2D8B399401 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		B4E19560CAA84CBF89FC5A3A /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		C5B1871C13FC4169820470CB /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -617,6 +620,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35BCD23215A951C00DB205E /* libreact-native-onesignal.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				9F2D3C802140C28D008914D0 /* libRNShare.a in Frameworks */,
 				9F6D9E89214A320B005CB2F1 /* FBSDKCoreKit.framework in Frameworks */,
@@ -762,6 +766,7 @@
 		13B07FAE1A68108700A75B9A /* tutorApp */ = {
 			isa = PBXGroup;
 			children = (
+				B35BCCCF215A822100DB205E /* tutorApp.entitlements */,
 				9FE5FF4521438204006876C9 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -811,6 +816,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B35BCD22215A951C00DB205E /* libreact-native-onesignal.a */,
 				9F6D9E81214A320A005CB2F1 /* Bolts.framework */,
 				9F6D9E80214A320A005CB2F1 /* FacebookSDKStrings.bundle */,
 				9F6D9E84214A320B005CB2F1 /* FBSDKCoreKit.framework */,
@@ -1168,6 +1174,17 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JN2ZHM68CD;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1981,6 +1998,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = tutorApp/tutorApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2006,6 +2024,8 @@
 					"$(SRCROOT)/../node_modules/react-native/React/Libraries/**",
 					"${SRCROOT}/../../../ios/Pods/Headers/Public",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal",
 				);
 				INFOPLIST_FILE = tutorApp/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -2031,6 +2051,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = tutorApp/tutorApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2055,6 +2076,8 @@
 					"$(SRCROOT)/../node_modules/react-native/React/Libraries/**",
 					"${SRCROOT}/../../../ios/Pods/Headers/Public",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal",
 				);
 				INFOPLIST_FILE = tutorApp/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
