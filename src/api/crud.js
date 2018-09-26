@@ -11,8 +11,6 @@ export async function getOneApi(resource, id, data) {
 }
 
 export async function delApi(resource, id) {
-  console.log('DEBUG DELETE: ', resource);
-  console.log('DEBUG DELETE: ', id);
   if (id) {
     return del(`/${resource}/${id}`, { isActive: false });
   }

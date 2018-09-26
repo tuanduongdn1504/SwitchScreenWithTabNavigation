@@ -15,9 +15,6 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
     return timeoutPromise(TIME_OUT, normalFetch);
   }
   const res = await timeoutPromise(TIME_OUT, normalFetch.then(checkIfErrorOccurs));
-  console.log('DEBUG PATH:', path);
-  console.log('DEBUG RESPONSE:', res);
-  console.log('DEBUG HEADER:', headerOptions);
   if (res.code < 300) {
     const response = await res.res.json();
     return response;
