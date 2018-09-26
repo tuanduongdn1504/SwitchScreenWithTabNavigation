@@ -31,9 +31,7 @@ class Home extends Component {
     this.animated = new Animated.Value(height - 100);
     this.y = height - 100;
     this.initPanResponder();
-  }
-
-  componentWillMount() {
+    // TODO: OneSignal setup
     const { ONE_SIGNAL_APP_ID } = config;
     OneSignal.init(ONE_SIGNAL_APP_ID);
 

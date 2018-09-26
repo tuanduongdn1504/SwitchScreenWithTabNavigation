@@ -7,9 +7,11 @@ import subjectsSagas from './SubjectsRedux/sagas';
 import faqsSagas from './FaqsRedux/sagas';
 import tutorsSagas from './TutorsRedux/sagas';
 import locationSagas from './LocationRedux/sagas';
+import deviceTokensSagas from './DeviceTokensRedux/sagas';
 
 export default function* root() {
   yield all([
+    ...deviceTokensSagas,
     ...tutorsSagas,
     ...faqsSagas,
     ...subjectsSagas,

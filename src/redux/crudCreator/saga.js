@@ -48,7 +48,7 @@ function* getOneSaga(data, resource, successAction, failureAction) {
       upperFirstChar(resource),
       data[PRIMARY_KEY],
     );
-    if (response.results) {
+    if (response.success) {
       yield put(successAction(response.results));
     } else {
       yield put(failureAction(response));
@@ -103,7 +103,7 @@ function* delSaga(data, resource, successAction, failureAction) {
       upperFirstChar(resource),
       data[PRIMARY_KEY],
     );
-    if (response.results) {
+    if (response.success) {
       yield put(successAction(response.results));
     } else {
       yield put(failureAction(response));

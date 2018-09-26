@@ -15,7 +15,9 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
     return timeoutPromise(TIME_OUT, normalFetch);
   }
   const res = await timeoutPromise(TIME_OUT, normalFetch.then(checkIfErrorOccurs));
-
+  console.log('DEBUG PATH:', path);
+  console.log('DEBUG RESPONSE:', res);
+  console.log('DEBUG HEADER:', headerOptions);
   if (res.code < 300) {
     const response = await res.res.json();
     return response;
@@ -66,7 +68,7 @@ export const timeoutPromise = function timeoutPromise(ms, promise) {
 export default xfetch;
 
 function requestWrapper(method) {
-  return async function (_url, _data = null, _params = {}) {
+  return async (_url, _data = null, _params = {}) => {
     let url = _url;
     let data = _data;
     let params = _params;

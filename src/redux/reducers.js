@@ -6,8 +6,10 @@ import faqs from './FaqsRedux/reducer';
 import app from './AppRedux/reducer';
 import tutors from './TutorsRedux/reducer';
 import location from './LocationRedux/reducer';
+import deviceTokens from './DeviceTokensRedux/reducer';
 
 export default {
+  deviceTokens,
   tutors,
   app,
   faqs,
