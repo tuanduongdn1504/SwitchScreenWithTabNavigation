@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import cl.json.RNSharePackage;

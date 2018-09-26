@@ -1,4 +1,6 @@
-import { get, post, put } from './utils';
+import {
+  get, post, put, del,
+} from './utils';
 
 export async function getAllApi(resource, data) {
   return get(`/${resource}`, data);
@@ -9,7 +11,10 @@ export async function getOneApi(resource, id, data) {
 }
 
 export async function delApi(resource, id) {
-  return put(`/${resource}/${id}`, { isActive: false });
+  if (id) {
+    return del(`/${resource}/${id}`, { isActive: false });
+  }
+  return del(`/${resource}`);
 }
 
 export async function postApi(resource, data) {

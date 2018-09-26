@@ -2,6 +2,7 @@ import {
   call, put, select, takeLatest,
 } from 'redux-saga/effects';
 import I18n from 'react-native-i18n';
+import OneSignal from 'react-native-onesignal';
 import Actions, { LoginTypes } from './actions';
 import {
   login,
@@ -21,13 +22,17 @@ import {
 } from '../../navigation/navigationActions';
 import { apiWrapper } from '../../utils/reduxUtils';
 import { facebookSignInApi } from '../../api/social';
+import DeviceTokenActions from '../DeviceTokensRedux/actions';
 
 export function* signOut() {
-  global.token = null;
   try {
     startStackScreen();
-    yield call(logout);
-  } catch (error) {}
+    yield put(DeviceTokenActions.deleteDeviceTokens({}));
+    global.token = null;
+  } catch (error) {
+    global.token = null;
+    console.log(error);
+  }
 }
 
 export function* signUp({ data }) {
@@ -61,6 +66,11 @@ export function* signIn({ data }) {
     global.token = response.token;
     yield put(Actions.getUser());
     startWithTabs();
+    OneSignal.getPermissionSubscriptionState(status => {
+      const { userId } = status;
+      this.userId = userId;
+    });
+    yield put(DeviceTokenActions.createDeviceTokens({ token: this.userId }));
   } catch (err) {
     showInAppNoti('', I18n.t('error.login'), 'error');
     yield put(Actions.signInFailure(err));

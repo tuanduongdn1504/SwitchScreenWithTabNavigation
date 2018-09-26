@@ -21,9 +21,9 @@ const UserInfo = ({ user, onPress }) => {
           <Text type="title2" color={Colors.primaryText}>
             {`${first_name} ${last_name}`}
           </Text>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={[styles.row, styles.status]}>
             {role === 'tutor' ? (
-              <View style={{ flexDirection: 'row' }}>
+              <View style={styles.row}>
                 <Icon
                   name="ios-checkmark-circle-outline"
                   size={16}
@@ -69,6 +69,12 @@ const styles = {
   vRight: {
     flex: 1,
     paddingLeft: 10,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  status: {
+    paddingTop: 5,
   },
 };
 

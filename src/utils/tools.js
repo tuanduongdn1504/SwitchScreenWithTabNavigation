@@ -218,16 +218,27 @@ export const convertAppoiment = appointments => {
   return [...during, ...waiting, ...completed];
 };
 
+// TODO: For Google
+// export const findCity = result => {
+//   // const data = result.find(item => item.types[0] === 'locality');
+//   const address = result.plus_code.compound_code.split(',');
+//   if (address.length > 0) {
+//     return `${address[address.length - 2]},${address[address.length - 1]}`;
+//     // return {
+//     //   // city: data.address_components[0].long_name,
+//     //   // country: data.address_components[2].long_name,
+//     //   address:address[address.length-2]+','+ address[address.length-1]
+//     // };
+//   }
+//   return null;
+// };
+
+// TODO: For Bing Map
 export const findCity = result => {
-  // const data = result.find(item => item.types[0] === 'locality');
-  const address = result.plus_code.compound_code.split(',');
-  if (address.length > 0) {
-    return `${address[address.length - 2]},${address[address.length - 1]}`;
-    // return {
-    //   // city: data.address_components[0].long_name,
-    //   // country: data.address_components[2].long_name,
-    //   address:address[address.length-2]+','+ address[address.length-1]
-    // };
+  const { name } = result?.resourceSets[0]?.resources[0];
+  if (name) {
+    const addresses = name.split(', ');
+    return `${addresses[addresses.length - 2]}, ${addresses[addresses.length - 1]}`;
   }
   return null;
 };
