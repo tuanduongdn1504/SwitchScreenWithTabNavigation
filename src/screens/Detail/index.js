@@ -3,18 +3,19 @@ import { StyleSheet, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-// import Text from '../../components/Text';
 import Profile from './Profile';
 import { Colors } from '../../themes';
-// import TutorInfo from './TutorInfo';
 import TutorsActions from '../../redux/TutorsRedux/actions';
-// import { close } from '../../navigation/navigationButtons';
-// import { showModal, push } from '../../navigation/navigationActions';
+import Text from '../../components/Text';
+import InputRow from '../../components/InputRow';
+import StarRating from '../../components/StarRating';
 
 class Detail extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      customStarCount: 0,
+    };
     Navigation.events().bindComponent(this);
   }
 
@@ -40,11 +41,43 @@ class Detail extends Component {
     });
   };
 
+  onCustomStarRatingPress(rating) {
+    this.setState({
+      customStarCount: rating,
+    });
+  }
+
   render() {
+    const { customStarCount } = this.state;
     // const { tutor } = this.props;
     return (
-      <View>
+      <View style={styles.container}>
         <Profile fullName="Mei Nagano" avatar={global.defaultImage[1]} />
+        <StarRating
+          animation="tada"
+          disabled={false}
+          rating={customStarCount}
+          selectedStar={rating => this.onCustomStarRatingPress(rating)}
+          starSize={34}
+          starPadding={10}
+          containerStyle={styles.rating}
+        />
+        <Text type="smallNormal">{I18n.t('review.tapStar')}</Text>
+        <View style={styles.vInput}>
+          <Text type="headline" style={styles.txtTitle}>
+            {I18n.t('userInfo.tutor.education')}
+          </Text>
+          <InputRow
+            ref={ref => {
+              this.education = ref;
+            }}
+            underLine
+            multiline
+            style={styles.textarea}
+            placeholderTextColor={Colors.placeholderText}
+            placeholder={I18n.t('userInfo.tutor.educationPlaceholder')}
+          />
+        </View>
       </View>
     );
   }
@@ -53,7 +86,29 @@ class Detail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.default,
+    backgroundColor: Colors.red,
+  },
+  rating: {
+    marginVertical: 15,
+  },
+  txtTitle: {
+    paddingTop: 15,
+  },
+  textarea: {
+    marginTop: 0,
+    marginHorizontal: 0,
+  },
+  vInput: {
+    marginTop: 35,
+    paddingBottom: 100,
+  },
+  row: {
+    marginTop: 15,
+    flexDirection: 'row',
+  },
+  divider: {
+    width: 1,
+    backgroundColor: Colors.divider,
   },
 });
 

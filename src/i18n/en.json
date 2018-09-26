@@ -92,6 +92,10 @@
       "verifyPasswordDescription": "Please enter that code to reset your password."
     }
   },
+  "review": {
+    "tapStar": "TAP A STAR TO RATE",
+    "reviewPlaceHolder": "Write a review"
+  },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
   "resend": "Resend a new code",
