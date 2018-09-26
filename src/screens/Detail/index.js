@@ -59,24 +59,26 @@ class Detail extends Component {
           rating={customStarCount}
           selectedStar={rating => this.onCustomStarRatingPress(rating)}
           starSize={34}
-          starPadding={10}
+          starPadding={5}
           containerStyle={styles.rating}
         />
         <Text type="smallNormal">{I18n.t('review.tapStar')}</Text>
         <View style={styles.vInput}>
-          <Text type="headline" style={styles.txtTitle}>
-            {I18n.t('userInfo.tutor.education')}
-          </Text>
-          <InputRow
-            ref={ref => {
-              this.education = ref;
-            }}
-            underLine
-            multiline
-            style={styles.textarea}
-            placeholderTextColor={Colors.placeholderText}
-            placeholder={I18n.t('userInfo.tutor.educationPlaceholder')}
-          />
+          <View style={styles.vInput}>
+            <Text type="headline" style={styles.txtTitle}>
+              {I18n.t('userInfo.tutor.education')}
+            </Text>
+            <InputRow
+              ref={ref => {
+                this.education = ref;
+              }}
+              underLine
+              multiline
+              style={styles.textarea}
+              placeholderTextColor={Colors.placeholderText}
+              placeholder={I18n.t('userInfo.tutor.educationPlaceholder')}
+            />
+          </View>
         </View>
       </View>
     );
@@ -86,7 +88,9 @@ class Detail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.red,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   rating: {
     marginVertical: 15,
@@ -99,17 +103,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   vInput: {
-    marginTop: 35,
-    paddingBottom: 100,
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 40,
   },
-  row: {
-    marginTop: 15,
-    flexDirection: 'row',
-  },
-  divider: {
-    width: 1,
-    backgroundColor: Colors.divider,
-  },
+  // row: {
+  //   marginTop: 15,
+  //   flexDirection: 'row',
+  // },
+  // divider: {
+  //   width: 1,
+  //   backgroundColor: Colors.divider,
+  // },
 });
 
 function mapStateToProps(state) {
