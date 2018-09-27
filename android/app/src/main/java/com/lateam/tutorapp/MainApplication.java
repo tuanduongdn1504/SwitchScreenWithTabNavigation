@@ -77,6 +77,7 @@ public class MainApplication extends NavigationApplication {
           new FBSDKPackage(mCallbackManager),
           new LinearGradientPackage(),
           new LottiePackage(),
+          new ReactNativeOneSignalPackage(),
           new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG)
       );
     }

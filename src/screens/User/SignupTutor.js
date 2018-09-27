@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     position: 'absolute',
     bottom: 30,
+    left: 20
   },
   textarea: {
     marginTop: 0,

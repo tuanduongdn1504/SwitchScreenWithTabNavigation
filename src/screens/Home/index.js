@@ -114,7 +114,6 @@ class Home extends Component {
   };
 
   onPressMarker = item => {
-    console.log('item', item);
     this.setState({ selectedMarker: item });
   };
 
@@ -156,7 +155,9 @@ class Home extends Component {
         </View>
         <FilterBar />
         <Animated.View style={[styles.vList, { height: animatedHeight }]}>
-          <View style={styles.space} />
+          <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
+            <View style={styles.vLinePrimary} />
+          </View>
           <FlatList
             style={styles.list}
             extraData={isUpdate}
@@ -164,14 +165,9 @@ class Home extends Component {
             keyExtractor={data => data.id}
             renderItem={this.renderItem}
             showsVerticalScrollIndicator={false}
-            stickyHeaderIndices={[0]}
             ItemSeparatorComponent={() => <Divider />}
             ListFooterComponent={() => <View style={{ width: 20 }} />}
-            ListHeaderComponent={() => <View style={{ height: 30 }} />}
           />
-          <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
-            <View style={styles.vLinePrimary} />
-          </View>
         </Animated.View>
       </Container>
     );
@@ -184,7 +180,7 @@ Home.propTypes = {
   tutors: PropTypes.array,
 };
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -192,28 +188,18 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginTop: -20,
-  },
-  space: {
-    height: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginTop: -20,
     backgroundColor: Colors.default,
   },
   vMap: {
     height,
   },
   vHeaderList: {
-    height: 40,
+    height: 25,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    top: -20,
-    left: 0,
-    right: 0,
+    backgroundColor: Colors.default,
   },
   vLinePrimary: {
     width: 68,
@@ -226,7 +212,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
   },
 });
 

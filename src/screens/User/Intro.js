@@ -35,7 +35,9 @@ class Intro extends Component {
 
   forgotPassword = () => {
     const { componentId } = this.props;
-    push(componentId, 'forgotPassword', {});
+    push(componentId, 'forgotPassword', {
+      title: I18n.t('userInfo.password.forgotPassword'),
+    });
   };
 
   login = () => {

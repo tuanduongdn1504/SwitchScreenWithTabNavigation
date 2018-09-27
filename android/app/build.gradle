@@ -117,8 +117,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.1'
 
 //    dexOptions {
 //        javaMaxHeapSize "4g"
@@ -212,7 +212,6 @@ android {
         }
     }
 }
-
 buildscript {
     repositories {
         maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal
@@ -221,8 +220,8 @@ buildscript {
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.10.0, 0.99.99]'
     }
 }
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 //configurations.all {
 //    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
 //        def requested = details.requested
@@ -235,7 +234,7 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 //    }
 //}
 dependencies {
-    compile project(':react-native-onesignal')
+    implementation project(':react-native-onesignal')
     implementation project(':lottie-react-native')
     implementation project(':react-native-linear-gradient')
     implementation 'com.facebook.android:facebook-android-sdk:4.34.0'

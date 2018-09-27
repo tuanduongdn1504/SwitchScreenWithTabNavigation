@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { bindActionCreators } from 'redux';
 import { Colors } from '../../themes';
-import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
@@ -16,16 +15,6 @@ class ForgotPassword extends Component {
   static propTypes = {
     forgotPassword: PropTypes.func,
   };
-
-  static options() {
-    return {
-      topBar: {
-        title: {
-          text: I18n.t('userInfo.password.forgotPassword'),
-        },
-      },
-    };
-  }
 
   constructor(props) {
     super(props);
@@ -80,16 +69,14 @@ class ForgotPassword extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <KeyboardAwareScrollView>
-          {this.renderDescription()}
-          {this.renderInput()}
-          <Button
-            primary
-            style={styles.vBtn}
-            onPress={this.send}
-            buttonTitle={I18n.t('send').toLocaleUpperCase()}
-          />
-        </KeyboardAwareScrollView>
+        {this.renderDescription()}
+        {this.renderInput()}
+        <Button
+          primary
+          style={styles.vBtn}
+          onPress={this.send}
+          buttonTitle={I18n.t('send').toLocaleUpperCase()}
+        />
       </Container>
     );
   }
@@ -99,13 +86,11 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    marginHorizontal: 20,
-    marginTop: 40,
+    backgroundColor: Colors.default,
+    paddingHorizontal: 20,
   },
   description: {
-    // marginTop: 40,
+    paddingTop: 40,
   },
   groupInput: {
     marginTop: 20,
