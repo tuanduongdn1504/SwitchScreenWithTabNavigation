@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Modal } from 'react-native';
 import ProgressScreen from './ProgressScreen';
+import { Colors } from '../themes';
 
 const Container = ({ children, style, loading }) => {
   return (
@@ -26,6 +27,7 @@ Container.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.default,
   },
 });
 

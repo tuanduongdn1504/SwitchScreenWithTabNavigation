@@ -67,10 +67,10 @@
 		9FD5F836213AAB61001AA978 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD5F835213AAB42001AA978 /* libAirMaps.a */; };
 		9FDDD3D321366C2100564532 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDDD3CF21366C1800564532 /* libRNI18n.a */; };
 		9FE5FF7821438205006876C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FE5FF4521438204006876C9 /* GoogleService-Info.plist */; };
+		9FFFBF9C215D280A00096B13 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFFBF78215D27FF00096B13 /* libRCTOneSignal.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AEEEDF0C7F40442294B95DA1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9751199F3D124B5986C8C729 /* Feather.ttf */; };
 		B15450AE53E64A4FBE3504EB /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 096A4BC2CDE946D5A067DDDF /* FontAwesome5_Solid.ttf */; };
-		B35BCD23215A951C00DB205E /* libreact-native-onesignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35BCD22215A951C00DB205E /* libreact-native-onesignal.a */; };
 		BF1F52F425BA3FD17D745A35 /* libPods-tutorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 365911C40EE7509469186DB1 /* libPods-tutorApp.a */; };
 		C4901ED37E1646589063B4BB /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E86DFA6C957443858D4FF27A /* Zocial.ttf */; };
 		DC5A49C9323F4EDBB108CDF5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 517055EF97BA4349859DF167 /* MaterialCommunityIcons.ttf */; };
@@ -500,6 +500,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		9FFFBF77215D27FF00096B13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FFFBF5D215D27FF00096B13 /* RCTOneSignal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTOneSignal;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -590,6 +597,7 @@
 		9FD5F830213AAB42001AA978 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		9FDDD39D21366C1800564532 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		9FE5FF4521438204006876C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9FFFBF5D215D27FF00096B13 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		A4D648ACD93144FCA83DF8BE /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		A896ACF6592B44DF9949DCCD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ACF96C04A7FEA5E93353C0A0 /* Pods-tutorApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tutorApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-tutorApp/Pods-tutorApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -620,7 +628,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B35BCD23215A951C00DB205E /* libreact-native-onesignal.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				9F2D3C802140C28D008914D0 /* libRNShare.a in Frameworks */,
 				9F6D9E89214A320B005CB2F1 /* FBSDKCoreKit.framework in Frameworks */,
@@ -644,6 +651,7 @@
 				54D06C7A114349ECBE0390FC /* libReactNativeConfig.a in Frameworks */,
 				83F76EAFC7DC4C85A45E6413 /* libRNDeviceInfo.a in Frameworks */,
 				9FCFA4AD214D3D750045E00C /* libLottieReactNative.a in Frameworks */,
+				9FFFBF9C215D280A00096B13 /* libRCTOneSignal.a in Frameworks */,
 				9FCFA4AC214D3D700045E00C /* libLottie.a in Frameworks */,
 				39477169B1F640B9ACE7432C /* libRNVectorIcons.a in Frameworks */,
 				9FDDD3D321366C2100564532 /* libRNI18n.a in Frameworks */,
@@ -855,6 +863,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9FFFBF5D215D27FF00096B13 /* RCTOneSignal.xcodeproj */,
 				9FCFA49D214D3D590045E00C /* Lottie.xcodeproj */,
 				9FCFA497214D3D4E0045E00C /* LottieReactNative.xcodeproj */,
 				9F127848214B4429000CE08A /* BVLinearGradient.xcodeproj */,
@@ -1044,6 +1053,14 @@
 			isa = PBXGroup;
 			children = (
 				9FE5FF0521437D6A006876C9 /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FFFBF5E215D27FF00096B13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FFFBF78215D27FF00096B13 /* libRCTOneSignal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1260,6 +1277,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = 9FFFBF5E215D27FF00096B13 /* Products */;
+					ProjectRef = 9FFFBF5D215D27FF00096B13 /* RCTOneSignal.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1718,6 +1739,13 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = 9FE5FF0421437D6A006876C9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9FFFBF78215D27FF00096B13 /* libRCTOneSignal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOneSignal.a;
+			remoteRef = 9FFFBF77215D27FF00096B13 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {

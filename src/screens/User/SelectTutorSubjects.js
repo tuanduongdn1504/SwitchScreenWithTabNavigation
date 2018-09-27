@@ -36,7 +36,9 @@ class SelectTutorSubjects extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.userCreateSubjectsIds.length !== this.props.userCreateSubjectsIds.length) {
-      this.selectSubject(this.props.userCreateSubjectsIds[this.props.userCreateSubjectsIds.length - 1]);
+      this.selectSubject(
+        this.props.userCreateSubjectsIds[this.props.userCreateSubjectsIds.length - 1],
+      );
     }
   }
 
@@ -82,10 +84,15 @@ class SelectTutorSubjects extends Component {
     this.setState({ visiblePopup: false });
   };
 
+  onSearchSubjects = text => {
+    const { searchSubjects } = this.props;
+    searchSubjects(text);
+  };
+
   renderHeader = () => {
     return (
       <View style={styles.vHeader}>
-        <SearchInput />
+        <SearchInput onChange={this.onSearchSubjects} />
       </View>
     );
   };
@@ -159,6 +166,7 @@ class SelectTutorSubjects extends Component {
     const {
       subjects, ids, userCreateSubjects, userCreateSubjectsIds, createSubjects,
     } = this.props;
+    const { visiblePopup } = this.state;
     return (
       <Container style={styles.container}>
         <ScrollView style={styles.container} stickyHeaderIndices={[0]}>
@@ -180,7 +188,7 @@ class SelectTutorSubjects extends Component {
           onPress={this.submitData}
           buttonTitle={I18n.t('button.confirm')}
         />
-        <Modal visible={this.state.visiblePopup} transparent>
+        <Modal visible={visiblePopup} transparent>
           <AddSubjects dismissModal={this.dismissModalAddSubject} createSubjects={createSubjects} />
         </Modal>
       </Container>
@@ -243,6 +251,9 @@ SelectTutorSubjects.propTypes = {
   isFromMenu: PropTypes.bool,
   componentId: PropTypes.string,
   ids: PropTypes.array,
+  searchSubjects: PropTypes.func,
+  createSubjects: PropTypes.func,
+  userCreateSubjects: PropTypes.array
 };
 
 function mapStateToProps(state) {
@@ -262,6 +273,7 @@ const mapDispatchToProps = dispatch => {
     becomeTutor: data => dispatch(LoginActions.becomeTutor(data)),
     getAllSubjects: data => dispatch(SubjectsActions.getAllSubjects(data)),
     createSubjects: data => dispatch(SubjectsActions.createSubjects(data)),
+    searchSubjects: data => dispatch(SubjectsActions.searchSubjects(data)),
   };
 };
 

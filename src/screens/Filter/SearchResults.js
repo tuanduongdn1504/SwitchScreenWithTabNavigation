@@ -27,7 +27,7 @@ class SearchResults extends Component {
   toggleNotiAnim = (isShow = true) => {
     const handle = InteractionManager.createInteractionHandle();
     Animated.timing(this.animation, {
-      toValue: isShow ? (Platform.OS === 'ios' ? (isIphoneX ? 90 : 70) : 60) : height,
+      toValue: isShow ? (isIphoneX ? 90 : 70) : height,
       useNativeDriver: true,
       duration: 300,
     }).start(() => {
