@@ -30,7 +30,6 @@ export function* signOut() {
     yield put(DeviceTokenActions.deleteDeviceTokens({}));
     global.token = null;
   } catch (error) {
-    global.token = null;
     console.log(error);
   }
 }

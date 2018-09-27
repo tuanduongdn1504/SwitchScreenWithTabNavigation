@@ -96,15 +96,13 @@ function* createSaga(data, resource, successAction, failureAction) {
 
 function* delSaga(data, resource, successAction, failureAction) {
   try {
-    const response = yield call(
-      apiWrapper,
-      true,
-      delApi,
-      upperFirstChar(resource),
-      data[PRIMARY_KEY],
-    );
+    const response = yield call(apiWrapper, true, delApi, resource, data[PRIMARY_KEY]);
+    console.log('apiWrapper', apiWrapper);
+    console.log('resource', resource);
+    console.log('data[PRIMARY_KEY]', data[PRIMARY_KEY]);
+    console.log('DEBUG RESPONSE: ', response);
     if (response.success) {
-      yield put(successAction(response.results));
+      yield put(successAction(response.data || {}));
     } else {
       yield put(failureAction(response));
     }
