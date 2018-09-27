@@ -182,8 +182,8 @@ class SignupTutor extends Component {
   render() {
     const { isEdit } = this.props;
     return (
-      <Container style={styles.container}>
-        <KeyboardAwareScrollView>
+      <Container>
+        <KeyboardAwareScrollView style={styles.container}>
           {isEdit && this.renderHeader()}
           {this.renderInput()}
         </KeyboardAwareScrollView>
