@@ -185,6 +185,7 @@
   },
   "empty": {
     "subjectSelected": "You need to select any Subject to start tutoring.",
-    "unselect": "Don't have the subjects you search"
+    "unselect": "Don't have the subjects you search",
+    "tutor": "Type tutor's name to find"
   }
 }

@@ -50,7 +50,10 @@ class FilterBar extends Component {
     });
   };
 
-  onChangeSearch = () => {};
+  onChangeSearch = (text) => {
+    const { searchTutor } = this.props;
+    searchTutor(text);
+  };
 
   showFilter = () => {
     showModal('filter', {
@@ -116,7 +119,9 @@ class FilterBar extends Component {
   };
 }
 
-FilterBar.propTypes = {};
+FilterBar.propTypes = {
+  searchTutor: PropTypes.func,
+};
 
 const styles = StyleSheet.create({
   search: {
@@ -143,13 +148,23 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     left: 0,
-    paddingTop: DeviceInfo.getModel().toLocaleLowerCase().search('iphone x')>-1?45: 30,
+    paddingTop:
+      DeviceInfo.getModel()
+        .toLocaleLowerCase()
+        .search('iphone x') > -1
+        ? 45
+        : 30,
   },
   searchContent: {
     position: 'absolute',
     top: 0,
     right: 0,
-    paddingTop: DeviceInfo.getModel().toLocaleLowerCase().search('iphone x')>-1?45: 30,
+    paddingTop:
+      DeviceInfo.getModel()
+        .toLocaleLowerCase()
+        .search('iphone x') > -1
+        ? 45
+        : 30,
   },
   mask: {
     position: 'absolute',

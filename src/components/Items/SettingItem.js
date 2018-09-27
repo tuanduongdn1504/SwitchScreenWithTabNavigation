@@ -50,7 +50,7 @@ const SettingItem = ({
           {title}
         </Text>
         {subTitle && (
-          <Text type="body2" style={[styles.subTitle]}>
+          <Text numberOfLines={1} type="body2" style={styles.subTitle}>
             {subTitle}
           </Text>
         )}

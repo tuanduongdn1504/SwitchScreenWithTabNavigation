@@ -1,5 +1,4 @@
 /* eslint no-alert: 0 */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -8,8 +7,8 @@ import {
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
-import { push, showModal } from '../../navigation/navigationActions';
-import { close, chat } from '../../navigation/navigationButtons';
+import { push } from '../../navigation/navigationActions';
+import { chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -117,14 +116,6 @@ class Home extends Component {
     this.setState({ selectedMarker: item });
   };
 
-  showChatBox = () => {
-    showModal('chatBox', {
-      title: I18n.t('chatBox'),
-      leftButtons: [],
-      rightButtons: [close()],
-    });
-  };
-
   renderItem = ({ item, index }) => {
     return (
       <HomeItem
@@ -137,7 +128,7 @@ class Home extends Component {
   };
 
   render() {
-    const { tutors } = this.props;
+    const { tutors, searchTutor } = this.props;
     const { isUpdate, selectedMarker } = this.state;
     const animatedHeight = this.animated.interpolate({
       inputRange: [-9999, 0, 200, height, 9999],
@@ -153,7 +144,7 @@ class Home extends Component {
             onPressMarker={this.onPressMarker}
           />
         </View>
-        <FilterBar />
+        <FilterBar searchTutor={searchTutor} />
         <Animated.View style={[styles.vList, { height: animatedHeight }]}>
           <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
             <View style={styles.vLinePrimary} />
@@ -180,7 +171,7 @@ Home.propTypes = {
   tutors: PropTypes.array,
 };
 
-const { height, width } = Dimensions.get('window');
+const { height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -226,6 +217,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
     requestLocation: () => dispatch(LocationActions.requestLocation()),
+    searchTutor: (text) => dispatch(TutorsActions.searchTutor(text)),
   };
 };
 
