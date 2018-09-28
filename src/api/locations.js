@@ -25,9 +25,9 @@ export const getGeocode = address => {
 };
 
 export const getPlace = key => {
-  return fetch(
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${key}&types=(cities)&key=AIzaSyB7CHUBsexTJWKPVXIP2dIRd0J9J-voqjM`,
-  ).then(response => response.json());
+  return fetch(`http://dev.virtualearth.net/REST/v1/Locations?key=${BING_MAPS_KEY}&q=${key}`).then(
+    response => response.json(),
+  );
 };
 
 export const getDriveTime = (currentLocation, result) => {

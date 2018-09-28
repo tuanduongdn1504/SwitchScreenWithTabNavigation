@@ -1,5 +1,4 @@
 /* eslint no-alert: 0 */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -8,8 +7,8 @@ import {
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
-import { push, showModal } from '../../navigation/navigationActions';
-import { close, chat } from '../../navigation/navigationButtons';
+import { push } from '../../navigation/navigationActions';
+import { chat } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -114,16 +113,7 @@ class Home extends Component {
   };
 
   onPressMarker = item => {
-    console.log('item', item);
     this.setState({ selectedMarker: item });
-  };
-
-  showChatBox = () => {
-    showModal('chatBox', {
-      title: I18n.t('chatBox'),
-      leftButtons: [],
-      rightButtons: [close()],
-    });
   };
 
   renderItem = ({ item, index }) => {
@@ -138,7 +128,7 @@ class Home extends Component {
   };
 
   render() {
-    const { tutors } = this.props;
+    const { tutors, searchTutor } = this.props;
     const { isUpdate, selectedMarker } = this.state;
     const animatedHeight = this.animated.interpolate({
       inputRange: [-9999, 0, 200, height, 9999],
@@ -154,9 +144,11 @@ class Home extends Component {
             onPressMarker={this.onPressMarker}
           />
         </View>
-        <FilterBar />
+        <FilterBar searchTutor={searchTutor} />
         <Animated.View style={[styles.vList, { height: animatedHeight }]}>
-          <View style={styles.space} />
+          <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
+            <View style={styles.vLinePrimary} />
+          </View>
           <FlatList
             style={styles.list}
             extraData={isUpdate}
@@ -164,14 +156,9 @@ class Home extends Component {
             keyExtractor={data => data.id}
             renderItem={this.renderItem}
             showsVerticalScrollIndicator={false}
-            stickyHeaderIndices={[0]}
             ItemSeparatorComponent={() => <Divider />}
             ListFooterComponent={() => <View style={{ width: 20 }} />}
-            ListHeaderComponent={() => <View style={{ height: 30 }} />}
           />
-          <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
-            <View style={styles.vLinePrimary} />
-          </View>
         </Animated.View>
       </Container>
     );
@@ -184,7 +171,7 @@ Home.propTypes = {
   tutors: PropTypes.array,
 };
 
-const { height } = Dimensions.get('window');
+const { height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -192,28 +179,18 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginTop: -20,
-  },
-  space: {
-    height: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginTop: -20,
     backgroundColor: Colors.default,
   },
   vMap: {
     height,
   },
   vHeaderList: {
-    height: 40,
+    height: 25,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    top: -20,
-    left: 0,
-    right: 0,
+    backgroundColor: Colors.default,
   },
   vLinePrimary: {
     width: 68,
@@ -226,7 +203,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
   },
 });
 
@@ -241,6 +217,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
     requestLocation: () => dispatch(LocationActions.requestLocation()),
+    searchTutor: (text) => dispatch(TutorsActions.searchTutor(text)),
   };
 };
 

@@ -233,7 +233,7 @@ export default class InputRow extends Component {
           {this.renderTextInput()}
           {children}
         </View>
-        {underLine && Platform.OS !== 'android' && this.renderUnderLine()}
+        {underLine && this.renderUnderLine()}
         {!isValidate && (
           <Text type="note" color={Colors.red} style={styles.txtError}>
             {validateMessage}

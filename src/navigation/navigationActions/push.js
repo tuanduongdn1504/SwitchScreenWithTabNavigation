@@ -14,7 +14,7 @@ export const push = (componentId, screen, config, navHidden = false, tabHidden =
           drawBehind: navHidden,
           leftButtons: config.leftButtons,
           rightButtons: config.rightButtons,
-          animate: false,
+          animate: true,
           elevation: 0,
           noBorder: true,
           background: {

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Animated, Dimensions, InteractionManager, Platform,
+  View, StyleSheet, Animated, Dimensions, InteractionManager, FlatList,
 } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DeviceInfo from 'react-native-device-info';
 import I18n from 'react-native-i18n';
 import Text from '../../components/Text';
 import { Colors } from '../../themes';
-import { dismissInAppNoti } from '../../navigation/navigationActions';
+import { dismissInAppNoti, push } from '../../navigation/navigationActions';
+import TutorsActions from '../../redux/TutorsRedux/actions';
+import { getDataArr } from '../../redux/crudCreator/selectors';
+import Divider from '../../components/Divider';
+import HomeItem from '../../components/Items/HomeItem';
+import { chat } from '../../navigation/navigationButtons';
 
 const isIphoneX = DeviceInfo.getModel()
   .toLocaleLowerCase()
@@ -24,10 +30,21 @@ class SearchResults extends Component {
     this.toggleNotiAnim();
   }
 
+  onPressItem(item) {
+    const { componentId } = this.props;
+    push(componentId, 'detail', {
+      title: I18n.t('tutorDetail'),
+      passProps: {
+        item,
+      },
+      rightButtons: [chat()],
+    });
+  }
+
   toggleNotiAnim = (isShow = true) => {
     const handle = InteractionManager.createInteractionHandle();
     Animated.timing(this.animation, {
-      toValue: isShow ? (Platform.OS === 'ios' ? (isIphoneX ? 90 : 70) : 60) : height,
+      toValue: isShow ? (isIphoneX ? 90 : 70) : height,
       useNativeDriver: true,
       duration: 300,
     }).start(() => {
@@ -39,8 +56,27 @@ class SearchResults extends Component {
     });
   };
 
+  renderEmpty = () => {
+    return (
+      <Text type="title2" center color={Colors.divider}>
+        {I18n.t('empty.tutor')}
+      </Text>
+    );
+  };
+
+  renderItem = ({ item, index }) => {
+    return (
+      <HomeItem
+        showQR={this.showQR}
+        data={item}
+        index={index}
+        onPress={() => this.onPressItem(item, index)}
+      />
+    );
+  };
+
   render() {
-    const { title, content, type } = this.props;
+    const { tutors } = this.props;
     return (
       <Animated.View
         style={[
@@ -58,11 +94,16 @@ class SearchResults extends Component {
         }}
       >
         <View style={styles.container}>
-          <Text type="title30PX" color={Colors.primaryText} style={styles.title}>
-            {I18n.t('filter.recently')}
-          </Text>
-          <Text style={styles.content}>Da Nang</Text>
-          <Text style={styles.content}>Ha Noi</Text>
+          <FlatList
+            style={styles.list}
+            data={tutors}
+            keyExtractor={data => data.id}
+            renderItem={this.renderItem}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={this.renderEmpty}
+            ItemSeparatorComponent={() => <Divider />}
+            ListFooterComponent={() => <View style={{ width: 20 }} />}
+          />
         </View>
       </Animated.View>
     );
@@ -70,8 +111,8 @@ class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
+  componentId: PropTypes.string,
+  tutors: PropTypes.array,
 };
 
 SearchResults.defaultProps = {};
@@ -87,14 +128,29 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
     paddingHorizontal: 20,
+    flex: 1,
   },
   title: {
     fontSize: 18,
     paddingBottom: 10,
   },
-  content: {
-    paddingTop: 5,
-  },
+  list: {},
 });
 
-export default SearchResults;
+function mapStateToProps(state) {
+  return {
+    tutors: getDataArr(state, 'tutors'),
+    loading: state.tutors.loading,
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getOneTutors: data => dispatch(TutorsActions.getOneTutors(data)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchResults);

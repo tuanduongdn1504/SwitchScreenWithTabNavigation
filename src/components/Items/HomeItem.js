@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet, Image } from 'react-native';
 import Text from '../Text';
 import Colors from '../../themes/Colors';
@@ -51,26 +50,16 @@ const HomeItem = ({ data, onPress }) => {
                 <Text center type="body3" color={Colors.default}>
                   $
                   {formatMoney(data.tutor_info?.availability?.hourly_rate)}
-                </Text>
-                <Text center type="tiny" color={Colors.default}>
-                  per hour
+                  <Text center type="tiny" color={Colors.default}>
+                    {'\n'}
+                    per hour
+                  </Text>
                 </Text>
               </View>
             </View>
           </View>
         </View>
       </Touchable>
-    </View>
-  );
-};
-
-const InfoRow = ({ icon, text }) => {
-  return (
-    <View style={styles.row}>
-      <Icon name={icon} color={Colors.primaryTextBlur} style={styles.icon} />
-      <Text type="small" color={Colors.primaryTextBlur} style={{ flex: 1 }}>
-        {text}
-      </Text>
     </View>
   );
 };
@@ -111,31 +100,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     fontSize: 17,
   },
-  description: {
-    marginTop: 5,
-  },
-  btnQR: {
-    alignItems: 'center',
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: Colors.primary,
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-    elevation: 3,
-  },
-  vCode: {
-    flex: 1,
-  },
-  vStatus: {
-    width: 100,
-    borderRadius: 15,
-    height: 30,
-  },
+  description: {},
   vPrice: {
     width: 110,
     alignItems: 'flex-end',

@@ -4,6 +4,7 @@ import {
 import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
 import Actions, { LoginTypes } from './actions';
+import AppActions from '../AppRedux/actions';
 import {
   login,
   register,
@@ -30,7 +31,6 @@ export function* signOut() {
     yield put(DeviceTokenActions.deleteDeviceTokens({}));
     global.token = null;
   } catch (error) {
-    global.token = null;
     console.log(error);
   }
 }
@@ -45,7 +45,7 @@ export function* signUp({ data }) {
     yield put(Actions.signInSuccess(response));
     global.token = response.token;
     yield put(Actions.getUser());
-    startStackScreen('selectRole', I18n.t('userInfo.selectRole'), true);
+    yield put(AppActions.startup());
   } catch (err) {
     yield put(Actions.signUpFailure(err));
     if (err && err.error && err.error.response) {
@@ -65,7 +65,7 @@ export function* signIn({ data }) {
     yield put(Actions.signInSuccess(response));
     global.token = response.token;
     yield put(Actions.getUser());
-    startWithTabs();
+    yield put(AppActions.startup());
     OneSignal.getPermissionSubscriptionState(status => {
       const { userId } = status;
       this.userId = userId;
@@ -134,7 +134,7 @@ export function* fbSignIn() {
     yield put(Actions.signInSuccess(response));
     global.token = response.token;
     yield put(Actions.getUser());
-    startWithTabs();
+    yield put(AppActions.startup());
   } catch (err) {
     showProgress(false);
     yield put(Actions.signInFailure(err));

@@ -1,43 +1,27 @@
 {
   "project_info": {
-    "project_number": "596050427918",
-    "firebase_url": "https://iotmanager-7e315.firebaseio.com",
-    "project_id": "iotmanager-7e315",
-    "storage_bucket": "iotmanager-7e315.appspot.com"
+    "project_number": "618930275984",
+    "firebase_url": "https://local-tutor-d75bf.firebaseio.com",
+    "project_id": "local-tutor-d75bf",
+    "storage_bucket": "local-tutor-d75bf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:596050427918:android:58cb2bae74187fab",
+        "mobilesdk_app_id": "1:618930275984:android:58cb2bae74187fab",
         "android_client_info": {
           "package_name": "com.lateam.tutorApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "596050427918-psg41ip88g4fhfh82dvoij3gq1kugc7r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.lateam.tutorApp",
-            "certificate_hash": "0a19e09199d73d688e685fdded1a3ae0e44ed1fa"
-          }
-        },
-        {
-          "client_id": "596050427918-1o236mrk11rs6gsjpjttdahr0khuectt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.lateam.tutorApp",
-            "certificate_hash": "f0ee2bcb2d20d85b78fdcc3c2f632904a778d49e"
-          }
-        },
-        {
-          "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
+          "client_id": "618930275984-71lo4l6sojk5e1ppu905bi1p8ntd8h1g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1A8FbqoXQ_ePJk0Fp9OjuJSeL8u_zmAE"
+          "current_key": "AIzaSyCDBQg5f-uCOJ5FG2j9N-rQaKi-0yEvxIw"
         }
       ],
       "services": {
@@ -45,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "596050427918-0kiiaivt5btlripsfp50j6iblnnjdjil.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "596050427918-nlcss5u1muff8it0q5e2m6eteogoceoq.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.lateam.tutor"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

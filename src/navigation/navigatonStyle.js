@@ -10,7 +10,7 @@ export const navigatorStyle = {
   topBar: {
     visible: true,
     drawBehind: false,
-    animate: false,
+    animate: true,
     hideOnScroll: false,
     elevation: 0,
     noBorder: false,

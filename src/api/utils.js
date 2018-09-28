@@ -16,6 +16,9 @@ async function xfetch(path, headerOptions, ops = { noParse: false }) {
   }
   const res = await timeoutPromise(TIME_OUT, normalFetch.then(checkIfErrorOccurs));
   if (res.code < 300) {
+    if (res.code === 204) {
+      return { success: true };
+    }
     const response = await res.res.json();
     return response;
   }
@@ -103,6 +106,7 @@ function requestWrapper(method) {
       ...defaults,
       headers: { ...params, ...defaults.headers },
     };
+
     return xfetch(url, paramsObj);
   };
 }
