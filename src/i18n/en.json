@@ -93,8 +93,10 @@
     }
   },
   "review": {
+    "title": "Review",
     "tapStar": "TAP A STAR TO RATE",
-    "reviewPlaceHolder": "Write a review"
+    "reviewPlaceHolder": "Write a review",
+    "send": "Send review"
   },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
