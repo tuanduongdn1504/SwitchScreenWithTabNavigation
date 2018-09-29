@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
 import { push } from '../../navigation/navigationActions';
-import { chat } from '../../navigation/navigationButtons';
+import { review } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -72,7 +72,7 @@ class Home extends Component {
       passProps: {
         item,
       },
-      rightButtons: [chat()],
+      rightButtons: [review()],
       largeTitle: false,
     });
   }

@@ -14,6 +14,7 @@ const icons = {
   back: [25, '#fff'],
   close: [20, '#fff'],
   menu: [20, '#fff'],
+  review: [20, Colors.primary],
   // TODO: Rating star
   'star-full': [20, Colors.primary],
   'star-empty': [20, Colors.primary],

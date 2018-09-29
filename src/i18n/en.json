@@ -98,6 +98,10 @@
     "reviewPlaceHolder": "Write a review",
     "send": "Send review"
   },
+  "detail": {
+    "title": "Tutor detail",
+    "chatWithTutor": "Chat with tutor"
+  },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
   "resend": "Resend a new code",
@@ -128,7 +132,6 @@
   },
   "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
-  "detail": "Detail",
   "chatHistory": "Chat History",
   "notification": "Notification",
   "tutorDetail": "Tutor Detail",

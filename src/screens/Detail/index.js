@@ -5,16 +5,19 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import Icon from 'react-native-vector-icons/tutor';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import DeviceInfo from 'react-native-device-info';
 import Profile from './Profile';
 import { Colors } from '../../themes';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import Text from '../../components/Text';
-// import InputRow from '../../components/InputRow';
-// import Button from '../../components/Button';
 import StarRating from '../../components/StarRating';
+import Button from '../../components/Button';
+import ProfileList from './ProfileList';
+import ReviewList from './ReviewList';
+import { showModal } from '../../navigation/navigationActions';
+import { close } from '../../navigation/navigationButtons';
 
-const FirstRoute = () => <View style={[styles.container, { backgroundColor: 'white' }]} />;
-const SecondRoute = () => <View style={[styles.container, { backgroundColor: 'white' }]} />;
+const { width } = Dimensions.get('window');
 
 class Detail extends Component {
   constructor(props) {
@@ -32,22 +35,14 @@ class Detail extends Component {
   }
 
   navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId === 'chat') {
-      this.showChatBox();
+    if (buttonId === 'review') {
+      showModal('review', {
+        leftButtons: [close()],
+      });
     }
   };
 
-  showChatBox = () => {
-    const { componentId, tutor } = this.props;
-    push(componentId, 'chatBox', {
-      title: I18n.t('chatBox'),
-      passProps: {
-        receive: tutor,
-      },
-    });
-  };
-
-  renderLabel(props) {
+  renderLabel = props => {
     let index = 0;
     return ({ route }) => {
       const focused = index === props.navigationState.index;
@@ -55,7 +50,7 @@ class Detail extends Component {
       return (
         <View style={{ paddingVertical: 15 }}>
           <Text
-            tyoe="body2"
+            type="body2"
             style={[styles.labelStyle, focused ? styles.labelSelectedStyle : null]}
           >
             {route.title}
@@ -63,33 +58,20 @@ class Detail extends Component {
         </View>
       );
     };
-  }
+  };
 
   renderTabBar = props => (
     <TabBar
       {...props}
       labelStyle={{ color: Colors.primary }}
-      // pressColor={Colors.default}
       pressColor="#fff"
       renderLabel={this.renderLabel(props)}
-      // tabStyle={{ backgroundColor: Colors.default }}
-      style={{
-        backgroundColor: Colors.default,
-        marginTop: 20,
-        shadowColor: 'rgba(0, 0, 0, 0.06)',
-        shadowOffset: {
-          width: 0,
-          height: 10,
-        },
-        shadowRadius: 12,
-        shadowOpacity: 1,
-      }}
-      indicatorStyle={{ backgroundColor: Colors.primary, height: 3 }}
+      style={styles.tabBar}
+      indicatorStyle={styles.indicator}
     />
   );
 
   render() {
-    // const { tutor } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -102,7 +84,7 @@ class Detail extends Component {
             <View style={[styles.row, styles.location]}>
               <Icon name="marker" size={12} color={Colors.primary} style={{ marginRight: 5 }} />
               <Text type="body3" color={Colors.primary}>
-                Tokyo, Japan
+                Osaka, Japan
               </Text>
             </View>
           </View>
@@ -110,21 +92,33 @@ class Detail extends Component {
         <TabView
           navigationState={this.state}
           renderScene={SceneMap({
-            first: FirstRoute,
-            second: SecondRoute,
+            first: ProfileList,
+            second: ReviewList,
           })}
-          tabStyle={{ backgroundColor: '#fff' }}
+          tabStyle={{ backgroundColor: Colors.default }}
           onIndexChange={index => this.setState({ index })}
-          initialLayout={{ width: Dimensions.get('window').width }}
+          initialLayout={{ width }}
           renderTabBar={this.renderTabBar}
           useNativeDriver
         />
+        <View style={styles.floatBottom}>
+          <View style={[styles.container, styles.row, styles.floatBottomInner]}>
+            <View style={{ flex: 1 }}>
+              <Text type="title2">$100.00</Text>
+              <Text type="small">per hour</Text>
+            </View>
+            <Button
+              style={styles.vBtn}
+              primary
+              onPress={this.beComeTutor}
+              buttonTitle={I18n.t('detail.chatWithTutor')}
+            />
+          </View>
+        </View>
       </View>
     );
   }
 }
-
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -151,11 +145,50 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   labelStyle: {
-    color: Colors.primaryTextBlur,
+    color: Colors.primaryText,
   },
   labelSelectedStyle: {
     color: Colors.primary,
   },
+  floatBottom: {
+    backgroundColor: Colors.default,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    shadowColor: 'rgba(155, 155, 155, 0.2)',
+    shadowOffset: {
+      width: 0,
+      height: -4,
+    },
+    shadowRadius: 4,
+    shadowOpacity: 1,
+  },
+  floatBottomInner: {
+    paddingHorizontal: 20,
+    paddingTop: 15,
+    marginBottom:
+      DeviceInfo.getDeviceName()
+        .toLocaleLowerCase()
+        .search('iphone x') > -1
+        ? 30
+        : 15,
+  },
+  vBtn: {
+    height: 40,
+    width: 180,
+  },
+  tabBar: {
+    backgroundColor: Colors.default,
+    shadowColor: 'rgba(0, 0, 0, 0.06)',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowRadius: 12,
+    shadowOpacity: 1,
+  },
+  indicator: { backgroundColor: Colors.primary, height: 3 },
 });
 
 function mapStateToProps(state) {

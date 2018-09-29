@@ -50,7 +50,7 @@ class FilterBar extends Component {
     });
   };
 
-  onChangeSearch = (text) => {
+  onChangeSearch = text => {
     const { searchTutor } = this.props;
     searchTutor(text);
   };
