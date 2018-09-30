@@ -98,6 +98,13 @@ export const styles = StyleSheet.create({
     fontWeight: Fonts.fontWeight.light,
     color: Colors.primaryTextBlur,
   },
+  smallNormal: {
+    // 12 nomal
+    fontFamily: Fonts.type.normal,
+    fontSize: 12,
+    fontWeight: Fonts.fontWeight.normal,
+    color: Colors.primaryTextBlur,
+  },
   tiny: {
     // 10
     fontFamily: Fonts.type.regular,

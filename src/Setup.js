@@ -7,7 +7,7 @@ import Actions from './redux/AppRedux/actions';
 
 global.defaultImage = [
   'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=100&w=100',
-  'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=441&w=500',
+  'https://znews-photo-td.zadn.vn/w660/Uploaded/wopthuo/2016_02_14/KimSoHyun.jpg',
 ];
 
 const App = () => {

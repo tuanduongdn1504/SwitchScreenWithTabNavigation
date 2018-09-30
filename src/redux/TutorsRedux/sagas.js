@@ -3,10 +3,14 @@ import {
 } from 'redux-saga/effects';
 import { delay, cancel } from 'redux-saga';
 import _ from 'lodash';
+import I18n from 'react-native-i18n';
+import { Navigation } from 'react-native-navigation';
 import TutorsActions, { MODEL, IGNORE_ACTIONS, TutorsTypes } from './actions';
 import rootCRUDSaga from '../crudCreator/saga';
-import { searchTutors } from '../../api/tutors';
+import { searchTutors, createReviews } from '../../api/tutors';
 import { PRIMARY_KEY } from '../crudCreator/actions';
+import { apiWrapper } from '../../utils/reduxUtils';
+import { showInAppNoti } from '../../navigation/navigationActions';
 
 function* handleSearchInput(text) {
   yield delay(300);
@@ -35,7 +39,28 @@ export function* searchTutorsSaga({ text }) {
   }
   task = yield fork(handleSearchInput, text);
 }
+
+export function* createReviewsSaga({ data }) {
+  try {
+    const response = yield call(apiWrapper, true, createReviews, data);
+    if (!response || !response.success) {
+      yield put(TutorsActions.createReviewsFailure(response));
+      showInAppNoti('', response?.message || I18n.t('error.somethingWentWrong'), 'error');
+      return;
+    }
+    yield put(TutorsActions.createReviewsSuccess(response));
+    // TODO: Refresh Tutor info
+    Navigation.dismissAllModals();
+    yield put(TutorsActions.getOneTutors(response.data));
+    showInAppNoti('', response?.message, 'success');
+  } catch (err) {
+    yield put(TutorsActions.createReviewsFailure(err));
+    showInAppNoti('', err?.message || I18n.t('error.somethingWentWrong'), 'error');
+  }
+}
+
 export default [
   ...rootCRUDSaga(MODEL, IGNORE_ACTIONS, TutorsActions),
   takeLatest(TutorsTypes.SEARCH_TUTOR, searchTutorsSaga),
+  takeLatest(TutorsTypes.CREATE_REVIEWS, createReviewsSaga),
 ];

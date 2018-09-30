@@ -130,7 +130,7 @@ class Notification extends Component {
           renderItem={this.renderItem}
           keyExtractor={data => data.id.toString()}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 80, marginRight: 20 }} />}
+          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 60, marginRight: 20 }} />}
           ListFooterComponent={() => <View style={{ height: 20 }} />}
           ListHeaderComponent={() => <View style={{ height: 20 }} />}
         />

@@ -24,7 +24,7 @@ export const showModal = (screen, config, navHidden = false, showStack = true) =
           color: Colors.default,
         },
         largeTitle: {
-          visible: true,
+          visible: config.largeTitle !== false,
           ...TextStyle.largeTitle,
         },
         noBorder: true,

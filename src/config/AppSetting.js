@@ -23,7 +23,7 @@ const transformerConfig = {
     subjects: ['data', 'ids', 'userCreateSubjects'],
   },
   blacklistPerReducer: {
-    tutor: ['data', 'ids'],
+    tutor: ['data', 'ids', 'reviews'],
     app: ['loading'],
   },
 };

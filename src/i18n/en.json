@@ -92,6 +92,22 @@
       "verifyPasswordDescription": "Please enter that code to reset your password."
     }
   },
+  "review": {
+    "title": "Review",
+    "tapStar": "TAP A STAR TO RATE",
+    "reviewPlaceHolder": "Write a review",
+    "send": "Send review",
+    "reviewValidation": "Please enter the review.",
+    "ratingValidation": "Please tap to star to rate."
+  },
+  "detail": {
+    "title": "Tutor detail",
+    "chatWithTutor": "Chat with tutor",
+    "description": "About tutor",
+    "interests": "Interests",
+    "exp": "Experience",
+    "education": "Education"
+  },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
   "resend": "Resend a new code",
@@ -123,7 +139,6 @@
   },
   "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
-  "detail": "Detail",
   "chatHistory": "Chat History",
   "notification": "Notification",
   "tutorDetail": "Tutor Detail",
