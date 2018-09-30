@@ -48,6 +48,7 @@ class Notification extends Component {
 
   render() {
     const { dataSource } = this.props;
+    console.log('dataSource', dataSource);
     return (
       <View style={styles.container}>
         <FlatList
