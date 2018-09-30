@@ -4,28 +4,16 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import ReviewItem from '../../components/Items/ReviewItem';
 // import Divider from '../../components/Divider';
 import Text from '../../components/Text';
+import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 
-const data = [
-  {
-    id: 1,
-    content:
-      'My daughter has been working with John for the past year. He first helped her with the biology SAT prep and she received a very good score. ',
-    author: 'Ryan Mason',
-    timer: 'Sep 20, 2018',
-  },
-  {
-    id: 2,
-    content:
-      'My daughter has been working with John for the past year. He first helped her with the biology SAT prep and she received a very good score. ',
-    author: 'Alma Fuller',
-    timer: 'Sep 20, 2018',
-  },
-];
+const DetailList = ({ data }) => {
+  const renderItem = ({ item }) => <ReviewItem data={item} key={item[PRIMARY_KEY]} />;
 
-const DetailList = () => {
-  const renderItem = ({ item }) => <ReviewItem data={item} index={item.key} onPress={() => {}} />;
-
-  const renderEmpty = () => <Text type="body2">No reviews</Text>;
+  const renderEmpty = () => (
+    <View style={[styles.center, styles.empty]}>
+      <Text type="body3">No reviews</Text>
+    </View>
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: 'white' }]}>
@@ -42,8 +30,18 @@ const DetailList = () => {
   );
 };
 
+DetailList.propTypes = {
+  data: PropTypes.array,
+};
+
 const styles = StyleSheet.create({
-  container: {},
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  empty: {
+    marginTop: 20,
+  },
 });
 
 export default DetailList;

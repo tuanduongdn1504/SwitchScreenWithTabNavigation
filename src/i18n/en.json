@@ -100,7 +100,11 @@
   },
   "detail": {
     "title": "Tutor detail",
-    "chatWithTutor": "Chat with tutor"
+    "chatWithTutor": "Chat with tutor",
+    "description": "About tutor",
+    "interests": "Interests",
+    "exp": "Experience",
+    "education": "Education"
   },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",

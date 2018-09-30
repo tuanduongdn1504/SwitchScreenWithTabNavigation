@@ -6,3 +6,8 @@ export const getTotal = (state, resources) => {
   const { total } = state[resources];
   return total;
 };
+
+export const getCurrentData = (state, resources) => {
+  const { current } = state[resources];
+  return current;
+};

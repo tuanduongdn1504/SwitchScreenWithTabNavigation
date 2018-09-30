@@ -1,36 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, FlatList, StyleSheet } from 'react-native';
+import I18n from 'react-native-i18n';
 import ProfileItem from '../../components/Items/ProfileItem';
-// import Divider from '../../components/Divider';
+import Text from '../../components/Text';
 
-const data = [
-  {
-    id: 1,
-    title: 'About tutor',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo maximus pretium. Aliquam quis arcu ut dolor ultrices venenatis. Sed sed nisi velit. Integer a eros elit. Donec vehicula est non nisl pellentesque, id finibus mi vehicula. Praesent feugiat arcu nec neque rutrum, sed ultrices nulla ullamcorper. Suspendisse vehicula, mauris sit amet egestas sodales, arcu quam pretium lacus, vitae mattis lectus velit id sem. Nulla hendrerit odio non diam dignissim, id scelerisque sem sodales.',
-  },
-  {
-    id: 2,
-    title: 'Education',
-    content:
-      'Ut sollicitudin, arcu sed mattis tincidunt, erat quam tempor neque, et mattis ante tortor nec est. Pellentesque tristique sit amet magna at luctus. Aliquam ut fermentum arcu, a vehicula lorem. Proin id ultricies erat, eget interdum augue. Vestibulum efficitur est lorem, vel aliquet velit elementum eget. Sed lacinia erat sed imperdiet hendrerit. Maecenas egestas ullamcorper tristique.',
-  },
-  {},
-];
+const DetailList = ({ data }) => {
+  const dataSource = data
+    ? Object.keys(data).map((key, index) => ({
+      id: index,
+      title: I18n.t(`detail.${key}`),
+      content: data[key],
+    }))
+    : [];
 
-const DetailList = () => {
   const renderItem = ({ item }) => <ProfileItem data={item} index={item.key} onPress={() => {}} />;
+
+  const renderEmpty = () => (
+    <View style={[styles.center, styles.empty]}>
+      <Text type="body3">No data</Text>
+    </View>
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: 'white' }]}>
       <FlatList
-        data={data}
+        data={dataSource}
         keyExtractor={item => item.id}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        // ListEmptyComponent={this.renderEmpty}
+        ListEmptyComponent={renderEmpty}
         ListHeaderComponent={() => <View style={{ width: 20 }} />}
         ListFooterComponent={() => <View style={{ width: 20 }} />}
       />
@@ -39,11 +38,17 @@ const DetailList = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  empty: {
+    marginTop: 20,
+  },
 });
 
 DetailList.propTypes = {
-  item: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default DetailList;

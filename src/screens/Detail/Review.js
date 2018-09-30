@@ -1,8 +1,10 @@
+/* eslint camelcase: 0 */
 import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import PropTypes from 'prop-types';
 import Profile from './Profile';
 import { Colors } from '../../themes';
 import TutorsActions from '../../redux/TutorsRedux/actions';
@@ -10,54 +12,45 @@ import Text from '../../components/Text';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import StarRating from '../../components/StarRating';
+import { getCurrentData } from '../../redux/crudCreator/selectors';
+import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 
 class Review extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+    createReviews: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      customStarCount: 0,
+      rating: 0,
     };
     Navigation.events().bindComponent(this);
   }
 
-  componentDidMount() {
-    const { getOneTutors, item } = this.props;
-    getOneTutors(item);
+  onRating(rating) {
+    this.setState({ rating });
   }
 
-  onCustomStarRatingPress(rating) {
-    this.setState({
-      customStarCount: rating,
-    });
-  }
-
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId === 'chat') {
-      this.showChatBox();
-    }
-  };
-
-  showChatBox = () => {
-    const { componentId, tutor } = this.props;
-    push(componentId, 'chatBox', {
-      title: I18n.t('chatBox'),
-      passProps: {
-        receive: tutor,
-      },
-    });
+  send = () => {
+    const { rating } = this.state;
+    const { data, createReviews } = this.props;
+    createReviews({ [PRIMARY_KEY]: data[PRIMARY_KEY], rating, review: this.review.getText() });
   };
 
   render() {
-    const { customStarCount } = this.state;
-    // const { tutor } = this.props;
+    const { data } = this.props;
+    const { first_name, last_name, avatar } = data;
+    const { rating } = this.state;
     return (
       <View style={styles.container}>
-        <Profile fullName="Mei Nagano" avatar={global.defaultImage[1]} />
+        <Profile fullName={`${first_name} ${last_name}`} avatar={avatar} />
         <StarRating
           animation="tada"
           disabled={false}
-          rating={customStarCount}
-          selectedStar={rating => this.onCustomStarRatingPress(rating)}
+          rating={rating}
+          selectedStar={value => this.onRating(value)}
           starSize={34}
           containerStyle={styles.rating}
         />
@@ -70,7 +63,7 @@ class Review extends Component {
           </Text>
           <InputRow
             ref={ref => {
-              this.education = ref;
+              this.review = ref;
             }}
             underLine
             multiline
@@ -123,13 +116,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    tutor: state.tutors.current,
+    // data: getCurrentData(state, 'tutors'),
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOneTutors: data => dispatch(TutorsActions.getOneTutors(data)),
+    createReviews: data => dispatch(TutorsActions.createReviews(data)),
   };
 };
 

@@ -23,7 +23,7 @@ ProfileItem.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
+    paddingTop: 10,
     backgroundColor: 'transparent',
     marginHorizontal: 20,
   },
