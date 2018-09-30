@@ -157,8 +157,9 @@ class Filter extends Component {
 
   renderContent = () => {
     const { filter } = this.state;
+    const {totalSubjects} = this.props;
     const {
-      distance, location, session_types, sort, priceRange
+      distance, location, session_types, sort, priceRange,subjects
     } = filter;
     return (
       <View>
@@ -169,11 +170,11 @@ class Filter extends Component {
           onPress={() => this.changeFilter(I18n.t('filter.location'), 'location')}
         />
         <DistanceView value={distance} onSetFilter={this.onSetFilter} />
-        <PriceRange start={priceRange?.start} end={priceRange?.end}  ref={ref => {this.priceRange = ref;}}  />
+        <PriceRange start={priceRange?.start} end={priceRange?.end} refFunc={ref => {this.priceRange = ref;}}  />
         <FilterItem
           onPress={() => this.changeFilter(I18n.t('userInfo.tutor.subjects'), 'subjects')}
           name={I18n.t('userInfo.tutor.subjects')}
-          value="Thailand"
+          value={subjects?`${Object.keys(subjects).length} / ${totalSubjects}`: I18n.t('filter.selectSubject')}
         />
         <View style={{ height: 100 }} />
       </View>
@@ -272,6 +273,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     subjects: getDataArr(state, 'subjects'),
+    totalSubjects: state.subjects.total,
     filter: state.filter.data,
     currentLocation: state.location,
   };

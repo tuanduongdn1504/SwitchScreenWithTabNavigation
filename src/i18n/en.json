@@ -147,7 +147,8 @@
     "priceRange": "Price Range",
     "distance": "Distance",
     "location": "Locations",
-    "session_types": "Teaching type"
+    "session_types": "Teaching type",
+    "selectSubject": "Select Subject"
   },
   "intro": {
     "introTitle1": "Request a tutor",

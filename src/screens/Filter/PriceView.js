@@ -38,11 +38,18 @@ const styles = {
   txtMedium: {},
 };
 
-const PriceView = ({ start, end, ref }) => {
+const PriceView = ({ start, end, refFunc }) => {
   return (
     <View style={styles.container}>
       <Text type="headline">{I18n.t('filter.priceRange')}</Text>
-      <SlideBar start={start} end={end} ref={ref} />
+      <SlideBar
+        start={start}
+        end={end}
+        ref={e => {
+          console.log(e);
+          refFunc(e);
+        }}
+      />
     </View>
   );
 };
@@ -50,7 +57,7 @@ const PriceView = ({ start, end, ref }) => {
 PriceView.propTypes = {
   start: PropTypes.number,
   end: PropTypes.number,
-  ref: PropTypes.func,
+  refFunc: PropTypes.func,
 };
 
 PriceView.defaultProps = {
