@@ -1,33 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { Colors, Images } from '../../themes/index';
 import Text from '../Text';
+import { fromNow } from '../../utils/textUtils';
 
-const Item = ({
-  // state
-  data,
-  color,
-}) => {
+const Item = ({ data, onPress }) => {
+  const { isRead } = data;
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} defaultSource={Images.defaultUser} />
-      <View style={{ flex: 1 }}>
-        <Text type="body2" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
-          {data.title}
-        </Text>
-        <Text type="small">{data.timer}</Text>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
+        <Image style={styles.image} defaultSource={Images.defaultUser} />
+        <View style={{ flex: 1 }}>
+          <Text type={isRead ? 'body2' : 'body2Bold'} style={styles.txtTitle} numberOfLines={2}>
+            {data.title}
+          </Text>
+          <Text type="small">{fromNow(data.created_at)}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 Item.propTypes = {
   onPress: PropTypes.func,
   data: PropTypes.object,
-  color: PropTypes.string,
-  unShowArrow: PropTypes.bool,
-  noBottomBorder: PropTypes.bool,
 };
 
 const styles = {

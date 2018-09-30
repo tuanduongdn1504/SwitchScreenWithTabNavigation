@@ -8,9 +8,11 @@ import faqsSagas from './FaqsRedux/sagas';
 import tutorsSagas from './TutorsRedux/sagas';
 import locationSagas from './LocationRedux/sagas';
 import deviceTokensSagas from './DeviceTokensRedux/sagas';
+import notificationsSagas from './NotificationsRedux/sagas';
 
 export default function* root() {
   yield all([
+    ...notificationsSagas,
     ...deviceTokensSagas,
     ...tutorsSagas,
     ...faqsSagas,

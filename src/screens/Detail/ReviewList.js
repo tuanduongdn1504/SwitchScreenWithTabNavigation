@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, FlatList, StyleSheet } from 'react-native';
+import I18n from 'react-native-i18n';
 import ReviewItem from '../../components/Items/ReviewItem';
-// import Divider from '../../components/Divider';
 import Text from '../../components/Text';
 import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 
@@ -11,12 +11,12 @@ const DetailList = ({ data }) => {
 
   const renderEmpty = () => (
     <View style={[styles.center, styles.empty]}>
-      <Text type="body3">No reviews</Text>
+      <Text type="body2">{I18n.t('review.empty')}</Text>
     </View>
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: 'white' }]}>
+    <View style={[{ backgroundColor: 'white' }]}>
       <FlatList
         data={data}
         keyExtractor={item => item.id}
