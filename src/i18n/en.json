@@ -96,7 +96,9 @@
     "title": "Review",
     "tapStar": "TAP A STAR TO RATE",
     "reviewPlaceHolder": "Write a review",
-    "send": "Send review"
+    "send": "Send review",
+    "reviewValidation": "Please enter the review.",
+    "ratingValidation": "Please tap to star to rate."
   },
   "detail": {
     "title": "Tutor detail",

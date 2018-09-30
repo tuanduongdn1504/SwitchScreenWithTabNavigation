@@ -12,8 +12,8 @@ import Text from '../../components/Text';
 import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import StarRating from '../../components/StarRating';
-import { getCurrentData } from '../../redux/crudCreator/selectors';
 import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
+import { showInAppNoti } from '../../navigation/navigationActions';
 
 class Review extends Component {
   static propTypes = {
@@ -36,7 +36,14 @@ class Review extends Component {
   send = () => {
     const { rating } = this.state;
     const { data, createReviews } = this.props;
-    createReviews({ [PRIMARY_KEY]: data[PRIMARY_KEY], rating, review: this.review.getText() });
+    const review = this.review.getText();
+    if (!rating < 1) {
+      showInAppNoti('', I18n.t('review.reviewValidation'), 'error');
+    } else if (!review) {
+      showInAppNoti('', I18n.t('review.ratingValidation'), 'error');
+    } else {
+      createReviews({ [PRIMARY_KEY]: data[PRIMARY_KEY], rating, review });
+    }
   };
 
   render() {
