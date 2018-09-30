@@ -8,8 +8,10 @@ import tutors from './TutorsRedux/reducer';
 import location from './LocationRedux/reducer';
 import deviceTokens from './DeviceTokensRedux/reducer';
 import filter from './FilterRedux/reducer';
+import notifications from './NotificationsRedux/reducer';
 
 export default {
+  notifications,
   deviceTokens,
   tutors,
   app,

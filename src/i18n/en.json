@@ -98,7 +98,8 @@
     "reviewPlaceHolder": "Write a review",
     "send": "Send review",
     "reviewValidation": "Please enter the review.",
-    "ratingValidation": "Please tap to star to rate."
+    "ratingValidation": "Please tap to star to rate.",
+    "empty": "No reviews"
   },
   "detail": {
     "title": "Tutor detail",
@@ -106,7 +107,8 @@
     "description": "About tutor",
     "interests": "Interests",
     "exp": "Experience",
-    "education": "Education"
+    "education": "Education",
+    "empty": "No information"
   },
   "inputOTP": "Confirm OTP",
   "inputOTPDes": "Nhập mã nhận được từ SMS tại đây.",
@@ -140,7 +142,11 @@
   "faq": { "tutor": "Tutor FAQ", "student": "Student FAQ" },
   "chatBox": "Chat Box",
   "chatHistory": "Chat History",
-  "notification": "Notification",
+  "notification": {
+    "title": "Notification",
+    "detailTitle": "Notification detail",
+    "empty": "No notifications"
+  },
   "tutorDetail": "Tutor Detail",
   "share": "Share",
   "home": {

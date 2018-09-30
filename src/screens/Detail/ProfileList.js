@@ -18,7 +18,7 @@ const DetailList = ({ data }) => {
 
   const renderEmpty = () => (
     <View style={[styles.center, styles.empty]}>
-      <Text type="body3">No data</Text>
+      <Text type="body2">{I18n.t('detail.empty')}</Text>
     </View>
   );
 
@@ -38,6 +38,9 @@ const DetailList = ({ data }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+  },
   center: {
     alignItems: 'center',
     justifyContent: 'center',

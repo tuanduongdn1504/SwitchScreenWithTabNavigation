@@ -14,11 +14,12 @@ import StarRating from '../../components/StarRating';
 import Button from '../../components/Button';
 import ProfileList from './ProfileList';
 import ReviewList from './ReviewList';
-import { showModal } from '../../navigation/navigationActions';
+import { showModal, push } from '../../navigation/navigationActions';
 import { close } from '../../navigation/navigationButtons';
 import { getCurrentData } from '../../redux/crudCreator/selectors';
 import { formatMoney } from '../../utils/textUtils';
 import { isIPhoneX } from '../../utils/tools';
+import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 
 const { width } = Dimensions.get('window');
 
@@ -46,6 +47,16 @@ class Detail extends Component {
         largeTitle: false,
       });
     }
+  };
+
+  startChat = userId => () => {
+    const { componentId } = this.props;
+    push(componentId, 'chatBox', {
+      title: I18n.t('chatBox'),
+      passProps: {
+        receive: userId,
+      },
+    });
   };
 
   renderLabel = props => {
@@ -147,7 +158,7 @@ class Detail extends Component {
             <Button
               style={styles.vBtn}
               primary
-              onPress={this.beComeTutor}
+              onPress={this.startChat(data[PRIMARY_KEY])}
               buttonTitle={I18n.t('detail.chatWithTutor')}
             />
           </View>

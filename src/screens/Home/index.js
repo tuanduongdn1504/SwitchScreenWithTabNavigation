@@ -39,7 +39,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { getTutors, requestLocation } = this.props;
+    const { getTutors } = this.props;
     getTutors();
   }
 

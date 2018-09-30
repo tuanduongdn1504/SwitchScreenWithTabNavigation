@@ -32,6 +32,7 @@ import SearchResults from '../screens/Filter/SearchResults';
 import FAQ from '../screens/SideMenu/FAQ';
 import AddSubjects from '../screens/Popup/AddSubjectPopup';
 import Review from '../screens/Detail/Review';
+import NotificationDetail from '../screens/Notification/NotificationDetail';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -47,6 +48,7 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponent('progressScreen', () => ProgressScreen, PersistProvider, store);
   Navigation.registerComponent(
     'inAppNotification',
+    () => InAppNotification,
     () => InAppNotification,
     PersistProvider,
     store,
@@ -99,4 +101,10 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux('FAQ', () => FAQ, PersistProvider, store);
   Navigation.registerComponentWithRedux('addSubjects', () => AddSubjects, PersistProvider, store);
   Navigation.registerComponentWithRedux('review', () => Review, PersistProvider, store);
+  Navigation.registerComponentWithRedux(
+    'notificationDetail',
+    () => NotificationDetail,
+    PersistProvider,
+    store,
+  );
 }
