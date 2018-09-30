@@ -113,7 +113,8 @@
     "privacy": "Privacy policy",
     "termOfService": "Term of service",
     "logout": "Logout",
-    "unknow": "Unknow"
+    "unknow": "Unknow",
+    "setting": "Settings"
   },
   "menu": {
     "editProfile": "Edit profile",

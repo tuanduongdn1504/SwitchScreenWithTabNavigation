@@ -7,6 +7,7 @@ import { Colors } from '../../themes';
 import UserInfo from './UserInfo';
 import SettingItem from '../../components/Items/SettingItem';
 import LoginActions from '../../redux/LoginRedux/actions';
+import LocationRedux from '../../redux/LocationRedux/actions';
 import { push } from '../../navigation/navigationActions';
 import { back } from '../../navigation/navigationButtons';
 import Button from '../../components/Button';
@@ -17,6 +18,11 @@ class Setting extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    const { requestLocation } = this.props;
+    requestLocation();
   }
 
   editProfile = () => {
@@ -68,7 +74,7 @@ class Setting extends Component {
   };
 
   render() {
-    const { logout, user } = this.props;
+    const { logout, user, requestLocation } = this.props;
 
     return (
       <View style={styles.container}>
@@ -77,12 +83,15 @@ class Setting extends Component {
           <SettingItem onPress={this.openFAQ('tutor')} title={I18n.t('moreText.tutorFAQ')} />
           <SettingItem onPress={this.openFAQ('student')} title={I18n.t('moreText.studentFAQ')} />
           <SettingItem
-            onPress={() => {}}
+            onPress={() => {
+              requestLocation(true);
+            }}
             title={I18n.t('moreText.updateLocation')}
             subTitle={user.address || I18n.t('moreText.unknow')}
           />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.privacy')} />
           <SettingItem onPress={() => {}} title={I18n.t('moreText.termOfService')} />
+          <SettingItem onPress={() => {}} title={I18n.t('moreText.setting')} />
           <SettingItem
             unShowArrow
             color={Colors.primary}
@@ -127,6 +136,7 @@ Setting.propTypes = {
   componentId: PropTypes.string,
   user: PropTypes.object,
   logout: PropTypes.func,
+  requestLocation: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -138,6 +148,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(LoginActions.signOut()),
+    requestLocation: isUpdateInfo => dispatch(LocationRedux.requestLocation(isUpdateInfo)),
   };
 };
 

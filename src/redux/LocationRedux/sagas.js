@@ -6,7 +6,7 @@ import LoginActions from '../LoginRedux/actions';
 import Tools, { findCity } from '../../utils/tools';
 import { getArea } from '../../api/locations';
 
-export function* getUserLocation() {
+export function* getUserLocation({ isUpdateInfo }) {
   try {
     const { token } = yield select(state => state.login);
     const reslocation = yield call(Tools.userPosition);
@@ -22,7 +22,9 @@ export function* getUserLocation() {
             coordinates: [longitude, latitude],
           },
         };
-        yield put(LoginActions.editUser(data));
+        if (isUpdateInfo) {
+          yield put(LoginActions.editUser(data));
+        }
       }
     }
   } catch (err) {

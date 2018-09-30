@@ -92,10 +92,7 @@ export function* getUser() {
 
 export function* editUserSaga({ data }) {
   try {
-    showProgress();
-    const user = yield select(state => state.login.data);
     const response = yield call(editUser, { ...data });
-    showProgress(false);
     if (!response || !response.success) {
       yield put(Actions.updateUserFailure(response));
       return;
@@ -103,7 +100,6 @@ export function* editUserSaga({ data }) {
     yield put(Actions.updateUserSuccess(response.data));
     // showInAppNoti('', I18n.t('success.editUser'), 'success');
   } catch (err) {
-    showProgress();
     yield put(Actions.updateUserFailure(err));
   }
 }

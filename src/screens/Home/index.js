@@ -18,7 +18,6 @@ import Divider from '../../components/Divider';
 import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
 import FilterBar from './FilterBar';
-import LocationActions from '../../redux/LocationRedux/actions';
 import config from '../../config/AppSetting';
 
 class Home extends Component {
@@ -42,7 +41,6 @@ class Home extends Component {
   componentDidMount() {
     const { getTutors, requestLocation } = this.props;
     getTutors();
-    requestLocation();
   }
 
   componentWillUnmount() {
@@ -216,7 +214,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
-    requestLocation: () => dispatch(LocationActions.requestLocation()),
     searchTutor: (text) => dispatch(TutorsActions.searchTutor(text)),
   };
 };
