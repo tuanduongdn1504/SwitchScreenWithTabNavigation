@@ -1,5 +1,15 @@
+import _ from 'lodash';
 import { makeCRUDConstantCreator, makeCRUDActionsCreator } from '../crudCreator/actions';
 import { makeActionCreator, makeConstantCreator } from '../../utils/reduxUtils';
+
+export const makeFilterForTutor = filter => {
+  return {
+    longitude: filter.location.longitude,
+    latitude: filter.location.latitude,
+    subjects: _.keys(_.pickBy(filter.subjects, item => item)).join(','),
+    session_types: _.keys(_.pickBy(filter.session_types, item => item)).join(','),
+  };
+};
 
 export const MODEL = 'tutors';
 export const IGNORE_ACTIONS = [];

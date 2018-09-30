@@ -242,3 +242,16 @@ export const findCity = result => {
   }
   return null;
 };
+
+const searchAsyncRequest = (func, callback) => (data) => {
+  func(data).then(res => callback(res));
+};
+
+export const searchAsync = (func, callback) => {
+  let task = null;
+  if (task) {
+    task.cancel();
+  }
+  task = _.debounce(searchAsyncRequest(func, callback), 500, {});
+  return task;
+};

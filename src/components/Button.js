@@ -31,6 +31,7 @@ const Button = ({
   startColor,
   endColor,
   isShadow,
+  wrapperStyle,
 }) => {
   const innerView = (
     <LinearGradient
@@ -83,7 +84,7 @@ const Button = ({
   );
   if (loading || disabled) return innerView;
   return (
-    <Touchable style={[isShadow && styles.shadow]} onPress={onPress}>
+    <Touchable style={[isShadow && styles.shadow, wrapperStyle]} onPress={onPress}>
       {innerView}
     </Touchable>
   );
@@ -111,6 +112,7 @@ Button.propTypes = {
   startColor: PropTypes.string,
   endColor: PropTypes.string,
   isShadow: PropTypes.bool,
+  wrapperStyle: PropTypes.any,
 };
 
 Button.defaultProps = {

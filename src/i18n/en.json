@@ -139,7 +139,15 @@
   },
   "filter": {
     "text": "filter",
-    "recently": "Recently"
+    "recently": "Recently",
+    "nearest": "Nearest",
+    "price": "Price",
+    "rating": "Rating",
+    "sort": "Sort",
+    "priceRange": "Price Range",
+    "distance": "Distance",
+    "location": "Locations",
+    "session_types": "Teaching type"
   },
   "intro": {
     "introTitle1": "Request a tutor",
@@ -181,7 +189,9 @@
     "next": "Next",
     "add": "Add",
     "submit": "Submit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "search": "Search"
   },
   "empty": {
     "subjectSelected": "You need to select any Subject to start tutoring.",

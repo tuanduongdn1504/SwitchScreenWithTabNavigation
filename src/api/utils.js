@@ -1,6 +1,7 @@
 import Config from '../config/AppSetting';
 
 const checkIfErrorOccurs = res => {
+  console.log('res', res);
   return {
     code: res.status,
     res,

@@ -107,5 +107,8 @@
   "emptyAppointments": "Bạn chưa đặt lịch hẹn khám lần nào",
   "editPatient": "Thay đổi thông tin",
   "patientProfile": "Thông tin bệnh nhân",
-  "chatBox": "Chat Box"
+  "chatBox": "Chat Box",
+  "button": {
+    "save": "save"
+  }
 }

@@ -79,11 +79,11 @@ export const DUMMY_USER_DATA = [
 
 export const TYPES = [
   {
-    id: 0,
+    id: 'Online',
     value: 'Online',
   },
   {
-    id: 1,
+    id: 'Person',
     value: 'Offline',
   },
 ];

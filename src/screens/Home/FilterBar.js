@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import {
   View, StyleSheet, Animated, TouchableWithoutFeedback,
 } from 'react-native';
-import I18n from 'react-native-i18n';
 import DeviceInfo from 'react-native-device-info';
 import { Navigation } from 'react-native-navigation';
 import { showModal } from '../../navigation/navigationActions';
-import { close } from '../../navigation/navigationButtons';
 import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
 import Button from '../../components/Button';
@@ -50,17 +48,13 @@ class FilterBar extends Component {
     });
   };
 
-  onChangeSearch = (text) => {
+  onChangeSearch = text => {
     const { searchTutor } = this.props;
     searchTutor(text);
   };
 
   showFilter = () => {
-    showModal('filter', {
-      title: I18n.t('filter.text'),
-      leftButtons: [],
-      rightButtons: [close()],
-    });
+    showModal('filter', {}, false, false);
   };
 
   render = () => {

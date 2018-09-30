@@ -13,13 +13,20 @@ import InputRow from '../../components/InputRow';
 import Button from '../../components/Button';
 import LoginActions from '../../redux/LoginRedux/actions';
 import { startWithTabs, push, showInAppNoti } from '../../navigation/navigationActions';
+import SessionTypes from '../../components/SessionTypes';
 
 class SignupTutor extends Component {
   constructor(props) {
     super(props);
     const { tutor_info } = props.user;
+    const types = {};
+    if (tutor_info) {
+     tutor_info.availability.session_types.forEach(element => {
+      types[element] = true;
+     });
+    }
     this.state = {
-      types: tutor_info ? tutor_info.availability.session_types : [],
+      types: types,
       about: tutor_info ? tutor_info.about : {},
       availability: tutor_info ? tutor_info.availability : {},
       subjects: tutor_info ? [...tutor_info.subjects] : [],
@@ -54,7 +61,7 @@ class SignupTutor extends Component {
           description: description.getText(),
         },
         availability: {
-          session_types: types,
+          session_types: Object.keys(types).filter(key => types[key]),
           hourly_rate: hourly_rate.getText(),
           currency: 'USD',
         },
@@ -67,9 +74,9 @@ class SignupTutor extends Component {
     }
   };
 
-  onSelectType = type => () => {
+  onSelectType = type => {
     const { types } = this.state;
-    this.setState({ types: _.xor(types, [type]) });
+    this.setState({ types: {...types, [type.id]: !types[type.id]} });
   };
 
   goTutorSubjects = () => {
@@ -86,26 +93,7 @@ class SignupTutor extends Component {
     const { types, about, availability } = this.state;
     return (
       <View style={styles.vInput}>
-        <Text type="headline" style={styles.txtTitle}>
-          {I18n.t('userInfo.tutor.types.title')}
-        </Text>
-        <View style={styles.row}>
-          <Button
-            style={styles.btnOnline}
-            onPress={this.onSelectType('Online')}
-            startColor={types.indexOf('Online') > -1 ? Colors.primary : Colors.blur0}
-            endColor={types.indexOf('Online') > -1 ? Colors.primary : Colors.blur0}
-            buttonTitle={I18n.t('userInfo.tutor.types.online')}
-          />
-          <View style={styles.divider} />
-          <Button
-            style={styles.btnOffline}
-            onPress={this.onSelectType('Person')}
-            startColor={types.indexOf('Person') > -1 ? Colors.primary : Colors.blur0}
-            endColor={types.indexOf('Person') > -1 ? Colors.primary : Colors.blur0}
-            buttonTitle={I18n.t('userInfo.tutor.types.offline')}
-          />
-        </View>
+        <SessionTypes isSignupTutor session_types={types} onPress={this.onSelectType} />
         <Text type="headline" style={styles.txtTitle}>
           {I18n.t('userInfo.tutor.description')}
         </Text>
