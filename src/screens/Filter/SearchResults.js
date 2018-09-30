@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View, StyleSheet, Animated, Dimensions, InteractionManager, FlatList,
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DeviceInfo from 'react-native-device-info';
@@ -31,8 +32,9 @@ class SearchResults extends Component {
   }
 
   onPressItem(item) {
-    const { componentId } = this.props;
-    push(componentId, 'detail', {
+    const { parrentComponentId, blurSearch } = this.props;
+    blurSearch();
+    push(parrentComponentId, 'detail', {
       title: I18n.t('tutorDetail'),
       passProps: {
         item,
@@ -111,8 +113,9 @@ class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
-  componentId: PropTypes.string,
+  blurSearch: PropTypes.func,
   tutors: PropTypes.array,
+  parrentComponentId: PropTypes.string,
 };
 
 SearchResults.defaultProps = {};

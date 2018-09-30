@@ -64,7 +64,7 @@ class Home extends Component {
     alert(`Device info: ${JSON.stringify(device)}`);
   }
 
-  onPressItem(item) {
+  onPressItem = item => {
     const { componentId } = this.props;
     push(componentId, 'detail', {
       title: I18n.t('tutorDetail'),
@@ -73,7 +73,7 @@ class Home extends Component {
       },
       rightButtons: [chat()],
     });
-  }
+  };
 
   initPanResponder = () => {
     this.panResponder = PanResponder.create({
@@ -126,7 +126,7 @@ class Home extends Component {
   };
 
   render() {
-    const { tutors, searchTutor } = this.props;
+    const { tutors, searchTutor, componentId } = this.props;
     const { isUpdate, selectedMarker } = this.state;
     const animatedHeight = this.animated.interpolate({
       inputRange: [-9999, 0, 200, height, 9999],
@@ -142,7 +142,7 @@ class Home extends Component {
             onPressMarker={this.onPressMarker}
           />
         </View>
-        <FilterBar searchTutor={searchTutor} />
+        <FilterBar parrentComponentId={componentId} searchTutor={searchTutor} />
         <Animated.View style={[styles.vList, { height: animatedHeight }]}>
           <View style={styles.vHeaderList} {...this.panResponder.panHandlers}>
             <View style={styles.vLinePrimary} />
@@ -169,7 +169,7 @@ Home.propTypes = {
   tutors: PropTypes.array,
 };
 
-const { height} = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -214,7 +214,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getTutors: () => dispatch(TutorsActions.getAllTutors()),
-    searchTutor: (text) => dispatch(TutorsActions.searchTutor(text)),
+    searchTutor: text => dispatch(TutorsActions.searchTutor(text)),
   };
 };
 

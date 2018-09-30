@@ -19,7 +19,7 @@ import AddressView from './AddressView';
 import { getPlace } from '../../api/locations';
 import { searchAsync } from '../../utils/tools';
 import SessionTypes from '../../components/SessionTypes';
-import { dismissModal } from '../../navigation/navigationActions';
+import { dismissAllModals } from '../../navigation/navigationActions';
 
 class Filter extends Component {
   constructor(props) {
@@ -55,11 +55,11 @@ class Filter extends Component {
     if (this.priceRange && this.priceRange.getData) {
       filter.priceRange = this.priceRange.getData();
     }
-    setFilter(filter);
-    getAllTutors(makeFilterForTutor(filter));
+    dismissAllModals();
     setTimeout(() => {
-      dismissModal(componentId);
-    });
+      setFilter(filter);
+      getAllTutors(makeFilterForTutor(filter));
+    })
   };
 
   onReset = () => {

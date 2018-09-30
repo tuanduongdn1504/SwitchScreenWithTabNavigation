@@ -28,6 +28,7 @@ class FilterBar extends Component {
   };
 
   focusSearch = () => {
+    const { parrentComponentId } = this.props;
     this.setState({ isShowSearch: true }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 1,
@@ -38,7 +39,10 @@ class FilterBar extends Component {
       component: {
         id: 'searchResults',
         name: 'searchResults',
-        passProps: {},
+        passProps: {
+          parrentComponentId,
+          blurSearch: this.blurSearch,
+        },
         options: {
           overlay: {
             interceptTouchOutside: false,
@@ -115,6 +119,7 @@ class FilterBar extends Component {
 
 FilterBar.propTypes = {
   searchTutor: PropTypes.func,
+  parrentComponentId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
