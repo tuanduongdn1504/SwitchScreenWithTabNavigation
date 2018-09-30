@@ -1,46 +1,23 @@
-import React from 'react';
-import {
-  View, Text, TouchableHighlight, StyleSheet,
-} from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { View, Text, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/icomoon';
 import _ from 'lodash';
-import Icon from 'react-native-vector-icons/tutor';
-import { iconsMap } from '../utils/appIcons';
-import { Fonts, Colors } from '../themes';
+import { Fonts, Colors, Scale } from '../Themes';
+import I18n from '../I18n/I18n';
 
 const star = {
-  full: 'star-full',
-  half: 'star-half',
-  empty: 'star-empty',
-};
-const colorStar = {
-  full: Colors.primary,
-  half: Colors.primary,
-  empty: Colors.divider,
+  full: 'fullStar',
+  half: 'star',
+  empty: 'star',
 };
 // <RatingStar size={20} maxRating={5} currentRating={rowData.rate} />
 
-class RatingStar extends React.Component {
-  static defaultProps = {
-    size: 24,
-    color: Colors.primary,
-    currentRating: 0,
-  };
-
-  static propTypes = {
-    size: PropTypes.number,
-    color: PropTypes.string,
-    currentRating: PropTypes.number,
-    onRating: PropTypes.func,
-    totalRated: PropTypes.number,
-    showTotalAfterStar: PropTypes.number,
-  };
-
+class RatingStar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       code: [],
-      currentRating: props.currentRating,
+      currentRating: props.currentRating || 0,
       maxRating: props.maxRating,
     };
   }
@@ -66,16 +43,12 @@ class RatingStar extends React.Component {
     // const half = currentRating - full >= 0.5 ? 'half' : 'empty';
     for (let i = 0; i < maxRating; i += 1) {
       let iconName;
-      let iconColor;
       if (full > i) {
         iconName = star.full;
-        iconColor = colorStar.full;
       } else if (full === i) {
         iconName = star.half;
-        iconColor = colorStar.half;
       } else {
         iconName = star.empty;
-        iconColor = colorStar.empty;
       }
 
       components.push(
@@ -85,14 +58,17 @@ class RatingStar extends React.Component {
           onPress={() => this.onPressStar(i + 1)}
         >
           <View>
-            <Icon
+            {/* <Icon
               name={iconName}
-              size={this.props.size}
-              style={{
-                color: this.props.color,
-                marginRight: 5,
-              }}
-            />
+              size={this.props.size ? this.props.size : 24}
+              style={[
+                {
+                  color: this.props.color ? this.props.color : Colors.primary,
+                  marginRight: 15,
+                },
+                this.props.colors && { color: this.props.colors[i] },
+              ]}
+            /> */}
           </View>
         </TouchableHighlight>,
       );
@@ -104,7 +80,7 @@ class RatingStar extends React.Component {
         {this.props.showTotalAfterStar && (
           <Text style={styles.secondaryText}>
             {' '}
-            {this.props.totalRated && this.props.totalRated}
+            {this.props.totalRated || 0}
           </Text>
         )}
       </View>
@@ -136,7 +112,7 @@ class RatingStar extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create({
+var styles = {
   containerAlignRight: {
     alignItems: 'flex-end',
   },
@@ -154,8 +130,7 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     fontSize: Fonts.size.semiSmall,
-    color: Colors.secondaryText,
   },
-});
+};
 
 module.exports = RatingStar;

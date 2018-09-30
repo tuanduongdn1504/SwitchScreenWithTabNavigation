@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {
   View, StyleSheet, Animated, TouchableWithoutFeedback,
 } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
 import { Navigation } from 'react-native-navigation';
 import { showModal } from '../../navigation/navigationActions';
 import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
 import Button from '../../components/Button';
+import { isIPhoneX } from '../../utils/tools';
 
 class FilterBar extends Component {
   constructor(props) {
@@ -147,21 +147,14 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     left: 0,
-    paddingTop:
-      DeviceInfo.getModel()
-        .toLocaleLowerCase()
-        .search('iphone x') > -1
-        ? 45
-        : 30,
+    paddingTop: isIPhoneX ? 45 : 30,
   },
   searchContent: {
     position: 'absolute',
     top: 0,
     right: 0,
     paddingTop:
-      DeviceInfo.getModel()
-        .toLocaleLowerCase()
-        .search('iphone x') > -1
+      isIPhoneX
         ? 45
         : 30,
   },

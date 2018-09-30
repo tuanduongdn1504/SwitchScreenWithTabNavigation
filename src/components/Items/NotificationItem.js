@@ -12,7 +12,7 @@ const Item = ({
   return (
     <View style={styles.container}>
       <Image style={styles.image} defaultSource={Images.defaultUser} />
-      <View style={styles.row}>
+      <View style={{ flex: 1 }}>
         <Text type="body2" style={[styles.txtTitle, color && { color }]} numberOfLines={2}>
           {data.title}
         </Text>
@@ -23,13 +23,8 @@ const Item = ({
 };
 
 Item.propTypes = {
-  // action
   onPress: PropTypes.func,
-  // state
   data: PropTypes.object,
-  // title: PropTypes.string,
-  // timer: PropTypes.string,
-  // bold: PropTypes.bool,
   color: PropTypes.string,
   unShowArrow: PropTypes.bool,
   noBottomBorder: PropTypes.bool,
@@ -38,22 +33,13 @@ Item.propTypes = {
 const styles = {
   container: {
     paddingVertical: 10,
-    marginHorizontal: 20,
     backgroundColor: 'transparent',
-    // borderBottomWidth: StyleSheet.hairlineWidth,
-    // borderBottomColor: Colors.divider,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
+    marginHorizontal: 20,
   },
   txtTitle: {
     color: Colors.primaryText,
     flex: 1,
-    paddingRight: 15,
   },
   icon: {
     color: Colors.primaryText,

@@ -84,3 +84,11 @@ export const skip = () => ({
   disableIconTint: false,
   color: Colors.primary,
 });
+
+export const review = () => ({
+  id: 'review',
+  icon: iconsMap.review,
+  disabled: false,
+  disableIconTint: false,
+  color: Colors.primary,
+});

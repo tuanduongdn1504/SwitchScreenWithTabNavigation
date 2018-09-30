@@ -15,9 +15,14 @@ export const MODEL = 'tutors';
 export const IGNORE_ACTIONS = [];
 export const TutorsTypes = {
   ...makeCRUDConstantCreator(MODEL, IGNORE_ACTIONS),
-  ...makeConstantCreator('SEARCH_TUTOR'),
+  ...makeConstantCreator(
+    'SEARCH_TUTOR',
+    'CREATE_REVIEWS',
+    'CREATE_REVIEWS_SUCCESS',
+    'CREATE_REVIEWS_FAILURE',
+  ),
 };
-const CRUDTutorsActions = makeCRUDActionsCreator(MODEL, IGNORE_ACTIONS);
+
 /**
  * getAllTutors({pageSize, page })
  * getOneTutors(data)
@@ -25,6 +30,18 @@ const CRUDTutorsActions = makeCRUDActionsCreator(MODEL, IGNORE_ACTIONS);
  * deleteTutors()
  * editTutors(data)
  */
+const CRUDTutorsActions = makeCRUDActionsCreator(MODEL, IGNORE_ACTIONS);
+
 const searchTutor = text => makeActionCreator(TutorsTypes.SEARCH_TUTOR, { text });
 
-export default { ...CRUDTutorsActions, searchTutor };
+const createReviews = data => makeActionCreator(TutorsTypes.CREATE_REVIEWS, { data });
+const createReviewsSuccess = response => makeActionCreator(TutorsTypes.CREATE_REVIEWS_SUCCESS, { response });
+const createReviewsFailure = error => makeActionCreator(TutorsTypes.CREATE_REVIEWS_FAILURE, { error });
+
+export default {
+  ...CRUDTutorsActions,
+  searchTutor,
+  createReviews,
+  createReviewsSuccess,
+  createReviewsFailure,
+};

@@ -1,6 +1,7 @@
 import { PixelRatio } from 'react-native';
 import Icon from 'react-native-vector-icons/tutor';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Colors } from '../themes';
 
 const navIconSize = __DEV__ === false ? PixelRatio.getPixelSizeForLayoutSize(40) : 40; // eslint-disable-line
 const replaceSuffixPattern = /--(active|big|small|very-big)/g;
@@ -12,7 +13,12 @@ const icons = {
   shield: [20, '#000'],
   back: [25, '#fff'],
   close: [20, '#fff'],
-  user: [20, '#fff'],
+  menu: [20, '#fff'],
+  review: [20, Colors.primary],
+  // TODO: Rating star
+  'star-full': [20, Colors.primary],
+  'star-empty': [20, Colors.primary],
+  'star-half': [20, Colors.primary],
 };
 
 const iconsMap = {};

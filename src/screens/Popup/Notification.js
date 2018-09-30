@@ -12,6 +12,7 @@ import Text from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { Colors } from '../../themes';
 import { dismissInAppNoti } from '../../navigation/navigationActions';
+import { isIPhoneX } from '../../utils/tools';
 
 class Notification extends Component {
   constructor(props) {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     padding: 16,
-    paddingTop: 36,
+    paddingTop: isIPhoneX ? 50 : 36,
   },
   title: {
     fontSize: 18,

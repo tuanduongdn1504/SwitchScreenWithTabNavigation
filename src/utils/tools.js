@@ -2,6 +2,7 @@ import moment from 'moment';
 import _ from 'lodash';
 // import Share from 'react-native-share';
 import { Linking } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 export default {
   validateField(name) {
@@ -255,3 +256,8 @@ export const searchAsync = (func, callback) => {
   task = _.debounce(searchAsyncRequest(func, callback), 500, {});
   return task;
 };
+
+// TODO: isIPhoneX
+export const isIPhoneX = DeviceInfo.getDeviceName()
+  .toLocaleLowerCase()
+  .search('iphone x') > -1;

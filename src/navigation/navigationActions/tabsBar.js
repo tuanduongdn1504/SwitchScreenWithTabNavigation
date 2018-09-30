@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import I18n from 'react-native-i18n';
 import { Colors } from '../../themes/index';
-import { navigatorStyle, bottomTabs } from '../navigatonStyle';
+import { navigatorStyle } from '../navigatonStyle';
 import { iconsMap } from '../../utils/appIcons';
 
 export const startWithTabs = () => {
@@ -82,7 +82,7 @@ export const startWithTabs = () => {
     {
       label: 'more',
       title: 'Menu',
-      icon: iconsMap.user,
+      icon: iconsMap.menu,
       screen: 'sideMenu',
       options: {
         ...navigatorStyle,

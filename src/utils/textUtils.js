@@ -26,3 +26,7 @@ export const formatMoney = (number, n = 2, x = 3) => {
     .toFixed(Math.max(0, ~~n))
     .replace(new RegExp(re, 'g'), '$& ');
 };
+
+export const fromNow = date => {
+  return moment(date).fromNow();
+};

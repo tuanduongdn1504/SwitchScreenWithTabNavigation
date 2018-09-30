@@ -49,7 +49,7 @@ function* getOneSaga(data, resource, successAction, failureAction) {
       data[PRIMARY_KEY],
     );
     if (response.success) {
-      yield put(successAction(response.results));
+      yield put(successAction(response.data));
     } else {
       yield put(failureAction(response));
     }
@@ -122,8 +122,8 @@ const makeCRUDSagaCreator = (resource, actions) => {
       getOneSaga,
       data,
       resource,
-      actions[makeActionName(`GET_ALL_${_.snakeCase(resource).toUpperCase()}_SUCCESS`)],
-      actions[makeActionName(`GET_ALL_${_.snakeCase(resource).toUpperCase()}_FAILURE`)],
+      actions[makeActionName(`GET_ONE_${_.snakeCase(resource).toUpperCase()}_SUCCESS`)],
+      actions[makeActionName(`GET_ONE_${_.snakeCase(resource).toUpperCase()}_FAILURE`)],
     );
   }
   function* editSagaCreator({ data }) {
