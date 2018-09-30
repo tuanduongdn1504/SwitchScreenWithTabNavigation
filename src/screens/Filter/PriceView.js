@@ -46,7 +46,6 @@ const PriceView = ({ start, end, refFunc }) => {
         start={start}
         end={end}
         ref={e => {
-          console.log(e);
           refFunc(e);
         }}
       />
