@@ -87,22 +87,28 @@ export const editFailure = (state, { data }) => state.merge({
 
 // Delete
 
-export const del = (state, { data }) => state.merge({
-  error: null,
-  itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: true },
-});
-export const delSuccess = (state, { data }) => ({
-  ...state,
-  data: { ...state.data, [data[PRIMARY_KEY]]: null },
-  itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: false },
-  error: null,
-  current: {},
-});
+export const del = (state, { data }) => {
+  return state.merge({
+    error: null,
+    itemloadings: data[PRIMARY_KEY] ? { ...state.itemloadings, [data[PRIMARY_KEY]]: true } : null,
+  });
+};
 
-export const delFailure = (state, { data }) => state.merge({
-  itemloadings: { ...state.itemloadings, [data[PRIMARY_KEY]]: false },
-  error: data,
-});
+export const delSuccess = (state, { data }) => {
+  return state.merge({
+    data: data[PRIMARY_KEY] ? { ...state.data, [data[PRIMARY_KEY]]: null } : null,
+    itemloadings: data[PRIMARY_KEY] ? { ...state.data, [data[PRIMARY_KEY]]: null } : null,
+    error: null,
+    current: {},
+  });
+};
+
+export const delFailure = (state, { data }) => {
+  return state.merge({
+    itemloadings: data[PRIMARY_KEY] ? { ...state.itemloadings, [data[PRIMARY_KEY]]: false } : null,
+    error: data,
+  });
+};
 
 export const makeCRUDReducerCreator = (resource, ignoreActions = []) => {
   const listReducerHandlers = ignoreActions.indexOf('GET_ALL') > -1
