@@ -116,7 +116,7 @@ class Home extends Component {
   renderItem = ({ item, index }) => {
     return (
       <HomeItem
-        showQR={this.showQR}
+        // showQR={this.showQR}
         data={item}
         index={index}
         onPress={() => this.onPressItem(item, index)}

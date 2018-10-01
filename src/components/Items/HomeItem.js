@@ -4,7 +4,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import Text from '../Text';
 import Colors from '../../themes/Colors';
 import Touchable from '../Touchable';
-import RatingStar from '../RatingStar';
+import StarRating from '../StarRating';
 import { Images } from '../../themes';
 import { formatMoney } from '../../utils/textUtils';
 
@@ -17,7 +17,7 @@ const HomeItem = ({ data, onPress }) => {
             <Image
               style={styles.image}
               source={{
-                uri: data.avatar || global.defaultImage[data.gender === 'Male' ? 0 : 1],
+                uri: data.avatar,
               }}
               defaultSource={Images.defaultUser}
             />
@@ -25,14 +25,19 @@ const HomeItem = ({ data, onPress }) => {
               <Text numberOfLines={1} type="body2" color={Colors.primaryText}>
                 {`${data.first_name} ${data.last_name}`}
               </Text>
-              <RatingStar
-                size={17}
-                showTotalAfterStar
-                left
-                currentRating={3}
-                maxRating={5}
-                totalRated={120}
-              />
+              <View style={[styles.ratingContainer, styles.row]}>
+                <StarRating
+                  disabled
+                  rating={data.average_rating}
+                  starSize={16}
+                  containerStyle={styles.rating}
+                />
+                <Text type="small">
+                  {'('}
+                  {data.reviews?.length}
+                  {')'}
+                </Text>
+              </View>
               <Text
                 numberOfLines={2}
                 type="body3"
@@ -96,10 +101,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  icon: {
-    marginRight: 10,
-    fontSize: 17,
-  },
   description: {},
   vPrice: {
     width: 110,
@@ -110,6 +111,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
+  },
+  ratingContainer: {
+    marginTop: 10,
+  },
+  rating: {
+    marginRight: 5,
   },
 });
 
