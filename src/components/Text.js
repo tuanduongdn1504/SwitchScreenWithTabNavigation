@@ -91,6 +91,13 @@ export const styles = StyleSheet.create({
     fontWeight: Fonts.fontWeight.normal,
     color: Colors.primaryTextBlur,
   },
+  body3Bold: {
+    // 14
+    fontFamily: Fonts.type.regular,
+    fontSize: 14,
+    fontWeight: Fonts.fontWeight.bold,
+    color: Colors.primaryTextBlur,
+  },
   small: {
     // 12
     fontFamily: Fonts.type.light,

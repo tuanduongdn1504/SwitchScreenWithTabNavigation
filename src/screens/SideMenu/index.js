@@ -73,6 +73,22 @@ class Setting extends Component {
     });
   };
 
+  renderBecomeTutorBtn = () => {
+    const { user } = this.props;
+    if (!user.role === 'tutor') {
+      return (
+        <Button
+          isShadow
+          style={styles.btnBecomeATutor}
+          primary
+          onPress={this.beComeTutor}
+          buttonTitle={I18n.t('moreText.becomeATutor').toLocaleUpperCase()}
+        />
+      );
+    }
+    return null;
+  };
+
   render() {
     const { logout, user, requestLocation } = this.props;
 
@@ -107,13 +123,7 @@ class Setting extends Component {
           />
           <View style={{ height: 100 }} />
         </ScrollView>
-        <Button
-          isShadow
-          style={styles.btnBecomeATutor}
-          primary
-          onPress={this.beComeTutor}
-          buttonTitle={I18n.t('moreText.becomeATutor').toLocaleUpperCase()}
-        />
+        {this.renderBecomeTutorBtn()}
       </View>
     );
   }

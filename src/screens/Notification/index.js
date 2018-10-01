@@ -3,13 +3,13 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from 'react-native-i18n';
-import { Colors } from '../../themes';
 import Item from '../../components/Items/NotificationItem';
 import Divider from '../../components/Divider';
 import Text from '../../components/Text';
 import { push } from '../../navigation/navigationActions';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import NotificationActions from '../../redux/NotificationsRedux/actions';
+import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 
 class Notification extends Component {
   static propTypes = {
@@ -31,8 +31,8 @@ class Notification extends Component {
   onPressItem = data => () => {
     const { componentId } = this.props;
     push(componentId, 'notificationDetail', {
-      title: I18n.t('notification.detailTitle'),
       passProps: { data },
+      largeTitle: false,
     });
   };
 
@@ -48,20 +48,17 @@ class Notification extends Component {
 
   render() {
     const { dataSource } = this.props;
-    console.log('dataSource', dataSource);
+    // console.log('dataSource', dataSource);
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={dataSource}
-          renderItem={this.renderItem}
-          keyExtractor={data => data.id.toString()}
-          showsHorizontalScrollIndicator={false}
-          ListEmptyComponent={this.renderEmpty}
-          ItemSeparatorComponent={() => <Divider style={{ marginLeft: 60, marginRight: 20 }} />}
-          ListFooterComponent={() => <View style={{ height: 20 }} />}
-          ListHeaderComponent={() => <View style={{ height: 20 }} />}
-        />
-      </View>
+      <FlatList
+        data={dataSource}
+        style={styles.container}
+        renderItem={this.renderItem}
+        keyExtractor={data => data[PRIMARY_KEY].toString()}
+        showsHorizontalScrollIndicator={false}
+        ListEmptyComponent={this.renderEmpty}
+        ItemSeparatorComponent={() => <Divider style={{ marginLeft: 80, marginRight: 20 }} />}
+      />
     );
   }
 }
@@ -69,7 +66,6 @@ class Notification extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.default,
   },
   center: {
     alignItems: 'center',

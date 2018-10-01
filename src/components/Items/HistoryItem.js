@@ -47,10 +47,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   container: {
-    backgroundColor: Colors.default,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    // paddingLeft: 30,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -60,9 +58,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
   },
-  // vHeader: {
-  //   flexDirection: 'row',
-  // },
   right: {
     width: 50,
   },

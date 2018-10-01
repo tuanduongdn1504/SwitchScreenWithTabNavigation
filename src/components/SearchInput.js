@@ -32,7 +32,7 @@ const SearchInput = ({
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Type some thing..."
+          placeholder="Type something..."
           placeholderTextColor={Colors.grey}
           returnKeyType="search"
           onChange={event => {

@@ -72,14 +72,12 @@ class ChatList extends Component {
   render() {
     return (
       <FlatList
-        style={styles.list}
+        style={styles.container}
         data={chatList}
         renderItem={this.renderItem}
         keyExtractor={data => data.id.toString()}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <Divider style={{ marginLeft: 30, marginRight: 30 }} />}
-        ListFooterComponent={() => <View style={{ width: 20 }} />}
-        ListHeaderComponent={() => <View style={{ width: 20 }} />}
       />
     );
   }
@@ -87,10 +85,6 @@ class ChatList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.default,
-    flex: 1,
-  },
-  list: {
     flex: 1,
   },
 });

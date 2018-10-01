@@ -13,7 +13,7 @@ export const navigatorStyle = {
     animate: true,
     hideOnScroll: false,
     elevation: 0,
-    noBorder: false,
+    noBorder: true,
     buttonColor: Colors.titleNav,
     title: {
       fontSize: 17,

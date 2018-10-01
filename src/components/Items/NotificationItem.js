@@ -12,9 +12,11 @@ const Item = ({ data, onPress }) => {
       <View style={styles.container}>
         <Image style={styles.image} defaultSource={Images.defaultUser} />
         <View style={{ flex: 1 }}>
-          <Text type={isRead ? 'body2' : 'body2Bold'} style={styles.txtTitle} numberOfLines={2}>
-            {data.title}
-          </Text>
+          <View style={styles.txtTitle}>
+            <Text type={isRead ? 'body3' : 'body3Bold'} numberOfLines={2}>
+              {data.title}
+            </Text>
+          </View>
           <Text type="small">{fromNow(data.created_at)}</Text>
         </View>
       </View>
@@ -30,13 +32,13 @@ Item.propTypes = {
 const styles = {
   container: {
     paddingVertical: 10,
-    backgroundColor: 'transparent',
     flexDirection: 'row',
     marginHorizontal: 20,
   },
   txtTitle: {
     color: Colors.primaryText,
     flex: 1,
+    justifyContent: 'center',
   },
   icon: {
     color: Colors.primaryText,

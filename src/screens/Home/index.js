@@ -5,7 +5,6 @@ import {
   View, StyleSheet, FlatList, Dimensions, Animated, PanResponder,
 } from 'react-native';
 import { connect } from 'react-redux';
-import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
 import { push } from '../../navigation/navigationActions';
 import { review } from '../../navigation/navigationButtons';

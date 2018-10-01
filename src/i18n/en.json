@@ -144,7 +144,7 @@
   "chatHistory": "Chat History",
   "notification": {
     "title": "Notification",
-    "detailTitle": "Notification detail",
+    "detailTitle": "Notification Detail",
     "empty": "No notifications"
   },
   "tutorDetail": "Tutor Detail",
