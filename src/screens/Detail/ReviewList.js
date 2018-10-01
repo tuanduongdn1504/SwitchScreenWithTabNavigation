@@ -16,7 +16,7 @@ const DetailList = ({ data }) => {
   );
 
   return (
-    <View style={[{ backgroundColor: 'white' }]}>
+    <View style={styles.container}>
       <FlatList
         data={data}
         keyExtractor={item => item.id}
@@ -35,6 +35,9 @@ DetailList.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   center: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -105,6 +105,7 @@ class Detail extends Component {
 
     return (
       <TabView
+        style={[styles.container]}
         navigationState={{ index, routes: this.routes }}
         renderScene={this.renderScene}
         tabStyle={{ backgroundColor: Colors.default }}
@@ -146,22 +147,20 @@ class Detail extends Component {
           </View>
         </View>
         {this.renderTabView()}
-        <View style={styles.floatBottom}>
-          <View style={[styles.container, styles.row, styles.floatBottomInner]}>
-            <View style={{ flex: 1 }}>
-              <Text type="title2">
-                {'$'}
-                {formatMoney(tutor_info?.availability?.hourly_rate)}
-              </Text>
-              <Text type="small">per hour</Text>
-            </View>
-            <Button
-              style={styles.vBtn}
-              primary
-              onPress={this.startChat(data[PRIMARY_KEY])}
-              buttonTitle={I18n.t('detail.chatWithTutor')}
-            />
+        <View style={[styles.row, styles.floatBottom]}>
+          <View style={{ flex: 1 }}>
+            <Text type="title2">
+              {'$'}
+              {formatMoney(tutor_info?.availability?.hourly_rate)}
+            </Text>
+            <Text type="small">per hour</Text>
           </View>
+          <Button
+            style={styles.vBtn}
+            primary
+            onPress={this.startChat(data[PRIMARY_KEY])}
+            buttonTitle={I18n.t('detail.chatWithTutor')}
+          />
         </View>
       </View>
     );
@@ -200,10 +199,6 @@ const styles = StyleSheet.create({
   },
   floatBottom: {
     backgroundColor: Colors.default,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     shadowColor: 'rgba(155, 155, 155, 0.2)',
     shadowOffset: {
       width: 0,
@@ -211,9 +206,8 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 4,
     shadowOpacity: 1,
-  },
-  floatBottomInner: {
     paddingHorizontal: 20,
+    marginTop: 15,
     paddingTop: 15,
     marginBottom: isIPhoneX ? 30 : 15,
   },

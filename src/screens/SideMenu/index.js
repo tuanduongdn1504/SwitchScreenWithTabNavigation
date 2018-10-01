@@ -75,18 +75,18 @@ class Setting extends Component {
 
   renderBecomeTutorBtn = () => {
     const { user } = this.props;
-    if (!user.role === 'tutor') {
-      return (
-        <Button
-          isShadow
-          style={styles.btnBecomeATutor}
-          primary
-          onPress={this.beComeTutor}
-          buttonTitle={I18n.t('moreText.becomeATutor').toLocaleUpperCase()}
-        />
-      );
+    if (user.role === 'tutor') {
+      return null;
     }
-    return null;
+    return (
+      <Button
+        isShadow
+        style={styles.btnBecomeATutor}
+        primary
+        onPress={this.beComeTutor}
+        buttonTitle={I18n.t('moreText.becomeATutor').toLocaleUpperCase()}
+      />
+    );
   };
 
   render() {

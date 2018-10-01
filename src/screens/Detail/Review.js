@@ -10,10 +10,12 @@ import { Colors } from '../../themes';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import Text from '../../components/Text';
 import InputRow from '../../components/InputRow';
+import Container from '../../components/Container';
 import Button from '../../components/Button';
 import StarRating from '../../components/StarRating';
 import { PRIMARY_KEY } from '../../redux/crudCreator/actions';
 import { showInAppNoti } from '../../navigation/navigationActions';
+import KeyboardAwareScrollView from '../../components/KeyboardAwareScrollView';
 
 class Review extends Component {
   static propTypes = {
@@ -51,41 +53,43 @@ class Review extends Component {
     const { first_name, last_name, avatar } = data;
     const { rating } = this.state;
     return (
-      <View style={styles.container}>
-        <Profile fullName={`${first_name} ${last_name}`} avatar={avatar} />
-        <StarRating
-          animation="tada"
-          disabled={false}
-          rating={rating}
-          selectedStar={value => this.onRating(value)}
-          starSize={34}
-          containerStyle={styles.rating}
-        />
-        <View style={styles.center}>
-          <Text type="smallNormal">{I18n.t('review.tapStar')}</Text>
-        </View>
-        <View style={styles.vInput}>
-          <Text type="headline" style={styles.txtTitle}>
-            {I18n.t('review.title')}
-          </Text>
-          <InputRow
-            ref={ref => {
-              this.review = ref;
-            }}
-            underLine
-            multiline
-            style={styles.textarea}
-            placeholderTextColor={Colors.placeholderText}
-            placeholder={I18n.t('review.reviewPlaceHolder')}
+      <Container>
+        <KeyboardAwareScrollView style={styles.container}>
+          <Profile fullName={`${first_name} ${last_name}`} avatar={avatar} />
+          <StarRating
+            animation="tada"
+            disabled={false}
+            rating={rating}
+            selectedStar={value => this.onRating(value)}
+            starSize={34}
+            containerStyle={styles.rating}
           />
-        </View>
-        <Button
-          primary
-          style={styles.vBtn}
-          onPress={this.send}
-          buttonTitle={I18n.t('review.send').toLocaleUpperCase()}
-        />
-      </View>
+          <View style={styles.center}>
+            <Text type="smallNormal">{I18n.t('review.tapStar')}</Text>
+          </View>
+          <View style={styles.vInput}>
+            <Text type="headline" style={styles.txtTitle}>
+              {I18n.t('review.title')}
+            </Text>
+            <InputRow
+              ref={ref => {
+                this.review = ref;
+              }}
+              underLine
+              multiline
+              style={styles.textarea}
+              placeholderTextColor={Colors.placeholderText}
+              placeholder={I18n.t('review.reviewPlaceHolder')}
+            />
+          </View>
+          <Button
+            primary
+            style={styles.vBtn}
+            onPress={this.send}
+            buttonTitle={I18n.t('review.send').toLocaleUpperCase()}
+          />
+        </KeyboardAwareScrollView>
+      </Container>
     );
   }
 }
