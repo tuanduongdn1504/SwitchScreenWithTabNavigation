@@ -48,6 +48,7 @@ const UserInfo = ({ user, onPress }) => {
 
 UserInfo.propTypes = {
   user: PropTypes.object,
+  onPress: PropTypes.func,
 };
 
 const { width } = Dimensions.get('window');

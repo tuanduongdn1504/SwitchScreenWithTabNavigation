@@ -1,6 +1,4 @@
-import {
-  call, put, select, takeLatest,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import I18n from 'react-native-i18n';
 import OneSignal from 'react-native-onesignal';
 import Actions, { LoginTypes } from './actions';
@@ -11,16 +9,10 @@ import {
   getInfo,
   updatePassword,
   editUser,
-  logout,
   loginFacebook,
   becomeTutor,
 } from '../../api/auth';
-import {
-  startWithTabs,
-  startStackScreen,
-  showInAppNoti,
-  showProgress,
-} from '../../navigation/navigationActions';
+import { startStackScreen, showInAppNoti, showProgress } from '../../navigation/navigationActions';
 import { apiWrapper } from '../../utils/reduxUtils';
 import { facebookSignInApi } from '../../api/social';
 import DeviceTokenActions from '../DeviceTokensRedux/actions';

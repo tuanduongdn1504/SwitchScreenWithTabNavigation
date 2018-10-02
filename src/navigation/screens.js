@@ -9,30 +9,13 @@ import InAppNotification from '../screens/Popup/Notification';
 import ProgressScreen from '../components/ProgressScreen';
 // Intro
 import Intro from '../screens/User/Intro';
-import SignIn from '../screens/User/SignIn';
 import Signup from '../screens/User/Signup';
-import SelectRole from '../screens/User/SelectRole';
 import ForgotPassword from '../screens/User/ForgotPassword';
 import ResetPassword from '../screens/User/ResetPassword';
 import VerifyPassword from '../screens/User/VerifyPassword';
-import SignupStudent from '../screens/User/SignupStudent';
-import SignupTutor from '../screens/User/SignupTutor';
-import SelectTutorSubjects from '../screens/User/SelectTutorSubjects';
 // tabbar
 import Home from '../screens/Home';
 import SideMenu from '../screens/SideMenu';
-import About from '../screens/SideMenu/About';
-import Detail from '../screens/Detail';
-import ChatList from '../screens/ChatList';
-import ChatBox from '../screens/ChatBox';
-import Safety from '../screens/Safety';
-import Notification from '../screens/Notification';
-import Filter from '../screens/Filter';
-import SearchResults from '../screens/Filter/SearchResults';
-import FAQ from '../screens/SideMenu/FAQ';
-import AddSubjects from '../screens/Popup/AddSubjectPopup';
-import Review from '../screens/Detail/Review';
-import NotificationDetail from '../screens/Notification/NotificationDetail';
 
 export function registerScreens(store, persistor) {
   const PersistProvider = props => {
@@ -55,30 +38,8 @@ export function registerScreens(store, persistor) {
   );
   Navigation.registerComponentWithRedux('intro', () => Intro, PersistProvider, store);
   Navigation.registerComponentWithRedux('signUp', () => Signup, PersistProvider, store);
-  Navigation.registerComponentWithRedux('studentInfo', () => SignupStudent, PersistProvider, store);
-  Navigation.registerComponentWithRedux('selectRole', () => SelectRole, PersistProvider, store);
-  Navigation.registerComponentWithRedux('tutorInfo', () => SignupTutor, PersistProvider, store);
-  Navigation.registerComponentWithRedux(
-    'selectTutorSubjects',
-    () => SelectTutorSubjects,
-    PersistProvider,
-    store,
-  );
   Navigation.registerComponentWithRedux('home', () => Home, PersistProvider, store);
   Navigation.registerComponentWithRedux('sideMenu', () => SideMenu, PersistProvider, store);
-  Navigation.registerComponentWithRedux('about', () => About, PersistProvider, store);
-  Navigation.registerComponentWithRedux('detail', () => Detail, PersistProvider, store);
-  Navigation.registerComponentWithRedux('chatBox', () => ChatBox, PersistProvider, store);
-  Navigation.registerComponentWithRedux('Safety', () => Safety, PersistProvider, store);
-  Navigation.registerComponentWithRedux('notification', () => Notification, PersistProvider, store);
-  Navigation.registerComponentWithRedux('chatList', () => ChatList, PersistProvider, store);
-  Navigation.registerComponentWithRedux('filter', () => Filter, PersistProvider, store);
-  Navigation.registerComponentWithRedux(
-    'searchResults',
-    () => SearchResults,
-    PersistProvider,
-    store,
-  );
   Navigation.registerComponentWithRedux(
     'forgotPassword',
     () => ForgotPassword,
@@ -94,16 +55,6 @@ export function registerScreens(store, persistor) {
   Navigation.registerComponentWithRedux(
     'resetPassword',
     () => ResetPassword,
-    PersistProvider,
-    store,
-  );
-  Navigation.registerComponentWithRedux('signIn', () => SignIn, PersistProvider, store);
-  Navigation.registerComponentWithRedux('FAQ', () => FAQ, PersistProvider, store);
-  Navigation.registerComponentWithRedux('addSubjects', () => AddSubjects, PersistProvider, store);
-  Navigation.registerComponentWithRedux('review', () => Review, PersistProvider, store);
-  Navigation.registerComponentWithRedux(
-    'notificationDetail',
-    () => NotificationDetail,
     PersistProvider,
     store,
   );

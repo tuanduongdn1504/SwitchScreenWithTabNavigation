@@ -1,4 +1,4 @@
-package com.lateam.tutorApp;
+package com.rnbase;
 
 import android.content.Intent;
 

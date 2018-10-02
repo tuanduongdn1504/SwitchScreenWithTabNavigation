@@ -1,4 +1,4 @@
-package com.lateam.tutorApp;
+package com.rnbase;
 
 import android.app.Application;
 import android.content.Intent;
@@ -19,8 +19,6 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.firestore.RNFirebaseFirestorePackage; // <-- Add this line
 
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
@@ -72,8 +70,6 @@ public class MainApplication extends NavigationApplication {
           new RNDeviceInfo(),
           new ReactNativeConfigPackage(),
           new MapsPackage(),
-          new RNFirebasePackage(),
-          new RNFirebaseFirestorePackage(),
           new FBSDKPackage(mCallbackManager),
           new LinearGradientPackage(),
           new LottiePackage(),

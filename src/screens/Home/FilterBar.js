@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {
   View, StyleSheet, Animated, TouchableWithoutFeedback,
 } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import { showModal } from '../../navigation/navigationActions';
 import SearchInput from '../../components/SearchInput';
 import { Colors } from '../../themes';
 import Button from '../../components/Button';
@@ -24,31 +22,14 @@ class FilterBar extends Component {
         duration: 400,
       }).start();
     });
-    Navigation.dismissOverlay('searchResults');
   };
 
   focusSearch = () => {
-    const { parrentComponentId } = this.props;
     this.setState({ isShowSearch: true }, () => {
       Animated.timing(this.animatedSearch, {
         toValue: 1,
         duration: 400,
       }).start();
-    });
-    Navigation.showOverlay({
-      component: {
-        id: 'searchResults',
-        name: 'searchResults',
-        passProps: {
-          parrentComponentId,
-          blurSearch: this.blurSearch,
-        },
-        options: {
-          overlay: {
-            interceptTouchOutside: false,
-          },
-        },
-      },
     });
   };
 
@@ -57,9 +38,7 @@ class FilterBar extends Component {
     searchTutor(text);
   };
 
-  showFilter = () => {
-    showModal('filter', {}, false, false);
-  };
+  showFilter = () => {};
 
   render = () => {
     const scale = this.animatedSearch.interpolate({
@@ -119,7 +98,6 @@ class FilterBar extends Component {
 
 FilterBar.propTypes = {
   searchTutor: PropTypes.func,
-  parrentComponentId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -153,10 +131,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    paddingTop:
-      isIPhoneX
-        ? 45
-        : 30,
+    paddingTop: isIPhoneX ? 45 : 30,
   },
   mask: {
     position: 'absolute',

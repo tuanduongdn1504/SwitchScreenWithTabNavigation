@@ -8,8 +8,6 @@ import UserInfo from './UserInfo';
 import SettingItem from '../../components/Items/SettingItem';
 import LoginActions from '../../redux/LoginRedux/actions';
 import LocationRedux from '../../redux/LocationRedux/actions';
-import { push } from '../../navigation/navigationActions';
-import { back } from '../../navigation/navigationButtons';
 import Button from '../../components/Button';
 
 class Setting extends Component {
@@ -25,15 +23,7 @@ class Setting extends Component {
     requestLocation();
   }
 
-  editProfile = () => {
-    const { componentId } = this.props;
-    push(componentId, 'signUp', {
-      title: I18n.t('profile'),
-      passProps: {
-        isEdit: true,
-      },
-    });
-  };
+  editProfile = () => {};
 
   share = () => {};
 
@@ -41,37 +31,11 @@ class Setting extends Component {
 
   goTerms = () => {};
 
-  openFAQ = type => () => {
-    const { componentId } = this.props;
-    push(componentId, 'FAQ', {
-      title: I18n.t(`faq.${type}`),
-      leftButtons: [back()],
-      passProps: {
-        type,
-      },
-    });
-  };
+  openFAQ = () => {};
 
-  beComeTutor = () => {
-    const { componentId } = this.props;
-    push(componentId, 'tutorInfo', {
-      title: I18n.t('userInfo.tutor.titleAbout'),
-      leftButtons: [back()],
-      passProps: {
-        isFromMenu: true,
-      },
-    });
-  };
+  beComeTutor = () => {};
 
-  showChatBox = () => {
-    const { componentId } = this.props;
-    push(componentId, 'chatBox', {
-      title: I18n.t('chatBox'),
-      passProps: {
-        receive: 'supporter',
-      },
-    });
-  };
+  showChatBox = () => {};
 
   renderBecomeTutorBtn = () => {
     const { user } = this.props;
@@ -143,7 +107,6 @@ const styles = StyleSheet.create({
 });
 
 Setting.propTypes = {
-  componentId: PropTypes.string,
   user: PropTypes.object,
   logout: PropTypes.func,
   requestLocation: PropTypes.func,

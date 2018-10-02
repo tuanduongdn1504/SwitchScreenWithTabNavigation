@@ -124,7 +124,7 @@ android {
 //        javaMaxHeapSize "4g"
 //    }
     defaultConfig {
-        applicationId "com.lateam.tutorApp"
+        applicationId "com.rnbase"
         minSdkVersion 19
         targetSdkVersion  26
         versionCode 1
@@ -242,7 +242,6 @@ dependencies {
     implementation ('com.android.support:multidex:1.0.3')
     implementation project(':react-native-share')
     implementation project(':react-native-image-picker')
-    implementation project(':react-native-firebase')
     implementation (project(':react-native-maps')) {
         exclude group: 'com.google.android.gms', module: 'play-services-base'
         exclude group: 'com.google.android.gms', module: 'play-services-maps'
@@ -255,8 +254,6 @@ dependencies {
     implementation project(':react-native-code-push')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.google.android.gms:play-services-base:15.0.1"
-    implementation "com.google.firebase:firebase-core:16.0.1"
-    implementation "com.google.firebase:firebase-firestore:17.0.2"
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation "com.android.support:support-v4: 27.1.1"
     implementation "com.android.support:appcompat-v7:27.1.1"
@@ -271,4 +268,3 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
-apply plugin: 'com.google.gms.google-services'

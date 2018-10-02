@@ -29,57 +29,6 @@ export const startWithTabs = () => {
       },
     },
     {
-      label: 'chatList',
-      title: 'Chat',
-      icon: iconsMap.chat,
-      screen: 'chatList',
-      options: {
-        ...navigatorStyle,
-        topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('chatHistory'),
-            color: Colors.primaryText,
-          },
-          backButton: {},
-        },
-      },
-    },
-    {
-      label: 'safety',
-      title: 'Safety',
-      icon: iconsMap.shield,
-      screen: 'Safety',
-      options: {
-        ...navigatorStyle,
-        topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('safety.title'),
-            color: Colors.primaryText,
-          },
-          backButton: {},
-        },
-      },
-    },
-    {
-      label: 'notifications',
-      title: 'Notifications',
-      icon: iconsMap.notification,
-      screen: 'notification',
-      options: {
-        ...navigatorStyle,
-        topBar: {
-          ...navigatorStyle.topBar,
-          title: {
-            text: I18n.t('notification.title'),
-            color: Colors.primaryText,
-          },
-          backButton: {},
-        },
-      },
-    },
-    {
       label: 'more',
       title: 'Menu',
       icon: iconsMap.menu,

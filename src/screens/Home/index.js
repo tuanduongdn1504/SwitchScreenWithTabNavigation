@@ -6,8 +6,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
-import { push } from '../../navigation/navigationActions';
-import { review } from '../../navigation/navigationButtons';
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -64,46 +62,25 @@ class Home extends Component {
   }
 
   onPressItem = item => {
-    const { componentId } = this.props;
-    push(componentId, 'detail', {
-      passProps: {
-        item,
-      },
-      rightButtons: [review()],
-      largeTitle: false,
-    });
+    console.log('item', item);
   };
 
   initPanResponder = () => {
     this.panResponder = PanResponder.create({
       // Ask to be the responder:
-      onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-
-      onPanResponderGrant: (evt, gestureState) => {
-        // The gesture has started. Show visual feedback so the user knows
-        // what is happening!
-        // gestureState.d{x,y} will be set to zero now
-      },
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
       onPanResponderMove: (e, gestureState) => {
-        // custom logic here
         this.animated.setValue(this.y + gestureState.dy);
       },
-      onPanResponderTerminationRequest: (evt, gestureState) => true,
-      onPanResponderRelease: (evt, gestureState) => {
-        // The user has released all touches while this view is the
-        // responder. This typically means a gesture has succeeded
+      onPanResponderTerminationRequest: () => true,
+      onPanResponderRelease: () => {
         this.y = this.animated._value;
       },
-      onPanResponderTerminate: (evt, gestureState) => {
-        // Another component has become the responder, so this gesture
-        // should be cancelled
-      },
-      onShouldBlockNativeResponder: (evt, gestureState) => {
-        // Returns whether this component should block native components from becoming the JS
-        // responder. Returns true by default. Is currently only supported on android.
+      onPanResponderTerminate: () => {},
+      onShouldBlockNativeResponder: () => {
         return true;
       },
     });
@@ -114,14 +91,7 @@ class Home extends Component {
   };
 
   renderItem = ({ item, index }) => {
-    return (
-      <HomeItem
-        // showQR={this.showQR}
-        data={item}
-        index={index}
-        onPress={() => this.onPressItem(item, index)}
-      />
-    );
+    return <HomeItem data={item} index={index} onPress={() => this.onPressItem(item, index)} />;
   };
 
   render() {

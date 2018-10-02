@@ -1,7 +1,6 @@
 import { all } from 'redux-saga/effects';
 import loginSagas from './LoginRedux/sagas';
 import appSagas from './AppRedux/sagas';
-import chatSagas from './ChatRedux/sagas';
 import ForgotPasswordSagas from './ForgotPasswordRedux/sagas';
 import subjectsSagas from './SubjectsRedux/sagas';
 import faqsSagas from './FaqsRedux/sagas';
@@ -18,7 +17,6 @@ export default function* root() {
     ...faqsSagas,
     ...subjectsSagas,
     ...ForgotPasswordSagas,
-    ...chatSagas,
     ...appSagas,
     ...loginSagas,
     ...locationSagas,
