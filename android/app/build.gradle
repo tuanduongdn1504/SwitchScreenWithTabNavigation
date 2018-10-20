@@ -124,7 +124,7 @@ android {
 //        javaMaxHeapSize "4g"
 //    }
     defaultConfig {
-        applicationId "com.rnbase"
+        applicationId "com.developmobileapp"
         minSdkVersion 19
         targetSdkVersion  26
         versionCode 1

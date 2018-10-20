@@ -1,4 +1,4 @@
-package com.rnbase;
+package com.developmobileapp;
 
 import android.content.Intent;
 

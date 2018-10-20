@@ -8,7 +8,7 @@ import SubjectsActions from '../SubjectsRedux/actions';
 export function* startup() {
   yield all([put(SubjectsActions.getAllSubjects())]);
   const { token } = yield select(state => state.login);
-  !token ? startStackScreen() : startWithTabs();
+  !token ? startWithTabs() : startWithTabs(); // dummy: startStackScreen
 }
 
 const appSagas = () => {
