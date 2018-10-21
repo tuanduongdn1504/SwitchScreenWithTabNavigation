@@ -1,6 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import { Colors } from '../../themes/index';
 import { styles as TextStyle } from '../../components/Text';
+import { navigatorStyle } from '../navigatonStyle';
 
 export const showModal = (screen, config, navHidden = false, showStack = true) => {
   const component = {
@@ -8,6 +9,7 @@ export const showModal = (screen, config, navHidden = false, showStack = true) =
     name: screen,
     passProps: config.passProps,
     options: {
+      tabBarHidden: true,
       overlay: {
         interceptTouchOutside: true,
       },

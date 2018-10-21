@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
+import { Navigation } from 'react-native-navigation';
+
 import { getDataArr } from '../../redux/crudCreator/selectors';
 import TutorsActions from '../../redux/TutorsRedux/actions';
 import CheckUpdate from './CheckUpdate';
@@ -16,7 +18,24 @@ import Maps from '../../components/Maps';
 import { Colors } from '../../themes';
 import FilterBar from './FilterBar';
 import config from '../../config/AppSetting';
+import { startWithUserInfor, startWithLogin } from '../../navigation/navigationActions';
 
+const NEWS_DATA = [
+  {
+    thumbnail:
+      'http://dichvucong.danang.gov.vn/documents/10184/30005/mang+xa+hoi.jpg/8f46df21-cac8-4fe4-9b29-34e3b12e556e?t=1520410820307',
+    title: 'Bổ sung điều kiện quản lý nội dung thông tin mạng xã hội',
+    date: '07/03/2018',
+    screen: 'sideMenu',
+  },
+  {
+    thumbnail:
+      'http://dichvucong.danang.gov.vn/documents/10184/30005/doanh+nghiep+2.jpg/3f6f8a64-071c-4a3a-a633-31c5eb55d292?t=1520410965653',
+    title: 'Thủ tướng chỉ thị đẩy mạnh hỗ trợ và phát triển doanh nghiệp',
+    date: '07/03/2018',
+    screen: 'intro',
+  },
+];
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +82,8 @@ class Home extends Component {
 
   onPressItem = item => {
     console.log('item', item);
+    // item.screen === 'sideMenu' ? startWithUserInfor() : startWithLogin();
+    // this.props.Navigation.switchToTopTab({ tabIndex: 1 });
   };
 
   initPanResponder = () => {
@@ -119,8 +140,8 @@ class Home extends Component {
           <FlatList
             style={styles.list}
             extraData={isUpdate}
-            data={tutors}
-            keyExtractor={data => data.id}
+            data={NEWS_DATA}
+            keyExtractor={data => `${data.id}`}
             renderItem={this.renderItem}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <Divider />}

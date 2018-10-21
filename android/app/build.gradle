@@ -124,7 +124,7 @@ android {
 //        javaMaxHeapSize "4g"
 //    }
     defaultConfig {
-        applicationId "com.developmobileapp"
+        applicationId "com.switchscreenwithtabnavigation"
         minSdkVersion 19
         targetSdkVersion  26
         versionCode 1

@@ -1,4 +1,4 @@
-package com.developmobileapp;
+package com.switchscreenwithtabnavigation;
 
 import android.content.Intent;
 
